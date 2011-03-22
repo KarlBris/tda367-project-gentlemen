@@ -8,6 +8,7 @@ public class Main {
 		// TODO Auto-generated method stub
 		System.out.println("hej");
 		System.out.println("HEJDÅ");
+		CommitTest.test();
 	}
 
 }
