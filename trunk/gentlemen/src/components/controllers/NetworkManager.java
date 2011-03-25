@@ -1,4 +1,4 @@
-package managers.controllers;
+package components.controllers;
 
 import core.SubManager;
 

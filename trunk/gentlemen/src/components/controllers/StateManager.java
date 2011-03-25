@@ -1,8 +1,8 @@
-package managers.utilities;
+package components.controllers;
 
 import core.SubManager;
 
-public class MouseComponent implements SubManager {
+public class StateManager implements SubManager {
 
 	@Override
 	public void initialize() {
