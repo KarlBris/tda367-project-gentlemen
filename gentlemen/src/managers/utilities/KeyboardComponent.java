@@ -2,7 +2,7 @@ package managers.utilities;
 
 import core.SubManager;
 
-public class KeyboardManager implements SubManager {
+public class KeyboardComponent implements SubManager {
 
 	@Override
 	public void initialize() {

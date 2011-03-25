@@ -1,8 +1,8 @@
-package managers.utilities;
+package managers.views;
 
 import core.SubManager;
 
-public class MouseManager implements SubManager {
+public class RenderComponent implements SubManager {
 
 	@Override
 	public void initialize() {
