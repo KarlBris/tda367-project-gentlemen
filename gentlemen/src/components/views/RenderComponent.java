@@ -1,8 +1,8 @@
 package components.views;
 
-import core.SubManager;
+import core.Component;
 
-public class RenderComponent implements SubManager {
+public class RenderComponent implements Component {
 
 	@Override
 	public void initialize() {

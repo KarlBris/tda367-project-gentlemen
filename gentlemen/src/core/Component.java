@@ -1,6 +1,6 @@
 package core;
 
-public interface SubManager {
+public interface Component {
 	
 	public void initialize();
 

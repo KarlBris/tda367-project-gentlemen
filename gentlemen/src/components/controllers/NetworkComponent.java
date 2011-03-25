@@ -1,8 +1,8 @@
 package components.controllers;
 
-import core.SubManager;
+import core.Component;
 
-public class UpdateManager implements SubManager {
+public class NetworkComponent implements Component {
 
 	@Override
 	public void initialize() {

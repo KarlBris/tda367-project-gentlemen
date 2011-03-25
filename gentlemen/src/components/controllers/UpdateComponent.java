@@ -1,8 +1,8 @@
 package components.controllers;
 
-import core.SubManager;
+import core.Component;
 
-public class PhysicsManager implements SubManager {
+public class UpdateComponent implements Component {
 
 	@Override
 	public void initialize() {

@@ -1,8 +1,8 @@
 package components.controllers;
 
-import core.SubManager;
+import core.Component;
 
-public class StateManager implements SubManager {
+public class StateComponent implements Component {
 
 	@Override
 	public void initialize() {
