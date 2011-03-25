@@ -1,8 +1,8 @@
 package components.utilities;
 
-import core.SubManager;
+import core.Component;
 
-public class KeyboardComponent implements SubManager {
+public class KeyboardComponent implements Component {
 
 	@Override
 	public void initialize() {

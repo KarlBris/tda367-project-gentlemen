@@ -1,8 +1,8 @@
 package components.utilities;
 
-import core.SubManager;
+import core.Component;
 
-public class MouseComponent implements SubManager {
+public class MouseComponent implements Component {
 
 	@Override
 	public void initialize() {
