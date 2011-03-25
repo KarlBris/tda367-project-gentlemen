@@ -1,8 +1,8 @@
-package managers.utilities;
+package components.utilities;
 
 import core.SubManager;
 
-public class KeyboardComponent implements SubManager {
+public class MouseComponent implements SubManager {
 
 	@Override
 	public void initialize() {

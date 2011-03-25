@@ -1,8 +1,8 @@
-package managers.controllers;
+package components.views;
 
 import core.SubManager;
 
-public class PhysicsManager implements SubManager {
+public class RenderComponent implements SubManager {
 
 	@Override
 	public void initialize() {

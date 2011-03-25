@@ -1,8 +1,8 @@
-package managers.controllers;
+package components.utilities;
 
 import core.SubManager;
 
-public class UpdateManager implements SubManager {
+public class KeyboardComponent implements SubManager {
 
 	@Override
 	public void initialize() {
