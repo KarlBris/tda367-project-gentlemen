@@ -60,6 +60,9 @@ public class Manager {
 		
 		if (newEntity != null) {
 			
+			// Add this entity to the model
+			model.addEntity(newEntity);
+			
 			// Let all components know that this entity has been created
 			for (Component component : components) {
 				component.entityAdded(newEntity);
