@@ -9,6 +9,10 @@ public abstract class Entity {
 	
 	private Geometry geometry;
 	
+	public Entity(Geometry geometry) {
+		this.geometry = geometry;
+	}
+	
 	public Geometry getGeometry() {
 		return geometry;
 	}
