@@ -76,7 +76,7 @@ public class Manager {
 	}
 	
 	public static void remove(Entity entity) {
-		model.removeEntity(entity);
+		// TODO Implement!
 	}
 	
 	public static <T extends Entity> List<T> find(Class<T> type) {
