@@ -1,6 +1,7 @@
 package components.controllers;
 
 import core.Component;
+import core.Entity;
 
 public class StateComponent implements Component {
 
@@ -29,13 +30,13 @@ public class StateComponent implements Component {
 	}
 
 	@Override
-	public void entityAdded() {
+	public void entityAdded(Entity entity) {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public void entityRemoved() {
+	public void entityRemoved(Entity entity) {
 		// TODO Auto-generated method stub
 
 	}

@@ -10,9 +10,9 @@ public class Geometry {
 	private Vector2f[] uvs;
 	
 	public void render() {
-		// Render the geometry as triangles
 		GL11.glColor3b((byte)color.getRed(), (byte)color.getGreen(), (byte)color.getBlue());
 		
+		// Render the geometry as triangles
 		for (Vector2f vertex : vertices) {
 			GL11.glVertex2f(vertex.x, vertex.y);
 		}

@@ -10,8 +10,8 @@ public interface Component {
 	
 	public void update();
 	
-	public void entityAdded();
+	public void entityAdded(Entity entity);
 	
-	public void entityRemoved();
+	public void entityRemoved(Entity entity);
 
 }

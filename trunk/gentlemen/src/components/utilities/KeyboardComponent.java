@@ -3,6 +3,7 @@ package components.utilities;
 import org.lwjgl.input.Keyboard;
 
 import core.Component;
+import core.Entity;
 
 public class KeyboardComponent implements Component {
 
@@ -65,13 +66,13 @@ public class KeyboardComponent implements Component {
 	}
 
 	@Override
-	public void entityAdded() {
+	public void entityAdded(Entity entity) {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public void entityRemoved() {
+	public void entityRemoved(Entity entity) {
 		// TODO Auto-generated method stub
 
 	}
