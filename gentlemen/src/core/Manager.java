@@ -2,11 +2,11 @@ package core;
 
 import java.util.List;
 
+import models.Model;
+
 import org.lwjgl.LWJGLException;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
-
-import models.Model;
 
 import components.controllers.NetworkComponent;
 import components.controllers.PhysicsComponent;
@@ -36,17 +36,40 @@ public class Manager {
 	
 	private static Component[] components = { network, physics, state, update, render, keyboard, mouse };
 	
-	private static KeyboardComponent getKeyboard(){
+	public static KeyboardComponent getKeyboard(){
 		return keyboard;
 	}
 	
-	private static MouseComponent getMouse(){
+	public static MouseComponent getMouse(){
 		return mouse;
 	}
 	
 	public static <T extends Entity> T instantiate(Class<T> type) {
-		// TODO
-		return null;
+		// Instantiate an entity of type T
+		T newEntity = null;
+		
+		try {
+			newEntity = type.newInstance();
+		}
+		catch (InstantiationException e) {
+			// TODO Do whatever it takes!
+		}
+		catch (IllegalAccessException e) {
+			// TODO Do whatever it takes!
+		}
+		
+		if (newEntity != null) {
+			
+			// Let all components know that this entity has been created
+			for (Component component : components) {
+				component.entityAdded(newEntity);
+			}
+			
+			// Let the entity know that it has been created
+			newEntity.start();
+		}
+		
+		return newEntity;
 	}
 	
 	public static void remove(Entity entity) {
