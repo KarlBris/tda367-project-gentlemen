@@ -1,6 +1,8 @@
 package core;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import models.Model;
 
@@ -11,22 +13,30 @@ import models.Model;
  */
 public class Manager {
 	
-	private Model model = new Model();
+	private static Model model = new Model();
 	
-	public <T extends Entity> T instantiate(Class<T> type) {
+	private static void update() {
+		// TODO
+	}
+	
+	public static <T extends Entity> T instantiate(Class<T> type) {
 		// TODO
 		return null;
 	}
 	
-	public void remove(Entity entity) {
+	public static void remove(Entity entity) {
 		model.removeEntity(entity);
 	}
 	
-	public <T extends Entity> List<T> find(Class<T> type) {
+	public static <T extends Entity> List<T> find(Class<T> type) {
 		return model.find(type);
 	}
 	
-	public void update() {
-		// TODO
+	public static List<Entity> getEntities() {
+		return model.getEntities();
+	}
+	
+	public static void start() {
+		// Start game loop
 	}
 }
