@@ -30,6 +30,13 @@ public class Manager {
 	private static KeyboardComponent keyboard = new KeyboardComponent();
 	private static MouseComponent mouse = new MouseComponent();
 	
+	private static KeyboardComponent getKeyboard(){
+		return keyboard;
+	}
+	private static MouseComponent getMouse(){
+		return mouse;
+	}
+	
 	private static void update() {
 		// TODO
 	}
