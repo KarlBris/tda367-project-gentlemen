@@ -1,7 +1,9 @@
 package models;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 
 import core.Entity;
@@ -70,5 +72,19 @@ public class Model {
 		}
 		
 		return null;
+	}
+	
+	public List<Entity> getEntities() {
+		// TODO Optimize this method if needed
+		Collection<ArrayList<Entity>> listCollection = entityMap.values();
+		
+		// Add all entity lists to the output list
+		List<Entity> output = new LinkedList<Entity>();
+		
+		for (ArrayList<Entity> list : listCollection) {
+			output.addAll(list);
+		}
+		
+		return output;
 	}
 }

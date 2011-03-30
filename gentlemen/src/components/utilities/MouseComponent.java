@@ -1,5 +1,8 @@
 package components.utilities;
 
+import org.lwjgl.input.Mouse;
+import org.lwjgl.util.vector.Vector2f;
+
 import core.Component;
 
 public class MouseComponent implements Component {
@@ -39,5 +42,8 @@ public class MouseComponent implements Component {
 		// TODO Auto-generated method stub
 
 	}
-
+	
+	public Vector2f getScreenPosition() {
+		return new Vector2f(Mouse.getX(), Mouse.getY());
+	}
 }
