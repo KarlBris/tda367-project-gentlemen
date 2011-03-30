@@ -2,6 +2,10 @@ package core;
 
 import java.util.List;
 
+import org.lwjgl.LWJGLException;
+import org.lwjgl.opengl.Display;
+import org.lwjgl.opengl.DisplayMode;
+
 import models.Model;
 
 import components.controllers.NetworkComponent;
@@ -30,15 +34,14 @@ public class Manager {
 	private static KeyboardComponent keyboard = new KeyboardComponent();
 	private static MouseComponent mouse = new MouseComponent();
 	
+	private static Component[] components = { network, physics, state, update, render, keyboard, mouse };
+	
 	private static KeyboardComponent getKeyboard(){
 		return keyboard;
 	}
+	
 	private static MouseComponent getMouse(){
 		return mouse;
-	}
-	
-	private static void update() {
-		// TODO
 	}
 	
 	public static <T extends Entity> T instantiate(Class<T> type) {
@@ -58,7 +61,70 @@ public class Manager {
 		return model.getEntities();
 	}
 	
+	private static boolean initializeDisplay() {
+		try {
+			Display.setDisplayMode(new DisplayMode(800, 600));
+			
+			Display.create();
+		}
+		catch (LWJGLException e) {
+			e.printStackTrace();
+			
+			return false;
+		}
+		
+		return true;
+	}
+	
+	private static void cleanupDisplay() {
+		Display.destroy();
+	}
+	
+	private static void updateDisplay() {
+		Display.update();
+		
+		// Lock framerate
+		Display.sync(60);
+	}
+	
+	private static void initializeComponents() {
+		
+		for (Component component : components) {
+			component.initialize();
+		}
+	}
+	
+	private static void cleanupComponents() {
+		
+		for (Component component : components) {
+			component.cleanup();
+		}
+	}
+	
+	private static void updateComponents() {
+		
+		for (Component component : components) {
+			component.instantiatePermanentEntities();
+			
+			component.update();
+		}
+	}
+	
 	public static void start() {
-		// Start game loop
+		if (!initializeDisplay()) {
+			return;
+		}
+		
+		initializeComponents();
+		
+		while (!Display.isCloseRequested()) {
+			
+			updateComponents();
+			
+			updateDisplay();
+		}
+		
+		cleanupComponents();
+		cleanupDisplay();
 	}
 }
