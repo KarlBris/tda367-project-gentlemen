@@ -16,7 +16,7 @@ public abstract class Geometry {
 	}
 	
 	public void render() {
-		GL11.glColor3b((byte)color.getRed(), (byte)color.getGreen(), (byte)color.getBlue());
+		GL11.glColor3b(color.getRedByte(), color.getGreenByte(), color.getBlueByte());
 		
 		// Render the geometry as triangles
 		for (Vector2f vertex : vertices) {
