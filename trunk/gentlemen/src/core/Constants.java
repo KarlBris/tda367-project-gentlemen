@@ -17,6 +17,9 @@ public class Constants {
 	public static float VIEWPORT_WIDTH = 22.0f;
 	public static float VIEWPORT_HEIGHT = VIEWPORT_WIDTH / VIEWPORT_RATIO;
 	
+	// Gameplay
+	public static float GEOMETRY_TO_PHYSICS_INTERPOLATION = 0.5f;
+	
 	public static int getScreenWidth() {
 		if (Display.getDisplayMode() != null) {
 			return Display.getDisplayMode().getWidth();

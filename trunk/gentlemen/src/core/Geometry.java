@@ -39,7 +39,7 @@ public abstract class Geometry {
 		// Move position towards the targetPosition
 		Vector2f delta = new Vector2f();
 		Vector2f.sub(targetPosition, getPosition(), delta);
-		delta.scale(0.1f);
+		delta.scale(Constants.GEOMETRY_TO_PHYSICS_INTERPOLATION);
 		
 		Vector2f movement = new Vector2f();
 		Vector2f.add(getPosition(), delta, movement);
@@ -62,7 +62,7 @@ public abstract class Geometry {
 			angleMovement = indirectDelta;
 		}
 		
-		setAngle(getAngle() + angleMovement);
+		setAngle(getAngle() + angleMovement * Constants.GEOMETRY_TO_PHYSICS_INTERPOLATION);
 	}
 	
 	public void render() {
