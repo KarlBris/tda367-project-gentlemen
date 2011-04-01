@@ -13,10 +13,28 @@ public class RenderComponent implements Component {
 	@Override
 	public void initialize() {
 		
+		float width;
+		float height;
+
+		int displayHeight = core.Constants.getScreenWidth();
+		int displayWidth = core.Constants.getScreenHeight();
+		
+		float displayRatio = (float)displayWidth / (float) displayHeight;
+		
+		
+		if(displayRatio < core.Constants.VIEWPORT_RATIO) {
+			width = (core.Constants.VIEWPORT_HEIGHT / displayHeight) * displayWidth;
+			height = core.Constants.VIEWPORT_HEIGHT;
+		}
+		else {
+			width = core.Constants.VIEWPORT_WIDTH;
+			height = (core.Constants.VIEWPORT_WIDTH / displayWidth) * displayHeight;
+		}
+		
 		// Initialize the projection and matrix modes
 		GL11.glMatrixMode(GL11.GL_PROJECTION);
 		GL11.glLoadIdentity();
-		GL11.glOrtho(0, 800, 600, 0, 1, -1);	// TODO Replace 800 and 600 with suitable units
+		GL11.glOrtho(0, width, height, 0, 1, -1);	// TODO Replace 800 and 600 with suitable units
 		GL11.glMatrixMode(GL11.GL_MODELVIEW);
 		
 	}
