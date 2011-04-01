@@ -89,7 +89,7 @@ public class Manager {
 	
 	private static boolean initializeDisplay() {
 		try {
-			Display.setDisplayMode(new DisplayMode(800, 600));
+			Display.setDisplayMode(new DisplayMode(Constants.DEFAULT_SCREEN_WIDTH, Constants.DEFAULT_SCREEN_HEIGHT));
 			
 			Display.create();
 		}
@@ -110,7 +110,7 @@ public class Manager {
 		Display.update();
 		
 		// Lock framerate
-		Display.sync(60);
+		Display.sync(Constants.FRAMES_PER_SECOND);
 	}
 	
 	private static void initializeComponents() {
