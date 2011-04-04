@@ -1,8 +1,6 @@
 package components.views;
 
 import java.util.List;
-
-import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.GL11;
 import core.Component;
 import core.Entity;
@@ -13,19 +11,27 @@ public class RenderComponent implements Component {
 	@Override
 	public void initialize() {
 		
+		// The width and height of the viewport in game units
 		float width;
 		float height;
 
+		
+		// Initializes the display window size
 		int displayHeight = core.Constants.getScreenWidth();
 		int displayWidth = core.Constants.getScreenHeight();
 		
-		float displayRatio = (float)displayWidth / (float) displayHeight;
+		// Calculate the aspect ratio of the display window
+		float displayRatio = (float) displayWidth / (float) displayHeight;
 		
 		
+		// If the screen is slimmer than the standard ratio (16:9), make a new, smaller, width
+		// but keep the height
 		if(displayRatio < core.Constants.VIEWPORT_RATIO) {
 			width = (core.Constants.VIEWPORT_HEIGHT / displayHeight) * displayWidth;
 			height = core.Constants.VIEWPORT_HEIGHT;
 		}
+		// If the screen is wider than or equally wide to the standard ratio, keep the height
+		// and make a new, smaller, width
 		else {
 			width = core.Constants.VIEWPORT_WIDTH;
 			height = (core.Constants.VIEWPORT_WIDTH / displayWidth) * displayHeight;
