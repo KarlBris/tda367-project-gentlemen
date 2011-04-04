@@ -8,6 +8,7 @@ public class Constants {
 	
 	public static float PI = (float)Math.PI;
 	public static float TWO_PI = (float)(Math.PI * 2);
+	public static float TO_DEGREES = (float)(180.0 / Math.PI);
 	
 	public static int FRAMES_PER_SECOND = 60;
 	public static float DELTA_TIME = 1.0f / (float)FRAMES_PER_SECOND;
@@ -19,7 +20,7 @@ public class Constants {
 	public static float VIEWPORT_HEIGHT = VIEWPORT_WIDTH / VIEWPORT_RATIO;
 	
 	// Gameplay
-	public static float GEOMETRY_TO_PHYSICS_INTERPOLATION = 0.5f;
+	public static float GEOMETRY_TO_PHYSICS_INTERPOLATION = 0.1f;
 	
 	public static int getScreenWidth() {
 		if (Display.getDisplayMode() != null) {

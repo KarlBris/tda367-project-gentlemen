@@ -42,11 +42,8 @@ public abstract class Geometry {
 		Vector2f.sub(targetPosition, getPosition(), delta);
 		delta.scale(Constants.GEOMETRY_TO_PHYSICS_INTERPOLATION);
 		
-		Vector2f movement = new Vector2f();
-		Vector2f.add(getPosition(), delta, movement);
-		
 		Vector2f newPosition = new Vector2f();
-		Vector2f.add(position, movement, newPosition);
+		Vector2f.add(getPosition(), delta, newPosition);
 		
 		setPosition(newPosition);
 		
@@ -74,6 +71,7 @@ public abstract class Geometry {
 		// Set position and angle
 		GL11.glLoadIdentity();
 		GL11.glTranslatef(position.x, position.y, 0.0f);
+		GL11.glRotatef(angle * Constants.TO_DEGREES, 0.0f, 0.0f, -1.0f);
 		
 		// Begin rendering triangles
 		GL11.glBegin(GL11.GL_TRIANGLES);

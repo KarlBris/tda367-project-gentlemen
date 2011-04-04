@@ -60,12 +60,12 @@ public class MouseComponent implements Component {
 	
 	public Vector2f getScreenPosition() {
 		// Returns a Vector2f representing the mouse pointer's position on the screen
-		return new Vector2f(Mouse.getX(), Mouse.getY());
+		return new Vector2f(Mouse.getX(), Constants.getScreenHeight() - Mouse.getY());
 	}
 	
 	public Vector2f getViewportPosition() {
 		// Returns a Vector2f representing the mouse pointer's position in the viewport
-		return Constants.screenToViewport(Mouse.getX(), Mouse.getY());
+		return Constants.screenToViewport(Mouse.getX(), Constants.getScreenHeight() - Mouse.getY());
 		
 	}
 	
