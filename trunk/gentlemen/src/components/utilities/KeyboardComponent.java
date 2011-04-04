@@ -14,14 +14,14 @@ public class KeyboardComponent implements Component {
 	public static boolean[] prevKeyDownArray = new boolean[Keyboard.KEYBOARD_SIZE];  
 	
 	
-	public static boolean getKey(int key) {
+	public boolean getKey(int key) {
 		
 		// Returns the boolean value, from the current state of the keyboard, associated with the given key		
 		return keyDownArray[key];
 		
 	}
 	
-	public static boolean getKeyDown(int key) {		
+	public boolean getKeyDown(int key) {		
 			
 		// If the given key is down right now, but wasn't down last update, the key just got pressed down, returning true
 		if(keyDownArray[key] && !prevKeyDownArray[key]) {
