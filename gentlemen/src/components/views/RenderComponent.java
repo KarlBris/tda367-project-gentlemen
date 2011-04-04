@@ -17,8 +17,8 @@ public class RenderComponent implements Component {
 
 		
 		// Initializes the display window size
-		int displayHeight = core.Constants.getScreenWidth();
-		int displayWidth = core.Constants.getScreenHeight();
+		int displayHeight = core.Constants.getScreenHeight();
+		int displayWidth = core.Constants.getScreenWidth();
 		
 		// Calculate the aspect ratio of the display window
 		float displayRatio = (float) displayWidth / (float) displayHeight;
@@ -40,7 +40,7 @@ public class RenderComponent implements Component {
 		// Initialize the projection and matrix modes
 		GL11.glMatrixMode(GL11.GL_PROJECTION);
 		GL11.glLoadIdentity();
-		GL11.glOrtho(0, width, height, 0, 1, -1);	// TODO Replace 800 and 600 with suitable units
+		GL11.glOrtho(0, width, height, 0, 1, -1);
 		GL11.glMatrixMode(GL11.GL_MODELVIEW);
 		
 	}
