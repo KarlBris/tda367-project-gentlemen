@@ -71,7 +71,7 @@ public class Model {
 			return output;
 		}
 		
-		return null;
+		return new ArrayList<T>();
 	}
 	
 	public List<Entity> getEntities() {
