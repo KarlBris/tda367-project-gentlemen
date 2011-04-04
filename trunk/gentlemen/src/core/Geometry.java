@@ -1,12 +1,13 @@
 package core;
 
+import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.util.Color;
 import org.lwjgl.util.vector.Vector2f;
 
 public abstract class Geometry {
 	
-	private Vector2f position;
+	private Vector2f position = new Vector2f();
 	private float angle;
 	
 	private Color color;
@@ -68,7 +69,14 @@ public abstract class Geometry {
 	public void render() {
 		
 		// Set color
-		GL11.glColor3b(color.getRedByte(), color.getGreenByte(), color.getBlueByte());
+		GL11.glColor3f(1.0f, 1.0f, 1.0f); // TODO Solve color issue; glColor3b does not seem to work -> create our own color class that uses float
+		
+		// Set position and angle
+		GL11.glLoadIdentity();
+		GL11.glTranslatef(position.x, position.y, 0.0f);
+		
+		// Begin rendering triangles
+		GL11.glBegin(GL11.GL_TRIANGLES);
 		
 		// Render the geometry as triangles
 		for (Vector2f vertex : vertices) {
@@ -78,5 +86,8 @@ public abstract class Geometry {
 		for (Vector2f uv : uvs) {
 			GL11.glTexCoord2f(uv.x, uv.y);
 		}
+		
+		// End rendering triangles
+		GL11.glEnd();
 	}
 }

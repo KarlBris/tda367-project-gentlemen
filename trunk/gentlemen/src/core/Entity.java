@@ -17,8 +17,8 @@ public abstract class Entity {
 		return geometry;
 	}
 	
-	public abstract void start();
-	public abstract void end();
-	public abstract void update();
-	public abstract void customRender();
+	public void start() {}
+	public void end() {}
+	public void update() {}
+	public void customRender() {}
 }

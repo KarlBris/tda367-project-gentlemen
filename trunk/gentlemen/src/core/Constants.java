@@ -10,6 +10,7 @@ public class Constants {
 	public static float TWO_PI = (float)(Math.PI * 2);
 	
 	public static int FRAMES_PER_SECOND = 60;
+	public static float DELTA_TIME = 1.0f / (float)FRAMES_PER_SECOND;
 	
 	public static int DEFAULT_SCREEN_WIDTH = 960;
 	public static int DEFAULT_SCREEN_HEIGHT = 540;
