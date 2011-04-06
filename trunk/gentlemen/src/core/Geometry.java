@@ -14,6 +14,10 @@ public abstract class Geometry {
 	private Vector2f[] vertices;
 	private Vector2f[] uvs;
 	
+	public Geometry(Color color) {
+		this.color = color;
+	}
+	
 	public Geometry(Color color, Vector2f[] vertices, Vector2f[] uvs) {
 		this.color = color;
 		this.vertices = vertices;
@@ -29,11 +33,25 @@ public abstract class Geometry {
 	}
 	
 	public void setAngle(float angle) {
-		this.angle = angle % Constants.TWO_PI;
+		angle = angle % Constants.TWO_PI;
+		
+		if (angle < 0) {
+			angle = Constants.TWO_PI + angle;
+		}
+		
+		this.angle = angle;
 	}
 	
 	public float getAngle() {
 		return angle;
+	}
+	
+	public void setVertices(Vector2f[] vertices) {
+		this.vertices = vertices;
+	}
+	
+	public void setUvs(Vector2f[] uvs) {
+		this.uvs = uvs;
 	}
 	
 	public void moveTowards(Vector2f targetPosition, float targetAngle) {
@@ -49,7 +67,7 @@ public abstract class Geometry {
 		
 		// Move angle towards targetAngle
 		float directDelta = targetAngle - angle;
-		float indirectDelta = -Math.signum(directDelta) * (Constants.TWO_PI - directDelta);
+		float indirectDelta = -Math.signum(directDelta) * (Constants.TWO_PI - Math.abs(directDelta));
 		
 		float angleMovement = 0.0f;
 		

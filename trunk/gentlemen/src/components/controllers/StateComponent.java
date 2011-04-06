@@ -1,11 +1,9 @@
 package components.controllers;
 
-import org.lwjgl.opengl.Display;
-
 import core.Component;
 import core.Entity;
 import core.Manager;
-import core.TestEntity;
+import core.Player;
 
 public class StateComponent implements Component {
 
@@ -19,8 +17,8 @@ public class StateComponent implements Component {
 	public void instantiatePermanentEntities() {
 		
 		// Instantiate one test entity
-		if (Manager.find(TestEntity.class).size() == 0) {
-			Manager.instantiate(TestEntity.class);
+		if (Manager.find(Player.class).size() == 0) {
+			Manager.instantiate(Player.class);
 		}
 	}
 

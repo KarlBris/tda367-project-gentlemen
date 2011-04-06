@@ -5,8 +5,11 @@ import java.util.List;
 import models.Model;
 
 import org.lwjgl.LWJGLException;
+import org.lwjgl.input.Keyboard;
+import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
+import org.lwjgl.opengl.GL11;
 
 import components.controllers.NetworkComponent;
 import components.controllers.PhysicsComponent;
@@ -109,8 +112,11 @@ public class Manager {
 	private static void updateDisplay() {
 		Display.update();
 		
+		
 		// Lock framerate
 		Display.sync(Constants.FRAMES_PER_SECOND);
+				
+		Display.processMessages();
 	}
 	
 	private static void initializeComponents() {

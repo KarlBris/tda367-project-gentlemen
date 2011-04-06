@@ -55,6 +55,8 @@ public class KeyboardComponent implements Component {
 	@Override
 	public void update() {
 		
+		Keyboard.poll();
+		
 		// Copy the current keyboard state to the previous
 		prevKeyDownArray = keyDownArray.clone();
 		
