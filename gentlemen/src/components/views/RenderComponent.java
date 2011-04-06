@@ -58,6 +58,8 @@ public class RenderComponent implements Component {
 	public void update() {
 		
 		List<Entity> entityList = Manager.getEntities();
+
+		GL11.glGetError();
 		
 		// Clear the color buffer and depth buffer
 		GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);

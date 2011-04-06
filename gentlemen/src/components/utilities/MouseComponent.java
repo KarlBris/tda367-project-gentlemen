@@ -37,7 +37,12 @@ public class MouseComponent implements Component {
 	@Override
 	public void update() {
 		
-		//
+		Mouse.poll();
+		
+		if(Mouse.isInsideWindow()) {
+			Mouse.setGrabbed(true);
+		}
+		//asd
 		prevButtonDownArray = buttonDownArray.clone();
 		
 		for(int i = 0; i < buttonDownArray.length; i++){
