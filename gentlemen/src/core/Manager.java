@@ -98,7 +98,19 @@ public class Manager {
 	 * @param entity the entity to remove
 	 */
 	public static void remove(Entity entity) {
-		// TODO Implement!
+		if (entity != null) {
+			
+			// Let the entity know that it is being removed
+			entity.end();
+			
+			// Let all components know that this entity is being removed
+			for (Component component : components) {
+				component.entityRemoved(entity);
+			}
+			
+			// Remove this entity from the model
+			model.removeEntity(entity);
+		}
 	}
 	
 	/**
