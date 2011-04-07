@@ -1,5 +1,8 @@
 package core;
 
+/**
+ * A component handles entities in some way
+ */
 public interface Component {
 	
 	/**
@@ -18,7 +21,7 @@ public interface Component {
 	public void cleanup();
 	
 	/**
-	 * Allows the component to perform tasks every frame of the game loop
+	 * Allows the component to perform update tasks every frame of the game loop
 	 */
 	public void update();
 	

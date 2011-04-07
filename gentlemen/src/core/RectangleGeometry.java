@@ -22,6 +22,7 @@ public class RectangleGeometry extends Geometry {
 	public RectangleGeometry(Color color, float width, float height) {
 		super(color);
 		
+		// Set the width and height of the rectangle
 		for (Vector2f v : vertices) {
 			v.x *= width;
 			v.y *= height;
