@@ -6,6 +6,9 @@ import org.lwjgl.util.vector.Vector2f;
 
 import components.utilities.KeyboardComponent;
 
+/**
+ * Player represents a player in the gameworld 
+ */
 public class Player extends Entity {
 
 	//private Camera camera;
@@ -29,12 +32,14 @@ public class Player extends Entity {
 	@Override
 	public void update() {
 		
+		// Update player position
 		Vector2f posVect = this.getGeometry().getPosition();
 		
 		Vector2f newVect = new Vector2f();
 		
 		Vector2f.add(posVect, getKeyDirection(), newVect);
 		
+		// Update player facing angle
 		Vector2f playerToReticle = new Vector2f();
 		
 		Vector2f.sub(reticle.getGeometry().getPosition(), getGeometry().getPosition(), playerToReticle);
@@ -49,9 +54,15 @@ public class Player extends Entity {
 			angle = Constants.TWO_PI - angle;
 		}
 		
+		
+		// Push the calculated values to the geometry
 		getGeometry().moveTowards(newVect, angle);
 	}
 	
+	/**
+	 * Calculate the direction of pushed down keys
+	 * @return the pushed down keys direction
+	 */
 	private Vector2f getKeyDirection(){
 		
 		KeyboardComponent keyboard = Manager.getKeyboard();
@@ -71,6 +82,7 @@ public class Player extends Entity {
 			dirVect.x +=1.0f;
 		}
 		
+		// Normalise the direction vector to always keep the same distance 
 		if(dirVect.length() > 0.0f) {
 			dirVect.normalise();
 		}
