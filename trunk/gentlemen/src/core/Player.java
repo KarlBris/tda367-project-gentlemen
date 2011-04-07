@@ -49,9 +49,16 @@ public class Player extends Entity {
 			angle = Constants.TWO_PI - angle;
 		}
 		
-		
 		// Push the calculated values to the geometry
 		getGeometry().moveTowards(newVect, angle);
+		
+		// Shoot test entities just for fun!
+		if (Manager.getKeyboard().getKey(Keyboard.KEY_SPACE)) {
+			TestEntity obj = Manager.instantiate(TestEntity.class);
+			
+			obj.setPosition(getGeometry().getPosition());
+			obj.setAngle(getGeometry().getAngle());
+		}
 	}
 	
 	/**
