@@ -8,6 +8,12 @@ import core.Manager;
 
 public class RenderComponent implements Component {
 
+	
+	/**
+	 * Initializes the viewport projection based upon the aspect ratio of the display window
+	 * 
+	 * @see core.Component#initialize()
+	 */
 	@Override
 	public void initialize() {
 		
@@ -44,16 +50,27 @@ public class RenderComponent implements Component {
 		GL11.glMatrixMode(GL11.GL_MODELVIEW);
 	}
 
+	/**
+	 * @see core.Component#instantiatePermanentEntities()
+	 */
 	@Override
 	public void instantiatePermanentEntities() {
 		// TODO Auto-generated method stub
 	}
 
+	/**
+	 * @see core.Component#cleanup()
+	 */
 	@Override
 	public void cleanup() {
 		// TODO Auto-generated method stub
 	}
 
+	/**
+	 * Commands each instantiated Entity to render itself
+	 * 
+	 * @see core.Component#update()
+	 */
 	@Override
 	public void update() {
 		
@@ -74,11 +91,17 @@ public class RenderComponent implements Component {
 		}
 	}
 
+	/**
+	 * @see core.Component#entityAdded(core.Entity)
+	 */
 	@Override
 	public void entityAdded(Entity entity) {
 		// TODO Auto-generated method stub
 	}
 
+	/**
+	 * @see core.Component#entityRemoved(core.Entity)
+	 */
 	@Override
 	public void entityRemoved(Entity entity) {
 		// TODO Auto-generated method stub
