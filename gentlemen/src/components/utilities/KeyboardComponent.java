@@ -5,6 +5,9 @@ import org.lwjgl.input.Keyboard;
 import core.Component;
 import core.Entity;
 
+/**
+ * Provides functionality related to keyboard input by reading the state of the keyboard each frame
+ */
 public class KeyboardComponent implements Component {
 
 	// An array of booleans representing the current state of the keyboard
