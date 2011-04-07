@@ -7,6 +7,10 @@ import core.Component;
 import core.Constants;
 import core.Entity;
 
+/**
+ * Provides mouse input functionality by reading the mouse state with each frame
+ *
+ */
 public class MouseComponent implements Component {
 	
 	// An array of booleans representing current state of the three normally occuring mouse buttons
@@ -34,6 +38,11 @@ public class MouseComponent implements Component {
 
 	}
 
+	/**
+	 * Updates the mouse and saves current mouse state
+	 * 
+	 * @see core.Component#update()
+	 */
 	@Override
 	public void update() {
 		
@@ -42,7 +51,7 @@ public class MouseComponent implements Component {
 		if(Mouse.isInsideWindow()) {
 			Mouse.setGrabbed(true);
 		}
-		//asd
+		// Copies the current mouse state to the previous
 		prevButtonDownArray = buttonDownArray.clone();
 		
 		for(int i = 0; i < buttonDownArray.length; i++){
@@ -62,25 +71,44 @@ public class MouseComponent implements Component {
 		// TODO Auto-generated method stub
 
 	}
-	
+	/**
+	 * Gives the mouse pointer's position on the screen as a Vector2f
+	 * 
+	 * @return the Vector2f representing the mouse pointer's position
+	 */
 	public Vector2f getScreenPosition() {
 		// Returns a Vector2f representing the mouse pointer's position on the screen
 		return new Vector2f(Mouse.getX(), Constants.getScreenHeight() - Mouse.getY());
 	}
-	
+	/**
+	 * Gives the mouse pointer's position in the viewport as a Vector2f
+	 * 
+	 * @return the Vector2f representing the mouse pointer's position
+	 */
 	public Vector2f getViewportPosition() {
 		// Returns a Vector2f representing the mouse pointer's position in the viewport
 		return Constants.screenToViewport(Mouse.getX(), Constants.getScreenHeight() - Mouse.getY());
 		
 	}
-	
+	/**
+	 * Checks whether a specific mouse button is pressed
+	 * 
+	 * @param button the button which state is to be checked
+	 * @return the state of the given button
+	 */
 	public boolean getButton(int button) {
 		// Returns the boolean value representing the state of the given button
 		return buttonDownArray[button];
 	}
 	
+	/**
+	 * Checks whether a specific mouse button was pressed during the previous call of update()
+	 * 
+	 * @param button the button which state is to be checked
+	 * @return the state of the given button
+	 */
 	public boolean getButtonDown(int button) {
-		// If a button is currently pressed down and was not pressed during the last call of update(), return true
+		// If a button is currently pressed down and was not pressed during the previous call of update(), return true
 		if(buttonDownArray[button] && !prevButtonDownArray[button]) {
 			return true;
 		}

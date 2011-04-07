@@ -5,7 +5,10 @@ import java.util.List;
 import core.Component;
 import core.Entity;
 import core.Manager;
-
+/**
+ * Is responsible for updating the Entities
+ *
+ */
 public class UpdateComponent implements Component {
 
 	@Override
@@ -26,7 +29,12 @@ public class UpdateComponent implements Component {
 
 	}
 
-	// Fetches all Entities and calls their update() function	
+	/**
+	 * Updates all Entity objects
+	 * 
+	 * @see core.Component#update()
+	 */
+	// Retrieves all Entity objects and calls their update() function	
 	@Override
 	public void update() {
 		List<Entity> entityList = Manager.getEntities();
