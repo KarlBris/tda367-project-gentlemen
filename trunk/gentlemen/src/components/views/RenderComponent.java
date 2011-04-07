@@ -6,6 +6,9 @@ import core.Component;
 import core.Entity;
 import core.Manager;
 
+/**
+ * This class is responsible for setting up the viewport projection and making Entities render themselves 
+ */
 public class RenderComponent implements Component {
 
 	
