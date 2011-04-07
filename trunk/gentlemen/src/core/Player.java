@@ -16,12 +16,7 @@ public class Player extends Entity {
 	private Reticle reticle;
 	
 	public Player() {
-		
-		super(new RectangleGeometry(null, 1.0f, 1.0f));
-		
-	
-		
-		
+		super(new RectangleGeometry(null, 1.0f, 1.0f));	
 	}
 	
 	@Override
@@ -82,10 +77,11 @@ public class Player extends Entity {
 			dirVect.x +=1.0f;
 		}
 		
-		// Normalise the direction vector to always keep the same distance 
-		if(dirVect.length() > 0.0f) {
+		// Normalize the direction vector to always keep the same distance 
+		if (dirVect.length() > 0.0f) {
 			dirVect.normalise();
 		}
+		
 		return dirVect;
 	}
 	

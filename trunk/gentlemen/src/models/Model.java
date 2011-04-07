@@ -9,14 +9,16 @@ import java.util.List;
 import core.Entity;
 
 /**
- * 
- * @author Gustav, Karl
- *
+ * The model stores all entities
  */
 public class Model {
 	
+	// Store entities in a hash map for easy access
 	private HashMap<Class<? extends Entity>, ArrayList<Entity>> entityMap = new HashMap<Class<? extends Entity>, ArrayList<Entity>>();
 	
+	/**
+	 * Adds an Entity to the model
+	 */
 	public void addEntity(Entity entity) {
 		Class<? extends Entity> key = entity.getClass();
 		
@@ -39,6 +41,10 @@ public class Model {
 		}
 	}
 	
+	/**
+	 * Removes a specific Entity from the model
+	 * @param entity the entity to remove
+	 */
 	public void removeEntity(Entity entity) {
 		Class<? extends Entity> key = entity.getClass();
 		
@@ -55,6 +61,11 @@ public class Model {
 		}
 	}
 	
+	/**
+	 * Finds entities of a specific type
+	 * @param type the class object of the sought type
+	 * @return a list of found entities
+	 */
 	@SuppressWarnings("unchecked")
 	public <T extends Entity> List<T> find(Class<T> type) {
 		// Find entities of type T
@@ -74,6 +85,10 @@ public class Model {
 		return new ArrayList<T>();
 	}
 	
+	/**
+	 * Gets all entities
+	 * @return a list of all entities
+	 */
 	public List<Entity> getEntities() {
 		// TODO Optimize this method if needed
 		Collection<ArrayList<Entity>> listCollection = entityMap.values();

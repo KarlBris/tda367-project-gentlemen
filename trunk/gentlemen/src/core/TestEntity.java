@@ -1,9 +1,7 @@
 package core;
 
 import org.lwjgl.input.Keyboard;
-import org.lwjgl.opengl.Display;
 import org.lwjgl.util.Color;
-import org.lwjgl.util.vector.Vector2f;
 
 import components.utilities.KeyboardComponent;
 
