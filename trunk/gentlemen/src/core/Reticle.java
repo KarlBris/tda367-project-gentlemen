@@ -1,6 +1,6 @@
 package core;
 
-import components.utilities.MouseComponent;
+import components.MouseComponent;
 
 public class Reticle extends Entity {
 

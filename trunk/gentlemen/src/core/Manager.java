@@ -5,19 +5,16 @@ import java.util.List;
 import models.Model;
 
 import org.lwjgl.LWJGLException;
-import org.lwjgl.input.Keyboard;
-import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
-import org.lwjgl.opengl.GL11;
 
-import components.controllers.NetworkComponent;
-import components.controllers.PhysicsComponent;
-import components.controllers.StateComponent;
-import components.controllers.UpdateComponent;
-import components.utilities.KeyboardComponent;
-import components.utilities.MouseComponent;
-import components.views.RenderComponent;
+import components.KeyboardComponent;
+import components.MouseComponent;
+import components.NetworkComponent;
+import components.PhysicsComponent;
+import components.RenderComponent;
+import components.StateComponent;
+import components.UpdateComponent;
 
 /**
  * Holds a model, controllers and views

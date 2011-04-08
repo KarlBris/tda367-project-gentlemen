@@ -1,4 +1,4 @@
-package components.controllers;
+package components;
 
 import core.Component;
 import core.Entity;
