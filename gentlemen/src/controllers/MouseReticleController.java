@@ -7,10 +7,22 @@ import components.MouseComponent;
 
 import core.Manager;
 
+/**
+ * Controls the ReticleModel using the mouse
+ * 
+ */
 public class MouseReticleController implements IController {
 	private ReticleModel model;
-	private MouseComponent mouse = Manager.getMouse();
+	private final MouseComponent mouse = Manager.getMouse();
 
+	/**
+	 * Constructor which connects this MouseReticleController to a ReticleModel
+	 * object
+	 * 
+	 * @param model
+	 *            the model which this MouseReticleController will have control
+	 *            over
+	 */
 	public MouseReticleController(final ReticleModel model) {
 		this.model = model;
 	}
