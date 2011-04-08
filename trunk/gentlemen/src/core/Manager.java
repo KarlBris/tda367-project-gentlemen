@@ -2,7 +2,7 @@ package core;
 
 import java.util.List;
 
-import models.ControllerManager;
+import models.TypeMap;
 
 import org.lwjgl.LWJGLException;
 import org.lwjgl.opengl.Display;
@@ -16,24 +16,20 @@ import components.RenderComponent;
 import components.StateComponent;
 import components.UpdateComponent;
 
-/**
- * Holds a model, controllers and views
- */
+import controllers.IController;
+import factories.IEntityFactory;
+
 public class Manager {
 	
-	// Model
-	private static ControllerManager model = new ControllerManager();
+	private static TypeMap<IModel> modelManager = new TypeMap<IModel>();
+	private static TypeMap<IController> controllerManager = new TypeMap<IController>();
 	
-	// Controllers
+	// Components
 	private static NetworkComponent network = new NetworkComponent();
 	private static PhysicsComponent physics = new PhysicsComponent();
 	private static StateComponent state = new StateComponent();
 	private static UpdateComponent update = new UpdateComponent();
-	
-	// View
 	private static RenderComponent render = new RenderComponent();
-	
-	// Utilities
 	private static KeyboardComponent keyboard = new KeyboardComponent();
 	private static MouseComponent mouse = new MouseComponent();
 	
@@ -59,54 +55,44 @@ public class Manager {
 	 * @param type the class object of the sought type
 	 * @return a reference to the newly instantiated entity
 	 */
-	public static <T extends Entity> T instantiate(Class<T> type) {
-		// Instantiate an entity of type T
-		T newEntity = null;
+	public static IController instantiate(IEntityFactory factory) {
+		// Get the new model and controller
+		IModel newModel = factory.getModel();
+		IController newController = factory.getController();
 		
-		try {
-			newEntity = type.newInstance();
-		}
-		catch (InstantiationException e) {
-			// TODO Do whatever it takes!
-		}
-		catch (IllegalAccessException e) {
-			// TODO Do whatever it takes!
-		}
+		// Add model and controller to managers
+		modelManager.add(newModel);
+		controllerManager.add(newController);
 		
-		if (newEntity != null) {
-			
-			// Add this entity to the model
-			model.addEntity(newEntity);
-			
-			// Let all components know that this entity has been created
-			for (Component component : components) {
-				component.entityAdded(newEntity);
-			}
-			
-			// Let the entity know that it has been created
-			newEntity.start();
+		// Let all components know that the new controller has been created
+		for (Component component : components) {
+			//component.entityAdded(entity)
 		}
 		
-		return newEntity;
+		// Let the controller know that it has been created
+		newController.start();
+		
+		return newController;
 	}
 	
 	/**
 	 * Removes an entity. The only way to remove an entity.
 	 * @param entity the entity to remove
 	 */
-	public static void remove(Entity entity) {
-		if (entity != null) {
+	public static void remove(IController controller) {
+		if (controller != null) {
 			
-			// Let the entity know that it is being removed
-			entity.end();
+			// Let the controller know that it is being removed
+			controller.end();
 			
-			// Let all components know that this entity is being removed
+			// Let all components know that the controller is being removed
 			for (Component component : components) {
-				component.entityRemoved(entity);
+				//component.entityRemoved(entity);
 			}
 			
-			// Remove this entity from the model
-			model.removeEntity(entity);
+			// Remove the model and the controller from the managers
+			modelManager.remove(controller.getModel());
+			controllerManager.remove(controller);
 		}
 	}
 	
@@ -115,16 +101,16 @@ public class Manager {
 	 * @param type the class object of the sought type
 	 * @return a list of found entities
 	 */
-	public static <T extends Entity> List<T> find(Class<T> type) {
-		return model.find(type);
+	public static <T extends IController> List<T> find(Class<T> controllerType) {
+		return controllerManager.find(controllerType);
 	}
 	
-	/**
-	 * Gets all entities
-	 * @return a list of all entities
-	 */
-	public static List<Entity> getEntities() {
-		return model.getEntities();
+	public static List<IModel> getModels() {
+		return modelManager.getItems();
+	}
+	
+	public static List<IController> getControllers() {
+		return controllerManager.getItems();
 	}
 	
 	/**
