@@ -3,8 +3,6 @@ package components;
 import org.lwjgl.input.Keyboard;
 
 import controllers.IController;
-import core.Entity;
-import core.IComponent;
 
 /**
  * Provides functionality related to keyboard input by reading the state of the keyboard each frame
@@ -51,7 +49,7 @@ public class KeyboardComponent implements IComponent {
 	}
 	
 	/**
-	 * @see core.IComponent#initialize()
+	 * @see components.IComponent#initialize()
 	 */
 	@Override
 	public void initialize() {
@@ -60,7 +58,7 @@ public class KeyboardComponent implements IComponent {
 	}
 
 	/**
-	 * @see core.IComponent#instantiatePermanentEntities()
+	 * @see components.IComponent#instantiatePermanentEntities()
 	 */
 	@Override
 	public void instantiatePermanentEntities() {
@@ -69,7 +67,7 @@ public class KeyboardComponent implements IComponent {
 	}
 
 	/**
-	 * @see core.IComponent#cleanup()
+	 * @see components.IComponent#cleanup()
 	 */
 	@Override
 	public void cleanup() {
@@ -79,7 +77,7 @@ public class KeyboardComponent implements IComponent {
 
 	/**
 	 * Updates the current and last keyboard states in order for the getKey() and getKeyDown() logic to function correctly
-	 * @see core.IComponent#update()
+	 * @see components.IComponent#update()
 	 */
 	@Override
 	public void update() {
@@ -97,7 +95,7 @@ public class KeyboardComponent implements IComponent {
 	}
 
 	/**
-	 * @see core.IComponent#controllerAdded(core.Entity)
+	 * @see components.IComponent#controllerAdded(core.Entity)
 	 */
 	@Override
 	public void controllerAdded(IController controller) {
@@ -106,7 +104,7 @@ public class KeyboardComponent implements IComponent {
 	}
 
 	/**
-	 * @see core.IComponent#controllerRemoved(core.Entity)
+	 * @see components.IComponent#controllerRemoved(core.Entity)
 	 */
 	@Override
 	public void controllerRemoved(IController controller) {

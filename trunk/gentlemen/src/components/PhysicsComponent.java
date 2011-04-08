@@ -1,7 +1,6 @@
 package components;
 
 import controllers.IController;
-import core.IComponent;
 
 public class PhysicsComponent implements IComponent {
 

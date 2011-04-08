@@ -1,6 +1,6 @@
 package controllers;
 
-import core.IModel;
+import models.IModel;
 
 /**
  * An interface which all controller will implement

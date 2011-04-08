@@ -2,12 +2,14 @@ package core;
 
 import java.util.List;
 
-import models.TypeMap;
+
+import models.IModel;
 
 import org.lwjgl.LWJGLException;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 
+import components.IComponent;
 import components.KeyboardComponent;
 import components.MouseComponent;
 import components.NetworkComponent;
