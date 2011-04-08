@@ -3,15 +3,15 @@ package components;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.util.vector.Vector2f;
 
-import core.Component;
+import controllers.IController;
 import core.Constants;
-import core.Entity;
+import core.IComponent;
 
 /**
  * Provides mouse input functionality by reading the mouse state with each frame
  *
  */
-public class MouseComponent implements Component {
+public class MouseComponent implements IComponent {
 	
 	// An array of booleans representing current state of the three normally occuring mouse buttons
 	public static boolean[] buttonDownArray = new boolean[3];
@@ -41,7 +41,7 @@ public class MouseComponent implements Component {
 	/**
 	 * Updates the mouse and saves current mouse state
 	 * 
-	 * @see core.Component#update()
+	 * @see core.IComponent#update()
 	 */
 	@Override
 	public void update() {
@@ -61,13 +61,13 @@ public class MouseComponent implements Component {
 	}
 
 	@Override
-	public void entityAdded(Entity entity) {
+	public void controllerAdded(IController controller) {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public void entityRemoved(Entity entity) {
+	public void controllerRemoved(IController controller) {
 		// TODO Auto-generated method stub
 
 	}

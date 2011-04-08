@@ -34,7 +34,7 @@ public class Manager {
 	private static MouseComponent mouse = new MouseComponent();
 	
 	// All components in a easy to use format
-	private static Component[] components = { network, physics, state, update, render, keyboard, mouse };
+	private static IComponent[] components = { network, physics, state, update, render, keyboard, mouse };
 	
 	/**
 	 * @return gets the keyboard component
@@ -65,7 +65,7 @@ public class Manager {
 		controllerManager.add(newController);
 		
 		// Let all components know that the new controller has been created
-		for (Component component : components) {
+		for (IComponent component : components) {
 			//component.entityAdded(entity)
 		}
 		
@@ -86,7 +86,7 @@ public class Manager {
 			controller.end();
 			
 			// Let all components know that the controller is being removed
-			for (Component component : components) {
+			for (IComponent component : components) {
 				//component.entityRemoved(entity);
 			}
 			
@@ -157,7 +157,7 @@ public class Manager {
 	 */
 	private static void initializeComponents() {
 		
-		for (Component component : components) {
+		for (IComponent component : components) {
 			component.initialize();
 		}
 	}
@@ -167,7 +167,7 @@ public class Manager {
 	 */
 	private static void cleanupComponents() {
 		
-		for (Component component : components) {
+		for (IComponent component : components) {
 			component.cleanup();
 		}
 	}
@@ -177,7 +177,7 @@ public class Manager {
 	 */
 	private static void updateComponents() {
 		
-		for (Component component : components) {
+		for (IComponent component : components) {
 			component.instantiatePermanentEntities();
 			
 			component.update();

@@ -1,21 +1,25 @@
 package components;
 
 import java.util.List;
+
 import org.lwjgl.opengl.GL11;
-import core.Component;
+
+import controllers.IController;
 import core.Entity;
+import core.IComponent;
+import core.IModel;
 import core.Manager;
 
 /**
  * This class is responsible for setting up the viewport projection and making Entities render themselves 
  */
-public class RenderComponent implements Component {
+public class RenderComponent implements IComponent {
 
 	
 	/**
 	 * Initializes the viewport projection based upon the aspect ratio of the display window
 	 * 
-	 * @see core.Component#initialize()
+	 * @see core.IComponent#initialize()
 	 */
 	@Override
 	public void initialize() {
@@ -54,7 +58,7 @@ public class RenderComponent implements Component {
 	}
 
 	/**
-	 * @see core.Component#instantiatePermanentEntities()
+	 * @see core.IComponent#instantiatePermanentEntities()
 	 */
 	@Override
 	public void instantiatePermanentEntities() {
@@ -62,7 +66,7 @@ public class RenderComponent implements Component {
 	}
 
 	/**
-	 * @see core.Component#cleanup()
+	 * @see core.IComponent#cleanup()
 	 */
 	@Override
 	public void cleanup() {
@@ -72,12 +76,12 @@ public class RenderComponent implements Component {
 	/**
 	 * Commands each instantiated Entity to render itself
 	 * 
-	 * @see core.Component#update()
+	 * @see core.IComponent#update()
 	 */
 	@Override
 	public void update() {
 		
-		List<Entity> entityList = Manager.getEntities();
+		List<IModel> models = Manager.getModels();
 
 		GL11.glGetError();
 		
@@ -85,28 +89,25 @@ public class RenderComponent implements Component {
 		GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
 		
 		// Let each entity render itself
-		for(Entity e : entityList) {
+		for(IModel m : models) {
 			
-			if(e.getGeometry()!=null) {
-				e.getGeometry().render();
-			}
-			
+			m.getGeometry().render();
 		}
 	}
 
 	/**
-	 * @see core.Component#entityAdded(core.Entity)
+	 * @see core.IComponent#controllerAdded(core.Entity)
 	 */
 	@Override
-	public void entityAdded(Entity entity) {
+	public void controllerAdded(IController controller) {
 		// TODO Auto-generated method stub
 	}
 
 	/**
-	 * @see core.Component#entityRemoved(core.Entity)
+	 * @see core.IComponent#controllerRemoved(core.Entity)
 	 */
 	@Override
-	public void entityRemoved(Entity entity) {
+	public void controllerRemoved(IController controller) {
 		// TODO Auto-generated method stub
 	}
 
