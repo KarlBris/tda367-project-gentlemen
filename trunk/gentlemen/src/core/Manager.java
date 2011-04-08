@@ -2,7 +2,7 @@ package core;
 
 import java.util.List;
 
-import models.ControllerManger;
+import models.ControllerManager;
 
 import org.lwjgl.LWJGLException;
 import org.lwjgl.opengl.Display;
@@ -22,7 +22,7 @@ import components.UpdateComponent;
 public class Manager {
 	
 	// Model
-	private static ControllerManger model = new ControllerManger();
+	private static ControllerManager model = new ControllerManager();
 	
 	// Controllers
 	private static NetworkComponent network = new NetworkComponent();
