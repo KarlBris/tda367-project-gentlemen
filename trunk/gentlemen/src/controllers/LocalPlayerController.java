@@ -9,18 +9,18 @@ import core.Constants;
 import core.IModel;
 import core.Manager;
 import core.PlayerModel;
-import factories.HumanPlayerFactory;
+import factories.LocalPlayerFactory;
 
 /**
  * HumanPlayerController controls a PlayerModel with inputs from user interaction 
  */
-public class HumanPlayerController implements IController {
+public class LocalPlayerController implements IController {
 	
 	private PlayerModel model;
 	
 	//private ReticleController reticleController;
 	
-	public HumanPlayerController(PlayerModel model){
+	public LocalPlayerController(PlayerModel model){
 		this.model = model;
 	}
 

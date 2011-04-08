@@ -1,10 +1,10 @@
 package components;
 
-import controllers.HumanPlayerController;
+import controllers.LocalPlayerController;
 import controllers.IController;
 import core.IComponent;
 import core.Manager;
-import factories.HumanPlayerFactory;
+import factories.LocalPlayerFactory;
 
 public class StateComponent implements IComponent {
 
@@ -18,8 +18,8 @@ public class StateComponent implements IComponent {
 	public void instantiatePermanentEntities() {
 		
 		// Instantiate the player
-		if (Manager.find(HumanPlayerController.class).size() == 0) {
-			Manager.instantiate(new HumanPlayerFactory());
+		if (Manager.find(LocalPlayerController.class).size() == 0) {
+			Manager.instantiate(new LocalPlayerFactory());
 		}
 	}
 
