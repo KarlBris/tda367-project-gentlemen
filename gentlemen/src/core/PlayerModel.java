@@ -7,8 +7,7 @@ import org.lwjgl.util.vector.Vector2f;
  */
 public class PlayerModel implements IModel {
 
-	private final RectangleGeometry geometry = new RectangleGeometry(null,
-			1.0f, 1.0f);
+	private final RectangleGeometry geometry = new RectangleGeometry(null, 1.0f, 1.0f);
 	private Vector2f targetPosition = geometry.getPosition();
 	private float angle = 0.0f;
 
@@ -32,8 +31,12 @@ public class PlayerModel implements IModel {
 	 * 
 	 * @param targetPosition
 	 */
-	public void move(final Vector2f targetPosition) {
-		this.targetPosition = targetPosition;
+	public void move(final Vector2f velocity) {
+		Vector2f movement = new Vector2f(velocity);
+		
+		movement.scale(Constants.DELTA_TIME);
+		
+		Vector2f.add(targetPosition, movement, targetPosition);
 	}
 
 	/**
