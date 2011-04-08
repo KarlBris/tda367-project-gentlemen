@@ -1,4 +1,4 @@
-package components.controllers;
+package components;
 
 import java.util.List;
 

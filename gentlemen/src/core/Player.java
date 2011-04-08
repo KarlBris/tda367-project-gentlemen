@@ -4,7 +4,7 @@ import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.util.vector.Vector2f;
 
-import components.utilities.KeyboardComponent;
+import components.KeyboardComponent;
 
 /**
  * Player represents a player in the gameworld 

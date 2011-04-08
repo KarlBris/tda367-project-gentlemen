@@ -1,4 +1,4 @@
-package components.views;
+package components;
 
 import java.util.List;
 import org.lwjgl.opengl.GL11;
