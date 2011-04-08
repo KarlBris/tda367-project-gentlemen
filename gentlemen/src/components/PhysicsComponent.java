@@ -1,9 +1,9 @@
 package components;
 
-import core.Component;
-import core.Entity;
+import controllers.IController;
+import core.IComponent;
 
-public class PhysicsComponent implements Component {
+public class PhysicsComponent implements IComponent {
 
 	@Override
 	public void initialize() {
@@ -30,13 +30,13 @@ public class PhysicsComponent implements Component {
 	}
 
 	@Override
-	public void entityAdded(Entity entity) {
+	public void controllerAdded(IController controller) {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public void entityRemoved(Entity entity) {
+	public void controllerRemoved(IController controller) {
 		// TODO Auto-generated method stub
 
 	}

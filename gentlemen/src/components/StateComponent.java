@@ -1,11 +1,9 @@
 package components;
 
-import core.Component;
-import core.Entity;
-import core.Manager;
-import core.Player;
+import controllers.IController;
+import core.IComponent;
 
-public class StateComponent implements Component {
+public class StateComponent implements IComponent {
 
 	@Override
 	public void initialize() {
@@ -17,9 +15,9 @@ public class StateComponent implements Component {
 	public void instantiatePermanentEntities() {
 		
 		// Instantiate one test entity
-		if (Manager.find(Player.class).size() == 0) {
-			Manager.instantiate(Player.class);
-		}
+		//if (Manager.find(Player.class).size() == 0) {
+		//	Manager.instantiate(Player.class);
+		//}
 	}
 
 	@Override
@@ -35,13 +33,13 @@ public class StateComponent implements Component {
 	}
 
 	@Override
-	public void entityAdded(Entity entity) {
+	public void controllerAdded(IController controller) {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public void entityRemoved(Entity entity) {
+	public void controllerRemoved(IController controller) {
 		// TODO Auto-generated method stub
 
 	}

@@ -1,9 +1,11 @@
 package core;
 
+import controllers.IController;
+
 /**
  * A component handles entities in some way
  */
-public interface Component {
+public interface IComponent {
 	
 	/**
 	 * Allows the component to initialize itself at startup
@@ -25,16 +27,8 @@ public interface Component {
 	 */
 	public void update();
 	
-	/**
-	 * Called when a new entity is instantiated
-	 * @param entity the newly created entity
-	 */
-	public void entityAdded(Entity entity);
+	public void controllerAdded(IController controller);
 	
-	/**
-	 * Called when an entity is removed
-	 * @param entity the entity that is about to be removed
-	 */
-	public void entityRemoved(Entity entity);
+	public void controllerRemoved(IController controller);
 
 }

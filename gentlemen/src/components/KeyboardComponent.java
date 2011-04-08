@@ -2,13 +2,14 @@ package components;
 
 import org.lwjgl.input.Keyboard;
 
-import core.Component;
+import controllers.IController;
 import core.Entity;
+import core.IComponent;
 
 /**
  * Provides functionality related to keyboard input by reading the state of the keyboard each frame
  */
-public class KeyboardComponent implements Component {
+public class KeyboardComponent implements IComponent {
 
 	// An array of booleans representing the current state of the keyboard
 	public static boolean[] keyDownArray = new boolean[Keyboard.KEYBOARD_SIZE];
@@ -50,7 +51,7 @@ public class KeyboardComponent implements Component {
 	}
 	
 	/**
-	 * @see core.Component#initialize()
+	 * @see core.IComponent#initialize()
 	 */
 	@Override
 	public void initialize() {
@@ -59,7 +60,7 @@ public class KeyboardComponent implements Component {
 	}
 
 	/**
-	 * @see core.Component#instantiatePermanentEntities()
+	 * @see core.IComponent#instantiatePermanentEntities()
 	 */
 	@Override
 	public void instantiatePermanentEntities() {
@@ -68,7 +69,7 @@ public class KeyboardComponent implements Component {
 	}
 
 	/**
-	 * @see core.Component#cleanup()
+	 * @see core.IComponent#cleanup()
 	 */
 	@Override
 	public void cleanup() {
@@ -78,7 +79,7 @@ public class KeyboardComponent implements Component {
 
 	/**
 	 * Updates the current and last keyboard states in order for the getKey() and getKeyDown() logic to function correctly
-	 * @see core.Component#update()
+	 * @see core.IComponent#update()
 	 */
 	@Override
 	public void update() {
@@ -96,19 +97,19 @@ public class KeyboardComponent implements Component {
 	}
 
 	/**
-	 * @see core.Component#entityAdded(core.Entity)
+	 * @see core.IComponent#controllerAdded(core.Entity)
 	 */
 	@Override
-	public void entityAdded(Entity entity) {
+	public void controllerAdded(IController controller) {
 		// TODO Auto-generated method stub
 
 	}
 
 	/**
-	 * @see core.Component#entityRemoved(core.Entity)
+	 * @see core.IComponent#controllerRemoved(core.Entity)
 	 */
 	@Override
-	public void entityRemoved(Entity entity) {
+	public void controllerRemoved(IController controller) {
 		// TODO Auto-generated method stub
 
 	}

@@ -2,14 +2,15 @@ package components;
 
 import java.util.List;
 
-import core.Component;
+import controllers.IController;
 import core.Entity;
+import core.IComponent;
 import core.Manager;
 /**
  * Is responsible for updating the Entities
  *
  */
-public class UpdateComponent implements Component {
+public class UpdateComponent implements IComponent {
 
 	@Override
 	public void initialize() {
@@ -32,27 +33,25 @@ public class UpdateComponent implements Component {
 	/**
 	 * Updates all Entity objects
 	 * 
-	 * @see core.Component#update()
+	 * @see core.IComponent#update()
 	 */
-	// Retrieves all Entity objects and calls their update() function	
 	@Override
 	public void update() {
-		List<Entity> entityList = Manager.getEntities();
+		List<IController> controllerList = Manager.getControllers();
 		
-		for (Entity e : entityList){
-			e.update();
+		for (IController c : controllerList){
+			c.update();
 		}
-
 	}
 
 	@Override
-	public void entityAdded(Entity entity) {
+	public void controllerAdded(IController controller) {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public void entityRemoved(Entity entity) {
+	public void controllerRemoved(IController controller) {
 		// TODO Auto-generated method stub
 
 	}
