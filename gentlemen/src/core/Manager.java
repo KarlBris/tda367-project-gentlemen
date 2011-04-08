@@ -66,7 +66,7 @@ public class Manager {
 		
 		// Let all components know that the new controller has been created
 		for (IComponent component : components) {
-			//component.entityAdded(entity)
+			component.controllerAdded(newController);
 		}
 		
 		// Let the controller know that it has been created
@@ -87,7 +87,7 @@ public class Manager {
 			
 			// Let all components know that the controller is being removed
 			for (IComponent component : components) {
-				//component.entityRemoved(entity);
+				component.controllerRemoved(controller);
 			}
 			
 			// Remove the model and the controller from the managers
