@@ -18,6 +18,10 @@ public class ReticleModel implements IModel {
 		geometry.setPosition(position);
 	}
 	
+	public Vector2f getPosition() {
+		return geometry.getPosition();
+	}
+	
 	public void move(Vector2f movement) {
 		Vector2f newPosition = new Vector2f();
 		
