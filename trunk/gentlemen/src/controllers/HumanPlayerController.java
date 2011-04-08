@@ -9,43 +9,49 @@ import core.Constants;
 import core.IModel;
 import core.Manager;
 import core.PlayerModel;
+import factories.HumanPlayerFactory;
 
 /**
  * HumanPlayerController controls a PlayerModel with inputs from user interaction 
  */
 public class HumanPlayerController implements IController {
-	private PlayerModel playerModel;
-	//private ReticleModel reticleModel;
 	
-	public HumanPlayerController(PlayerModel playerModel){
-		this.playerModel = playerModel;
+	private PlayerModel model;
+	
+	//private ReticleController reticleController;
+	
+	public HumanPlayerController(PlayerModel model){
+		this.model = model;
 	}
 
 	@Override
 	public void update() {
 		// Update player position
-		playerModel.move(this.getKeyDirection());
+		Vector2f velocity = new Vector2f(getKeyDirection());
+		
+		velocity.scale(10.0f);
+		
+		model.move(velocity);
 		
 		// Update player aim direction
-		playerModel.faceTowards(this.getFacingDirection());
+		model.faceTowards(getFacingDirection());
 		
 		// Throw ball if space is pressed
 		if (Manager.getKeyboard().getKey(Keyboard.KEY_SPACE)) {
-			playerModel.throwBall();
+			model.throwBall();
 		}
 		
+		model.update();
 	}
 
 	@Override
 	public IModel getModel() {
-		return playerModel;
+		return model;
 	}
 
 	@Override
 	public void start() {
-		// TODO Auto-generated method stub
-		// Instanceiate Aim
-
+		//reticleController = Manager.instantiate(new HumanPlayerFactory());
 	}
 
 	@Override
@@ -64,8 +70,8 @@ public class HumanPlayerController implements IController {
 		Vector2f playerToReticle = new Vector2f();
 		
 		// Calculate the position of the reticle relative to the player
-		Vector2f.sub(	reticleModel.getPosition(), 
-						playerModel.getPosition(), 
+		Vector2f.sub(	Manager.getMouse().getViewportPosition(), 
+						model.getPosition(), 
 						playerToReticle);
 		
 		// Calculate the angle from the x-axis to the playerToReticle vector

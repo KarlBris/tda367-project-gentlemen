@@ -1,7 +1,10 @@
 package components;
 
+import controllers.HumanPlayerController;
 import controllers.IController;
 import core.IComponent;
+import core.Manager;
+import factories.HumanPlayerFactory;
 
 public class StateComponent implements IComponent {
 
@@ -14,10 +17,10 @@ public class StateComponent implements IComponent {
 	@Override
 	public void instantiatePermanentEntities() {
 		
-		// Instantiate one test entity
-		//if (Manager.find(Player.class).size() == 0) {
-		//	Manager.instantiate(Player.class);
-		//}
+		// Instantiate the player
+		if (Manager.find(HumanPlayerController.class).size() == 0) {
+			Manager.instantiate(new HumanPlayerFactory());
+		}
 	}
 
 	@Override
