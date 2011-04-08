@@ -2,6 +2,7 @@ package controllers;
 
 import models.IModel;
 import models.PlayerModel;
+import models.ReticleModel;
 
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.util.vector.Vector2f;
@@ -10,7 +11,7 @@ import components.KeyboardComponent;
 
 import core.Constants;
 import core.Manager;
-import factories.LocalPlayerFactory;
+import factories.MouseReticleFactory;
 
 /**
  * HumanPlayerController controls a PlayerModel with inputs from user interaction 
@@ -19,7 +20,7 @@ public class LocalPlayerController implements IController {
 	
 	private PlayerModel model;
 	
-	//private ReticleController reticleController;
+	private ReticleModel reticleModel;
 	
 	public LocalPlayerController(PlayerModel model){
 		this.model = model;
@@ -52,15 +53,13 @@ public class LocalPlayerController implements IController {
 
 	@Override
 	public void start() {
-		//reticleController = Manager.instantiate(new HumanPlayerFactory());
+		// Instantiate the reticle and save the model reference
+		reticleModel = (ReticleModel)Manager.instantiate(new MouseReticleFactory()).getModel();
 	}
 
 	@Override
 	public void end() {
-		// TODO Auto-generated method stub
-
 	}
-	
 	
 	/**
 	 * @return the angel player facing calculated throught the position of the player and 
@@ -71,7 +70,7 @@ public class LocalPlayerController implements IController {
 		Vector2f playerToReticle = new Vector2f();
 		
 		// Calculate the position of the reticle relative to the player
-		Vector2f.sub(	Manager.getMouse().getViewportPosition(), 
+		Vector2f.sub(	reticleModel.getPosition(), 
 						model.getPosition(), 
 						playerToReticle);
 		
