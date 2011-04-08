@@ -11,7 +11,7 @@ import core.Manager;
 import core.PlayerModel;
 
 /**
- * HumanPlayerController controlls a PlayerModel with inputs from user interaction 
+ * HumanPlayerController controls a PlayerModel with inputs from user interaction 
  */
 public class HumanPlayerController implements IController {
 	private PlayerModel playerModel;
@@ -38,7 +38,6 @@ public class HumanPlayerController implements IController {
 
 	@Override
 	public IModel getModel() {
-		// TODO Auto-generated method stub
 		return playerModel;
 	}
 
