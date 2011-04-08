@@ -11,7 +11,7 @@ import core.Entity;
 /**
  * The model stores all entities
  */
-public class Model {
+public class ControllerManger {
 	
 	// Store entities in a hash map for easy access
 	private HashMap<Class<? extends Entity>, ArrayList<Entity>> entityMap = new HashMap<Class<? extends Entity>, ArrayList<Entity>>();
