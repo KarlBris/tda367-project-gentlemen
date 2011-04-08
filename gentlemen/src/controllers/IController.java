@@ -1,7 +1,10 @@
 package controllers;
 
+import core.IModel;
+
 public interface IController {
-	public abstract void update();
-	//public abstract Model getModel();
-	public abstract void start();
+	public void update();
+	public IModel getModel();
+	public void start();
+	public void end();
 }
