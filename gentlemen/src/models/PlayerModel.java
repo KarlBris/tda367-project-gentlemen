@@ -1,6 +1,11 @@
-package core;
+package models;
+
 
 import org.lwjgl.util.vector.Vector2f;
+
+import core.Constants;
+import core.Geometry;
+import core.RectangleGeometry;
 
 /**
  * PlayerModel represents a player in the game world

@@ -3,8 +3,6 @@ package components;
 import java.util.List;
 
 import controllers.IController;
-import core.Entity;
-import core.IComponent;
 import core.Manager;
 /**
  * Is responsible for updating the Entities
@@ -33,7 +31,7 @@ public class UpdateComponent implements IComponent {
 	/**
 	 * Updates all Entity objects
 	 * 
-	 * @see core.IComponent#update()
+	 * @see components.IComponent#update()
 	 */
 	@Override
 	public void update() {

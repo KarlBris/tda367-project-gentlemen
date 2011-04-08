@@ -2,7 +2,6 @@ package components;
 
 import controllers.LocalPlayerController;
 import controllers.IController;
-import core.IComponent;
 import core.Manager;
 import factories.LocalPlayerFactory;
 

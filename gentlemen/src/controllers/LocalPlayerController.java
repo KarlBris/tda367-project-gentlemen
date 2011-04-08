@@ -1,14 +1,15 @@
 package controllers;
 
+import models.IModel;
+import models.PlayerModel;
+
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.util.vector.Vector2f;
 
 import components.KeyboardComponent;
 
 import core.Constants;
-import core.IModel;
 import core.Manager;
-import core.PlayerModel;
 import factories.LocalPlayerFactory;
 
 /**

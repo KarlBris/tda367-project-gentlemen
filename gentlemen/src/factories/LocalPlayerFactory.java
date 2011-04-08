@@ -1,9 +1,9 @@
 package factories;
 
+import models.IModel;
+import models.PlayerModel;
 import controllers.LocalPlayerController;
 import controllers.IController;
-import core.IModel;
-import core.PlayerModel;
 
 public class LocalPlayerFactory implements IEntityFactory {
 	

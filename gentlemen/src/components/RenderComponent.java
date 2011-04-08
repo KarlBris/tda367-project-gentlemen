@@ -2,12 +2,11 @@ package components;
 
 import java.util.List;
 
+import models.IModel;
+
 import org.lwjgl.opengl.GL11;
 
 import controllers.IController;
-import core.Entity;
-import core.IComponent;
-import core.IModel;
 import core.Manager;
 
 /**
@@ -19,7 +18,7 @@ public class RenderComponent implements IComponent {
 	/**
 	 * Initializes the viewport projection based upon the aspect ratio of the display window
 	 * 
-	 * @see core.IComponent#initialize()
+	 * @see components.IComponent#initialize()
 	 */
 	@Override
 	public void initialize() {
@@ -58,7 +57,7 @@ public class RenderComponent implements IComponent {
 	}
 
 	/**
-	 * @see core.IComponent#instantiatePermanentEntities()
+	 * @see components.IComponent#instantiatePermanentEntities()
 	 */
 	@Override
 	public void instantiatePermanentEntities() {
@@ -66,7 +65,7 @@ public class RenderComponent implements IComponent {
 	}
 
 	/**
-	 * @see core.IComponent#cleanup()
+	 * @see components.IComponent#cleanup()
 	 */
 	@Override
 	public void cleanup() {
@@ -76,7 +75,7 @@ public class RenderComponent implements IComponent {
 	/**
 	 * Commands each instantiated Entity to render itself
 	 * 
-	 * @see core.IComponent#update()
+	 * @see components.IComponent#update()
 	 */
 	@Override
 	public void update() {
@@ -96,7 +95,7 @@ public class RenderComponent implements IComponent {
 	}
 
 	/**
-	 * @see core.IComponent#controllerAdded(core.Entity)
+	 * @see components.IComponent#controllerAdded(core.Entity)
 	 */
 	@Override
 	public void controllerAdded(IController controller) {
@@ -104,7 +103,7 @@ public class RenderComponent implements IComponent {
 	}
 
 	/**
-	 * @see core.IComponent#controllerRemoved(core.Entity)
+	 * @see components.IComponent#controllerRemoved(core.Entity)
 	 */
 	@Override
 	public void controllerRemoved(IController controller) {

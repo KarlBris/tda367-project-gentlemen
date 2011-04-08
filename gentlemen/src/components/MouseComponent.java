@@ -5,7 +5,6 @@ import org.lwjgl.util.vector.Vector2f;
 
 import controllers.IController;
 import core.Constants;
-import core.IComponent;
 
 /**
  * Provides mouse input functionality by reading the mouse state with each frame
@@ -41,7 +40,7 @@ public class MouseComponent implements IComponent {
 	/**
 	 * Updates the mouse and saves current mouse state
 	 * 
-	 * @see core.IComponent#update()
+	 * @see components.IComponent#update()
 	 */
 	@Override
 	public void update() {

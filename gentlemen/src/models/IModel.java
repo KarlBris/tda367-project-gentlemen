@@ -1,4 +1,6 @@
-package core;
+package models;
+
+import core.Geometry;
 
 
 /**
