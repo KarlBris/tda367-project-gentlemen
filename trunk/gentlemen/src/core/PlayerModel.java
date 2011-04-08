@@ -26,16 +26,41 @@ public class PlayerModel implements IModel {
 		return geometry.getPosition();
 	}
 
+	/**
+	 * Sets the current PlayerModel's target position to the parameter
+	 * targetPosition
+	 * 
+	 * @param targetPosition
+	 */
 	public void move(final Vector2f targetPosition) {
 		this.targetPosition = targetPosition;
 	}
 
+	/**
+	 * Sets the current PlayerModel's target angle to the parameter angle
+	 * 
+	 * @param angle
+	 */
 	public void faceTowards(final float angle) {
 		this.angle = angle;
 
 	}
 
+	/**
+	 * Updates the current PlayerModel
+	 * 
+	 */
 	public void update() {
 		geometry.moveTowards(targetPosition, angle);
+	}
+
+	/**
+	 * Throws a ball
+	 * 
+	 * @return success of the throw operation
+	 */
+	public boolean throwBall() {
+
+		return true;
 	}
 }
