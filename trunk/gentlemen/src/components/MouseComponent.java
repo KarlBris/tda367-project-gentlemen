@@ -8,18 +8,19 @@ import core.Constants;
 
 /**
  * Provides mouse input functionality by reading the mouse state with each frame
- *
+ * 
  */
 public class MouseComponent implements IComponent {
-	
-	// An array of booleans representing current state of the three normally occuring mouse buttons
-	public static boolean[] buttonDownArray = new boolean[3];
 
+	// An array of booleans representing current state of the three normally
+	// occuring mouse buttons
+	private static boolean[] buttonDownArray = new boolean[3];
 
-	// An array of booleans representing which of mouse buttons were down before the last call of update()
-	public static boolean[] prevButtonDownArray = new boolean[3];
-	
-		@Override
+	// An array of booleans representing which of mouse buttons were down before
+	// the last call of update()
+	private static boolean[] prevButtonDownArray = new boolean[3];
+
+	@Override
 	public void initialize() {
 		// TODO Auto-generated method stub
 
@@ -44,79 +45,89 @@ public class MouseComponent implements IComponent {
 	 */
 	@Override
 	public void update() {
-		
+
 		Mouse.poll();
-		
-		if(Mouse.isInsideWindow()) {
+
+		if (Mouse.isInsideWindow()) {
 			Mouse.setGrabbed(true);
 		}
 		// Copies the current mouse state to the previous
 		prevButtonDownArray = buttonDownArray.clone();
-		
-		for(int i = 0; i < buttonDownArray.length; i++){
+
+		for (int i = 0; i < buttonDownArray.length; i++) {
 			buttonDownArray[i] = Mouse.isButtonDown(i);
 		}
 
 	}
 
 	@Override
-	public void controllerAdded(IController controller) {
+	public void controllerAdded(final IController controller) {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public void controllerRemoved(IController controller) {
+	public void controllerRemoved(final IController controller) {
 		// TODO Auto-generated method stub
 
 	}
+
 	/**
 	 * Gives the mouse pointer's position on the screen as a Vector2f
 	 * 
 	 * @return the Vector2f representing the mouse pointer's position
 	 */
 	public Vector2f getScreenPosition() {
-		// Returns a Vector2f representing the mouse pointer's position on the screen
-		return new Vector2f(Mouse.getX(), Constants.getScreenHeight() - Mouse.getY());
+		// Returns a Vector2f representing the mouse pointer's position on the
+		// screen
+		return new Vector2f(Mouse.getX(), Constants.getScreenHeight()
+				- Mouse.getY());
 	}
+
 	/**
 	 * Gives the mouse pointer's position in the viewport as a Vector2f
 	 * 
 	 * @return the Vector2f representing the mouse pointer's position
 	 */
 	public Vector2f getViewportPosition() {
-		// Returns a Vector2f representing the mouse pointer's position in the viewport
-		return Constants.screenToViewport(Mouse.getX(), Constants.getScreenHeight() - Mouse.getY());
-		
+		// Returns a Vector2f representing the mouse pointer's position in the
+		// viewport
+		return Constants.screenToViewport(Mouse.getX(),
+				Constants.getScreenHeight() - Mouse.getY());
+
 	}
+
 	/**
 	 * Checks whether a specific mouse button is pressed
 	 * 
-	 * @param button the button which state is to be checked
+	 * @param button
+	 *            the button which state is to be checked
 	 * @return the state of the given button
 	 */
-	public boolean getButton(int button) {
+	public boolean getButton(final int button) {
 		// Returns the boolean value representing the state of the given button
 		return buttonDownArray[button];
 	}
-	
+
 	/**
-	 * Checks whether a specific mouse button was pressed during the previous call of update()
+	 * Checks whether a specific mouse button was pressed during the previous
+	 * call of update()
 	 * 
-	 * @param button the button which state is to be checked
+	 * @param button
+	 *            the button which state is to be checked
 	 * @return the state of the given button
 	 */
-	public boolean getButtonDown(int button) {
-		// If a button is currently pressed down and was not pressed during the previous call of update(), return true
-		if(buttonDownArray[button] && !prevButtonDownArray[button]) {
+	public boolean getButtonDown(final int button) {
+		// If a button is currently pressed down and was not pressed during the
+		// previous call of update(), return true
+		if (buttonDownArray[button] && !prevButtonDownArray[button]) {
 			return true;
 		}
 		// In all other cases, return false
 		else {
 			return false;
 		}
-		
+
 	}
-	
-	
+
 }
