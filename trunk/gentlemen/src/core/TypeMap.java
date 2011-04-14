@@ -5,29 +5,30 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 public class TypeMap<T> {
 	
-	// Store controllers in a map for easy access
-	private HashMap<Class<?>, ArrayList<T>> controllerMap = new HashMap<Class<?>, ArrayList<T>>();
+	// Store instances in a map for easy access
+	private Map<Class<?>, List<T>> map = new HashMap<Class<?>, List<T>>();
 	
 	public void add(T item) {
 		Class<?> key = item.getClass();
 		
-		ArrayList<T> items;
+		List<T> items;
 		
-		if (controllerMap.containsKey(key)) {
-			// The item type exists within the map, add the item to the corresponding ArrayList
-			items = controllerMap.get(key);
+		if (map.containsKey(key)) {
+			// The item type exists within the map, get the corresponding list
+			items = map.get(key);
 		}
 		else {
 			// The item type does not exist within the map, create a new ArrayList
 			items = new ArrayList<T>();
 			
-			controllerMap.put(key, items);
+			map.put(key, items);
 		}
 		
-		// Add the item to the corresponding ArrayList, but avoid duplicates
+		// Add the item to the list, but avoid duplicates
 		if (!items.contains(item)) {
 			items.add(item);
 		}
@@ -36,27 +37,27 @@ public class TypeMap<T> {
 	public void remove(T item) {
 		Class<?> key = item.getClass();
 		
-		if (controllerMap.containsKey(key)) {
-			ArrayList<T> items = controllerMap.get(key);
+		if (map.containsKey(key)) {
+			List<T> items = map.get(key);
 			
-			// Remove the entity
+			// Remove the item
 			items.remove(item);
 			
-			// Remove the key if there are no corresponding entities left
+			// Remove the key if there are no corresponding items left
 			if (items.isEmpty()) {
-				controllerMap.remove(key);
+				map.remove(key);
 			}
 		}
 	}
 
 	@SuppressWarnings("unchecked")
 	public <S extends T> List<S> find(Class<S> type) {
-		// Find entities of type S
-		if (controllerMap.containsKey(type)) {
-			ArrayList<T> items = controllerMap.get(type);
+		// Find items of type S
+		if (map.containsKey(type)) {
+			List<T> items = map.get(type);
 			
-			// Cast ArrayList<IController> to ArrayList<S> for the caller's convenience
-			ArrayList<S> output = new ArrayList<S>(items.size());
+			// Cast List<IController> to ArrayList<S> for the caller's convenience
+			List<S> output = new ArrayList<S>(items.size());
 			
 			for (T c : items) {
 				output.add((S)c);
@@ -70,12 +71,12 @@ public class TypeMap<T> {
 	
 	public List<T> getItems() {
 		// TODO Optimize this method if needed
-		Collection<ArrayList<T>> listCollection = controllerMap.values();
+		Collection<List<T>> listCollection = map.values();
 		
-		// Add all IController lists to the output list
+		// Add all item lists to the output list
 		List<T> output = new LinkedList<T>();
 		
-		for (ArrayList<T> list : listCollection) {
+		for (List<T> list : listCollection) {
 			output.addAll(list);
 		}
 		
