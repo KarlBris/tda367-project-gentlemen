@@ -15,7 +15,7 @@ public class PlayerModel implements IModel {
 	private final RectangleGeometry geometry = new RectangleGeometry(
 			Color.WHITE, 1.0f, 1.0f);
 	private final Vector2f targetPosition = geometry.getPosition();
-	private float angle = 0.0f;
+	private float targetAngle = 0.0f;
 
 	@Override
 	public Geometry getGeometry() {
@@ -51,7 +51,7 @@ public class PlayerModel implements IModel {
 	 * @param angle
 	 */
 	public void faceTowards(final float angle) {
-		this.angle = angle;
+		this.targetAngle = angle;
 
 	}
 
@@ -60,7 +60,7 @@ public class PlayerModel implements IModel {
 	 * 
 	 */
 	public void update() {
-		geometry.moveTowards(targetPosition, angle);
+		geometry.moveTowards(targetPosition, targetAngle);
 	}
 
 	/**
