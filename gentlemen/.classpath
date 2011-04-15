@@ -8,5 +8,7 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="C:/LWJGL/jar/lwjgl_util.jar"/>
+	<classpathentry kind="lib" path="C:/JBOX2D/jbox2d-library-2.1.2-alpha.jar"/>
+	<classpathentry kind="lib" path="C:/JBOX2D/jbox2d-testbed-2.1.2-alpha.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
