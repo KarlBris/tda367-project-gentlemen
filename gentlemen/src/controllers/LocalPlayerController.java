@@ -123,4 +123,16 @@ public class LocalPlayerController implements IController {
 		return dirVect;
 	}
 
+	@Override
+	public Object[] networkDataSend() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void networkDataReceive(Object[] o) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
