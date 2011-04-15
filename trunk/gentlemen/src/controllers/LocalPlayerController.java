@@ -130,9 +130,9 @@ public class LocalPlayerController implements IController {
 	}
 
 	@Override
-	public void networkDataReceive(Object[] o) {
+	public void networkDataReceive(final Object[] data) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }
