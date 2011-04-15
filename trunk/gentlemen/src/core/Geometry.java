@@ -35,9 +35,7 @@ public abstract class Geometry {
 	}
 
 	/**
-	 * Gets the angle of the geometry
-	 * 
-	 * @return the position
+	 * @return the position of the geometry
 	 */
 	public Vector2f getPosition() {
 		return position;
@@ -62,9 +60,7 @@ public abstract class Geometry {
 	}
 
 	/**
-	 * Gets the angle of the geometry
-	 * 
-	 * @return the angle
+	 * @return the angle of the geometry
 	 */
 	public float getAngle() {
 		return angle;
