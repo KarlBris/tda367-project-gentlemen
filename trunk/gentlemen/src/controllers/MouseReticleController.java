@@ -45,4 +45,16 @@ public class MouseReticleController implements IController {
 	public void end() {
 	}
 
+	@Override
+	public Object[] networkDataSend() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void networkDataReceive(Object[] o) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
