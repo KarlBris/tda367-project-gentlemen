@@ -1,5 +1,7 @@
 package utilities;
 
+import java.util.Random;
+
 /**
  * This class represents a color with float values
  */
@@ -114,5 +116,16 @@ public class Color {
 	 */
 	public float getAlpha() {
 		return alpha;
+	}
+
+	public static Color randomColor() {
+		final Random rand = new Random();
+		return new Color(rand.nextFloat(), rand.nextFloat(), rand.nextFloat());
+	}
+
+	public static Color randomColorAndAlpha() {
+		final Random rand = new Random();
+		return new Color(rand.nextFloat(), rand.nextFloat(), rand.nextFloat(),
+				rand.nextFloat());
 	}
 }

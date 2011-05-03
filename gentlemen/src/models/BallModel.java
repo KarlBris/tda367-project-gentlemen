@@ -6,10 +6,10 @@ import core.RectangleGeometry;
 
 public class BallModel implements IModel {
 
-	private Geometry geometry = new RectangleGeometry(utilities.Color.RED,
-			0.2f, 0.2f);
+	private final Geometry geometry = new RectangleGeometry(
+			utilities.Color.randomColor(), 0.2f, 0.2f);
 
-	private Body body = new Body(0.2f, 0.2f, 1.0f);
+	private final Body body = new Body(0.2f, 0.2f, 1.0f);
 
 	@Override
 	public Geometry getGeometry() {
