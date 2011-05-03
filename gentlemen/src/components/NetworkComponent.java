@@ -40,4 +40,21 @@ public class NetworkComponent implements IComponent {
 
 	}
 
+	/**
+	 * Calling this method will create a host connection
+	 */
+	public void hostGame() {
+
+	}
+
+	/**
+	 * Calling this method will join a host connection
+	 * 
+	 * @param IPAddress
+	 *            , the IP address the host is hosting from
+	 */
+	public void joinGame(String IPAddress) {
+
+	}
+
 }
