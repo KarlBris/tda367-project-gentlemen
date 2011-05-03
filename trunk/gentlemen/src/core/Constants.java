@@ -19,7 +19,7 @@ public class Constants {
 	public static final float VIEWPORT_WIDTH = 22.0f;
 	public static final float VIEWPORT_HEIGHT = VIEWPORT_WIDTH / VIEWPORT_RATIO;
 
-	public static final float GEOMETRY_TO_PHYSICS_INTERPOLATION = 0.5f;
+	public static final float GEOMETRY_TO_PHYSICS_INTERPOLATION = 0.8f;
 
 	public static final int NETWORK_PORT = 13781;
 

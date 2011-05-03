@@ -74,7 +74,8 @@ public class Color {
 	}
 
 	/**
-	 * Since no alpha value is set, default it to 1.0f
+	 * Sets the colors as intended. Since no alpha value is set, default it to
+	 * 1.0f
 	 * 
 	 * @param red
 	 *            the float value between 0.0f and 1.0f representing the red

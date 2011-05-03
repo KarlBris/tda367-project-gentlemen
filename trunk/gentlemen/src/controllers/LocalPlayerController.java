@@ -7,6 +7,8 @@ import models.ReticleModel;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.util.vector.Vector2f;
 
+import utilities.Tools;
+
 import components.KeyboardComponent;
 
 import core.Constants;
@@ -37,6 +39,35 @@ public class LocalPlayerController implements IController {
 
 			ballController.getModel().getBody()
 					.setPosition(model.getPosition());
+		}
+
+		// Temporary code to instantiate a new ball entity at the player's
+		// location, as well as launch it towards the reticle
+		if (Manager.getMouse().getButton(0)) {
+			final BasicBallController ballController = (BasicBallController) Manager
+					.instantiate(new BasicBallFactory());
+
+			// this is a bit awkward, since getFacingDirection() basically
+			// converts the vector to an angle, then the reverse is done by
+			// angleToVector()
+			// TODO fix this anomaly
+			final Vector2f faceVect = Tools.angleToVector(getFacingDirection());
+
+			ballController
+					.getModel()
+					.getBody()
+					.setPosition(
+							new Vector2f(model.getPosition().getX()
+									+ faceVect.x, model.getPosition().getY()
+									+ faceVect.y));
+
+			ballController.getModel().getBody().setAngle(getFacingDirection());
+
+			ballController
+					.getModel()
+					.getBody()
+					.applyForce(
+							new Vector2f(faceVect.x * 500, faceVect.y * 500));
 		}
 
 		// Update player position
