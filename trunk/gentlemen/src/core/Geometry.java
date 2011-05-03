@@ -4,6 +4,7 @@ import org.lwjgl.opengl.GL11;
 import org.lwjgl.util.vector.Vector2f;
 
 import utilities.Color;
+import utilities.Tools;
 
 public abstract class Geometry {
 
@@ -47,16 +48,8 @@ public abstract class Geometry {
 	 * @param angle
 	 *            in radians
 	 */
-	public void setAngle(float angle) {
-		// Wrap the angle in the range of [0, TWO_PI)
-		angle = angle % Constants.TWO_PI;
-
-		// Do not allow negative angles
-		if (angle < 0) {
-			angle = Constants.TWO_PI + angle;
-		}
-
-		this.angle = angle;
+	public void setAngle(final float angle) {
+		this.angle = Tools.wrapAngle(angle);
 	}
 
 	/**
@@ -106,19 +99,9 @@ public abstract class Geometry {
 		setPosition(newPosition);
 
 		// Move angle towards targetAngle
-		final float directDelta = targetAngle - angle;
-		final float indirectDelta = -Math.signum(directDelta)
-				* (Constants.TWO_PI - Math.abs(directDelta));
+		float angleDelta = Tools.closestAngleDelta(getAngle(), targetAngle);
 
-		float angleMovement = 0.0f;
-
-		if (Math.abs(directDelta) < Math.abs(indirectDelta)) {
-			angleMovement = directDelta;
-		} else {
-			angleMovement = indirectDelta;
-		}
-
-		setAngle(getAngle() + angleMovement
+		setAngle(getAngle() + angleDelta
 				* Constants.GEOMETRY_TO_PHYSICS_INTERPOLATION);
 	}
 

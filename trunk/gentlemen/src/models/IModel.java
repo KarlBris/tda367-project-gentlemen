@@ -1,7 +1,7 @@
 package models;
 
+import core.Body;
 import core.Geometry;
-
 
 /**
  * An interface which all models will implement
@@ -10,9 +10,12 @@ import core.Geometry;
 public interface IModel {
 
 	/**
-	 * Returns the Geometry object of the current Model.
-	 * 
 	 * @return the Geometry object of the current Model
 	 */
 	public Geometry getGeometry();
+
+	/**
+	 * @return the Body object of the current Model
+	 */
+	public Body getBody();
 }

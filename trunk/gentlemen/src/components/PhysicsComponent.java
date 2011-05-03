@@ -1,43 +1,57 @@
 package components;
 
+import org.jbox2d.common.Vec2;
+import org.jbox2d.dynamics.World;
+
 import controllers.IController;
+import core.Body;
+import core.Constants;
 
 public class PhysicsComponent implements IComponent {
 
+	private World world;
+
 	@Override
 	public void initialize() {
-		// TODO Auto-generated method stub
-
+		// Create the physics world
+		world = new World(new Vec2(0.0f, 0.0f), true);
 	}
 
 	@Override
 	public void instantiatePermanentEntities() {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public void cleanup() {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public void update() {
-		// TODO Auto-generated method stub
+		// Step forward in time
+		world.step(Constants.DELTA_TIME, 5, 5);
 
+		// Clear all forces to avoid accumulation from frame to frame
+		world.clearForces();
 	}
 
 	@Override
-	public void controllerAdded(IController controller) {
-		// TODO Auto-generated method stub
+	public void controllerAdded(final IController controller) {
+		// Create the body and add it to the world
+		Body body = controller.getModel().getBody();
 
+		if (body != null) {
+			body.addToWorld(world);
+		}
 	}
 
 	@Override
-	public void controllerRemoved(IController controller) {
-		// TODO Auto-generated method stub
+	public void controllerRemoved(final IController controller) {
+		// Destroy the body and remove it from the world
+		Body body = controller.getModel().getBody();
 
+		if (body != null) {
+			body.removeFromWorld(world);
+		}
 	}
 
 }

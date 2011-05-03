@@ -3,7 +3,7 @@ package models;
 import org.lwjgl.util.vector.Vector2f;
 
 import utilities.Color;
-import core.Constants;
+import core.Body;
 import core.Geometry;
 import core.RectangleGeometry;
 
@@ -12,14 +12,19 @@ import core.RectangleGeometry;
  */
 public class PlayerModel implements IModel {
 
-	private final RectangleGeometry geometry = new RectangleGeometry(
-			Color.WHITE, 1.0f, 1.0f);
-	private final Vector2f targetPosition = geometry.getPosition();
-	private float targetAngle = 0.0f;
+	private final Geometry geometry = new RectangleGeometry(Color.WHITE, 1.0f,
+			1.0f);
+
+	private final Body body = new Body(1.0f, 1.0f, 10.0f);
 
 	@Override
 	public Geometry getGeometry() {
 		return geometry;
+	}
+
+	@Override
+	public Body getBody() {
+		return body;
 	}
 
 	/**
@@ -32,27 +37,29 @@ public class PlayerModel implements IModel {
 	}
 
 	/**
-	 * Sets the current PlayerModel's target position to the parameter
-	 * targetPosition
+	 * Moves the player in any direction
 	 * 
-	 * @param targetPosition
+	 * @param movement
+	 *            the direction to move in
 	 */
-	public void move(final Vector2f velocity) {
-		final Vector2f movement = new Vector2f(velocity);
+	public void move(final Vector2f movement) {
+		Vector2f force = new Vector2f(movement);
 
-		movement.scale(Constants.DELTA_TIME);
+		force.scale(5.0f);
 
-		Vector2f.add(targetPosition, movement, targetPosition);
+		force.scale(body.getMass());
+
+		body.applyForce(force);
 	}
 
 	/**
-	 * Sets the current PlayerModel's target angle to the parameter angle
+	 * Tells the player to face towards a specific angle
 	 * 
 	 * @param angle
+	 *            the angle to face towards
 	 */
 	public void faceTowards(final float angle) {
-		this.targetAngle = angle;
-
+		body.setAngle(angle);
 	}
 
 	/**
@@ -60,7 +67,7 @@ public class PlayerModel implements IModel {
 	 * 
 	 */
 	public void update() {
-		geometry.moveTowards(targetPosition, targetAngle);
+		geometry.moveTowards(body.getPosition(), body.getAngle());
 	}
 
 	/**

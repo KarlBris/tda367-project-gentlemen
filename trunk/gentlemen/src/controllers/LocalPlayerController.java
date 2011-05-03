@@ -11,6 +11,7 @@ import components.KeyboardComponent;
 
 import core.Constants;
 import core.Manager;
+import factories.BasicBallFactory;
 import factories.MouseReticleFactory;
 
 /**
@@ -20,7 +21,6 @@ import factories.MouseReticleFactory;
 public class LocalPlayerController implements IController {
 
 	private final PlayerModel model;
-
 	private ReticleModel reticleModel;
 
 	public LocalPlayerController(final PlayerModel model) {
@@ -29,12 +29,20 @@ public class LocalPlayerController implements IController {
 
 	@Override
 	public void update() {
+		// Temporary code to instantiate a new ball entity at the player's
+		// position
+		if (Manager.getKeyboard().getKeyDown(Keyboard.KEY_SPACE)) {
+			BasicBallController ballController = (BasicBallController) Manager
+					.instantiate(new BasicBallFactory());
+
+			ballController.getModel().getBody()
+					.setPosition(model.getPosition());
+		}
+
 		// Update player position
-		final Vector2f velocity = new Vector2f(getKeyDirection());
+		final Vector2f movement = new Vector2f(getKeyDirection());
 
-		velocity.scale(10.0f);
-
-		model.move(velocity);
+		model.move(movement);
 
 		// Update player aim direction
 		model.faceTowards(getFacingDirection());
