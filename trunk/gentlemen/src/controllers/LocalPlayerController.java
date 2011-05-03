@@ -31,8 +31,8 @@ public class LocalPlayerController implements IController {
 	public void update() {
 		// Temporary code to instantiate a new ball entity at the player's
 		// position
-		if (Manager.getKeyboard().getKeyDown(Keyboard.KEY_SPACE)) {
-			BasicBallController ballController = (BasicBallController) Manager
+		if (Manager.getKeyboard().getKey(Keyboard.KEY_SPACE)) {
+			final BasicBallController ballController = (BasicBallController) Manager
 					.instantiate(new BasicBallFactory());
 
 			ballController.getModel().getBody()
