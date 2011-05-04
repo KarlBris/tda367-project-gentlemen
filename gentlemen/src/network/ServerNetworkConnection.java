@@ -83,17 +83,7 @@ public class ServerNetworkConnection implements Runnable, INetworkConnection {
 
 	@Override
 	public boolean hasNewData() {
-
-		boolean isEmpty = false;
-
-		for (ClientConnection cc : clientConnections) {
-			if (!cc.getIncomeList().isEmpty()) {
-				isEmpty = true;
-				break;
-			}
-		}
-
-		return isEmpty;
+		return !incomeList.isEmpty();
 	}
 
 	@Override
