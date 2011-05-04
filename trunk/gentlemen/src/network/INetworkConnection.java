@@ -2,7 +2,17 @@ package network;
 
 import java.util.List;
 
+/**
+ * INetworkConnection is an interface used to set a connection over the network
+ */
 public interface INetworkConnection {
+
+	/**
+	 * @param data
+	 *            is the data to send to other players
+	 */
+	public void sendData(Object[] data);
+
 	/**
 	 * Determines if there is any new data from other players
 	 * 
@@ -13,7 +23,7 @@ public interface INetworkConnection {
 	/**
 	 * @return the list containing the income data
 	 */
-	public List<byte[]> getDataList();
+	public List<Object[]> getDataList();
 
 	/**
 	 * Close the network connection

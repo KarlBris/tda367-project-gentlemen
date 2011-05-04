@@ -2,6 +2,10 @@ package components;
 
 import controllers.IController;
 
+/**
+ * NetworkComponent
+ * 
+ */
 public class NetworkComponent implements IComponent {
 
 	@Override
