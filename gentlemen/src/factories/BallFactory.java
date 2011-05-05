@@ -2,13 +2,13 @@ package factories;
 
 import models.BallModel;
 import models.IModel;
-import controllers.BasicBallController;
+import controllers.BallController;
 import controllers.IController;
 
-public class BasicBallFactory implements IEntityFactory {
+public class BallFactory implements IEntityFactory {
 
 	private BallModel model = new BallModel();
-	private BasicBallController controller = new BasicBallController(model);
+	private BallController controller = new BallController(model);
 
 	@Override
 	public IModel getModel() {

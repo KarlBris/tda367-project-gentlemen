@@ -6,7 +6,7 @@ import models.PlayerModel;
 import org.lwjgl.input.Keyboard;
 
 import controllers.IController;
-import core.PlayerController;
+import controllers.PlayerController;
 
 public class PlayerTwoFactory implements IEntityFactory {
 
