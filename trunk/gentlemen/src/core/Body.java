@@ -1,7 +1,6 @@
 package core;
 
 import org.jbox2d.collision.shapes.MassData;
-import org.jbox2d.collision.shapes.PolygonShape;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.BodyDef;
 import org.jbox2d.dynamics.BodyType;
@@ -18,9 +17,7 @@ public class Body {
 	// Body properties
 	private float mass = 0.0f;
 
-	// May be replaced with collision geometry, like with the
-	// Geometry class
-	private PolygonShape shape = new PolygonShape();
+	private IBodyShape shape;
 
 	// References
 	private org.jbox2d.dynamics.Body rigidbody;
@@ -33,8 +30,8 @@ public class Body {
 	 * @param height
 	 *            the height of the body
 	 */
-	public Body(final float width, final float height) {
-		this.shape.setAsBox(width * 0.5f, height * 0.5f);
+	public Body(final IBodyShape shape) {
+		this.shape = shape;
 	}
 
 	/**
@@ -47,8 +44,8 @@ public class Body {
 	 * @param mass
 	 *            the mass of the body
 	 */
-	public Body(final float width, final float height, final float mass) {
-		this(width, height);
+	public Body(final IBodyShape shape, final float mass) {
+		this(shape);
 
 		this.mass = mass;
 	}
@@ -70,7 +67,7 @@ public class Body {
 
 		rigidbody = world.createBody(bodyDef);
 
-		rigidbody.createFixture(shape, 1.0f);
+		rigidbody.createFixture(shape.getShape(), 1.0f);
 
 		setMass(mass);
 	}
@@ -161,6 +158,15 @@ public class Body {
 		if (rigidbody != null) {
 			rigidbody.setTransform(rigidbody.getWorldCenter(), -angle);
 		}
+	}
+
+	/**
+	 * @return the current linear velocity of the body
+	 */
+	public Vector2f getVelocity() {
+		Vec2 velocity = rigidbody.getLinearVelocity();
+
+		return new Vector2f(velocity.x, velocity.y);
 	}
 
 	/**
