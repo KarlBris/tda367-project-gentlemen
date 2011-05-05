@@ -57,6 +57,28 @@ public class PlayerController implements IController {
 	}
 
 	@Override
+	public IModel getModel() {
+		return model;
+	}
+
+	@Override
+	public void setPosition(final Vector2f position) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void start() {
+		// Instantiate the reticle and save the model reference
+		reticleModel = (ReticleModel) Manager.instantiate(
+				new MouseReticleFactory()).getModel();
+	}
+
+	@Override
+	public void end() {
+	}
+
+	@Override
 	public void update() {
 		// Temporary code to instantiate a new ball entity at the player's
 		// position
@@ -111,22 +133,6 @@ public class PlayerController implements IController {
 		}
 
 		model.update();
-	}
-
-	@Override
-	public IModel getModel() {
-		return model;
-	}
-
-	@Override
-	public void start() {
-		// Instantiate the reticle and save the model reference
-		reticleModel = (ReticleModel) Manager.instantiate(
-				new MouseReticleFactory()).getModel();
-	}
-
-	@Override
-	public void end() {
 	}
 
 	/**

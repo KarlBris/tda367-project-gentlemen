@@ -7,6 +7,7 @@ import models.IModel;
 import org.lwjgl.LWJGLException;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
+import org.lwjgl.util.vector.Vector2f;
 
 import components.IComponent;
 import components.KeyboardComponent;
@@ -63,6 +64,11 @@ public class Manager {
 	 *         IModel/IController pair
 	 */
 	public static IController instantiate(final IEntityFactory factory) {
+		return instantiate(factory, new Vector2f(0.0f, 0.0f));
+	}
+
+	public static IController instantiate(final IEntityFactory factory,
+			final Vector2f position) {
 		// Get the new model and controller
 		IModel newModel = factory.getModel();
 		IController newController = factory.getController();
@@ -75,6 +81,9 @@ public class Manager {
 		for (IComponent component : components) {
 			component.controllerAdded(newController);
 		}
+
+		// Set position
+		newController.setPosition(position);
 
 		// Let the controller know that it has been created
 		newController.start();

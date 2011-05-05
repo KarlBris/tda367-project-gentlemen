@@ -3,6 +3,8 @@ package controllers;
 import models.BallModel;
 import models.IModel;
 
+import org.lwjgl.util.vector.Vector2f;
+
 public class BallController implements IController {
 
 	private final BallModel model;
@@ -12,15 +14,13 @@ public class BallController implements IController {
 	}
 
 	@Override
-	public void update() {
-
-		model.update();
-
+	public IModel getModel() {
+		return model;
 	}
 
 	@Override
-	public IModel getModel() {
-		return model;
+	public void setPosition(final Vector2f position) {
+		// TODO Auto-generated method stub
 	}
 
 	@Override
@@ -32,6 +32,13 @@ public class BallController implements IController {
 	@Override
 	public void end() {
 		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void update() {
+
+		model.update();
 
 	}
 

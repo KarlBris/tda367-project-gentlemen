@@ -3,6 +3,8 @@ package controllers;
 import models.IModel;
 import models.ReticleModel;
 
+import org.lwjgl.util.vector.Vector2f;
+
 import components.MouseComponent;
 
 import core.Manager;
@@ -28,13 +30,13 @@ public class MouseReticleController implements IController {
 	}
 
 	@Override
-	public void update() {
-		model.setPosition(mouse.getViewportPosition());
+	public IModel getModel() {
+		return model;
 	}
 
 	@Override
-	public IModel getModel() {
-		return model;
+	public void setPosition(final Vector2f position) {
+		model.setPosition(position);
 	}
 
 	@Override
@@ -43,6 +45,11 @@ public class MouseReticleController implements IController {
 
 	@Override
 	public void end() {
+	}
+
+	@Override
+	public void update() {
+		model.setPosition(mouse.getViewportPosition());
 	}
 
 	@Override
