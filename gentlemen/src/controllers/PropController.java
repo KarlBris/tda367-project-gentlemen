@@ -2,6 +2,9 @@ package controllers;
 
 import models.IModel;
 import models.PropModel;
+
+import org.lwjgl.util.vector.Vector2f;
+
 import utilities.Color;
 import core.Constants;
 
@@ -28,6 +31,14 @@ public class PropController implements IController {
 			colorWheel = 0.0f;
 		}
 
+	}
+
+	public void setPosition(final Vector2f position) {
+		model.setPosition(position);
+	}
+
+	public void setAngle(final float angle) {
+		model.setAngle(angle);
 	}
 
 	@Override
