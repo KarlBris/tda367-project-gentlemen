@@ -5,6 +5,7 @@ import org.lwjgl.util.vector.Vector2f;
 import core.BallGeometry;
 import core.Body;
 import core.CircleBodyShape;
+import core.Constants;
 import core.Geometry;
 
 public class BallModel implements IModel {
@@ -16,12 +17,19 @@ public class BallModel implements IModel {
 
 	private boolean isPickedUp = false;
 
-	public void isDeadly() {
-
+	/**
+	 * @return return true if the speed of the ball is lethal, otherwise false
+	 */
+	public boolean isLethal() {
+		Vector2f v = body.getVelocity();
+		return v.length() >= Constants.LETHAL_BALL_SPEED;
 	}
 
+	/**
+	 * @return true if the ball can be picked up, otherwise false
+	 */
 	public boolean isPickUpAble() {
-		return isPickedUp;
+		return isPickedUp && !isLethal();
 	}
 
 	/**
@@ -31,14 +39,21 @@ public class BallModel implements IModel {
 		isPickedUp = true;
 	}
 
+	/**
+	 * Throw the ball in the force direction and speed
+	 * 
+	 * @param force
+	 *            contains the speed an angle of the ball
+	 */
 	public void throwBall(Vector2f force) {
 		body.applyForce(force);
+		releaseBall();
 	}
 
 	/**
 	 * Makes the ball able to be picked up by other players
 	 */
-	public void release() {
+	public void releaseBall() {
 		isPickedUp = false;
 	}
 
