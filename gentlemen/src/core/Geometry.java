@@ -11,7 +11,7 @@ public abstract class Geometry {
 	private Vector2f position = new Vector2f();
 	private float angle;
 
-	private final Color color;
+	private Color color;
 	private Vector2f[] vertices;
 	private Vector2f[] uvs;
 
@@ -78,6 +78,16 @@ public abstract class Geometry {
 	}
 
 	/**
+	 * Sets the color of the geometry
+	 * 
+	 * @param color
+	 *            the new color of the geometry
+	 */
+	public void setColor(final Color color) {
+		this.color = color;
+	}
+
+	/**
 	 * Moves the geometry towards a target. The speed is controlled by the
 	 * GEOMETRY_TO_PHYSICS_INTERPOLATION constant.
 	 * 
@@ -99,7 +109,8 @@ public abstract class Geometry {
 		setPosition(newPosition);
 
 		// Move angle towards targetAngle
-		float angleDelta = Tools.closestAngleDelta(getAngle(), targetAngle);
+		final float angleDelta = Tools.closestAngleDelta(getAngle(),
+				targetAngle);
 
 		setAngle(getAngle() + angleDelta
 				* Constants.GEOMETRY_TO_PHYSICS_INTERPOLATION);
