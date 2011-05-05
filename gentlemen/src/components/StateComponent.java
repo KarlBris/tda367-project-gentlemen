@@ -1,5 +1,7 @@
 package components;
 
+import org.lwjgl.util.vector.Vector2f;
+
 import controllers.IController;
 import controllers.PlayerController;
 import controllers.PropController;
@@ -25,7 +27,7 @@ public class StateComponent implements IComponent {
 
 		// Instantiate the prop
 		if (Manager.find(PropController.class).size() == 0) {
-			Manager.instantiate(new PropFactory());
+			Manager.instantiate(new PropFactory(), new Vector2f(5.0f, 5.0f));
 		}
 	}
 

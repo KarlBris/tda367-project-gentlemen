@@ -5,7 +5,6 @@ import core.Geometry;
 
 /**
  * An interface which all models will implement
- * 
  */
 public interface IModel {
 
