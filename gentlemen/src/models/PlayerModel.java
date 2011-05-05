@@ -4,6 +4,7 @@ import org.lwjgl.util.vector.Vector2f;
 
 import utilities.Color;
 import core.Body;
+import core.BoxBodyShape;
 import core.Geometry;
 import core.RectangleGeometry;
 
@@ -15,7 +16,7 @@ public class PlayerModel implements IModel {
 	private final Geometry geometry = new RectangleGeometry(Color.WHITE, 1.0f,
 			1.0f);
 
-	private final Body body = new Body(1.0f, 1.0f, 10.0f);
+	private final Body body = new Body(new BoxBodyShape(1.0f, 1.0f), 10.0f);
 
 	@Override
 	public Geometry getGeometry() {
