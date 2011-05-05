@@ -6,7 +6,7 @@ import models.PlayerModel;
 import org.lwjgl.input.Keyboard;
 
 import controllers.IController;
-import core.PlayerController;
+import controllers.PlayerController;
 
 public class PlayerOneFactory implements IEntityFactory {
 
@@ -17,14 +17,12 @@ public class PlayerOneFactory implements IEntityFactory {
 
 	@Override
 	public IModel getModel() {
-		// TODO Auto-generated method stub
-		return null;
+		return model;
 	}
 
 	@Override
 	public IController getController() {
-		// TODO Auto-generated method stub
-		return null;
+		return controller;
 	}
 
 }

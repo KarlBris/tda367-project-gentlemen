@@ -2,13 +2,13 @@ package factories;
 
 import models.IModel;
 import models.PlayerModel;
-import controllers.LocalPlayerController;
+import controllers.OriginalPlayerController;
 import controllers.IController;
 
 public class LocalPlayerFactory implements IEntityFactory {
 	
 	private PlayerModel model = new PlayerModel();
-	private LocalPlayerController controller = new LocalPlayerController(model);
+	private OriginalPlayerController controller = new OriginalPlayerController(model);
 
 	@Override
 	public IModel getModel() {

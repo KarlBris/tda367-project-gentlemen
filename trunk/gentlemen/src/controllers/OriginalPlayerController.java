@@ -1,4 +1,4 @@
-package core;
+package controllers;
 
 import models.IModel;
 import models.PlayerModel;
@@ -11,50 +11,22 @@ import utilities.Tools;
 
 import components.KeyboardComponent;
 
-import controllers.BasicBallController;
-import controllers.IController;
-import factories.BasicBallFactory;
+import core.Constants;
+import core.Manager;
+import factories.BallFactory;
 import factories.MouseReticleFactory;
 
-public class PlayerController implements IController {
+/**
+ * LocalPlayerController controls a PlayerModel with inputs from user
+ * interaction
+ */
+public class OriginalPlayerController implements IController {
 
 	private final PlayerModel model;
 	private ReticleModel reticleModel;
 
-	private final int moveRightKey;
-	private final int moveLeftKey;
-	private final int moveUpKey;
-	private final int moveDownKey;
-	private final int throwBallKey;
-	private final int pickUpBallKey;
-
-	/**
-	 * 
-	 * @param model
-	 *            , the controllers model
-	 * @param moveRightKey
-	 *            , the key to move right
-	 * @param moveLeftKey
-	 *            , the key to move left
-	 * @param moveUpKey
-	 *            , the key to move up
-	 * @param moveDownKey
-	 *            , the key to move down
-	 * @param throwBallKey
-	 *            , the key to throw ball
-	 * @param pickUpBallKey
-	 *            , the key to up ball
-	 */
-	public PlayerController(final PlayerModel model, int moveRightKey,
-			int moveLeftKey, int moveUpKey, int moveDownKey, int throwBallKey,
-			int pickUpBallKey) {
+	public OriginalPlayerController(final PlayerModel model) {
 		this.model = model;
-		this.moveRightKey = moveRightKey;
-		this.moveLeftKey = moveLeftKey;
-		this.moveUpKey = moveUpKey;
-		this.moveDownKey = moveDownKey;
-		this.throwBallKey = throwBallKey;
-		this.pickUpBallKey = pickUpBallKey;
 	}
 
 	@Override
@@ -62,8 +34,8 @@ public class PlayerController implements IController {
 		// Temporary code to instantiate a new ball entity at the player's
 		// position
 		if (Manager.getKeyboard().getKey(Keyboard.KEY_SPACE)) {
-			final BasicBallController ballController = (BasicBallController) Manager
-					.instantiate(new BasicBallFactory());
+			final BallController ballController = (BallController) Manager
+					.instantiate(new BallFactory());
 
 			ballController.getModel().getBody()
 					.setPosition(model.getPosition());
@@ -72,8 +44,8 @@ public class PlayerController implements IController {
 		// Temporary code to instantiate a new ball entity at the player's
 		// location, as well as launch it towards the reticle
 		if (Manager.getMouse().getButton(0)) {
-			final BasicBallController ballController = (BasicBallController) Manager
-					.instantiate(new BasicBallFactory());
+			final BallController ballController = (BallController) Manager
+					.instantiate(new BallFactory());
 
 			// this is a bit awkward, since getFacingDirection() basically
 			// converts the vector to an angle, then the reverse is done by
@@ -168,17 +140,17 @@ public class PlayerController implements IController {
 		final KeyboardComponent keyboard = Manager.getKeyboard();
 		final Vector2f dirVect = new Vector2f();
 
-		if (keyboard.getKey(moveUpKey)) {
+		if (keyboard.getKey(Keyboard.KEY_W)) {
 			dirVect.y -= 1.0f;
 		}
-		if (keyboard.getKey(moveDownKey)) {
+		if (keyboard.getKey(Keyboard.KEY_S)) {
 			dirVect.y += 1.0f;
 		}
 
-		if (keyboard.getKey(moveLeftKey)) {
+		if (keyboard.getKey(Keyboard.KEY_A)) {
 			dirVect.x -= 1.0f;
 		}
-		if (keyboard.getKey(moveRightKey)) {
+		if (keyboard.getKey(Keyboard.KEY_D)) {
 			dirVect.x += 1.0f;
 		}
 
