@@ -3,20 +3,19 @@ package models;
 import org.lwjgl.util.vector.Vector2f;
 
 import utilities.Color;
+import core.BallGeometry;
 import core.Body;
-import core.BoxBodyShape;
+import core.CircleBodyShape;
 import core.Geometry;
-import core.RectangleGeometry;
 
 /**
  * PlayerModel represents a player in the game world
  */
 public class PlayerModel implements IModel {
 
-	private final Geometry geometry = new RectangleGeometry(Color.WHITE, 1.0f,
-			1.0f);
+	private final Geometry geometry = new BallGeometry(Color.WHITE, 0.5f, 5);
 
-	private final Body body = new Body(new BoxBodyShape(1.0f, 1.0f), 10.0f);
+	private final Body body = new Body(new CircleBodyShape(0.5f), 10.0f);
 
 	@Override
 	public Geometry getGeometry() {
@@ -44,7 +43,7 @@ public class PlayerModel implements IModel {
 	 *            the direction to move in
 	 */
 	public void move(final Vector2f movement) {
-		Vector2f force = new Vector2f(movement);
+		final Vector2f force = new Vector2f(movement);
 
 		force.scale(5.0f);
 
