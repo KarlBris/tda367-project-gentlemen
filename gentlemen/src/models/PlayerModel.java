@@ -101,12 +101,12 @@ public class PlayerModel implements IModel {
 	public boolean throwBall() {
 		if (ballController != null) {
 
-			Vector2f direction = Tools.angleToVector(body.getAngle());
+			final Vector2f direction = Tools.angleToVector(body.getAngle());
 
-			int speed = 200;
+			final int speed = 200;
 
-			Vector2f force = new Vector2f(direction.x * speed, direction.y
-					* speed);
+			final Vector2f force = new Vector2f(direction.x * speed,
+					direction.y * speed);
 
 			ballController.throwBall(force);
 
@@ -128,10 +128,10 @@ public class PlayerModel implements IModel {
 	public boolean pickUpBall() {
 
 		if (ballController == null) {
-			List<BallController> listOfBalls = Manager
+			final List<BallController> listOfBalls = Manager
 					.find(BallController.class);
 
-			for (BallController bc : listOfBalls) {
+			for (final BallController bc : listOfBalls) {
 				if (Tools.distanceBetween(body.getPosition(), bc.getModel()
 						.getBody().getPosition()) <= Constants.BALL_PICK_UP_DISTANCE) {
 					if (bc.isPickUpAble()) {
@@ -144,5 +144,10 @@ public class PlayerModel implements IModel {
 			}
 		}
 		return false;
+	}
+
+	public void setPosition(final Vector2f position) {
+		body.setPosition(position);
+
 	}
 }

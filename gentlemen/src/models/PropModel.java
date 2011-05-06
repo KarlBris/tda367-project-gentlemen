@@ -10,9 +10,9 @@ import core.RectangleGeometry;
 
 public class PropModel implements IModel {
 
-	private final Geometry geometry = new RectangleGeometry(Color.RED, 5, 5);
+	private final Geometry geometry = new RectangleGeometry(Color.RED, 22, 1);
 
-	private final Body body = new Body(new BoxBodyShape(5, 5), 0);
+	private final Body body = new Body(new BoxBodyShape(22, 1), 0);
 
 	@Override
 	public Geometry getGeometry() {

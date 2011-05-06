@@ -40,7 +40,7 @@ public class BallController implements IController {
 	 * @param force
 	 *            contains the speed an angle of the ball
 	 */
-	public void throwBall(Vector2f force) {
+	public void throwBall(final Vector2f force) {
 		model.throwBall(force);
 	}
 
@@ -51,7 +51,8 @@ public class BallController implements IController {
 
 	@Override
 	public void setPosition(final Vector2f position) {
-		model.getBody().setPosition(position);
+		model.setPosition(position);
+
 	}
 
 	@Override

@@ -33,6 +33,7 @@ public class PropController implements IController {
 
 	}
 
+	@Override
 	public void setPosition(final Vector2f position) {
 		model.setPosition(position);
 	}

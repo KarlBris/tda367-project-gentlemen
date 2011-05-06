@@ -11,6 +11,7 @@ import utilities.Tools;
 
 import components.KeyboardComponent;
 
+import core.Constants;
 import core.Manager;
 import factories.BallFactory;
 import factories.MouseReticleFactory;
@@ -44,9 +45,9 @@ public class PlayerController implements IController {
 	 * @param pickUpBallKey
 	 *            , the key to pick up ball
 	 */
-	public PlayerController(final PlayerModel model, int moveRightKey,
-			int moveLeftKey, int moveUpKey, int moveDownKey, int throwBallKey,
-			int pickUpBallKey) {
+	public PlayerController(final PlayerModel model, final int moveRightKey,
+			final int moveLeftKey, final int moveUpKey, final int moveDownKey,
+			final int throwBallKey, final int pickUpBallKey) {
 		this.model = model;
 		this.moveRightKey = moveRightKey;
 		this.moveLeftKey = moveLeftKey;
@@ -62,7 +63,9 @@ public class PlayerController implements IController {
 		// spawn ball
 		if (Manager.getKeyboard().getKey(Keyboard.KEY_SPACE)) {
 			final BallController ballController = (BallController) Manager
-					.instantiate(new BallFactory());
+					.instantiate(new BallFactory(), new Vector2f(
+							Constants.VIEWPORT_WIDTH / 2,
+							Constants.VIEWPORT_HEIGHT / 2));
 		}
 
 		// Update player position
@@ -83,8 +86,8 @@ public class PlayerController implements IController {
 		}
 
 		if (model.isCarryingBall()) {
-			System.out.println("setPosition");
-			Vector2f newBallPosition = new Vector2f();
+
+			final Vector2f newBallPosition = new Vector2f();
 			Vector2f.add(model.getPosition(),
 					Tools.angleToVector(model.getBody().getAngle()),
 					newBallPosition);
@@ -171,8 +174,8 @@ public class PlayerController implements IController {
 	}
 
 	@Override
-	public void setPosition(Vector2f position) {
-		// TODO Auto-generated method stub
+	public void setPosition(final Vector2f position) {
+		model.setPosition(position);
 
 	}
 
