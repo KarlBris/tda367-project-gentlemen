@@ -180,6 +180,15 @@ public class Body {
 	}
 
 	/**
+	 * Clears the angular velocity of the body
+	 */
+	public void clearAngularVelocity() {
+		if (rigidbody != null) {
+			rigidbody.setAngularVelocity(0.0f);
+		}
+	}
+
+	/**
 	 * Applies a force to the center of mass of the body
 	 * 
 	 * @param force
