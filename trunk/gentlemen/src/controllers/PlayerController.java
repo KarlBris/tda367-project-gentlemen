@@ -42,11 +42,11 @@ public class PlayerController implements IController {
 	 * @param throwBallKey
 	 *            , the key to throw ball
 	 * @param pickUpBallKey
-	 *            , the key to up ball
+	 *            , the key to pick up ball
 	 */
-	public PlayerController(final PlayerModel model, final int moveRightKey,
-			final int moveLeftKey, final int moveUpKey, final int moveDownKey,
-			final int throwBallKey, final int pickUpBallKey) {
+	public PlayerController(final PlayerModel model, int moveRightKey,
+			int moveLeftKey, int moveUpKey, int moveDownKey, int throwBallKey,
+			int pickUpBallKey) {
 		this.model = model;
 		this.moveRightKey = moveRightKey;
 		this.moveLeftKey = moveLeftKey;
@@ -57,14 +57,47 @@ public class PlayerController implements IController {
 	}
 
 	@Override
-	public IModel getModel() {
-		return model;
+	public void update() {
+
+		// spawn ball
+		if (Manager.getKeyboard().getKey(Keyboard.KEY_SPACE)) {
+			final BallController ballController = (BallController) Manager
+					.instantiate(new BallFactory());
+		}
+
+		// Update player position
+		final Vector2f movement = new Vector2f(getKeyDirection());
+
+		model.move(movement);
+
+		// Update player aim direction
+		model.faceTowards(getFacingDirection());
+
+		// Throw ball if correct key is pressed
+		if (Manager.getKeyboard().getKeyDown(throwBallKey)) {
+			model.throwBall();
+		}
+		// Pick up ball if correct key is pressed
+		if (Manager.getKeyboard().getKeyDown(pickUpBallKey)) {
+			model.pickUpBall();
+		}
+
+		if (model.isCarryingBall()) {
+			System.out.println("setPosition");
+			Vector2f newBallPosition = new Vector2f();
+			Vector2f.add(model.getPosition(),
+					Tools.angleToVector(model.getBody().getAngle()),
+					newBallPosition);
+			model.getBallController().setPosition(newBallPosition);
+
+		}
+
+		model.update();
 	}
 
 	@Override
-	public void setPosition(final Vector2f position) {
-		// TODO Auto-generated method stub
-
+	public IModel getModel() {
+		return model;
 	}
 
 	@Override
@@ -76,63 +109,6 @@ public class PlayerController implements IController {
 
 	@Override
 	public void end() {
-	}
-
-	@Override
-	public void update() {
-		// Temporary code to instantiate a new ball entity at the player's
-		// position
-		if (Manager.getKeyboard().getKey(Keyboard.KEY_SPACE)) {
-			final BallController ballController = (BallController) Manager
-					.instantiate(new BallFactory());
-
-			ballController.getModel().getBody()
-					.setPosition(model.getPosition());
-		}
-
-		// Temporary code to instantiate a new ball entity at the player's
-		// location, as well as launch it towards the reticle
-		if (Manager.getMouse().getButton(0)) {
-			final BallController ballController = (BallController) Manager
-					.instantiate(new BallFactory());
-
-			// this is a bit awkward, since getFacingDirection() basically
-			// converts the vector to an angle, then the reverse is done by
-			// angleToVector()
-			// TODO fix this anomaly
-			final Vector2f faceVect = Tools.angleToVector(getFacingDirection());
-
-			ballController
-					.getModel()
-					.getBody()
-					.setPosition(
-							new Vector2f(model.getPosition().getX()
-									+ faceVect.x, model.getPosition().getY()
-									+ faceVect.y));
-
-			ballController.getModel().getBody().setAngle(getFacingDirection());
-
-			ballController
-					.getModel()
-					.getBody()
-					.applyForce(
-							new Vector2f(faceVect.x * 500, faceVect.y * 500));
-		}
-
-		// Update player position
-		final Vector2f movement = new Vector2f(getKeyDirection());
-
-		model.move(movement);
-
-		// Update player aim direction
-		model.faceTowards(getFacingDirection());
-
-		// Throw ball if space is pressed
-		if (Manager.getKeyboard().getKey(Keyboard.KEY_SPACE)) {
-			model.throwBall();
-		}
-
-		model.update();
 	}
 
 	/**
@@ -190,6 +166,12 @@ public class PlayerController implements IController {
 
 	@Override
 	public void networkDataReceive(final Object[] data) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void setPosition(Vector2f position) {
 		// TODO Auto-generated method stub
 
 	}

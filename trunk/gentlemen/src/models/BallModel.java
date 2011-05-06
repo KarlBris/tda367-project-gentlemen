@@ -29,7 +29,7 @@ public class BallModel implements IModel {
 	 * @return true if the ball can be picked up, otherwise false
 	 */
 	public boolean isPickUpAble() {
-		return isPickedUp && !isLethal();
+		return !isPickedUp && !isLethal();
 	}
 
 	/**
