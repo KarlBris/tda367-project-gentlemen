@@ -20,8 +20,9 @@ public class Constants {
 	public static final float VIEWPORT_HEIGHT = VIEWPORT_WIDTH / VIEWPORT_RATIO;
 
 	public static final float GEOMETRY_TO_PHYSICS_INTERPOLATION = 0.8f;
-	public static final float LETHAL_BALL_SPEED = 0.5f;
+	public static final float LETHAL_BALL_SPEED = 1.0f;
 	public static final float BALL_PICK_UP_DISTANCE = 1.0f;
+	public static final int BALL_THROW_SPEED = 400;
 
 	public static final int NETWORK_PORT = 13781;
 

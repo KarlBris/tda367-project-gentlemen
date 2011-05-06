@@ -104,10 +104,9 @@ public class PlayerModel implements IModel {
 
 			final Vector2f direction = Tools.angleToVector(body.getAngle());
 
-			final int speed = 200;
-
-			final Vector2f force = new Vector2f(direction.x * speed,
-					direction.y * speed);
+			final Vector2f force = new Vector2f(direction.x
+					* Constants.BALL_THROW_SPEED, direction.y
+					* Constants.BALL_THROW_SPEED);
 
 			ballController.throwBall(force);
 
