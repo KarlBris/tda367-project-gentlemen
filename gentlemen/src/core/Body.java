@@ -171,6 +171,15 @@ public class Body {
 	}
 
 	/**
+	 * Clears the linear velocity of the body
+	 */
+	public void clearVelocity() {
+		if (rigidbody != null) {
+			rigidbody.setLinearVelocity(new Vec2(0.0f, 0.0f));
+		}
+	}
+
+	/**
 	 * Applies a force to the center of mass of the body
 	 * 
 	 * @param force
