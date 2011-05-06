@@ -90,7 +90,8 @@ public class PlayerModel implements IModel {
 	 * 
 	 */
 	public void update() {
-		geometry.moveTowards(body.getPosition(), body.getAngle());
+		geometry.moveTowards(body.getPosition(), body.getAngle(),
+				Constants.GEOMETRY_TO_PHYSICS_INTERPOLATION, 0.1f);
 	}
 
 	/**
