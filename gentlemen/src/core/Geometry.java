@@ -89,20 +89,24 @@ public abstract class Geometry {
 	}
 
 	/**
-	 * Moves the geometry towards a target. The speed is controlled by the
-	 * GEOMETRY_TO_PHYSICS_INTERPOLATION constant.
+	 * Moves the geometry towards a target.
 	 * 
 	 * @param targetPosition
 	 *            the target position
 	 * @param targetAngle
 	 *            the target angle
+	 * @param positionAmount
+	 *            the amount to move the position
+	 * @param angleAmount
+	 *            the amount to move the angle
 	 */
 	public void moveTowards(final Vector2f targetPosition,
-			final float targetAngle) {
+			final float targetAngle, final float positionAmount,
+			final float angleAmount) {
 		// Move position towards the targetPosition
 		final Vector2f delta = new Vector2f();
 		Vector2f.sub(targetPosition, getPosition(), delta);
-		delta.scale(Constants.GEOMETRY_TO_PHYSICS_INTERPOLATION);
+		delta.scale(positionAmount);
 
 		final Vector2f newPosition = new Vector2f();
 		Vector2f.add(getPosition(), delta, newPosition);
@@ -113,8 +117,23 @@ public abstract class Geometry {
 		final float angleDelta = Tools.closestAngleDelta(getAngle(),
 				targetAngle);
 
-		setAngle(getAngle() + angleDelta
-				* Constants.GEOMETRY_TO_PHYSICS_INTERPOLATION);
+		setAngle(getAngle() + angleDelta * angleAmount);
+	}
+
+	/**
+	 * Moves the geometry towards a target. The speed is controlled by the
+	 * GEOMETRY_TO_PHYSICS_INTERPOLATION constant.
+	 * 
+	 * @param targetPosition
+	 *            the target position
+	 * @param targetAngle
+	 *            the target angle
+	 */
+	public void moveTowards(final Vector2f targetPosition,
+			final float targetAngle) {
+		moveTowards(targetPosition, targetAngle,
+				Constants.GEOMETRY_TO_PHYSICS_INTERPOLATION,
+				Constants.GEOMETRY_TO_PHYSICS_INTERPOLATION);
 	}
 
 	/**
