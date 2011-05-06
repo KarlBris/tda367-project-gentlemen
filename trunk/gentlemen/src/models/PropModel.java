@@ -43,4 +43,8 @@ public class PropModel implements IModel {
 		geometry.setAngle(angle);
 	}
 
+	public void update() {
+		geometry.moveTowards(body.getPosition(), body.getAngle());
+	}
+
 }

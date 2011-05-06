@@ -7,11 +7,11 @@ import models.ReticleModel;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.util.vector.Vector2f;
 
+import utilities.Constants;
 import utilities.Tools;
 
 import components.KeyboardComponent;
 
-import core.Constants;
 import core.Manager;
 import factories.BallFactory;
 import factories.MouseReticleFactory;

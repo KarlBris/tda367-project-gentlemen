@@ -9,6 +9,8 @@ import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 import org.lwjgl.util.vector.Vector2f;
 
+import utilities.Constants;
+
 import components.IComponent;
 import components.KeyboardComponent;
 import components.MouseComponent;

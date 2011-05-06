@@ -9,7 +9,8 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
-import core.Constants;
+import utilities.Constants;
+
 
 /**
  * ServerNetworkConnection is a connection that holds a server

@@ -2,7 +2,6 @@ package utilities;
 
 import org.lwjgl.util.vector.Vector2f;
 
-import core.Constants;
 
 public class Tools {
 

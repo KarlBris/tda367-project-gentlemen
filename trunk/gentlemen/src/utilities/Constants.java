@@ -1,4 +1,4 @@
-package core;
+package utilities;
 
 import org.lwjgl.opengl.Display;
 import org.lwjgl.util.Point;
