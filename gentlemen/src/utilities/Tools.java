@@ -93,4 +93,20 @@ public class Tools {
 
 		return angle;
 	}
+
+	public static Vector2f vectorBetween(final Vector2f source,
+			final Vector2f destination) {
+
+		final Vector2f resVect = new Vector2f();
+
+		Vector2f.sub(destination, source, resVect);
+
+		return resVect;
+	}
+
+	public static float distanceBetween(final Vector2f source,
+			final Vector2f destination) {
+
+		return vectorBetween(source, destination).length();
+	}
 }
