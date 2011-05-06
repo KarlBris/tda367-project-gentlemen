@@ -74,7 +74,7 @@ public class PlayerController implements IController {
 		model.move(movement);
 
 		// Update player aim direction
-		model.faceTowards(Tools.vectorToAngle(getKeyDirection()));
+		model.faceTowards(getFacingDirection());
 
 		setReticlePosition();
 
@@ -92,8 +92,7 @@ public class PlayerController implements IController {
 
 			final Vector2f newBallPosition = new Vector2f();
 			Vector2f.add(model.getPosition(),
-					Tools.angleToVector(model.getBody().getAngle()),
-					newBallPosition);
+					Tools.angleToVector(model.getAngle()), newBallPosition);
 			model.getBallController().setPosition(newBallPosition);
 
 		}
@@ -115,6 +114,49 @@ public class PlayerController implements IController {
 
 	@Override
 	public void end() {
+	}
+
+	/**
+	 * @return the angle player facing calculated through the position of the
+	 *         player and the mouse position
+	 */
+	private float getFacingDirection() {
+		final Vector2f dirVect = new Vector2f();
+		final KeyboardComponent keyboard = Manager.getKeyboard();
+		boolean keyPressed = false;
+
+		if (keyboard.getKey(moveUpKey)) {
+			model.getBody().clearAngularVelocity();
+			dirVect.y -= 1.0f;
+			keyPressed = true;
+		}
+		if (keyboard.getKey(moveDownKey)) {
+			model.getBody().clearAngularVelocity();
+			dirVect.y += 1.0f;
+			keyPressed = true;
+		}
+
+		if (keyboard.getKey(moveLeftKey)) {
+			model.getBody().clearAngularVelocity();
+			dirVect.x -= 1.0f;
+			keyPressed = true;
+		}
+		if (keyboard.getKey(moveRightKey)) {
+			model.getBody().clearAngularVelocity();
+			dirVect.x += 1.0f;
+			keyPressed = true;
+		}
+
+		// Normalize the direction vector to always keep the same distance
+		if (dirVect.length() > 0.0f) {
+			dirVect.normalise();
+		}
+		if (keyPressed) {
+			return Tools.vectorToAngle(dirVect);
+		}
+
+		return model.getBody().getAngle();
+
 	}
 
 	/**
@@ -152,8 +194,7 @@ public class PlayerController implements IController {
 	public void setReticlePosition() {
 		Vector2f newReticlePosition = new Vector2f();
 		Vector2f.add(model.getPosition(),
-				Tools.angleToVector(model.getBody().getAngle()),
-				newReticlePosition);
+				Tools.angleToVector(model.getAngle()), newReticlePosition);
 		reticleModel.setPosition(newReticlePosition);
 	}
 
