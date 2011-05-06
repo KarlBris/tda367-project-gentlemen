@@ -17,14 +17,12 @@ public class PlayerTwoFactory implements IEntityFactory {
 
 	@Override
 	public IModel getModel() {
-		// TODO Auto-generated method stub
-		return null;
+		return model;
 	}
 
 	@Override
 	public IController getController() {
-		// TODO Auto-generated method stub
-		return null;
+		return controller;
 	}
 
 }
