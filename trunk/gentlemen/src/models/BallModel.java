@@ -3,7 +3,6 @@ package models;
 import org.lwjgl.util.vector.Vector2f;
 
 import utilities.Constants;
-
 import core.BallGeometry;
 import core.Body;
 import core.CircleBodyShape;
@@ -74,6 +73,8 @@ public class BallModel implements IModel {
 
 	public void setPosition(final Vector2f position) {
 		body.setPosition(position);
+		body.clearVelocity();
+		body.clearAngularVelocity();
 		geometry.setPosition(position);
 
 	}
