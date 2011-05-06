@@ -8,6 +8,7 @@ import controllers.PropController;
 import core.Constants;
 import core.Manager;
 import factories.PlayerOneFactory;
+import factories.PlayerTwoFactory;
 import factories.PropFactory;
 
 public class StateComponent implements IComponent {
@@ -24,6 +25,9 @@ public class StateComponent implements IComponent {
 		// Instantiate the player
 		if (Manager.find(PlayerController.class).size() == 0) {
 			Manager.instantiate(new PlayerOneFactory(),
+					new Vector2f(Constants.VIEWPORT_WIDTH / 2,
+							Constants.VIEWPORT_HEIGHT / 2));
+			Manager.instantiate(new PlayerTwoFactory(),
 					new Vector2f(Constants.VIEWPORT_WIDTH / 2,
 							Constants.VIEWPORT_HEIGHT / 2));
 		}
