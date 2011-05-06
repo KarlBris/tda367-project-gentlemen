@@ -11,9 +11,9 @@ import core.Geometry;
 public class BallModel implements IModel {
 
 	private final Geometry geometry = new BallGeometry(
-			utilities.Color.randomColor(), 0.1f, 8);
+			utilities.Color.randomColor(), 0.2f, 8);
 
-	private final Body body = new Body(new CircleBodyShape(0.1f), 1.0f);
+	private final Body body = new Body(new CircleBodyShape(0.2f), 1.0f);
 
 	private boolean isPickedUp = false;
 
@@ -21,7 +21,7 @@ public class BallModel implements IModel {
 	 * @return return true if the speed of the ball is lethal, otherwise false
 	 */
 	public boolean isLethal() {
-		Vector2f v = body.getVelocity();
+		final Vector2f v = body.getVelocity();
 		return v.length() >= Constants.LETHAL_BALL_SPEED;
 	}
 
@@ -45,7 +45,7 @@ public class BallModel implements IModel {
 	 * @param force
 	 *            contains the speed an angle of the ball
 	 */
-	public void throwBall(Vector2f force) {
+	public void throwBall(final Vector2f force) {
 		body.applyForce(force);
 		releaseBall();
 	}
@@ -69,6 +69,12 @@ public class BallModel implements IModel {
 
 	public void update() {
 		geometry.moveTowards(body.getPosition(), body.getAngle());
+	}
+
+	public void setPosition(final Vector2f position) {
+		body.setPosition(position);
+		geometry.setPosition(position);
+
 	}
 
 }
