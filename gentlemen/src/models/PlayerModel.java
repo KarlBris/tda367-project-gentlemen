@@ -150,4 +150,8 @@ public class PlayerModel implements IModel {
 		body.setPosition(position);
 
 	}
+
+	public float getAngle() {
+		return geometry.getAngle();
+	}
 }
