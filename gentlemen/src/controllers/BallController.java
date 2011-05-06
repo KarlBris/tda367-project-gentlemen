@@ -13,6 +13,37 @@ public class BallController implements IController {
 		this.model = model;
 	}
 
+	/**
+	 * Makes the ball unable to be picked up by other players
+	 */
+	public void pickUpBall() {
+		model.pickUp();
+	}
+
+	/**
+	 * Makes the ball able to be picked up by other players
+	 */
+	public void releaseBall() {
+		model.releaseBall();
+	}
+
+	/**
+	 * @return true if the ball can be picked up, otherwise false
+	 */
+	public boolean isPickUpAble() {
+		return model.isPickUpAble();
+	}
+
+	/**
+	 * Throw the ball in the force direction and speed
+	 * 
+	 * @param force
+	 *            contains the speed an angle of the ball
+	 */
+	public void throwBall(Vector2f force) {
+		model.throwBall(force);
+	}
+
 	@Override
 	public IModel getModel() {
 		return model;
@@ -20,7 +51,7 @@ public class BallController implements IController {
 
 	@Override
 	public void setPosition(final Vector2f position) {
-		// TODO Auto-generated method stub
+		model.getBody().setPosition(position);
 	}
 
 	@Override

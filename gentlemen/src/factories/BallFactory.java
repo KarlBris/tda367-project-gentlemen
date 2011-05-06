@@ -7,8 +7,8 @@ import controllers.IController;
 
 public class BallFactory implements IEntityFactory {
 
-	private BallModel model = new BallModel();
-	private BallController controller = new BallController(model);
+	private final BallModel model = new BallModel();
+	private final BallController controller = new BallController(model);
 
 	@Override
 	public IModel getModel() {
