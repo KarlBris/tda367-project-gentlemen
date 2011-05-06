@@ -3,9 +3,10 @@ package components;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.World;
 
+import utilities.Constants;
+
 import controllers.IController;
 import core.Body;
-import core.Constants;
 
 public class PhysicsComponent implements IComponent {
 

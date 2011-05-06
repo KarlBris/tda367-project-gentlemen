@@ -1,10 +1,10 @@
 package factories;
 
+import utilities.Constants;
 import models.IModel;
 import models.PropModel;
 import controllers.IController;
 import controllers.PropController;
-import core.Constants;
 
 public class VerticalWallPropFactory implements IEntityFactory {
 

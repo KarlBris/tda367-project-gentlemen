@@ -3,8 +3,9 @@ package components;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.util.vector.Vector2f;
 
+import utilities.Constants;
+
 import controllers.IController;
-import core.Constants;
 
 /**
  * Provides mouse input functionality by reading the mouse state with each frame

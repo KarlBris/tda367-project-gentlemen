@@ -6,7 +6,7 @@ import models.PropModel;
 import org.lwjgl.util.vector.Vector2f;
 
 import utilities.Color;
-import core.Constants;
+import utilities.Constants;
 
 public class PropController implements IController {
 
@@ -21,6 +21,10 @@ public class PropController implements IController {
 
 	@Override
 	public void update() {
+		// Update model
+		model.update();
+
+		// Update color
 		float tempColor = ((float) Math.cos(colorWheel)) / 2;
 		tempColor += 0.5f;
 

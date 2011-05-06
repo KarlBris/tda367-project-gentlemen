@@ -2,11 +2,13 @@ package components;
 
 import org.lwjgl.util.vector.Vector2f;
 
+import utilities.Constants;
+
 import controllers.IController;
 import controllers.PlayerController;
 import controllers.PropController;
-import core.Constants;
 import core.Manager;
+import factories.CratePropFactory;
 import factories.HorizontalWallPropFactory;
 import factories.PlayerOneFactory;
 import factories.PlayerTwoFactory;
@@ -33,7 +35,7 @@ public class StateComponent implements IComponent {
 							Constants.VIEWPORT_HEIGHT / 2));
 		}
 
-		// Instantiate the prop
+		// Instantiate props
 		if (Manager.find(PropController.class).size() == 0) {
 			// Top wall
 			Manager.instantiate(new HorizontalWallPropFactory(), new Vector2f(
@@ -50,6 +52,12 @@ public class StateComponent implements IComponent {
 			// Right wall
 			Manager.instantiate(new VerticalWallPropFactory(), new Vector2f(
 					Constants.VIEWPORT_WIDTH, Constants.VIEWPORT_HEIGHT / 2));
+
+			// Crates
+			for (int i = 0; i < 3; i++) {
+				Manager.instantiate(new CratePropFactory(), new Vector2f(2.0f,
+						2.0f + i));
+			}
 		}
 	}
 

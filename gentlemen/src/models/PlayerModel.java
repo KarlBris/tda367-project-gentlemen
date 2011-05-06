@@ -5,12 +5,12 @@ import java.util.List;
 import org.lwjgl.util.vector.Vector2f;
 
 import utilities.Color;
+import utilities.Constants;
 import utilities.Tools;
 import controllers.BallController;
 import core.BallGeometry;
 import core.Body;
 import core.CircleBodyShape;
-import core.Constants;
 import core.Geometry;
 import core.Manager;
 

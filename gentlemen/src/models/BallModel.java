@@ -2,10 +2,11 @@ package models;
 
 import org.lwjgl.util.vector.Vector2f;
 
+import utilities.Constants;
+
 import core.BallGeometry;
 import core.Body;
 import core.CircleBodyShape;
-import core.Constants;
 import core.Geometry;
 
 public class BallModel implements IModel {

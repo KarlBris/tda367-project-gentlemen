@@ -29,24 +29,24 @@ public class RenderComponent implements IComponent {
 		float height;
 
 		// Initializes the display window size
-		final int displayHeight = core.Constants.getScreenHeight();
-		final int displayWidth = core.Constants.getScreenWidth();
+		final int displayHeight = utilities.Constants.getScreenHeight();
+		final int displayWidth = utilities.Constants.getScreenWidth();
 
 		// Calculate the aspect ratio of the display window
 		final float displayRatio = (float) displayWidth / (float) displayHeight;
 
 		// If the screen is slimmer than the standard ratio (16:9), make a new,
 		// smaller, width but keep the standard height
-		if (displayRatio < core.Constants.VIEWPORT_RATIO) {
-			width = (core.Constants.VIEWPORT_HEIGHT / displayHeight)
+		if (displayRatio < utilities.Constants.VIEWPORT_RATIO) {
+			width = (utilities.Constants.VIEWPORT_HEIGHT / displayHeight)
 					* displayWidth;
-			height = core.Constants.VIEWPORT_HEIGHT;
+			height = utilities.Constants.VIEWPORT_HEIGHT;
 		}
 		// If the screen is wider than or equally wide to the standard ratio,
 		// keep the standard width and make a new, smaller, height
 		else {
-			width = core.Constants.VIEWPORT_WIDTH;
-			height = (core.Constants.VIEWPORT_WIDTH / displayWidth)
+			width = utilities.Constants.VIEWPORT_WIDTH;
+			height = (utilities.Constants.VIEWPORT_WIDTH / displayWidth)
 					* displayHeight;
 		}
 
