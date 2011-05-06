@@ -85,6 +85,7 @@ public class PlayerController implements IController {
 			model.pickUpBall();
 		}
 
+		// Set the position of the ball being carried by the player
 		if (model.isCarryingBall()) {
 
 			final Vector2f newBallPosition = new Vector2f();
