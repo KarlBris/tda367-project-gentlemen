@@ -23,7 +23,7 @@ public class Body {
 	private org.jbox2d.dynamics.Body rigidbody;
 
 	/**
-	 * Initializes a static rectangular body
+	 * Initializes a static body
 	 * 
 	 * @param width
 	 *            the width of the body
@@ -35,14 +35,15 @@ public class Body {
 	}
 
 	/**
-	 * Initializes a dynamic rectangular body
+	 * Initializes a static/dynamic body
 	 * 
 	 * @param width
 	 *            the width of the body
 	 * @param height
 	 *            the height of the body
 	 * @param mass
-	 *            the mass of the body
+	 *            the mass of the body; if 0 the body will be static, otherwise
+	 *            dynamic
 	 */
 	public Body(final IBodyShape shape, final float mass) {
 		this(shape);
