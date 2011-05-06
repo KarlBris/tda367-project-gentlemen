@@ -78,6 +78,12 @@ public class PlayerController implements IController {
 
 		setReticlePosition();
 
+		handleBall();
+
+		model.update();
+	}
+
+	private void handleBall() {
 		// Throw ball if correct key is pressed
 		if (Manager.getKeyboard().getKeyDown(throwBallKey)) {
 			model.throwBall();
@@ -96,8 +102,6 @@ public class PlayerController implements IController {
 			model.getBallController().setPosition(newBallPosition);
 
 		}
-
-		model.update();
 	}
 
 	@Override
