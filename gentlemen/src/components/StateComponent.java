@@ -7,9 +7,10 @@ import controllers.PlayerController;
 import controllers.PropController;
 import core.Constants;
 import core.Manager;
+import factories.HorizontalWallPropFactory;
 import factories.PlayerOneFactory;
 import factories.PlayerTwoFactory;
-import factories.PropFactory;
+import factories.VerticalWallPropFactory;
 
 public class StateComponent implements IComponent {
 
@@ -34,11 +35,21 @@ public class StateComponent implements IComponent {
 
 		// Instantiate the prop
 		if (Manager.find(PropController.class).size() == 0) {
-			Manager.instantiate(new PropFactory(), new Vector2f(
+			// Top wall
+			Manager.instantiate(new HorizontalWallPropFactory(), new Vector2f(
 					Constants.VIEWPORT_WIDTH / 2, Constants.VIEWPORT_HEIGHT));
 
-			Manager.instantiate(new PropFactory(), new Vector2f(
+			// Bottom wall
+			Manager.instantiate(new HorizontalWallPropFactory(), new Vector2f(
 					Constants.VIEWPORT_WIDTH / 2, 0.0f));
+
+			// Left wall
+			Manager.instantiate(new VerticalWallPropFactory(), new Vector2f(
+					0.0f, Constants.VIEWPORT_HEIGHT / 2));
+
+			// Right wall
+			Manager.instantiate(new VerticalWallPropFactory(), new Vector2f(
+					Constants.VIEWPORT_WIDTH, Constants.VIEWPORT_HEIGHT / 2));
 		}
 	}
 
