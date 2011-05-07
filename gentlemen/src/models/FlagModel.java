@@ -4,8 +4,8 @@ import org.lwjgl.util.vector.Vector2f;
 
 import utilities.Color;
 import utilities.Tools;
-import core.CircleGeometry;
 import core.Body;
+import core.CircleGeometry;
 import core.Geometry;
 
 public class FlagModel implements IModel {
@@ -19,11 +19,11 @@ public class FlagModel implements IModel {
 
 	private boolean isPickedUp = false;
 
-	public FlagModel(int teamIndex, Color c) {
+	public FlagModel(final int teamIndex, final Color c) {
 		this.teamIndex = teamIndex;
 		this.flagColor = c;
 
-		geometry = new CircleGeometry(c, 0.3f, 3);
+		geometry = new CircleGeometry(c, 0.0f, 0.3f, 3);
 	}
 
 	/**

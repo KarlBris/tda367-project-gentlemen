@@ -7,7 +7,7 @@ import controllers.PropController;
 
 public class CratePropFactory implements IEntityFactory {
 
-	private PropModel model = new PropModel(0.5f, 0.5f, 5.0f);
+	private PropModel model = new PropModel(1.0f, 0.5f, 0.5f, 5.0f);
 	private PropController controller = new PropController(model);
 
 	@Override

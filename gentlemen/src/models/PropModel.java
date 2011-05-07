@@ -5,8 +5,8 @@ import org.lwjgl.util.vector.Vector2f;
 import utilities.Color;
 import core.Body;
 import core.BoxBodyShape;
-import core.Geometry;
 import core.BoxGeometry;
+import core.Geometry;
 
 public class PropModel implements IModel {
 
@@ -14,9 +14,10 @@ public class PropModel implements IModel {
 
 	private final Body body;
 
-	public PropModel(final float width, final float height, final float mass) {
+	public PropModel(final float depth, final float width, final float height,
+			final float mass) {
 
-		geometry = new BoxGeometry(Color.RED, width, height);
+		geometry = new BoxGeometry(Color.RED, depth, width, height);
 
 		body = new Body(new BoxBodyShape(width, height), mass);
 	}

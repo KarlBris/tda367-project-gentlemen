@@ -18,9 +18,9 @@ public class BoxGeometry extends Geometry {
 			new Vector2f(0.0f, 0.0f), // Bottom-left triangle
 			new Vector2f(1.0f, 1.0f), new Vector2f(0.0f, 1.0f) };
 
-	public BoxGeometry(final Color color, final float width,
+	public BoxGeometry(final Color color, final float depth, final float width,
 			final float height) {
-		super(color);
+		super(color, depth);
 
 		// Set the width and height of the rectangle
 		for (final Vector2f v : vertices) {

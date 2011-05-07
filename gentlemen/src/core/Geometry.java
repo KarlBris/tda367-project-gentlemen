@@ -13,16 +13,19 @@ public abstract class Geometry {
 	private float angle;
 
 	private Color color;
+	private float depth;
 	private Vector2f[] vertices;
 	private Vector2f[] uvs;
 
-	public Geometry(final Color color) {
+	public Geometry(final Color color, final float depth) {
 		this.color = color;
+		this.depth = depth;
 	}
 
-	public Geometry(final Color color, final Vector2f[] vertices,
-			final Vector2f[] uvs) {
-		this.color = color;
+	public Geometry(final Color color, final float depth,
+			final Vector2f[] vertices, final Vector2f[] uvs) {
+		this(color, depth);
+
 		this.vertices = vertices;
 		this.uvs = uvs;
 	}
@@ -154,7 +157,7 @@ public abstract class Geometry {
 
 		// Render the geometry as triangles
 		for (final Vector2f vertex : vertices) {
-			GL11.glVertex2f(vertex.x, vertex.y);
+			GL11.glVertex3f(vertex.x, vertex.y, depth);
 		}
 
 		for (final Vector2f uv : uvs) {
