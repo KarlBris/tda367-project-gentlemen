@@ -102,13 +102,16 @@ public class PlayerModel implements IModel {
 	public boolean throwBall() {
 		if (isCarryingBall()) {
 
+			Vector2f velocityAtPoint = body.getVelocityAtPoint(ballController
+					.getPosition());
 			final Vector2f direction = Tools.angleToVector(body.getAngle());
+			final Vector2f velocity = new Vector2f(direction);
 
-			final Vector2f force = new Vector2f(direction.x
-					* Constants.BALL_THROW_SPEED, direction.y
-					* Constants.BALL_THROW_SPEED);
+			velocity.scale(Constants.BALL_THROW_SPEED);
 
-			ballController.throwBall(force);
+			Vector2f.add(velocity, velocityAtPoint, velocity);
+
+			ballController.throwBall(velocity);
 
 			ballController.releaseBall();
 

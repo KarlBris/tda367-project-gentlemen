@@ -133,23 +133,21 @@ public class PlayerController implements IController {
 		boolean keyPressed = false;
 
 		if (keyboard.getKey(moveUpKey)) {
-			model.getBody().clearAngularVelocity();
 			dirVect.y -= 1.0f;
 			keyPressed = true;
 		}
+
 		if (keyboard.getKey(moveDownKey)) {
-			model.getBody().clearAngularVelocity();
 			dirVect.y += 1.0f;
 			keyPressed = true;
 		}
 
 		if (keyboard.getKey(moveLeftKey)) {
-			model.getBody().clearAngularVelocity();
 			dirVect.x -= 1.0f;
 			keyPressed = true;
 		}
+
 		if (keyboard.getKey(moveRightKey)) {
-			model.getBody().clearAngularVelocity();
 			dirVect.x += 1.0f;
 			keyPressed = true;
 		}
@@ -158,7 +156,10 @@ public class PlayerController implements IController {
 		if (dirVect.length() > 0.0f) {
 			dirVect.normalise();
 		}
+
 		if (keyPressed) {
+			model.getBody().clearAngularVelocity();
+
 			return Tools.vectorToAngle(dirVect);
 		}
 

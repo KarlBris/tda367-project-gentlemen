@@ -1,7 +1,7 @@
 package utilities;
 
+import org.jbox2d.common.Vec2;
 import org.lwjgl.util.vector.Vector2f;
-
 
 public class Tools {
 
@@ -93,6 +93,15 @@ public class Tools {
 		return angle;
 	}
 
+	/**
+	 * Returns the delta vector between two points
+	 * 
+	 * @param source
+	 *            the from point
+	 * @param destination
+	 *            the to point
+	 * @return the delta
+	 */
 	public static Vector2f vectorBetween(final Vector2f source,
 			final Vector2f destination) {
 
@@ -103,9 +112,38 @@ public class Tools {
 		return resVect;
 	}
 
+	/**
+	 * Returns the distance between two points
+	 * 
+	 * @param source
+	 * @param destination
+	 * @return the distance
+	 */
 	public static float distanceBetween(final Vector2f source,
 			final Vector2f destination) {
 
 		return vectorBetween(source, destination).length();
+	}
+
+	/**
+	 * Converts a normal vector to a physics vector
+	 * 
+	 * @param input
+	 *            the normal vector to convert
+	 * @return the converted vector
+	 */
+	public static Vec2 toPhysicsVector(final Vector2f input) {
+		return new Vec2(input.x, input.y);
+	}
+
+	/**
+	 * Converts a physics vector to a normal vector
+	 * 
+	 * @param input
+	 *            the physics vector to convert
+	 * @return the converted vector
+	 */
+	public static Vector2f toNormalVector(final Vec2 input) {
+		return new Vector2f(input.x, input.y);
 	}
 }

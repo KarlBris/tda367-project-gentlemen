@@ -117,9 +117,7 @@ public class Body {
 	 */
 	public Vector2f getPosition() {
 		if (rigidbody != null) {
-			Vec2 position = rigidbody.getWorldCenter();
-
-			return new Vector2f(position.x, position.y);
+			return Tools.toNormalVector(rigidbody.getWorldCenter());
 		}
 
 		return new Vector2f(0.0f, 0.0f);
@@ -133,7 +131,7 @@ public class Body {
 	 */
 	public void setPosition(final Vector2f position) {
 		if (rigidbody != null) {
-			rigidbody.setTransform(new Vec2(position.x, position.y),
+			rigidbody.setTransform(Tools.toPhysicsVector(position),
 					rigidbody.getAngle());
 		}
 	}
@@ -165,9 +163,27 @@ public class Body {
 	 * @return the current linear velocity of the body
 	 */
 	public Vector2f getVelocity() {
-		Vec2 velocity = rigidbody.getLinearVelocity();
+		return Tools.toNormalVector(rigidbody.getLinearVelocity());
+	}
 
-		return new Vector2f(velocity.x, velocity.y);
+	/**
+	 * Returns the velocity at a world-space point
+	 * 
+	 * @param point
+	 *            the world-space point
+	 * @return the velocity
+	 */
+	public Vector2f getVelocityAtPoint(final Vector2f point) {
+		if (rigidbody != null) {
+			Vec2 velocityAtPoint = new Vec2(0.0f, 0.0f);
+
+			rigidbody.getLinearVelocityFromWorldPointToOut(
+					Tools.toPhysicsVector(point), velocityAtPoint);
+
+			return Tools.toNormalVector(velocityAtPoint);
+		}
+
+		return new Vector2f(0.0f, 0.0f);
 	}
 
 	/**
@@ -196,7 +212,7 @@ public class Body {
 	 */
 	public void applyForce(final Vector2f force) {
 		if (rigidbody != null) {
-			rigidbody.applyForce(new Vec2(force.x, force.y),
+			rigidbody.applyForce(Tools.toPhysicsVector(force),
 					rigidbody.getWorldCenter());
 		}
 	}
@@ -210,6 +226,22 @@ public class Body {
 	public void applyTorque(final float torque) {
 		if (rigidbody != null) {
 			rigidbody.applyTorque(-torque);
+		}
+	}
+
+	/**
+	 * Applies a velocity change to the body
+	 * 
+	 * @param velocity
+	 *            the velocity to add
+	 */
+	public void applyVelocityChange(final Vector2f velocity) {
+		if (rigidbody != null) {
+			Vec2 impulse = Tools.toPhysicsVector(velocity);
+
+			impulse.mul(mass);
+
+			rigidbody.applyLinearImpulse(impulse, rigidbody.getWorldCenter());
 		}
 	}
 

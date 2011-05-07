@@ -44,6 +44,13 @@ public class BallController implements IController {
 		model.throwBall(force);
 	}
 
+	/**
+	 * @return the position of the ball
+	 */
+	public Vector2f getPosition() {
+		return model.getPosition();
+	}
+
 	@Override
 	public IModel getModel() {
 		return model;
