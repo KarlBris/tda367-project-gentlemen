@@ -9,9 +9,9 @@ import utilities.Constants;
 import utilities.Tools;
 import controllers.BallController;
 import controllers.FlagController;
-import core.CircleGeometry;
 import core.Body;
 import core.CircleBodyShape;
+import core.CircleGeometry;
 import core.Geometry;
 import core.Manager;
 
@@ -20,7 +20,7 @@ import core.Manager;
  */
 public class PlayerModel implements IModel {
 
-	private final Geometry geometry = new CircleGeometry(Color.WHITE, 0.5f, 5);
+	private final Geometry geometry;
 
 	private final Body body = new Body(new CircleBodyShape(0.5f), 5.0f);
 
@@ -30,8 +30,9 @@ public class PlayerModel implements IModel {
 
 	private FlagController flagController = null;
 
-	public PlayerModel(int teamIndex) {
+	public PlayerModel(int teamIndex, Color teamColor) {
 		this.teamIndex = teamIndex;
+		geometry = new CircleGeometry(teamColor, 0.5f, 5);
 	}
 
 	@Override
@@ -285,7 +286,7 @@ public class PlayerModel implements IModel {
 	public void updateFlagPosition() {
 		if (isCarryingFlag()) {
 			flagController.setPosition(new Vector2f(getPosition().x,
-					getPosition().y - 0.5f));
+					getPosition().y - 0.7f));
 		}
 	}
 }

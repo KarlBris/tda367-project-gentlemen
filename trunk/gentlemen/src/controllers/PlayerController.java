@@ -89,7 +89,9 @@ public class PlayerController implements IController {
 			model.updateFlagPosition();
 
 			// Try to pick up enemy flag
-			model.captureEnemyFlag();
+			if (model.captureEnemyFlag()) {
+				// Add score there
+			}
 		} else {
 			// Try to capture enemy flag
 			model.pickUpFlag();
