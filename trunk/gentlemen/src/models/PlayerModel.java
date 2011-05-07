@@ -135,9 +135,8 @@ public class PlayerModel implements IModel {
 					.find(BallController.class);
 
 			for (final BallController bc : listOfBalls) {
-				if (Tools.distanceBetween(body.getPosition(), bc.getModel()
-						.getBody().getPosition()) <= Constants.BALL_PICK_UP_DISTANCE) {
-					if (bc.isPickUpAble()) {
+				if (Tools.distanceBetween(body.getPosition(), bc.getPosition()) <= Constants.BALL_PICK_UP_DISTANCE) {
+					if (bc.isPickUpAble(body.getVelocity())) {
 						bc.pickUpBall();
 						ballController = bc;
 						return true;

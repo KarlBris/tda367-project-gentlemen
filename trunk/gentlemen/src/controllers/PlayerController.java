@@ -68,13 +68,7 @@ public class PlayerController implements IController {
 							Constants.VIEWPORT_HEIGHT / 2));
 		}
 
-		// Update player position
-		final Vector2f movement = new Vector2f(getKeyDirection());
-
-		model.move(movement);
-
-		// Update player aim direction
-		model.faceTowards(getFacingDirection());
+		handleMovement();
 
 		setReticlePosition();
 
@@ -88,10 +82,7 @@ public class PlayerController implements IController {
 		if (model.isCarryingBall()) {
 
 			// Set the position of the ball being carried by the player
-			final Vector2f newBallPosition = new Vector2f();
-			Vector2f.add(model.getPosition(),
-					Tools.angleToVector(model.getAngle()), newBallPosition);
-			model.getBallController().setPosition(newBallPosition);
+			setBallPosition();
 
 			// Throw ball if correct key is pressed
 			if (Manager.getKeyboard().getKeyDown(throwBallKey)) {
@@ -124,10 +115,9 @@ public class PlayerController implements IController {
 	}
 
 	/**
-	 * @return the angle player facing calculated through the position of the
-	 *         player and the mouse position
+	 * Handles the movement of the player
 	 */
-	private float getFacingDirection() {
+	private void handleMovement() {
 		final Vector2f dirVect = new Vector2f();
 		final KeyboardComponent keyboard = Manager.getKeyboard();
 		boolean keyPressed = false;
@@ -160,50 +150,36 @@ public class PlayerController implements IController {
 		if (keyPressed) {
 			model.getBody().clearAngularVelocity();
 
-			return Tools.vectorToAngle(dirVect);
+			model.move(dirVect);
+			model.faceTowards(Tools.vectorToAngle(dirVect));
 		}
-
-		return model.getBody().getAngle();
-
 	}
 
 	/**
-	 * Calculate the direction of pushed down keys
-	 * 
-	 * @return the pushed down keys direction
+	 * Sets the position of the reticle
 	 */
-	private Vector2f getKeyDirection() {
+	private void setReticlePosition() {
+		Vector2f newReticlePosition = Tools.angleToVector(model.getAngle());
 
-		final KeyboardComponent keyboard = Manager.getKeyboard();
-		final Vector2f dirVect = new Vector2f();
+		newReticlePosition.scale(Constants.PLAYER_RETICLE_DISTANCE);
 
-		if (keyboard.getKey(moveUpKey)) {
-			dirVect.y -= 1.0f;
-		}
-		if (keyboard.getKey(moveDownKey)) {
-			dirVect.y += 1.0f;
-		}
+		Vector2f.add(model.getPosition(), newReticlePosition,
+				newReticlePosition);
 
-		if (keyboard.getKey(moveLeftKey)) {
-			dirVect.x -= 1.0f;
-		}
-		if (keyboard.getKey(moveRightKey)) {
-			dirVect.x += 1.0f;
-		}
-
-		// Normalize the direction vector to always keep the same distance
-		if (dirVect.length() > 0.0f) {
-			dirVect.normalise();
-		}
-
-		return dirVect;
+		reticleModel.setPosition(newReticlePosition);
 	}
 
-	public void setReticlePosition() {
-		Vector2f newReticlePosition = new Vector2f();
-		Vector2f.add(model.getPosition(),
-				Tools.angleToVector(model.getAngle()), newReticlePosition);
-		reticleModel.setPosition(newReticlePosition);
+	/**
+	 * Sets the position of the ball being carried by the player
+	 */
+	private void setBallPosition() {
+		final Vector2f newBallPosition = Tools.angleToVector(model.getAngle());
+
+		newBallPosition.scale(Constants.PLAYER_BALL_CARRYING_DISTANCE);
+
+		Vector2f.add(model.getPosition(), newBallPosition, newBallPosition);
+
+		model.getBallController().setPosition(newBallPosition);
 	}
 
 	@Override

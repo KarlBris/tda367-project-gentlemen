@@ -21,11 +21,14 @@ public class Constants {
 
 	public static final float GEOMETRY_TO_PHYSICS_INTERPOLATION = 0.8f;
 
+	public static final float PLAYER_RETICLE_DISTANCE = 1.0f;
+	public static final float PLAYER_BALL_CARRYING_DISTANCE = 1.0f;
+
 	public static final float FLAG_PICK_UP_DISTANCE = 0.8f;
 
 	public static final float LETHAL_BALL_SPEED = 1.0f;
 	public static final float BALL_PICK_UP_DISTANCE = 1.0f;
-	public static final int BALL_THROW_SPEED = 20;
+	public static final float BALL_THROW_SPEED = 20.0f;
 
 	public static final int NETWORK_PORT = 13781;
 

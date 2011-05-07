@@ -28,20 +28,22 @@ public class BallController implements IController {
 	}
 
 	/**
+	 * @param referenceVelocity
+	 *            the velocity of an object that should be considered static
 	 * @return true if the ball can be picked up, otherwise false
 	 */
-	public boolean isPickUpAble() {
-		return model.isPickUpAble();
+	public boolean isPickUpAble(final Vector2f referenceVelocity) {
+		return model.isPickUpAble(referenceVelocity);
 	}
 
 	/**
 	 * Throw the ball in the force direction and speed
 	 * 
-	 * @param force
+	 * @param velocity
 	 *            contains the speed an angle of the ball
 	 */
-	public void throwBall(final Vector2f force) {
-		model.throwBall(force);
+	public void throwBall(final Vector2f velocity) {
+		model.throwBall(velocity);
 	}
 
 	/**
