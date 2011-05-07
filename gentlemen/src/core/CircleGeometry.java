@@ -10,13 +10,13 @@ import utilities.Constants;
  * This class represents a n-sided convex regular polygon
  *
  */
-public class BallGeometry extends Geometry {
+public class CircleGeometry extends Geometry {
 
 	private final Vector2f[] vertices;
 
 	private final Vector2f[] uvs;
 	
-	public BallGeometry(Color color, float radius, int sides) {
+	public CircleGeometry(Color color, float radius, int sides) {
 		super(color);
 		
 		vertices = new Vector2f[sides*3];
