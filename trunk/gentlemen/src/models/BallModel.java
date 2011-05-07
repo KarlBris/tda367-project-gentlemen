@@ -3,14 +3,14 @@ package models;
 import org.lwjgl.util.vector.Vector2f;
 
 import utilities.Constants;
-import core.BallGeometry;
+import core.CircleGeometry;
 import core.Body;
 import core.CircleBodyShape;
 import core.Geometry;
 
 public class BallModel implements IModel {
 
-	private final Geometry geometry = new BallGeometry(
+	private final Geometry geometry = new CircleGeometry(
 			utilities.Color.randomColor(), 0.2f, 8);
 
 	private final Body body = new Body(new CircleBodyShape(0.2f), 1.0f);

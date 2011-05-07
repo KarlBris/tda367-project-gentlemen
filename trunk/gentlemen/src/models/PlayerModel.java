@@ -9,7 +9,7 @@ import utilities.Constants;
 import utilities.Tools;
 import controllers.BallController;
 import controllers.FlagController;
-import core.BallGeometry;
+import core.CircleGeometry;
 import core.Body;
 import core.CircleBodyShape;
 import core.Geometry;
@@ -20,7 +20,7 @@ import core.Manager;
  */
 public class PlayerModel implements IModel {
 
-	private final Geometry geometry = new BallGeometry(Color.WHITE, 0.5f, 5);
+	private final Geometry geometry = new CircleGeometry(Color.WHITE, 0.5f, 5);
 
 	private final Body body = new Body(new CircleBodyShape(0.5f), 5.0f);
 

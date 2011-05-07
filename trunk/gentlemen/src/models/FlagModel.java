@@ -4,7 +4,7 @@ import org.lwjgl.util.vector.Vector2f;
 
 import utilities.Color;
 import utilities.Tools;
-import core.BallGeometry;
+import core.CircleGeometry;
 import core.Body;
 import core.Geometry;
 
@@ -23,7 +23,7 @@ public class FlagModel implements IModel {
 		this.teamIndex = teamIndex;
 		this.flagColor = c;
 
-		geometry = new BallGeometry(c, 0.3f, 3);
+		geometry = new CircleGeometry(c, 0.3f, 3);
 	}
 
 	/**
