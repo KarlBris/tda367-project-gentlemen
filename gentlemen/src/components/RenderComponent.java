@@ -86,6 +86,7 @@ public class RenderComponent implements IComponent {
 		GL11.glGetError();
 
 		// Clear the color buffer and depth buffer
+		GL11.glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
 		GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
 
 		// Let each entity render itself
