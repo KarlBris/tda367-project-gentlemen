@@ -3,6 +3,7 @@ package models;
 import org.lwjgl.util.vector.Vector2f;
 
 import utilities.Color;
+import utilities.Tools;
 import core.BallGeometry;
 import core.Body;
 import core.Geometry;
@@ -12,15 +13,14 @@ public class FlagModel implements IModel {
 
 	private final int teamIndex;
 
-	private final Vector2f startPosition;
+	private Vector2f homePosition = null;
 
 	private final Color flagColor;
 
 	private boolean isPickedUp = false;
 
-	public FlagModel(int teamIndex, Vector2f startPosition, Color c) {
+	public FlagModel(int teamIndex, Color c) {
 		this.teamIndex = teamIndex;
-		this.startPosition = startPosition;
 		this.flagColor = c;
 
 		geometry = new BallGeometry(c, 0.3f, 3);
@@ -40,6 +40,13 @@ public class FlagModel implements IModel {
 		isPickedUp = false;
 	}
 
+	/**
+	 * 
+	 */
+	public boolean isPickUpAble() {
+		return !isPickedUp;
+	}
+
 	@Override
 	public Geometry getGeometry() {
 		return geometry;
@@ -51,6 +58,26 @@ public class FlagModel implements IModel {
 	}
 
 	public void setPosition(final Vector2f position) {
+		if (homePosition == null) {
+			homePosition = position;
+		}
 		geometry.setPosition(position);
+	}
+
+	public int getTeamIndex() {
+		return this.teamIndex;
+	}
+
+	public Vector2f getHomePosition() {
+		return Tools.cloneVector(homePosition);
+	}
+
+	public void returnFlagHome() {
+		isPickedUp = false;
+		geometry.setPosition(homePosition);
+	}
+
+	public boolean isAtHome() {
+		return geometry.getPosition().equals(homePosition);
 	}
 }

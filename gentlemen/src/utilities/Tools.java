@@ -146,4 +146,15 @@ public class Tools {
 	public static Vector2f toNormalVector(final Vec2 input) {
 		return new Vector2f(input.x, input.y);
 	}
+
+	/**
+	 * Clone a Vector2f
+	 * 
+	 * @param vector
+	 *            , is the vector to clone
+	 * @return a cloned vector
+	 */
+	public static Vector2f cloneVector(Vector2f vector) {
+		return new Vector2f(vector.x, vector.y);
+	}
 }

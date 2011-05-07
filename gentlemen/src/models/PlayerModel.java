@@ -8,6 +8,7 @@ import utilities.Color;
 import utilities.Constants;
 import utilities.Tools;
 import controllers.BallController;
+import controllers.FlagController;
 import core.BallGeometry;
 import core.Body;
 import core.CircleBodyShape;
@@ -23,7 +24,15 @@ public class PlayerModel implements IModel {
 
 	private final Body body = new Body(new CircleBodyShape(0.5f), 5.0f);
 
+	private int teamIndex;
+
 	private BallController ballController = null;
+
+	private FlagController flagController = null;
+
+	public PlayerModel(int teamIndex) {
+		this.teamIndex = teamIndex;
+	}
 
 	@Override
 	public Geometry getGeometry() {
@@ -33,6 +42,113 @@ public class PlayerModel implements IModel {
 	@Override
 	public Body getBody() {
 		return body;
+	}
+
+	/**
+	 * @param teamIndex
+	 *            , set the index of the players team
+	 */
+	public void setTeamIndex(int teamIndex) {
+		this.teamIndex = teamIndex;
+	}
+
+	/**
+	 * 
+	 * @return the players team index
+	 */
+	public int getTeamIndex() {
+		return this.teamIndex;
+	}
+
+	/**
+	 * @return the flag controller of the flag the player carries, return null
+	 *         if the player has no flag
+	 */
+	public FlagController getFlagController() {
+		return flagController;
+	}
+
+	/**
+	 * @return true if the player is carrying a flag, otherwise false
+	 */
+	public boolean isCarryingFlag() {
+		return flagController != null;
+	}
+
+	/**
+	 * Try to capture the enemy flag at your home base. It require that team
+	 * flag is placed at home
+	 * 
+	 * @return true if the flag was capture, otherwise false
+	 */
+	public boolean captureEnemyFlag() {
+		if (isCarryingFlag()) {
+			List<FlagController> flagControllers = Manager
+					.find(FlagController.class);
+			for (FlagController fc : flagControllers) {
+				if (fc.getFlagTeamIndex() == this.teamIndex) {
+					if (Tools.distanceBetween(body.getPosition(), fc.getModel()
+							.getGeometry().getPosition()) <= Constants.FLAG_PICK_UP_DISTANCE
+							&& fc.isAtHome()) {
+						flagController.returnFlagHome();
+						flagController = null;
+						return true;
+					}
+				}
+			}
+		}
+
+		return false;
+	}
+
+	/**
+	 * returnTeamFlag checks if the team flag is within pick up distance, and if
+	 * it is, and it's not at home it returns it home
+	 * 
+	 * @return true if team flag was picked up, otherwise false
+	 */
+	public boolean returnTeamFlag() {
+		List<FlagController> flagControllers = Manager
+				.find(FlagController.class);
+		for (FlagController fc : flagControllers) {
+			if (fc.getFlagTeamIndex() == this.teamIndex) {
+				if (Tools.distanceBetween(body.getPosition(), fc.getModel()
+						.getGeometry().getPosition()) <= Constants.FLAG_PICK_UP_DISTANCE) {
+					if (fc.isPickUpAble()) {
+
+						fc.returnFlagHome();
+						return true;
+					}
+				}
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * Try to pick up an enemy flag if it's within pick up distance
+	 * 
+	 * @return true if a flag was picked up, otherwise false
+	 */
+	public boolean pickUpFlag() {
+		if (!isCarryingFlag()) {
+			List<FlagController> flagControllers = Manager
+					.find(FlagController.class);
+			for (FlagController fc : flagControllers) {
+				if (fc.getFlagTeamIndex() != this.teamIndex) {
+					if (Tools.distanceBetween(body.getPosition(), fc.getModel()
+							.getGeometry().getPosition()) <= Constants.FLAG_PICK_UP_DISTANCE) {
+						if (fc.isPickUpAble()) {
+							fc.pickUpFlag();
+							flagController = fc;
+							return true;
+						}
+					}
+				}
+			}
+		}
+
+		return false;
 	}
 
 	/**
@@ -155,5 +271,21 @@ public class PlayerModel implements IModel {
 
 	public float getAngle() {
 		return geometry.getAngle();
+	}
+
+	public boolean dropFlag() {
+		if (isCarryingFlag()) {
+			flagController.releaseFlag();
+			return true;
+		}
+		return false;
+
+	}
+
+	public void updateFlagPosition() {
+		if (isCarryingFlag()) {
+			flagController.setPosition(new Vector2f(getPosition().x,
+					getPosition().y - 0.5f));
+		}
 	}
 }

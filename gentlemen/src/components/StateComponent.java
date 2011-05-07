@@ -3,7 +3,7 @@ package components;
 import org.lwjgl.util.vector.Vector2f;
 
 import utilities.Constants;
-
+import controllers.FlagController;
 import controllers.IController;
 import controllers.PlayerController;
 import controllers.PropController;
@@ -12,6 +12,8 @@ import factories.CratePropFactory;
 import factories.HorizontalWallPropFactory;
 import factories.PlayerOneFactory;
 import factories.PlayerTwoFactory;
+import factories.TeamFlagOneFactory;
+import factories.TeamFlagTwoFactory;
 import factories.VerticalWallPropFactory;
 
 public class StateComponent implements IComponent {
@@ -33,6 +35,13 @@ public class StateComponent implements IComponent {
 			Manager.instantiate(new PlayerTwoFactory(),
 					new Vector2f(Constants.VIEWPORT_WIDTH / 2,
 							Constants.VIEWPORT_HEIGHT / 2));
+		}
+
+		if (Manager.find(FlagController.class).size() == 0) {
+			Manager.instantiate(new TeamFlagOneFactory(), new Vector2f(10.0f,
+					10.0f));
+			Manager.instantiate(new TeamFlagTwoFactory(), new Vector2f(2.0f,
+					10.0f));
 		}
 
 		// Instantiate props
