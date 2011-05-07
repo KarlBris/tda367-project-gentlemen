@@ -84,23 +84,26 @@ public class PlayerController implements IController {
 	}
 
 	private void handleBall() {
-		// Throw ball if correct key is pressed
-		if (Manager.getKeyboard().getKeyDown(throwBallKey)) {
-			model.throwBall();
-		}
-		// Pick up ball if correct key is pressed
-		if (Manager.getKeyboard().getKeyDown(pickUpBallKey)) {
-			model.pickUpBall();
-		}
 
-		// Set the position of the ball being carried by the player
 		if (model.isCarryingBall()) {
 
+			// Set the position of the ball being carried by the player
 			final Vector2f newBallPosition = new Vector2f();
 			Vector2f.add(model.getPosition(),
 					Tools.angleToVector(model.getAngle()), newBallPosition);
 			model.getBallController().setPosition(newBallPosition);
 
+			// Throw ball if correct key is pressed
+			if (Manager.getKeyboard().getKeyDown(throwBallKey)) {
+				model.throwBall();
+			}
+
+		} else {
+
+			// Pick up ball if correct key is pressed
+			if (Manager.getKeyboard().getKeyDown(pickUpBallKey)) {
+				model.pickUpBall();
+			}
 		}
 	}
 
