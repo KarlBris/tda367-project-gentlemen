@@ -33,6 +33,13 @@ public class BallModel implements IModel {
 	}
 
 	/**
+	 * @return the position of the ball
+	 */
+	public Vector2f getPosition() {
+		return body.getPosition();
+	}
+
+	/**
 	 * Makes the ball unable to be picked up by other players
 	 */
 	public void pickUp() {
@@ -45,8 +52,9 @@ public class BallModel implements IModel {
 	 * @param force
 	 *            contains the speed an angle of the ball
 	 */
-	public void throwBall(final Vector2f force) {
-		body.applyForce(force);
+	public void throwBall(final Vector2f velocity) {
+		body.applyVelocityChange(velocity);
+
 		releaseBall();
 	}
 
@@ -72,11 +80,11 @@ public class BallModel implements IModel {
 	}
 
 	public void setPosition(final Vector2f position) {
+		geometry.setPosition(position);
+
 		body.setPosition(position);
 		body.clearVelocity();
 		body.clearAngularVelocity();
-		geometry.setPosition(position);
-
 	}
 
 }
