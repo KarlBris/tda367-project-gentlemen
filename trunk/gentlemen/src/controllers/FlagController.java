@@ -51,4 +51,29 @@ public class FlagController implements IController {
 
 	}
 
+	public boolean isPickUpAble() {
+		return model.isPickUpAble();
+	}
+
+	public void pickUpFlag() {
+		model.pickUpFlag();
+	}
+
+	public int getFlagTeamIndex() {
+		return model.getTeamIndex();
+	}
+
+	public boolean isAtHome() {
+		return model.isAtHome();
+	}
+
+	public void returnFlagHome() {
+		model.returnFlagHome();
+
+	}
+
+	public void releaseFlag() {
+		model.releaseFlag();
+	}
+
 }

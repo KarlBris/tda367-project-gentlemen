@@ -74,7 +74,26 @@ public class PlayerController implements IController {
 
 		handleBall();
 
+		handleFlag();
+
 		model.update();
+	}
+
+	private void handleFlag() {
+
+		// Try to return team flag
+		model.returnTeamFlag();
+
+		if (model.isCarryingFlag()) {
+			// Change the flag position
+			model.updateFlagPosition();
+
+			// Try to pick up enemy flag
+			model.captureEnemyFlag();
+		} else {
+			// Try to capture enemy flag
+			model.pickUpFlag();
+		}
 	}
 
 	private void handleBall() {
@@ -96,6 +115,10 @@ public class PlayerController implements IController {
 				model.pickUpBall();
 			}
 		}
+	}
+
+	public boolean dropFlag() {
+		return model.dropFlag();
 	}
 
 	@Override
