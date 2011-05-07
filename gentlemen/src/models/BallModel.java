@@ -18,18 +18,25 @@ public class BallModel implements IModel {
 	private boolean isPickedUp = false;
 
 	/**
-	 * @return return true if the speed of the ball is lethal, otherwise false
+	 * @param referenceVelocity
+	 *            the velocity of an object that should be considered static
+	 * @return true if the speed of the ball is lethal, otherwise false
 	 */
-	public boolean isLethal() {
-		final Vector2f v = body.getVelocity();
-		return v.length() >= Constants.LETHAL_BALL_SPEED;
+	public boolean isLethal(final Vector2f referenceVelocity) {
+		Vector2f relativeVelocity = new Vector2f(0.0f, 0.0f);
+
+		Vector2f.sub(body.getVelocity(), referenceVelocity, relativeVelocity);
+
+		return relativeVelocity.length() >= Constants.LETHAL_BALL_SPEED;
 	}
 
 	/**
+	 * @param referenceVelocity
+	 *            the velocity of an object that should be considered static
 	 * @return true if the ball can be picked up, otherwise false
 	 */
-	public boolean isPickUpAble() {
-		return !isPickedUp && !isLethal();
+	public boolean isPickUpAble(final Vector2f referenceVelocity) {
+		return !isPickedUp && !isLethal(referenceVelocity);
 	}
 
 	/**
