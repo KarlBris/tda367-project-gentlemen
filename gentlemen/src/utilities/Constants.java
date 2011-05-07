@@ -32,6 +32,9 @@ public class Constants {
 
 	public static final int NETWORK_PORT = 13781;
 
+	public static final Color TEAM_ONE_COLOR = Color.RED;
+	public static final Color TEAM_TWO_COLOR = Color.BLUE;
+
 	/**
 	 * @return the current screen width in pixels
 	 */
