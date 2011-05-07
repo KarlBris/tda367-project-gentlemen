@@ -21,7 +21,7 @@ public class PlayerModel implements IModel {
 
 	private final Geometry geometry = new BallGeometry(Color.WHITE, 0.5f, 5);
 
-	private final Body body = new Body(new CircleBodyShape(0.5f), 10.0f);
+	private final Body body = new Body(new CircleBodyShape(0.5f), 5.0f);
 
 	private BallController ballController = null;
 
@@ -100,7 +100,7 @@ public class PlayerModel implements IModel {
 	 * @return true if a ball was thrown, otherwise false
 	 */
 	public boolean throwBall() {
-		if (ballController != null) {
+		if (isCarryingBall()) {
 
 			final Vector2f direction = Tools.angleToVector(body.getAngle());
 
@@ -127,7 +127,7 @@ public class PlayerModel implements IModel {
 	 */
 	public boolean pickUpBall() {
 
-		if (ballController == null) {
+		if (!isCarryingBall()) {
 			final List<BallController> listOfBalls = Manager
 					.find(BallController.class);
 
