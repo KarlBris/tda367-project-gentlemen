@@ -6,7 +6,7 @@ import utilities.Color;
 import core.Body;
 import core.BoxBodyShape;
 import core.Geometry;
-import core.RectangleGeometry;
+import core.BoxGeometry;
 
 public class PropModel implements IModel {
 
@@ -16,7 +16,7 @@ public class PropModel implements IModel {
 
 	public PropModel(final float width, final float height, final float mass) {
 
-		geometry = new RectangleGeometry(Color.RED, width, height);
+		geometry = new BoxGeometry(Color.RED, width, height);
 
 		body = new Body(new BoxBodyShape(width, height), mass);
 	}
