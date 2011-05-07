@@ -33,7 +33,7 @@ public class ReticleGeometry extends Geometry {
 			new Vector2f(), new Vector2f() };
 
 	public ReticleGeometry() {
-		super(Color.IT, verticies, uvs);
+		super(Color.IT, 1.0f, verticies, uvs);
 	}
 
 }

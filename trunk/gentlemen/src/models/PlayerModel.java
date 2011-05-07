@@ -30,9 +30,9 @@ public class PlayerModel implements IModel {
 
 	private FlagController flagController = null;
 
-	public PlayerModel(int teamIndex, Color teamColor) {
+	public PlayerModel(final int teamIndex, final Color teamColor) {
 		this.teamIndex = teamIndex;
-		geometry = new CircleGeometry(teamColor, 0.5f, 5);
+		geometry = new CircleGeometry(teamColor, 1.0f, 0.5f, 5);
 	}
 
 	@Override
@@ -49,7 +49,7 @@ public class PlayerModel implements IModel {
 	 * @param teamIndex
 	 *            , set the index of the players team
 	 */
-	public void setTeamIndex(int teamIndex) {
+	public void setTeamIndex(final int teamIndex) {
 		this.teamIndex = teamIndex;
 	}
 
