@@ -17,6 +17,10 @@ public abstract class Geometry {
 	private Vector2f[] vertices;
 	private Vector2f[] uvs;
 
+	public Geometry() {
+
+	}
+
 	public Geometry(final Color color, final float depth) {
 		this.color = color;
 		this.depth = depth;

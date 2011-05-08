@@ -7,11 +7,15 @@ import controllers.FlagController;
 import controllers.IController;
 import controllers.PlayerController;
 import controllers.PropController;
+import controllers.RuleController;
+import controllers.TeamController;
 import core.Manager;
 import factories.CratePropFactory;
 import factories.HorizontalWallPropFactory;
 import factories.PlayerOneFactory;
 import factories.PlayerTwoFactory;
+import factories.RuleFactory;
+import factories.TeamFactory;
 import factories.TeamFlagOneFactory;
 import factories.TeamFlagTwoFactory;
 import factories.VerticalWallPropFactory;
@@ -27,21 +31,42 @@ public class StateComponent implements IComponent {
 	@Override
 	public void instantiatePermanentEntities() {
 
-		// Instantiate the player
-		if (Manager.find(PlayerController.class).size() == 0) {
-			Manager.instantiate(new PlayerOneFactory(),
-					new Vector2f(Constants.VIEWPORT_WIDTH / 2,
-							Constants.VIEWPORT_HEIGHT / 2));
-			Manager.instantiate(new PlayerTwoFactory(),
-					new Vector2f(Constants.VIEWPORT_WIDTH / 2,
-							Constants.VIEWPORT_HEIGHT / 2));
+		// Instantiate the rules
+		if (Manager.find(RuleController.class).size() == 0) {
+			Manager.instantiate(new RuleFactory());
 		}
 
-		if (Manager.find(FlagController.class).size() == 0) {
-			Manager.instantiate(new TeamFlagOneFactory(), new Vector2f(10.0f,
-					10.0f));
-			Manager.instantiate(new TeamFlagTwoFactory(), new Vector2f(2.0f,
-					10.0f));
+		// Instantiate the player
+		if (Manager.find(PlayerController.class).size() == 0) {
+
+			// Instantiate the teams
+			final TeamController teamOne = (TeamController) Manager
+					.instantiate(new TeamFactory());
+			final TeamController teamTwo = (TeamController) Manager
+					.instantiate(new TeamFactory());
+
+			final PlayerController playerOne = (PlayerController) Manager
+					.instantiate(new PlayerOneFactory(), new Vector2f(
+							Constants.VIEWPORT_WIDTH / 2,
+							Constants.VIEWPORT_HEIGHT / 2));
+			final PlayerController playerTwo = (PlayerController) Manager
+					.instantiate(new PlayerTwoFactory(), new Vector2f(
+							Constants.VIEWPORT_WIDTH / 2,
+							Constants.VIEWPORT_HEIGHT / 2));
+
+			playerOne.setTeam(teamOne);
+			playerTwo.setTeam(teamTwo);
+
+			// Instantiate flags
+			final FlagController teamOneFlag = (FlagController) Manager
+					.instantiate(new TeamFlagOneFactory(), new Vector2f(10.0f,
+							10.0f));
+			final FlagController teamTwoFlag = (FlagController) Manager
+					.instantiate(new TeamFlagTwoFactory(), new Vector2f(2.0f,
+							10.0f));
+
+			teamOneFlag.setTeam(teamOne);
+			teamTwoFlag.setTeam(teamTwo);
 		}
 
 		// Instantiate props

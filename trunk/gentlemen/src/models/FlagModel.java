@@ -4,6 +4,7 @@ import org.lwjgl.util.vector.Vector2f;
 
 import utilities.Color;
 import utilities.Tools;
+import controllers.TeamController;
 import core.Body;
 import core.CircleGeometry;
 import core.Geometry;
@@ -11,16 +12,15 @@ import core.Geometry;
 public class FlagModel implements IModel {
 	private final Geometry geometry;
 
-	private final int teamIndex;
-
 	private Vector2f homePosition = null;
 
 	private final Color flagColor;
 
 	private boolean isPickedUp = false;
 
-	public FlagModel(final int teamIndex, final Color c) {
-		this.teamIndex = teamIndex;
+	private TeamController teamController;
+
+	public FlagModel(final Color c) {
 		this.flagColor = c;
 
 		geometry = new CircleGeometry(c, 0.0f, 0.3f, 3);
@@ -64,8 +64,8 @@ public class FlagModel implements IModel {
 		geometry.setPosition(position);
 	}
 
-	public int getTeamIndex() {
-		return this.teamIndex;
+	public TeamController getTeam() {
+		return teamController;
 	}
 
 	public Vector2f getHomePosition() {
@@ -79,5 +79,10 @@ public class FlagModel implements IModel {
 
 	public boolean isAtHome() {
 		return geometry.getPosition().equals(homePosition);
+	}
+
+	public void setTeam(final TeamController team) {
+		this.teamController = team;
+
 	}
 }

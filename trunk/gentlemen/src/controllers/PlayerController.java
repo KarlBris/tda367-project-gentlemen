@@ -189,7 +189,8 @@ public class PlayerController implements IController, IBodyCollisionCallback {
 	 * Sets the position of the reticle
 	 */
 	private void setReticlePosition() {
-		Vector2f newReticlePosition = Tools.angleToVector(model.getAngle());
+		final Vector2f newReticlePosition = Tools.angleToVector(model
+				.getAngle());
 
 		newReticlePosition.scale(Constants.PLAYER_RETICLE_DISTANCE);
 
@@ -238,6 +239,11 @@ public class PlayerController implements IController, IBodyCollisionCallback {
 		if (otherBody.getVelocity().length() >= Constants.BALL_LETHAL_SPEED) {
 			model.throwBall();
 		}
+	}
+
+	public void setTeam(final TeamController team) {
+		model.setTeam(team);
+
 	}
 
 }
