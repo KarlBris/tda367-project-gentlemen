@@ -11,11 +11,11 @@ import controllers.IController;
 public class KeyboardComponent implements IComponent {
 
 	// An array of booleans representing the current state of the keyboard
-	private static boolean[] keyDownArray = new boolean[Keyboard.KEYBOARD_SIZE];
+	private final boolean[] keyDownArray = new boolean[Keyboard.KEYBOARD_SIZE];
 
 	// An array of booleans representing the state of the keyboard before
 	// update() was called last time
-	private static boolean[] prevKeyDownArray = new boolean[Keyboard.KEYBOARD_SIZE];
+	private boolean[] prevKeyDownArray = new boolean[Keyboard.KEYBOARD_SIZE];
 
 	/**
 	 * Returns true or false depending on whether the given key is pressed or

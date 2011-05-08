@@ -14,11 +14,11 @@ public class MouseComponent implements IComponent {
 
 	// An array of booleans representing current state of the three normally
 	// occuring mouse buttons
-	private static boolean[] buttonDownArray = new boolean[3];
+	private final boolean[] buttonDownArray = new boolean[3];
 
 	// An array of booleans representing which of mouse buttons were down before
 	// the last call of update()
-	private static boolean[] prevButtonDownArray = new boolean[3];
+	private boolean[] prevButtonDownArray = new boolean[3];
 
 	@Override
 	public void initialize() {
