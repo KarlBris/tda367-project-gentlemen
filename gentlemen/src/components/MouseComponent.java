@@ -4,7 +4,6 @@ import org.lwjgl.input.Mouse;
 import org.lwjgl.util.vector.Vector2f;
 
 import utilities.Constants;
-
 import controllers.IController;
 
 /**
@@ -49,9 +48,6 @@ public class MouseComponent implements IComponent {
 
 		Mouse.poll();
 
-		if (Mouse.isInsideWindow()) {
-			Mouse.setGrabbed(true);
-		}
 		// Copies the current mouse state to the previous
 		prevButtonDownArray = buttonDownArray.clone();
 
