@@ -16,6 +16,7 @@ public class Body {
 
 	// Body properties
 	private float mass = 0.0f;
+	private float damping = 0.0f;
 
 	private IBodyShape shape;
 

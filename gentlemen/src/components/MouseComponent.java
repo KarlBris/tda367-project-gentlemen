@@ -3,7 +3,7 @@ package components;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.util.vector.Vector2f;
 
-import utilities.Constants;
+import utilities.Tools;
 import controllers.IController;
 
 /**
@@ -77,7 +77,7 @@ public class MouseComponent implements IComponent {
 	public Vector2f getScreenPosition() {
 		// Returns a Vector2f representing the mouse pointer's position on the
 		// screen
-		return new Vector2f(Mouse.getX(), Constants.getScreenHeight()
+		return new Vector2f(Mouse.getX(), Tools.getScreenHeight()
 				- Mouse.getY());
 	}
 
@@ -89,8 +89,8 @@ public class MouseComponent implements IComponent {
 	public Vector2f getViewportPosition() {
 		// Returns a Vector2f representing the mouse pointer's position in the
 		// viewport
-		return Constants.screenToViewport(Mouse.getX(),
-				Constants.getScreenHeight() - Mouse.getY());
+		return Tools.screenToViewport(Mouse.getX(), Tools.getScreenHeight()
+				- Mouse.getY());
 
 	}
 
