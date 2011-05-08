@@ -12,7 +12,7 @@ public class Constants {
 	public static final int DEFAULT_SCREEN_WIDTH = 960;
 	public static final int DEFAULT_SCREEN_HEIGHT = 540;
 	public static final float VIEWPORT_RATIO = 16.0f / 9.0f;
-	public static final float VIEWPORT_WIDTH = 22.0f;
+	public static final float VIEWPORT_WIDTH = 30.0f;
 	public static final float VIEWPORT_HEIGHT = VIEWPORT_WIDTH / VIEWPORT_RATIO;
 
 	public static final float GEOMETRY_TO_PHYSICS_INTERPOLATION = 0.8f;
