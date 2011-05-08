@@ -7,6 +7,7 @@ import org.jbox2d.dynamics.BodyType;
 import org.jbox2d.dynamics.World;
 import org.lwjgl.util.vector.Vector2f;
 
+import utilities.Constants;
 import utilities.Tools;
 
 /**
@@ -16,24 +17,13 @@ public class Body {
 
 	// Body properties
 	private float mass = 0.0f;
-	private float damping = 0.0f;
+	private float damping = Constants.BODY_DEFAULT_DAMPING;
+	private float angularDamping = Constants.BODY_DEFAULT_ANGULAR_DAMPING;
 
 	private IBodyShape shape;
 
 	// References
 	private org.jbox2d.dynamics.Body rigidbody;
-
-	/**
-	 * Initializes a static body
-	 * 
-	 * @param width
-	 *            the width of the body
-	 * @param height
-	 *            the height of the body
-	 */
-	public Body(final IBodyShape shape) {
-		this.shape = shape;
-	}
 
 	/**
 	 * Initializes a static/dynamic body
@@ -47,9 +37,14 @@ public class Body {
 	 *            dynamic
 	 */
 	public Body(final IBodyShape shape, final float mass) {
-		this(shape);
-
+		this.shape = shape;
 		this.mass = mass;
+	}
+
+	public Body(final IBodyShape shape, final float mass, final float damping) {
+		this(shape, mass);
+
+		this.damping = damping;
 	}
 
 	/**
@@ -72,6 +67,8 @@ public class Body {
 		rigidbody.createFixture(shape.getShape(), 1.0f);
 
 		setMass(mass);
+		setDamping(damping);
+		setAngularDamping(angularDamping);
 	}
 
 	/**
@@ -98,18 +95,64 @@ public class Body {
 	 *            the new mass
 	 */
 	public void setMass(final float mass) {
+		// Set mass
+		if (this.mass != 0.0f) {
+			this.mass = mass;
+		}
+
+		// Update rigidbody
+		if (rigidbody != null && rigidbody.getType() == BodyType.DYNAMIC) {
+			MassData data = new MassData();
+
+			rigidbody.getMassData(data);
+			data.mass = this.mass;
+			rigidbody.setMassData(data);
+		}
+	}
+
+	/**
+	 * @return the linear damping of the body
+	 */
+	public float getDamping() {
+		return damping;
+	}
+
+	/**
+	 * Sets the linear damping of the body
+	 * 
+	 * @param damping
+	 *            the linear damping
+	 */
+	public void setDamping(final float damping) {
+		// Update damping
+		this.damping = damping;
+
+		// Update rigidbody
 		if (rigidbody != null) {
-			if (rigidbody.getType() == BodyType.DYNAMIC) {
-				// Set mass
-				this.mass = mass;
+			rigidbody.setLinearDamping(this.damping);
+		}
+	}
 
-				// Update rigidbody
-				MassData data = new MassData();
+	/**
+	 * @return the angular damping of the body
+	 */
+	public float getAngularDamping() {
+		return angularDamping;
+	}
 
-				rigidbody.getMassData(data);
-				data.mass = this.mass;
-				rigidbody.setMassData(data);
-			}
+	/**
+	 * Sets the angular damping of the body
+	 * 
+	 * @param angularDamping
+	 *            the angular damping
+	 */
+	public void setAngularDamping(final float angularDamping) {
+		// Update angular damping
+		this.angularDamping = angularDamping;
+
+		// Update rigidbody
+		if (rigidbody != null) {
+			rigidbody.setAngularDamping(this.angularDamping);
 		}
 	}
 

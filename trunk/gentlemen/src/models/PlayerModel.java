@@ -22,7 +22,7 @@ public class PlayerModel implements IModel {
 
 	private final Geometry geometry;
 
-	private final Body body = new Body(new CircleBodyShape(0.5f), 5.0f);
+	private final Body body = new Body(new CircleBodyShape(0.5f), 2.0f, 3.0f);
 
 	private int teamIndex;
 
@@ -185,7 +185,7 @@ public class PlayerModel implements IModel {
 	public void move(final Vector2f movement) {
 		final Vector2f force = new Vector2f(movement);
 
-		force.scale(5.0f);
+		force.scale(Constants.PLAYER_MOVEMENT_ACCELERATION);
 
 		force.scale(body.getMass());
 
