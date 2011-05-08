@@ -10,13 +10,15 @@ import org.lwjgl.util.vector.Vector2f;
 import utilities.Constants;
 import utilities.Tools;
 
+import components.IBodyCollisionCallback;
 import components.KeyboardComponent;
 
+import core.Body;
 import core.Manager;
 import factories.BallFactory;
 import factories.KeyboardReticleFactory;
 
-public class PlayerController implements IController {
+public class PlayerController implements IController, IBodyCollisionCallback {
 
 	private final PlayerModel model;
 	private ReticleModel reticleModel;
@@ -130,6 +132,9 @@ public class PlayerController implements IController {
 
 	@Override
 	public void start() {
+		// Subscribe to collision events for the model's body
+		model.getBody().setCollisionCallback(this);
+
 		// Instantiate the reticle and save the model reference
 		reticleModel = (ReticleModel) Manager.instantiate(
 				new KeyboardReticleFactory()).getModel();
@@ -223,6 +228,16 @@ public class PlayerController implements IController {
 	public void setPosition(final Vector2f position) {
 		model.setPosition(position);
 
+	}
+
+	@Override
+	public void collisionOccured(final Body otherBody,
+			final Vector2f collisionPoint) {
+
+		// If something fast hits this player, drop ball and flag
+		if (otherBody.getVelocity().length() >= Constants.BALL_LETHAL_SPEED) {
+			model.throwBall();
+		}
 	}
 
 }

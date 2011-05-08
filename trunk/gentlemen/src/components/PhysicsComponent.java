@@ -4,18 +4,19 @@ import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.World;
 
 import utilities.Constants;
-
 import controllers.IController;
 import core.Body;
 
 public class PhysicsComponent implements IComponent {
 
-	private World world;
+	private World world = new World(new Vec2(0.0f, 0.0f), true);
+
+	private PhysicsContactListener listener = new PhysicsContactListener();
 
 	@Override
 	public void initialize() {
-		// Create the physics world
-		world = new World(new Vec2(0.0f, 0.0f), true);
+		// Attach the contact listener to the world
+		world.setContactListener(listener);
 	}
 
 	@Override
