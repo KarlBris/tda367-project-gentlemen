@@ -6,6 +6,8 @@ import models.IModel;
 
 import org.lwjgl.opengl.GL11;
 
+import utilities.Constants;
+import utilities.Tools;
 import controllers.IController;
 import core.Manager;
 
@@ -29,25 +31,23 @@ public class RenderComponent implements IComponent {
 		float height;
 
 		// Initializes the display window size
-		final int displayHeight = utilities.Constants.getScreenHeight();
-		final int displayWidth = utilities.Constants.getScreenWidth();
+		final int displayHeight = Tools.getScreenHeight();
+		final int displayWidth = Tools.getScreenWidth();
 
 		// Calculate the aspect ratio of the display window
 		final float displayRatio = (float) displayWidth / (float) displayHeight;
 
 		// If the screen is slimmer than the standard ratio (16:9), make a new,
 		// smaller, width but keep the standard height
-		if (displayRatio < utilities.Constants.VIEWPORT_RATIO) {
-			width = (utilities.Constants.VIEWPORT_HEIGHT / displayHeight)
-					* displayWidth;
-			height = utilities.Constants.VIEWPORT_HEIGHT;
+		if (displayRatio < Constants.VIEWPORT_RATIO) {
+			width = (Constants.VIEWPORT_HEIGHT / displayHeight) * displayWidth;
+			height = Constants.VIEWPORT_HEIGHT;
 		}
 		// If the screen is wider than or equally wide to the standard ratio,
 		// keep the standard width and make a new, smaller, height
 		else {
-			width = utilities.Constants.VIEWPORT_WIDTH;
-			height = (utilities.Constants.VIEWPORT_WIDTH / displayWidth)
-					* displayHeight;
+			width = Constants.VIEWPORT_WIDTH;
+			height = (Constants.VIEWPORT_WIDTH / displayWidth) * displayHeight;
 		}
 
 		// Initialize the projection and matrix modes

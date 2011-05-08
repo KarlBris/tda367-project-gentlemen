@@ -1,6 +1,8 @@
 package utilities;
 
 import org.jbox2d.common.Vec2;
+import org.lwjgl.opengl.Display;
+import org.lwjgl.util.Point;
 import org.lwjgl.util.vector.Vector2f;
 
 public class Tools {
@@ -154,7 +156,57 @@ public class Tools {
 	 *            , is the vector to clone
 	 * @return a cloned vector
 	 */
-	public static Vector2f cloneVector(Vector2f vector) {
+	public static Vector2f cloneVector(final Vector2f vector) {
 		return new Vector2f(vector.x, vector.y);
+	}
+
+	/**
+	 * @return the current screen width in pixels
+	 */
+	public static int getScreenWidth() {
+		if (Display.getDisplayMode() != null) {
+			return Display.getDisplayMode().getWidth();
+		}
+
+		return 0;
+	}
+
+	/**
+	 * @return the current screen height in pixels
+	 */
+	public static int getScreenHeight() {
+		if (Display.getDisplayMode() != null) {
+			return Display.getDisplayMode().getHeight();
+		}
+
+		return 0;
+	}
+
+	/**
+	 * Converts a pixel in screen-space to a point in viewport-space
+	 * 
+	 * @param pixelX
+	 *            x-coordinate in screen-space
+	 * @param pixelY
+	 *            y-coordinate in screen-space
+	 * @return a point in viewport-space
+	 */
+	public static Vector2f screenToViewport(final int pixelX, final int pixelY) {
+		return new Vector2f((pixelX + 0.5f) / getScreenWidth()
+				* Constants.VIEWPORT_WIDTH, (pixelY + 0.5f) / getScreenHeight()
+				* Constants.VIEWPORT_HEIGHT);
+	}
+
+	/**
+	 * Converts a point in viewport-space to a pixel in screen-space
+	 * 
+	 * @param position
+	 *            a point in viewport-space
+	 * @return a pixel in screen-space
+	 */
+	public static Point viewportToScreen(final Vector2f position) {
+		return new Point(
+				(int) (position.x / Constants.VIEWPORT_WIDTH * getScreenWidth()),
+				(int) (position.y / Constants.VIEWPORT_HEIGHT * getScreenHeight()));
 	}
 }
