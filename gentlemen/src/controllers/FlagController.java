@@ -8,7 +8,7 @@ import org.lwjgl.util.vector.Vector2f;
 public class FlagController implements IController {
 	private final FlagModel model;
 
-	public FlagController(FlagModel model) {
+	public FlagController(final FlagModel model) {
 		this.model = model;
 	}
 
@@ -23,7 +23,7 @@ public class FlagController implements IController {
 	}
 
 	@Override
-	public void setPosition(Vector2f position) {
+	public void setPosition(final Vector2f position) {
 		model.setPosition(position);
 	}
 
@@ -46,7 +46,7 @@ public class FlagController implements IController {
 	}
 
 	@Override
-	public void networkDataReceive(Object[] data) {
+	public void networkDataReceive(final Object[] data) {
 		// TODO Auto-generated method stub
 
 	}
@@ -57,10 +57,6 @@ public class FlagController implements IController {
 
 	public void pickUpFlag() {
 		model.pickUpFlag();
-	}
-
-	public int getFlagTeamIndex() {
-		return model.getTeamIndex();
 	}
 
 	public boolean isAtHome() {
@@ -74,6 +70,15 @@ public class FlagController implements IController {
 
 	public void releaseFlag() {
 		model.releaseFlag();
+	}
+
+	public void setTeam(final TeamController team) {
+		model.setTeam(team);
+
+	}
+
+	public TeamController getTeam() {
+		return model.getTeam();
 	}
 
 }

@@ -9,6 +9,7 @@ import utilities.Constants;
 import utilities.Tools;
 import controllers.BallController;
 import controllers.FlagController;
+import controllers.TeamController;
 import core.Body;
 import core.CircleBodyShape;
 import core.CircleGeometry;
@@ -24,15 +25,15 @@ public class PlayerModel implements IModel {
 
 	private final Body body = new Body(new CircleBodyShape(0.5f), 2.0f, 3.0f);
 
-	private int teamIndex;
-
 	private BallController ballController = null;
 
 	private FlagController flagController = null;
 
-	public PlayerModel(final int teamIndex, final Color teamColor) {
-		this.teamIndex = teamIndex;
+	private TeamController teamController = null;
+
+	public PlayerModel(final Color teamColor) {
 		geometry = new CircleGeometry(teamColor, 1.0f, 0.5f, 5);
+
 	}
 
 	@Override
@@ -43,22 +44,6 @@ public class PlayerModel implements IModel {
 	@Override
 	public Body getBody() {
 		return body;
-	}
-
-	/**
-	 * @param teamIndex
-	 *            , set the index of the players team
-	 */
-	public void setTeamIndex(final int teamIndex) {
-		this.teamIndex = teamIndex;
-	}
-
-	/**
-	 * 
-	 * @return the players team index
-	 */
-	public int getTeamIndex() {
-		return this.teamIndex;
 	}
 
 	/**
@@ -84,10 +69,10 @@ public class PlayerModel implements IModel {
 	 */
 	public boolean captureEnemyFlag() {
 		if (isCarryingFlag()) {
-			List<FlagController> flagControllers = Manager
+			final List<FlagController> flagControllers = Manager
 					.find(FlagController.class);
-			for (FlagController fc : flagControllers) {
-				if (fc.getFlagTeamIndex() == this.teamIndex) {
+			for (final FlagController fc : flagControllers) {
+				if (fc.getTeam() == this.teamController) {
 					if (Tools.distanceBetween(body.getPosition(), fc.getModel()
 							.getGeometry().getPosition()) <= Constants.FLAG_PICK_UP_DISTANCE
 							&& fc.isAtHome()) {
@@ -109,10 +94,10 @@ public class PlayerModel implements IModel {
 	 * @return true if team flag was picked up, otherwise false
 	 */
 	public boolean returnTeamFlag() {
-		List<FlagController> flagControllers = Manager
+		final List<FlagController> flagControllers = Manager
 				.find(FlagController.class);
-		for (FlagController fc : flagControllers) {
-			if (fc.getFlagTeamIndex() == this.teamIndex) {
+		for (final FlagController fc : flagControllers) {
+			if (fc.getTeam() == this.teamController) {
 				if (Tools.distanceBetween(body.getPosition(), fc.getModel()
 						.getGeometry().getPosition()) <= Constants.FLAG_PICK_UP_DISTANCE) {
 					if (fc.isPickUpAble()) {
@@ -133,10 +118,10 @@ public class PlayerModel implements IModel {
 	 */
 	public boolean pickUpFlag() {
 		if (!isCarryingFlag()) {
-			List<FlagController> flagControllers = Manager
+			final List<FlagController> flagControllers = Manager
 					.find(FlagController.class);
-			for (FlagController fc : flagControllers) {
-				if (fc.getFlagTeamIndex() != this.teamIndex) {
+			for (final FlagController fc : flagControllers) {
+				if (fc.getTeam() != this.teamController) {
 					if (Tools.distanceBetween(body.getPosition(), fc.getModel()
 							.getGeometry().getPosition()) <= Constants.FLAG_PICK_UP_DISTANCE) {
 						if (fc.isPickUpAble()) {
@@ -219,8 +204,8 @@ public class PlayerModel implements IModel {
 	public boolean throwBall() {
 		if (isCarryingBall()) {
 
-			Vector2f velocityAtPoint = body.getVelocityAtPoint(ballController
-					.getPosition());
+			final Vector2f velocityAtPoint = body
+					.getVelocityAtPoint(ballController.getPosition());
 			final Vector2f direction = Tools.angleToVector(body.getAngle());
 			final Vector2f velocity = new Vector2f(direction);
 
@@ -288,5 +273,10 @@ public class PlayerModel implements IModel {
 			flagController.setPosition(new Vector2f(getPosition().x,
 					getPosition().y - 0.7f));
 		}
+	}
+
+	public void setTeam(final TeamController team) {
+		this.teamController = team;
+
 	}
 }
