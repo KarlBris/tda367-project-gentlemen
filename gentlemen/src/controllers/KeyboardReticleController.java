@@ -5,13 +5,9 @@ import models.ReticleModel;
 
 import org.lwjgl.util.vector.Vector2f;
 
-import components.KeyboardComponent;
-
-import core.Manager;
-
 public class KeyboardReticleController implements IController {
+
 	private ReticleModel model;
-	private final KeyboardComponent keyboard = Manager.getKeyboard();
 
 	public KeyboardReticleController(final ReticleModel model) {
 		this.model = model;
@@ -47,13 +43,13 @@ public class KeyboardReticleController implements IController {
 	}
 
 	@Override
-	public void networkDataReceive(Object[] data) {
+	public void networkDataReceive(final Object[] data) {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public void setPosition(Vector2f position) {
+	public void setPosition(final Vector2f position) {
 		model.setPosition(position);
 
 	}

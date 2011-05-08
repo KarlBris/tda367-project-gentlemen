@@ -26,7 +26,7 @@ public class Constants {
 
 	public static final float FLAG_PICK_UP_DISTANCE = 0.8f;
 
-	public static final float LETHAL_BALL_SPEED = 2.0f;
+	public static final float BALL_LETHAL_SPEED = 7.0f;
 	public static final float BALL_PICK_UP_DISTANCE = 1.0f;
 	public static final float BALL_THROW_SPEED = 20.0f;
 

@@ -27,7 +27,7 @@ public class BallModel implements IModel {
 
 		Vector2f.sub(body.getVelocity(), referenceVelocity, relativeVelocity);
 
-		return relativeVelocity.length() >= Constants.LETHAL_BALL_SPEED;
+		return relativeVelocity.length() >= Constants.BALL_LETHAL_SPEED;
 	}
 
 	/**

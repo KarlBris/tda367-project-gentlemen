@@ -10,6 +10,8 @@ import org.lwjgl.util.vector.Vector2f;
 import utilities.Constants;
 import utilities.Tools;
 
+import components.IBodyCollisionCallback;
+
 /**
  * The physical representation of a model in the game world
  */
@@ -21,6 +23,7 @@ public class Body {
 	private float angularDamping = Constants.BODY_DEFAULT_ANGULAR_DAMPING;
 
 	private IBodyShape shape;
+	private IBodyCollisionCallback collisionCallback;
 
 	// References
 	private org.jbox2d.dynamics.Body rigidbody;
@@ -64,6 +67,8 @@ public class Body {
 
 		rigidbody = world.createBody(bodyDef);
 
+		rigidbody.setUserData(this);
+
 		rigidbody.createFixture(shape.getShape(), 1.0f);
 
 		setMass(mass);
@@ -79,6 +84,24 @@ public class Body {
 	 */
 	public void removeFromWorld(final World world) {
 		world.destroyBody(rigidbody);
+	}
+
+	/**
+	 * @return the collision callback object this body reports to
+	 */
+	public IBodyCollisionCallback getCollisionCallback() {
+		return collisionCallback;
+	}
+
+	/**
+	 * Sets the collision callback object this body will report to
+	 * 
+	 * @param collisionCallback
+	 *            the collision callback object
+	 */
+	public void setCollisionCallback(
+			final IBodyCollisionCallback collisionCallback) {
+		this.collisionCallback = collisionCallback;
 	}
 
 	/**
