@@ -115,23 +115,22 @@ public class PlayerModel implements IModel {
 	 * @return true if team flag was picked up, otherwise false
 	 */
 	public boolean returnTeamFlag() {
-		if (isCarryingFlag()) {
-			final List<FlagController> flagControllers = Manager
-					.find(FlagController.class);
-			for (final FlagController fc : flagControllers) {
-				if (fc.getTeam() == this.teamController) {
-					if (Tools.distanceBetween(body.getPosition(),
-							fc.getPosition()) <= Constants.FLAG_PICK_UP_DISTANCE) {
-						if (fc.isPickUpAble()) {
 
-							fc.returnFlagHome();
-							addScore(Constants.FLAG_RETURN_SCORE);
-							return true;
-						}
+		final List<FlagController> flagControllers = Manager
+				.find(FlagController.class);
+		for (final FlagController fc : flagControllers) {
+			if (fc.getTeam() == this.teamController) {
+				if (Tools.distanceBetween(body.getPosition(), fc.getPosition()) <= Constants.FLAG_PICK_UP_DISTANCE) {
+					if (fc.isPickUpAble()) {
+
+						fc.returnFlagHome();
+						addScore(Constants.FLAG_RETURN_SCORE);
+						return true;
 					}
 				}
 			}
 		}
+
 		return false;
 	}
 
