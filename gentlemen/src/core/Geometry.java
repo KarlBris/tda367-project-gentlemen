@@ -9,16 +9,17 @@ import utilities.Tools;
 
 public abstract class Geometry {
 
-	private Vector2f position = new Vector2f();
-	private float angle;
-
-	private Color color;
-	private float depth;
 	private Vector2f[] vertices;
 	private Vector2f[] uvs;
 
-	public Geometry() {
+	private Vector2f position = new Vector2f();
+	private float angle = 0.0f;
+	private Vector2f scale = new Vector2f(1.0f, 1.0f);
 
+	private Color color;
+	private float depth;
+
+	public Geometry() {
 	}
 
 	public Geometry(final Color color, final float depth) {
@@ -35,19 +36,26 @@ public abstract class Geometry {
 	}
 
 	/**
+	 * @return the position of the geometry
+	 */
+	public Vector2f getPosition() {
+		return new Vector2f(position);
+	}
+
+	/**
 	 * Sets the position of the geometry
 	 * 
 	 * @param position
 	 */
 	public void setPosition(final Vector2f position) {
-		this.position = position;
+		this.position = new Vector2f(position);
 	}
 
 	/**
-	 * @return the position of the geometry
+	 * @return the angle of the geometry
 	 */
-	public Vector2f getPosition() {
-		return position;
+	public float getAngle() {
+		return angle;
 	}
 
 	/**
@@ -61,10 +69,19 @@ public abstract class Geometry {
 	}
 
 	/**
-	 * @return the angle of the geometry
+	 * @return the scale of the geometry
 	 */
-	public float getAngle() {
-		return angle;
+	public Vector2f getScale() {
+		return new Vector2f(scale);
+	}
+
+	/**
+	 * Sets the scale of the geometry
+	 * 
+	 * @param scale
+	 */
+	public void setScale(final Vector2f scale) {
+		this.scale = new Vector2f(scale);
 	}
 
 	/**
@@ -83,6 +100,13 @@ public abstract class Geometry {
 	 */
 	public void setUvs(final Vector2f[] uvs) {
 		this.uvs = uvs;
+	}
+
+	/**
+	 * @return the color of the geometry
+	 */
+	public Color getColor() {
+		return color;
 	}
 
 	/**
@@ -155,6 +179,7 @@ public abstract class Geometry {
 		GL11.glLoadIdentity();
 		GL11.glTranslatef(position.x, position.y, 0.0f);
 		GL11.glRotatef(angle * Constants.TO_DEGREES, 0.0f, 0.0f, -1.0f);
+		GL11.glScalef(scale.x, scale.y, 1.0f);
 
 		// Begin rendering triangles
 		GL11.glBegin(GL11.GL_TRIANGLES);
