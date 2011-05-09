@@ -16,8 +16,8 @@ import factories.BallFactory;
 public class BallModelTest {
 
 	private final float precision = 0.01f;
-	BallController controller;
-	BallModel model;
+	private BallController controller;
+	private BallModel model;
 
 	/**
 	 * @throws java.lang.Exception

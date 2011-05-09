@@ -71,6 +71,24 @@ public class PropModel implements IModel {
 	}
 
 	/**
+	 * Get the position of the prop
+	 * 
+	 * @return the position of the prop
+	 */
+	public Vector2f getPosition() {
+		return body.getPosition();
+	}
+
+	/**
+	 * Get the angle of the prop
+	 * 
+	 * @return the angle of the prop
+	 */
+	public float getAngle() {
+		return body.getAngle();
+	}
+
+	/**
 	 * Update the props position
 	 */
 	public void update() {
