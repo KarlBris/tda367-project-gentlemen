@@ -93,4 +93,8 @@ public class FlagController implements IController {
 	public void setColor(final Color color) {
 		model.setColor(color);
 	}
+
+	public Vector2f getHomePosition() {
+		return model.getHomePosition();
+	}
 }

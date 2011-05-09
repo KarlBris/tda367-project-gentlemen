@@ -1,5 +1,7 @@
 package utilities;
 
+import org.lwjgl.util.vector.Vector2f;
+
 public class Constants {
 
 	public static final float PI = (float) Math.PI;
@@ -38,6 +40,11 @@ public class Constants {
 
 	public static final Color TEAM_ONE_COLOR = Color.RED;
 	public static final Color TEAM_TWO_COLOR = Color.BLUE;
+
+	public static final Vector2f TEAM_ONE_HOME_POSITION = new Vector2f(2.0f,
+			10.0f);
+	public static final Vector2f TEAM_TWO_HOME_POSITION = new Vector2f(28.0f,
+			10.0f);
 
 	public static final int FLAG_CAPTURE_SCORE = 3;
 	public static final int FLAG_RETURN_SCORE = 1;

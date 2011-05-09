@@ -315,6 +315,7 @@ public class PlayerModel implements IModel {
 
 	public void setTeam(final TeamController team) {
 		this.teamController = team;
+		setPosition(team.getHomePosition());
 
 	}
 

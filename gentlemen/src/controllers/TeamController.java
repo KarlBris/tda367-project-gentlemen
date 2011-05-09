@@ -69,4 +69,12 @@ public class TeamController implements IController {
 	public void setTeamName(final String name) {
 		model.setTeamName(name);
 	}
+
+	public void setHomePosition(final Vector2f position) {
+		model.setHomePosition(position);
+	}
+
+	public Vector2f getHomePosition() {
+		return model.getHomePosition();
+	}
 }
