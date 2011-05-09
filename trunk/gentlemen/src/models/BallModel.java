@@ -8,6 +8,9 @@ import core.CircleBodyShape;
 import core.CircleGeometry;
 import core.Geometry;
 
+/**
+ * Represents a ball which can be interacted with by other objects
+ */
 public class BallModel implements IModel {
 
 	private final Geometry geometry = new CircleGeometry(
@@ -82,10 +85,19 @@ public class BallModel implements IModel {
 		return body;
 	}
 
+	/**
+	 * Updates the ball position
+	 */
 	public void update() {
 		geometry.moveTowards(body.getPosition(), body.getAngle());
 	}
 
+	/**
+	 * Set the position of the ball
+	 * 
+	 * @param position
+	 *            , is the new ball position
+	 */
 	public void setPosition(final Vector2f position) {
 		geometry.setPosition(position);
 
