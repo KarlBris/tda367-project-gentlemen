@@ -120,6 +120,14 @@ public class Manager {
 	}
 
 	/**
+	 * Removes all models and controllers from the game world
+	 */
+	public static void removeAll() {
+		modelManager.clear();
+		controllerManager.clear();
+	}
+
+	/**
 	 * Finds all controllers of a specific sub-type to IController
 	 * 
 	 * @param <T>

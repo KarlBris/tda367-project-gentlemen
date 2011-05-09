@@ -10,7 +10,7 @@ import java.util.Map;
 public class TypeMap<T> {
 
 	// Store instances in a map for easy access
-	private Map<Class<?>, List<T>> map = new HashMap<Class<?>, List<T>>();
+	private final Map<Class<?>, List<T>> map = new HashMap<Class<?>, List<T>>();
 
 	/**
 	 * Adds an item to this TypeMap
@@ -60,6 +60,13 @@ public class TypeMap<T> {
 				map.remove(key);
 			}
 		}
+	}
+
+	/**
+	 * Removes all items
+	 */
+	public void clear() {
+		map.clear();
 	}
 
 	/**
