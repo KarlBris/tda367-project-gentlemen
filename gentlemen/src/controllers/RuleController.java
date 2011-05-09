@@ -2,6 +2,7 @@ package controllers;
 
 import models.IModel;
 import models.RuleModel;
+import models.TeamModel;
 
 import org.lwjgl.util.vector.Vector2f;
 
@@ -13,8 +14,8 @@ public class RuleController implements IController {
 		this.model = model;
 	}
 
-	public void checkVictory(final int score, final int teamIndex) {
-		model.checkVictory(score, teamIndex);
+	public void checkVictory(final int score, final TeamModel team) {
+		model.checkVictory(score, team);
 	}
 
 	@Override

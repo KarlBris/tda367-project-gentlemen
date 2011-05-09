@@ -47,6 +47,11 @@ public class PlayerModel implements IModel {
 		timeSinceKnockedOut = 0.0f;
 		isKnockedOut = true;
 		dropFlag();
+		for (final TeamController tc : Manager.find(TeamController.class)) {
+			if (tc != this.teamController) {
+				tc.addScore(Constants.KNOCK_OUT_SCORE);
+			}
+		}
 	}
 
 	@Override
@@ -91,6 +96,7 @@ public class PlayerModel implements IModel {
 							&& fc.isAtHome()) {
 						flagController.returnFlagHome();
 						flagController = null;
+						addScore(Constants.FLAG_CAPTURE_SCORE);
 						return true;
 					}
 				}
@@ -107,15 +113,19 @@ public class PlayerModel implements IModel {
 	 * @return true if team flag was picked up, otherwise false
 	 */
 	public boolean returnTeamFlag() {
-		final List<FlagController> flagControllers = Manager
-				.find(FlagController.class);
-		for (final FlagController fc : flagControllers) {
-			if (fc.getTeam() == this.teamController) {
-				if (Tools.distanceBetween(body.getPosition(), fc.getPosition()) <= Constants.FLAG_PICK_UP_DISTANCE) {
-					if (fc.isPickUpAble()) {
+		if (isCarryingFlag()) {
+			final List<FlagController> flagControllers = Manager
+					.find(FlagController.class);
+			for (final FlagController fc : flagControllers) {
+				if (fc.getTeam() == this.teamController) {
+					if (Tools.distanceBetween(body.getPosition(),
+							fc.getPosition()) <= Constants.FLAG_PICK_UP_DISTANCE) {
+						if (fc.isPickUpAble()) {
 
-						fc.returnFlagHome();
-						return true;
+							fc.returnFlagHome();
+							addScore(Constants.FLAG_RETURN_SCORE);
+							return true;
+						}
 					}
 				}
 			}
@@ -301,5 +311,9 @@ public class PlayerModel implements IModel {
 	public void setTeam(final TeamController team) {
 		this.teamController = team;
 
+	}
+
+	public void addScore(final int amount) {
+		teamController.addScore(amount);
 	}
 }

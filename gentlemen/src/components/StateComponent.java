@@ -8,6 +8,7 @@ import controllers.IController;
 import controllers.PlayerController;
 import controllers.PropController;
 import controllers.RuleController;
+import controllers.ScoreboardController;
 import controllers.TeamController;
 import core.Manager;
 import factories.CratePropFactory;
@@ -15,6 +16,7 @@ import factories.HorizontalWallPropFactory;
 import factories.PlayerOneFactory;
 import factories.PlayerTwoFactory;
 import factories.RuleFactory;
+import factories.ScoreboardFactory;
 import factories.TeamFactory;
 import factories.TeamFlagOneFactory;
 import factories.TeamFlagTwoFactory;
@@ -67,6 +69,14 @@ public class StateComponent implements IComponent {
 
 			teamOneFlag.setTeam(teamOne);
 			teamTwoFlag.setTeam(teamTwo);
+
+			// Instantiate scoreboard
+
+			final ScoreboardController scoreboard = (ScoreboardController) Manager
+					.instantiate(new ScoreboardFactory());
+
+			scoreboard.addTeam(teamOne);
+			scoreboard.addTeam(teamTwo);
 		}
 
 		// Instantiate props
