@@ -31,27 +31,33 @@ public class FlagModelTest {
 
 	@Test
 	public void testFlagModel() {
+		// Test if the color was successfully added to the geometry
 		assertTrue(fm.getGeometry().getColor() == Color.BLUE);
 	}
 
 	@Test
 	public void testIsPickUpAble() {
+		// Test if the ball was pick up able from the start
 		assertTrue(fm.isPickUpAble());
 		fm.pickUpFlag();
+		// Test if the ball is unpick up able when something told it that it was
+		// picked up
 		assertTrue(!fm.isPickUpAble());
 		fm.releaseFlag();
+		// Test if the ball is pick up able when something told it that is was
+		// dropped
 		assertTrue(fm.isPickUpAble());
-		fm.pickUpFlag();
-		assertTrue(!fm.isPickUpAble());
 	}
 
 	@Test
 	public void testGetGeometry() {
+		// Test if the geometry ain't null
 		assertTrue(fm.getGeometry() != null);
 	}
 
 	@Test
 	public void testGetBody() {
+		// Test if the body is null
 		assertTrue(fm.getBody() == null);
 	}
 
@@ -60,10 +66,12 @@ public class FlagModelTest {
 		fm.setPosition(startPos);
 		Vector2f initPosition = startPos;
 		fm.setPosition(new Vector2f(7.0f, 4.0f));
+		// Test that the object has moved
 		assertTrue(!(Tools.distanceBetween(initPosition, fm.getPosition()) <= precision));
 
 		initPosition = new Vector2f(4.0f, 7.0f);
 		fm.setPosition(initPosition);
+		// Test that correct position was set
 		assertTrue(Tools.distanceBetween(initPosition, fm.getPosition()) <= precision);
 	}
 
@@ -74,6 +82,7 @@ public class FlagModelTest {
 
 		fm.setTeam(teamController);
 
+		// Test correct team was set
 		assertTrue(fm.getTeam() == teamController);
 	}
 
@@ -82,6 +91,7 @@ public class FlagModelTest {
 		// Home position should be the first position set on a flag
 		fm.setPosition(startPos);
 		fm.setPosition(new Vector2f(20.0f, 30.0f));
+		// Test if that is true
 		assertTrue(Tools.distanceBetween(fm.getHomePosition(), startPos) <= precision);
 	}
 
@@ -90,17 +100,25 @@ public class FlagModelTest {
 		fm.setPosition(startPos);
 
 		fm.setPosition(new Vector2f(20.0f, 34.0f));
+		// Test that it's not returning true if the flag ain't home
 		assertTrue(!fm.isAtHome());
 
 		fm.setPosition(fm.getHomePosition());
+		// Test that it's returning true if the flag is home
 		assertTrue(fm.isAtHome());
 	}
 
 	@Test
 	public void testReturnFlagHome() {
+
+		fm.setPosition(startPos);
 		fm.setPosition(new Vector2f(23.0f, 76.0f));
+		fm.pickUpFlag();
 		fm.returnFlagHome();
+		// Test that the flag was returned home
 		assertTrue(fm.isAtHome());
+		// Test that the flag is now pick up able
+		assertTrue(fm.isPickUpAble());
 	}
 
 }
