@@ -8,6 +8,28 @@ import org.lwjgl.util.vector.Vector2f;
 public class Tools {
 
 	/**
+	 * Clamps a value to the range [min, max]
+	 * 
+	 * @param value
+	 *            the value to clamp
+	 * @param min
+	 *            the minimum value
+	 * @param max
+	 *            the maximum value
+	 * @return the clamped value
+	 */
+	public static float clampValue(final float value, final float min,
+			final float max) {
+		if (value < min) {
+			return min;
+		} else if (value > max) {
+			return max;
+		}
+
+		return value;
+	}
+
+	/**
 	 * Wraps an angle to the range [0, TWO_PI)
 	 * 
 	 * @param angle
