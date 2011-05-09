@@ -1,5 +1,7 @@
 package models;
 
+import java.util.List;
+
 import org.lwjgl.util.vector.Vector2f;
 
 import controllers.RuleController;
@@ -24,7 +26,12 @@ public class TeamModel implements IModel {
 	public TeamModel() {
 		teamIndex = Manager.find(TeamController.class).size() + 1;
 
-		ruleController = Manager.find(RuleController.class).get(0);
+		List<RuleController> list = Manager.find(RuleController.class);
+		if (list.size() > 0) {
+			ruleController = list.get(0);
+		} else {
+			ruleController = null;
+		}
 	}
 
 	public void addScore(final int amount) {
