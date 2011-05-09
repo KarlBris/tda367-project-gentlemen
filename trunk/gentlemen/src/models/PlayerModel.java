@@ -31,9 +31,19 @@ public class PlayerModel implements IModel {
 
 	private TeamController teamController = null;
 
+	private boolean isKnockedOut = false;
+
+	private float timeSinceKnockedOut = 0.0f;
+
 	public PlayerModel(final Color teamColor) {
 		geometry = new CircleGeometry(teamColor, 1.0f, 0.5f, 5);
 
+	}
+
+	public void knockedOut() {
+		timeSinceKnockedOut = 0.0f;
+		isKnockedOut = true;
+		dropFlag();
 	}
 
 	@Override
@@ -117,7 +127,7 @@ public class PlayerModel implements IModel {
 	 * @return true if a flag was picked up, otherwise false
 	 */
 	public boolean pickUpFlag() {
-		if (!isCarryingFlag()) {
+		if (!isCarryingFlag() && !isKnockedOut) {
 			final List<FlagController> flagControllers = Manager
 					.find(FlagController.class);
 			for (final FlagController fc : flagControllers) {
@@ -194,6 +204,16 @@ public class PlayerModel implements IModel {
 	public void update() {
 		geometry.moveTowards(body.getPosition(), body.getAngle(),
 				Constants.GEOMETRY_TO_PHYSICS_INTERPOLATION, 0.1f);
+		if (isKnockedOut) {
+			// Add time counter
+			timeSinceKnockedOut += Constants.DELTA_TIME;
+
+			//
+			if (timeSinceKnockedOut >= Constants.PLAYER_KNOCKED_OUT_TIME) {
+				// No longer knocked out
+				isKnockedOut = false;
+			}
+		}
 	}
 
 	/**
@@ -262,6 +282,7 @@ public class PlayerModel implements IModel {
 	public boolean dropFlag() {
 		if (isCarryingFlag()) {
 			flagController.releaseFlag();
+			flagController = null;
 			return true;
 		}
 		return false;
