@@ -9,6 +9,9 @@ import core.Body;
 import core.CircleGeometry;
 import core.Geometry;
 
+/**
+ * Represents a flag which other objects can interact with
+ */
 public class FlagModel implements IModel {
 	private final Geometry geometry;
 
@@ -20,6 +23,11 @@ public class FlagModel implements IModel {
 
 	private TeamController teamController;
 
+	/**
+	 * 
+	 * @param c
+	 *            , Color the flag will have
+	 */
 	public FlagModel(final Color c) {
 		flagColor = c;
 

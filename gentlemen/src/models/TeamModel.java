@@ -10,6 +10,9 @@ import core.Geometry;
 import core.Manager;
 import core.NullGeometry;
 
+/**
+ * Represents a team in the game
+ */
 public class TeamModel implements IModel {
 
 	private Vector2f homePosition;
@@ -30,6 +33,12 @@ public class TeamModel implements IModel {
 		}
 	}
 
+	/**
+	 * Add an amount to the team score
+	 * 
+	 * @param amount
+	 *            , is the amount to be added to the team score
+	 */
 	public void addScore(final int amount) {
 		totalScore += amount;
 
@@ -48,6 +57,10 @@ public class TeamModel implements IModel {
 		return null;
 	}
 
+	/**
+	 * 
+	 * @return the team score
+	 */
 	public int getScore() {
 		return totalScore;
 	}

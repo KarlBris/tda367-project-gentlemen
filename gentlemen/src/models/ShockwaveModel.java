@@ -9,10 +9,13 @@ import core.Body;
 import core.CircleGeometry;
 import core.Geometry;
 
+/**
+ * Represents a shockwave in the game
+ */
 public class ShockwaveModel implements IModel {
 
-	private Geometry geometry = new CircleGeometry(new Color(0.0f, 0.0f, 0.0f),
-			-0.5f, 0.5f, 5);
+	private final Geometry geometry = new CircleGeometry(new Color(0.0f, 0.0f,
+			0.0f), -0.5f, 0.5f, 5);
 
 	private float removeTimer = 0.0f;
 

@@ -35,6 +35,11 @@ public class PlayerModel implements IModel {
 
 	private float timeSinceKnockedOut = 0.0f;
 
+	/**
+	 * @param teamColor
+	 *            , is the color the team the players in, and also the color the
+	 *            player will have
+	 */
 	public PlayerModel(final Color teamColor) {
 		geometry = new CircleGeometry(teamColor, 1.0f, 0.5f, 5);
 
