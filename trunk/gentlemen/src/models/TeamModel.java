@@ -17,6 +17,8 @@ public class TeamModel implements IModel {
 
 	private Vector2f homePosition;
 
+	private String teamName;
+
 	private final RuleController ruleController;
 
 	private final Geometry geometry = new NullGeometry();
@@ -63,6 +65,14 @@ public class TeamModel implements IModel {
 	 */
 	public int getScore() {
 		return totalScore;
+	}
+
+	public void setTeamName(final String name) {
+		teamName = name;
+	}
+
+	public String getTeamName() {
+		return teamName;
 	}
 
 }

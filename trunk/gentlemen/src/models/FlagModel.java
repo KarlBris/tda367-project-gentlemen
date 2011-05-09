@@ -17,7 +17,7 @@ public class FlagModel implements IModel {
 
 	private Vector2f homePosition = null;
 
-	private final Color flagColor;
+	private Color flagColor;
 
 	private boolean isPickedUp = false;
 
@@ -124,6 +124,12 @@ public class FlagModel implements IModel {
 	 */
 	public void setTeam(final TeamController team) {
 		this.teamController = team;
+
+	}
+
+	public void setColor(final Color color) {
+		flagColor = color;
+		geometry.setColor(color);
 
 	}
 }

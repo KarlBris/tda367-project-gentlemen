@@ -1,9 +1,17 @@
 package models;
 
+import javax.swing.JOptionPane;
+
 import core.Body;
 import core.Geometry;
 import core.NullGeometry;
 
+/**
+ * 
+ * Represents a given set of rules in the game. Is responsible for determining
+ * whether a scoring team has won or not
+ * 
+ */
 public class RuleModel implements IModel {
 
 	private final int scoreLimit;
@@ -14,11 +22,19 @@ public class RuleModel implements IModel {
 		this.scoreLimit = scoreLimit;
 	}
 
-	public void checkVictory(final int score, final TeamModel team) {
-		if (score >= scoreLimit) {
+	/**
+	 * Checks if the given team has won or not
+	 * 
+	 * @param team
+	 *            the team to check for victory
+	 */
+	public void checkVictory(final TeamModel team) {
+		if (team.getScore() >= scoreLimit) {
 			// AW YEAH, TEAM HAS WON!
 			// Do something related to this
-			System.out.println("Team " + team + " has won!");
+
+			JOptionPane.showMessageDialog(null, team.getTeamName()
+					+ " has won!");
 		}
 	}
 

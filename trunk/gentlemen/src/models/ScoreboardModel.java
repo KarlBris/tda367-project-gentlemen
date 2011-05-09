@@ -17,7 +17,8 @@ public class ScoreboardModel implements IModel {
 	public void update() {
 		String scoreString = "";
 		for (final TeamController team : teamList) {
-			scoreString = scoreString + team + ": " + team.getScore() + " ";
+			scoreString = scoreString + team.getTeamName() + ": "
+					+ team.getScore() + " ";
 		}
 
 		org.lwjgl.opengl.Display.setTitle(scoreString);

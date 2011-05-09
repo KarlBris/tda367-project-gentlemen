@@ -14,8 +14,8 @@ import core.Geometry;
  */
 public class ShockwaveModel implements IModel {
 
-	private final Geometry geometry = new CircleGeometry(new Color(0.0f, 0.0f,
-			0.0f), -0.5f, 0.5f, 5);
+	private final Geometry geometry = new CircleGeometry(Color.RED, -0.5f,
+			0.5f, 5);
 
 	private float removeTimer = 0.0f;
 
@@ -67,9 +67,10 @@ public class ShockwaveModel implements IModel {
 		removeTimer += Constants.DELTA_TIME;
 
 		// Scale and rotate the geometry to imitate a shockwave
-		float time = getAnimationScalar();
-		float scale = 1.0f - time;
+		final float time = getAnimationScalar();
+		final float scale = 1.0f - time;
 
+		geometry.setColor(new Color(1.0f, scale, 0.0f));
 		geometry.setScale(new Vector2f(scale, scale));
 		geometry.setAngle(Constants.TWO_PI * time);
 	}

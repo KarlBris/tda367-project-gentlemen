@@ -5,6 +5,8 @@ import models.IModel;
 
 import org.lwjgl.util.vector.Vector2f;
 
+import utilities.Color;
+
 public class FlagController implements IController {
 	private final FlagModel model;
 
@@ -88,4 +90,7 @@ public class FlagController implements IController {
 		return model.getTeam();
 	}
 
+	public void setColor(final Color color) {
+		model.setColor(color);
+	}
 }
