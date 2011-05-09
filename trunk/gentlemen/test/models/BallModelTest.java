@@ -33,6 +33,7 @@ public class BallModelTest {
 	 */
 	@After
 	public void tearDown() throws Exception {
+		Manager.removeAll();
 	}
 
 	/**

@@ -27,6 +27,7 @@ public class FlagModelTest {
 
 	@After
 	public void tearDown() throws Exception {
+		Manager.removeAll();
 	}
 
 	@Test
