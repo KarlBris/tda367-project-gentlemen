@@ -27,6 +27,13 @@ public class FlagController implements IController {
 		model.setPosition(position);
 	}
 
+	/**
+	 * @return the position of the flag
+	 */
+	public Vector2f getPosition() {
+		return model.getPosition();
+	}
+
 	@Override
 	public void start() {
 		// TODO Auto-generated method stub

@@ -72,6 +72,13 @@ public class FlagModel implements IModel {
 	}
 
 	/**
+	 * @return the position of the flag
+	 */
+	public Vector2f getPosition() {
+		return geometry.getPosition();
+	}
+
+	/**
 	 * @return the team controller the flag belongs to
 	 */
 	public TeamController getTeam() {

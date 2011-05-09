@@ -86,8 +86,8 @@ public class PlayerModel implements IModel {
 					.find(FlagController.class);
 			for (final FlagController fc : flagControllers) {
 				if (fc.getTeam() == this.teamController) {
-					if (Tools.distanceBetween(body.getPosition(), fc.getModel()
-							.getGeometry().getPosition()) <= Constants.FLAG_PICK_UP_DISTANCE
+					if (Tools.distanceBetween(body.getPosition(),
+							fc.getPosition()) <= Constants.FLAG_PICK_UP_DISTANCE
 							&& fc.isAtHome()) {
 						flagController.returnFlagHome();
 						flagController = null;
@@ -111,8 +111,7 @@ public class PlayerModel implements IModel {
 				.find(FlagController.class);
 		for (final FlagController fc : flagControllers) {
 			if (fc.getTeam() == this.teamController) {
-				if (Tools.distanceBetween(body.getPosition(), fc.getModel()
-						.getGeometry().getPosition()) <= Constants.FLAG_PICK_UP_DISTANCE) {
+				if (Tools.distanceBetween(body.getPosition(), fc.getPosition()) <= Constants.FLAG_PICK_UP_DISTANCE) {
 					if (fc.isPickUpAble()) {
 
 						fc.returnFlagHome();
@@ -135,8 +134,8 @@ public class PlayerModel implements IModel {
 					.find(FlagController.class);
 			for (final FlagController fc : flagControllers) {
 				if (fc.getTeam() != this.teamController) {
-					if (Tools.distanceBetween(body.getPosition(), fc.getModel()
-							.getGeometry().getPosition()) <= Constants.FLAG_PICK_UP_DISTANCE) {
+					if (Tools.distanceBetween(body.getPosition(),
+							fc.getPosition()) <= Constants.FLAG_PICK_UP_DISTANCE) {
 						if (fc.isPickUpAble()) {
 							fc.pickUpFlag();
 							flagController = fc;
