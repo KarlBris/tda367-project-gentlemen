@@ -121,8 +121,7 @@ public class PlayerModel implements IModel {
 		for (final FlagController fc : flagControllers) {
 			if (fc.getTeam() == this.teamController) {
 				if (Tools.distanceBetween(body.getPosition(), fc.getPosition()) <= Constants.FLAG_PICK_UP_DISTANCE) {
-					if (fc.isPickUpAble()) {
-
+					if (fc.isPickUpAble() && !fc.isAtHome()) {
 						fc.returnFlagHome();
 						addScore(Constants.FLAG_RETURN_SCORE);
 						return true;
