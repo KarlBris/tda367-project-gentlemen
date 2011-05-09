@@ -30,6 +30,9 @@ public class Constants {
 	public static final float BALL_LETHAL_SPEED = 7.0f;
 	public static final float BALL_PICK_UP_DISTANCE = 1.0f;
 	public static final float BALL_THROW_SPEED = 20.0f;
+	public static final float BALL_SHOCKWAVE_SPEED = 5.0f;
+
+	public static final float SHOCKWAVE_ANIMATION_TIME = 0.3f;
 
 	public static final int NETWORK_PORT = 13781;
 

@@ -22,13 +22,7 @@ public class PhysicsContactListener implements ContactListener {
 		arg0.getWorldManifold(worldManifold);
 
 		// Calculate the average manifold point
-		Vec2 averagePoint = new Vec2(0.0f, 0.0f);
-
-		for (Vec2 point : worldManifold.points) {
-			averagePoint.add(point);
-		}
-
-		averagePoint.mul(1.0f / worldManifold.points.length);
+		Vec2 averagePoint = worldManifold.points[0];
 
 		// Send collision callbacks
 		Body bodyA = (Body) arg0.getFixtureA().getBody().getUserData();

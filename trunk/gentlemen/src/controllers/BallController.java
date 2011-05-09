@@ -5,7 +5,15 @@ import models.IModel;
 
 import org.lwjgl.util.vector.Vector2f;
 
-public class BallController implements IController {
+import utilities.Constants;
+
+import components.IBodyCollisionCallback;
+
+import core.Body;
+import core.Manager;
+import factories.ShockwaveFactory;
+
+public class BallController implements IController, IBodyCollisionCallback {
 
 	private final BallModel model;
 
@@ -66,8 +74,8 @@ public class BallController implements IController {
 
 	@Override
 	public void start() {
-		// TODO Auto-generated method stub
-
+		// Subscribe to collision events for the model's body
+		model.getBody().setCollisionCallback(this);
 	}
 
 	@Override
@@ -95,4 +103,12 @@ public class BallController implements IController {
 
 	}
 
+	@Override
+	public void collisionOccured(final Body otherBody,
+			final Vector2f collisionPoint) {
+		// Instantiate a shockwave if the ball travels fast enough
+		if (model.getBody().getVelocity().length() >= Constants.BALL_SHOCKWAVE_SPEED) {
+			Manager.instantiate(new ShockwaveFactory(), collisionPoint);
+		}
+	}
 }
