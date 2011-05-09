@@ -15,8 +15,6 @@ import core.Geometry;
 public class FlagModel implements IModel {
 	private final Geometry geometry;
 
-	private Vector2f homePosition = null;
-
 	private Color flagColor;
 
 	private boolean isPickedUp = false;
@@ -73,9 +71,6 @@ public class FlagModel implements IModel {
 	 *            , is the flags new position
 	 */
 	public void setPosition(final Vector2f position) {
-		if (homePosition == null) {
-			homePosition = position;
-		}
 		geometry.setPosition(position);
 	}
 
@@ -97,7 +92,7 @@ public class FlagModel implements IModel {
 	 * @return the home position of the flag
 	 */
 	public Vector2f getHomePosition() {
-		return Tools.cloneVector(homePosition);
+		return Tools.cloneVector(teamController.getHomePosition());
 	}
 
 	/**
@@ -106,14 +101,15 @@ public class FlagModel implements IModel {
 	 */
 	public void returnFlagHome() {
 		isPickedUp = false;
-		geometry.setPosition(homePosition);
+		geometry.setPosition(teamController.getHomePosition());
 	}
 
 	/**
 	 * @return true if the flag is at it's home position and is pick up able
 	 */
 	public boolean isAtHome() {
-		return Tools.distanceBetween(geometry.getPosition(), homePosition) <= 0.001f;
+		return Tools.distanceBetween(geometry.getPosition(),
+				teamController.getHomePosition()) <= 0.001f;
 	}
 
 	/**
@@ -124,7 +120,7 @@ public class FlagModel implements IModel {
 	 */
 	public void setTeam(final TeamController team) {
 		this.teamController = team;
-
+		setPosition(team.getHomePosition());
 	}
 
 	public void setColor(final Color color) {

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.lwjgl.util.vector.Vector2f;
 
+import utilities.Tools;
 import controllers.RuleController;
 import core.Body;
 import core.Geometry;
@@ -73,6 +74,14 @@ public class TeamModel implements IModel {
 
 	public String getTeamName() {
 		return teamName;
+	}
+
+	public void setHomePosition(final Vector2f position) {
+		homePosition = position;
+	}
+
+	public Vector2f getHomePosition() {
+		return Tools.cloneVector(homePosition);
 	}
 
 }

@@ -11,6 +11,7 @@ import controllers.RuleController;
 import controllers.ScoreboardController;
 import controllers.TeamController;
 import core.Manager;
+import factories.BallFactory;
 import factories.CratePropFactory;
 import factories.FlagFactory;
 import factories.HorizontalWallPropFactory;
@@ -47,24 +48,31 @@ public class StateComponent implements IComponent {
 					.instantiate(new TeamFactory());
 
 			final PlayerController playerOne = (PlayerController) Manager
-					.instantiate(new PlayerOneFactory(), new Vector2f(
-							Constants.VIEWPORT_WIDTH / 2,
-							Constants.VIEWPORT_HEIGHT / 2));
+					.instantiate(new PlayerOneFactory());
 			final PlayerController playerTwo = (PlayerController) Manager
-					.instantiate(new PlayerTwoFactory(), new Vector2f(
-							Constants.VIEWPORT_WIDTH / 2,
-							Constants.VIEWPORT_HEIGHT / 2));
+					.instantiate(new PlayerTwoFactory());
 
 			teamOne.setTeamName("Red Team");
+			teamOne.setHomePosition(Constants.TEAM_ONE_HOME_POSITION);
 			teamTwo.setTeamName("Blue Team");
+			teamTwo.setHomePosition(Constants.TEAM_TWO_HOME_POSITION);
+
+			for (final TeamController tc : Manager.find(TeamController.class)) {
+				for (int i = 0; i < 30; i++) {
+					Manager.instantiate(new BallFactory(), new Vector2f(
+							Constants.VIEWPORT_WIDTH / 2,
+							Constants.VIEWPORT_HEIGHT / 2));
+				}
+			}
+
 			playerOne.setTeam(teamOne);
 			playerTwo.setTeam(teamTwo);
 
 			// Instantiate flags
 			final FlagController teamOneFlag = (FlagController) Manager
-					.instantiate(new FlagFactory(), new Vector2f(28.0f, 10.0f));
+					.instantiate(new FlagFactory());
 			final FlagController teamTwoFlag = (FlagController) Manager
-					.instantiate(new FlagFactory(), new Vector2f(2.0f, 10.0f));
+					.instantiate(new FlagFactory());
 
 			teamOneFlag.setTeam(teamOne);
 			teamTwoFlag.setTeam(teamTwo);
