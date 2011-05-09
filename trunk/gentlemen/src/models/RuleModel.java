@@ -14,11 +14,11 @@ public class RuleModel implements IModel {
 		this.scoreLimit = scoreLimit;
 	}
 
-	public void checkVictory(final int score, final int teamIndex) {
+	public void checkVictory(final int score, final TeamModel team) {
 		if (score >= scoreLimit) {
 			// AW YEAH, TEAM HAS WON!
 			// Do something related to this
-			System.out.println("Team " + teamIndex + " has won!");
+			System.out.println("Team " + team + " has won!");
 		}
 	}
 

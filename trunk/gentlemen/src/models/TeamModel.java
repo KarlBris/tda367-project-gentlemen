@@ -5,7 +5,6 @@ import java.util.List;
 import org.lwjgl.util.vector.Vector2f;
 
 import controllers.RuleController;
-import controllers.TeamController;
 import core.Body;
 import core.Geometry;
 import core.Manager;
@@ -15,8 +14,6 @@ public class TeamModel implements IModel {
 
 	private Vector2f homePosition;
 
-	private final int teamIndex;
-
 	private final RuleController ruleController;
 
 	private final Geometry geometry = new NullGeometry();
@@ -24,9 +21,8 @@ public class TeamModel implements IModel {
 	private int totalScore = 0;
 
 	public TeamModel() {
-		teamIndex = Manager.find(TeamController.class).size() + 1;
 
-		List<RuleController> list = Manager.find(RuleController.class);
+		final List<RuleController> list = Manager.find(RuleController.class);
 		if (list.size() > 0) {
 			ruleController = list.get(0);
 		} else {
@@ -38,11 +34,7 @@ public class TeamModel implements IModel {
 		totalScore += amount;
 
 		// Check with rules. If won, celebrate!
-		ruleController.checkVictory(totalScore, teamIndex);
-	}
-
-	public int getTeamIndex() {
-		return teamIndex;
+		ruleController.checkVictory(totalScore, this);
 	}
 
 	@Override
@@ -54,6 +46,10 @@ public class TeamModel implements IModel {
 	public Body getBody() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	public int getScore() {
+		return totalScore;
 	}
 
 }

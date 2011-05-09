@@ -1,24 +1,25 @@
 package controllers;
 
 import models.IModel;
-import models.TeamModel;
+import models.ScoreboardModel;
 
 import org.lwjgl.util.vector.Vector2f;
 
-public class TeamController implements IController {
+public class ScoreboardController implements IController {
 
-	private final TeamModel model;
+	public ScoreboardModel model;
 
-	public TeamController(final TeamModel model) {
+	public ScoreboardController(final ScoreboardModel model) {
 		this.model = model;
 	}
 
-	public void addScore(final int amount) {
-		model.addScore(amount);
+	public void addTeam(final TeamController team) {
+		model.addTeam(team);
 	}
 
 	@Override
 	public IModel getModel() {
+		// TODO Auto-generated method stub
 		return model;
 	}
 
@@ -42,7 +43,7 @@ public class TeamController implements IController {
 
 	@Override
 	public void update() {
-		// TODO Auto-generated method stub
+		model.update();
 
 	}
 
@@ -56,10 +57,6 @@ public class TeamController implements IController {
 	public void networkDataReceive(final Object[] data) {
 		// TODO Auto-generated method stub
 
-	}
-
-	public int getScore() {
-		return model.getScore();
 	}
 
 }

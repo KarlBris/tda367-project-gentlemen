@@ -38,4 +38,8 @@ public class Constants {
 
 	public static final Color TEAM_ONE_COLOR = Color.RED;
 	public static final Color TEAM_TWO_COLOR = Color.BLUE;
+
+	public static final int FLAG_CAPTURE_SCORE = 3;
+	public static final int FLAG_RETURN_SCORE = 1;
+	public static final int KNOCK_OUT_SCORE = 1;
 }
