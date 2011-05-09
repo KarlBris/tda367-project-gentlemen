@@ -23,6 +23,7 @@ public class Constants {
 	public static final float PLAYER_MOVEMENT_ACCELERATION = 20.0f;
 	public static final float PLAYER_RETICLE_DISTANCE = 1.0f;
 	public static final float PLAYER_BALL_CARRYING_DISTANCE = 1.0f;
+	public static final float PLAYER_KNOCKED_OUT_TIME = 3.0f;
 
 	public static final float FLAG_PICK_UP_DISTANCE = 0.8f;
 
