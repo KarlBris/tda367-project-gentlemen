@@ -15,7 +15,7 @@ public class RuleController implements IController {
 	}
 
 	public void checkVictory(final int score, final TeamModel team) {
-		model.checkVictory(score, team);
+		model.checkVictory(team);
 	}
 
 	@Override

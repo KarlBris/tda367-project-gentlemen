@@ -12,14 +12,13 @@ import controllers.ScoreboardController;
 import controllers.TeamController;
 import core.Manager;
 import factories.CratePropFactory;
+import factories.FlagFactory;
 import factories.HorizontalWallPropFactory;
 import factories.PlayerOneFactory;
 import factories.PlayerTwoFactory;
 import factories.RuleFactory;
 import factories.ScoreboardFactory;
 import factories.TeamFactory;
-import factories.TeamFlagOneFactory;
-import factories.TeamFlagTwoFactory;
 import factories.VerticalWallPropFactory;
 
 public class StateComponent implements IComponent {
@@ -56,19 +55,22 @@ public class StateComponent implements IComponent {
 							Constants.VIEWPORT_WIDTH / 2,
 							Constants.VIEWPORT_HEIGHT / 2));
 
+			teamOne.setTeamName("Red Team");
+			teamTwo.setTeamName("Blue Team");
 			playerOne.setTeam(teamOne);
 			playerTwo.setTeam(teamTwo);
 
 			// Instantiate flags
 			final FlagController teamOneFlag = (FlagController) Manager
-					.instantiate(new TeamFlagOneFactory(), new Vector2f(28.0f,
-							10.0f));
+					.instantiate(new FlagFactory(), new Vector2f(28.0f, 10.0f));
 			final FlagController teamTwoFlag = (FlagController) Manager
-					.instantiate(new TeamFlagTwoFactory(), new Vector2f(2.0f,
-							10.0f));
+					.instantiate(new FlagFactory(), new Vector2f(2.0f, 10.0f));
 
 			teamOneFlag.setTeam(teamOne);
 			teamTwoFlag.setTeam(teamTwo);
+
+			teamOneFlag.setColor(Constants.TEAM_ONE_COLOR);
+			teamTwoFlag.setColor(Constants.TEAM_TWO_COLOR);
 
 			// Instantiate scoreboard
 

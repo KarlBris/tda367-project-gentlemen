@@ -62,4 +62,11 @@ public class TeamController implements IController {
 		return model.getScore();
 	}
 
+	public String getTeamName() {
+		return model.getTeamName();
+	}
+
+	public void setTeamName(final String name) {
+		model.setTeamName(name);
+	}
 }
