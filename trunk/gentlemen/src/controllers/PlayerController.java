@@ -237,7 +237,6 @@ public class PlayerController implements IController, IBodyCollisionCallback {
 
 		// If something fast hits this player, drop ball and flag
 		if (otherBody.getVelocity().length() >= Constants.BALL_LETHAL_SPEED) {
-			model.throwBall();
 			model.playerKnockOut();
 		}
 	}

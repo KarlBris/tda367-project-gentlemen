@@ -61,7 +61,7 @@ public class StateComponent implements IComponent {
 
 			// Instantiate flags
 			final FlagController teamOneFlag = (FlagController) Manager
-					.instantiate(new TeamFlagOneFactory(), new Vector2f(10.0f,
+					.instantiate(new TeamFlagOneFactory(), new Vector2f(28.0f,
 							10.0f));
 			final FlagController teamTwoFlag = (FlagController) Manager
 					.instantiate(new TeamFlagTwoFactory(), new Vector2f(2.0f,

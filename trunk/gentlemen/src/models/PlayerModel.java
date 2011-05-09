@@ -46,6 +46,8 @@ public class PlayerModel implements IModel {
 	public void playerKnockOut() {
 		timeSinceKnockedOut = 0.0f;
 		isKnockedOut = true;
+
+		throwBall();
 		dropFlag();
 		for (final TeamController tc : Manager.find(TeamController.class)) {
 			if (tc != this.teamController) {
