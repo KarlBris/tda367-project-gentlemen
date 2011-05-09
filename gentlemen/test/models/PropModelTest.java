@@ -44,6 +44,7 @@ public class PropModelTest {
 	 */
 	@After
 	public void tearDown() throws Exception {
+		Manager.removeAll();
 	}
 
 	/**
