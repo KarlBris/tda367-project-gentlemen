@@ -314,7 +314,7 @@ public class PlayerModel implements IModel {
 
 	}
 
-	public void addScore(final int amount) {
+	private void addScore(final int amount) {
 		teamController.addScore(amount);
 	}
 }
