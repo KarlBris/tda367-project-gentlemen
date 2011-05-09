@@ -21,9 +21,9 @@ public class FlagModel implements IModel {
 	private TeamController teamController;
 
 	public FlagModel(final Color c) {
-		this.flagColor = c;
+		flagColor = c;
 
-		geometry = new CircleGeometry(c, 0.0f, 0.3f, 3);
+		geometry = new CircleGeometry(flagColor, 0.0f, 0.3f, 3);
 	}
 
 	/**
@@ -41,7 +41,7 @@ public class FlagModel implements IModel {
 	}
 
 	/**
-	 * 
+	 * @return if the flag is pick up able
 	 */
 	public boolean isPickUpAble() {
 		return !isPickedUp;
@@ -57,6 +57,13 @@ public class FlagModel implements IModel {
 		return null;
 	}
 
+	/**
+	 * Set the position of the flag. The first time this i set the home position
+	 * is defined
+	 * 
+	 * @param position
+	 *            , is the flags new position
+	 */
 	public void setPosition(final Vector2f position) {
 		if (homePosition == null) {
 			homePosition = position;
@@ -64,23 +71,42 @@ public class FlagModel implements IModel {
 		geometry.setPosition(position);
 	}
 
+	/**
+	 * @return the team controller the flag belongs to
+	 */
 	public TeamController getTeam() {
 		return teamController;
 	}
 
+	/**
+	 * @return the home position of the flag
+	 */
 	public Vector2f getHomePosition() {
 		return Tools.cloneVector(homePosition);
 	}
 
+	/**
+	 * Return the flag back to it's home position, and make it pick up able by
+	 * other players
+	 */
 	public void returnFlagHome() {
 		isPickedUp = false;
 		geometry.setPosition(homePosition);
 	}
 
+	/**
+	 * @return true if the flag is at it's home position and is pick up able
+	 */
 	public boolean isAtHome() {
-		return geometry.getPosition().equals(homePosition);
+		return Tools.distanceBetween(geometry.getPosition(), homePosition) <= 0.001f;
 	}
 
+	/**
+	 * Set the team the flag belongs to
+	 * 
+	 * @param team
+	 *            , is the team the flag will belong to
+	 */
 	public void setTeam(final TeamController team) {
 		this.teamController = team;
 

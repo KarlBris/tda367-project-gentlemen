@@ -40,7 +40,10 @@ public class PlayerModel implements IModel {
 
 	}
 
-	public void knockedOut() {
+	/**
+	 * Init knocked out
+	 */
+	public void playerKnockOut() {
 		timeSinceKnockedOut = 0.0f;
 		isKnockedOut = true;
 		dropFlag();
