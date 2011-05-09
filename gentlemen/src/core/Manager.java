@@ -14,7 +14,6 @@ import utilities.Constants;
 import components.IComponent;
 import components.KeyboardComponent;
 import components.MouseComponent;
-import components.NetworkComponent;
 import components.PhysicsComponent;
 import components.RenderComponent;
 import components.StateComponent;
@@ -30,7 +29,6 @@ public class Manager {
 	private static TypeMap<IController> controllerManager = new TypeMap<IController>();
 
 	// Components
-	private static NetworkComponent network = new NetworkComponent();
 	private static PhysicsComponent physics = new PhysicsComponent();
 	private static StateComponent state = new StateComponent();
 	private static UpdateComponent update = new UpdateComponent();
@@ -39,8 +37,8 @@ public class Manager {
 	private static MouseComponent mouse = new MouseComponent();
 
 	// All components in a easy to use format
-	private static IComponent[] components = { network, physics, state, update,
-			render, keyboard, mouse };
+	private static IComponent[] components = { physics, state, update, render,
+			keyboard, mouse };
 
 	/**
 	 * @return gets the keyboard component
@@ -71,26 +69,30 @@ public class Manager {
 
 	public static IController instantiate(final IEntityFactory factory,
 			final Vector2f position) {
-		// Get the new model and controller
-		IModel newModel = factory.getModel();
-		IController newController = factory.getController();
+		if (factory != null) {
+			// Get the new model and controller
+			IModel newModel = factory.getModel();
+			IController newController = factory.getController();
 
-		// Add model and controller to managers
-		modelManager.add(newModel);
-		controllerManager.add(newController);
+			// Add model and controller to managers
+			modelManager.add(newModel);
+			controllerManager.add(newController);
 
-		// Let all components know that the new controller has been created
-		for (IComponent component : components) {
-			component.controllerAdded(newController);
+			// Let all components know that the new controller has been created
+			for (IComponent component : components) {
+				component.controllerAdded(newController);
+			}
+
+			// Set position
+			newController.setPosition(position);
+
+			// Let the controller know that it has been created
+			newController.start();
+
+			return newController;
 		}
 
-		// Set position
-		newController.setPosition(position);
-
-		// Let the controller know that it has been created
-		newController.start();
-
-		return newController;
+		return null;
 	}
 
 	/**
