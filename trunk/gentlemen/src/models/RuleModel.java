@@ -38,11 +38,17 @@ public class RuleModel implements IModel {
 		}
 	}
 
+	/**
+	 * @see models.IModel#getGeometry()
+	 */
 	@Override
 	public Geometry getGeometry() {
 		return geometry;
 	}
 
+	/**
+	 * returns null, since the rules does not have a body
+	 */
 	@Override
 	public Body getBody() {
 		// TODO Auto-generated method stub

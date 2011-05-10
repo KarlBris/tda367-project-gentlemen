@@ -13,11 +13,17 @@ public class ReticleModel implements IModel {
 
 	private final Geometry geometry = new ReticleGeometry();
 
+	/**
+	 * @see models.IModel#getGeometry()
+	 */
 	@Override
 	public Geometry getGeometry() {
 		return geometry;
 	}
 
+	/**
+	 * @see models.IModel#getBody()
+	 */
 	@Override
 	public Body getBody() {
 		return null;
@@ -48,7 +54,7 @@ public class ReticleModel implements IModel {
 	 *            , the vector to be added to the reticle position
 	 */
 	public void move(final Vector2f movement) {
-		Vector2f newPosition = new Vector2f();
+		final Vector2f newPosition = new Vector2f();
 
 		Vector2f.add(geometry.getPosition(), movement, newPosition);
 

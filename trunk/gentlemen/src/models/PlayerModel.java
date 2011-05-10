@@ -61,11 +61,17 @@ public class PlayerModel implements IModel {
 		}
 	}
 
+	/**
+	 * @see models.IModel#getGeometry()
+	 */
 	@Override
 	public Geometry getGeometry() {
 		return geometry;
 	}
 
+	/**
+	 * @see models.IModel#getBody()
+	 */
 	@Override
 	public Body getBody() {
 		return body;
@@ -216,7 +222,6 @@ public class PlayerModel implements IModel {
 
 	/**
 	 * Updates the current PlayerModel
-	 * 
 	 */
 	public void update() {
 		geometry.moveTowards(body.getPosition(), body.getAngle(),
@@ -231,6 +236,7 @@ public class PlayerModel implements IModel {
 				isKnockedOut = false;
 			}
 		}
+
 	}
 
 	/**
@@ -287,15 +293,31 @@ public class PlayerModel implements IModel {
 		return false;
 	}
 
+	/**
+	 * Sets the position of the player
+	 * 
+	 * @param position
+	 *            the position to be set
+	 */
 	public void setPosition(final Vector2f position) {
 		body.setPosition(position);
 
 	}
 
+	/**
+	 * Returns the angle of the player
+	 * 
+	 * @return the angle of the player
+	 */
 	public float getAngle() {
 		return geometry.getAngle();
 	}
 
+	/**
+	 * Drops the flag, if carried
+	 * 
+	 * @return true if the flag was dropped, false if no flag was carried
+	 */
 	public boolean dropFlag() {
 		if (isCarryingFlag()) {
 			flagController.releaseFlag();
@@ -306,6 +328,9 @@ public class PlayerModel implements IModel {
 
 	}
 
+	/**
+	 * If a flag is carried, update the position of the flag
+	 */
 	public void updateFlagPosition() {
 		if (isCarryingFlag()) {
 			flagController.setPosition(new Vector2f(getPosition().x,
@@ -313,12 +338,24 @@ public class PlayerModel implements IModel {
 		}
 	}
 
+	/**
+	 * Sets the team to which the player will belong
+	 * 
+	 * @param team
+	 *            the team the player will belong to
+	 */
 	public void setTeam(final TeamController team) {
 		this.teamController = team;
 		setPosition(team.getHomePosition());
 
 	}
 
+	/**
+	 * Adds score to the team total
+	 * 
+	 * @param amount
+	 *            the amount of score points to be added to the team total
+	 */
 	private void addScore(final int amount) {
 		teamController.addScore(amount);
 	}

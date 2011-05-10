@@ -26,7 +26,7 @@ public class BallModel implements IModel {
 	 * @return true if the speed of the ball is lethal, otherwise false
 	 */
 	public boolean isLethal(final Vector2f referenceVelocity) {
-		Vector2f relativeVelocity = new Vector2f(0.0f, 0.0f);
+		final Vector2f relativeVelocity = new Vector2f(0.0f, 0.0f);
 
 		Vector2f.sub(body.getVelocity(), referenceVelocity, relativeVelocity);
 
@@ -75,11 +75,17 @@ public class BallModel implements IModel {
 		isPickedUp = false;
 	}
 
+	/**
+	 * @see models.IModel#getGeometry()
+	 */
 	@Override
 	public Geometry getGeometry() {
 		return geometry;
 	}
 
+	/**
+	 * @see models.IModel#getBody()
+	 */
 	@Override
 	public Body getBody() {
 		return body;
