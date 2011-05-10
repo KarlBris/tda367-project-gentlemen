@@ -9,24 +9,29 @@ import core.Body;
 
 public class PhysicsComponent implements IComponent {
 
-	private World world = new World(new Vec2(0.0f, 0.0f), true);
+	private final World world = new World(new Vec2(0.0f, 0.0f), true);
 
-	private PhysicsContactListener listener = new PhysicsContactListener();
+	private final PhysicsContactListener listener = new PhysicsContactListener();
 
+	/**
+	 * @see components.IComponent#initialize()
+	 */
 	@Override
 	public void initialize() {
 		// Attach the contact listener to the world
 		world.setContactListener(listener);
 	}
 
-	@Override
-	public void instantiatePermanentEntities() {
-	}
-
+	/**
+	 * @see components.IComponent#cleanup()
+	 */
 	@Override
 	public void cleanup() {
 	}
 
+	/**
+	 * @see components.IComponent#update()
+	 */
 	@Override
 	public void update() {
 		// Step forward in time
@@ -36,20 +41,26 @@ public class PhysicsComponent implements IComponent {
 		world.clearForces();
 	}
 
+	/**
+	 * @see components.IComponent#controllerAdded(controllers.IController)
+	 */
 	@Override
 	public void controllerAdded(final IController controller) {
 		// Create the body and add it to the world
-		Body body = controller.getModel().getBody();
+		final Body body = controller.getModel().getBody();
 
 		if (body != null) {
 			body.addToWorld(world);
 		}
 	}
 
+	/**
+	 * @see components.IComponent#controllerRemoved(controllers.IController)
+	 */
 	@Override
 	public void controllerRemoved(final IController controller) {
 		// Destroy the body and remove it from the world
-		Body body = controller.getModel().getBody();
+		final Body body = controller.getModel().getBody();
 
 		if (body != null) {
 			body.removeFromWorld(world);

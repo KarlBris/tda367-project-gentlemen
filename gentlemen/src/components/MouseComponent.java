@@ -20,18 +20,18 @@ public class MouseComponent implements IComponent {
 	// the last call of update()
 	private boolean[] prevButtonDownArray = new boolean[3];
 
+	/**
+	 * @see components.IComponent#initialize()
+	 */
 	@Override
 	public void initialize() {
 		// TODO Auto-generated method stub
 
 	}
 
-	@Override
-	public void instantiatePermanentEntities() {
-		// TODO Auto-generated method stub
-
-	}
-
+	/**
+	 * @see components.IComponent#cleanup()
+	 */
 	@Override
 	public void cleanup() {
 		// TODO Auto-generated method stub
@@ -57,12 +57,18 @@ public class MouseComponent implements IComponent {
 
 	}
 
+	/**
+	 * @see components.IComponent#controllerAdded(controllers.IController)
+	 */
 	@Override
 	public void controllerAdded(final IController controller) {
 		// TODO Auto-generated method stub
 
 	}
 
+	/**
+	 * @see components.IComponent#controllerRemoved(controllers.IController)
+	 */
 	@Override
 	public void controllerRemoved(final IController controller) {
 		// TODO Auto-generated method stub

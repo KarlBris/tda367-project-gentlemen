@@ -58,14 +58,6 @@ public class RenderComponent implements IComponent {
 	}
 
 	/**
-	 * @see components.IComponent#instantiatePermanentEntities()
-	 */
-	@Override
-	public void instantiatePermanentEntities() {
-		// TODO Auto-generated method stub
-	}
-
-	/**
 	 * @see components.IComponent#cleanup()
 	 */
 	@Override
