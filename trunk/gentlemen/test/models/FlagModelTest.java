@@ -17,14 +17,14 @@ import factories.TeamFactory;
 public class FlagModelTest {
 	private FlagModel fm;
 	private TeamController teamController;
-	private final float precision = 0.001f;
+	private final float epsilon = 0.001f;
 
 	@Before
 	public void setUp() throws Exception {
-		fm = new FlagModel(Color.BLUE);
 		teamController = (TeamController) Manager
 				.instantiate(new TeamFactory());
 		teamController.setHomePosition(Constants.TEAM_ONE_HOME_POSITION);
+		fm = new FlagModel(Color.BLUE);
 		fm.setTeam(teamController);
 	}
 
@@ -70,12 +70,12 @@ public class FlagModelTest {
 		Vector2f initPosition = new Vector2f(1.0f, 1.0f);
 		fm.setPosition(new Vector2f(7.0f, 4.0f));
 		// Test that the object has moved
-		assertTrue(!(Tools.distanceBetween(initPosition, fm.getPosition()) <= precision));
+		assertTrue(!(Tools.distanceBetween(initPosition, fm.getPosition()) <= epsilon));
 
 		initPosition = new Vector2f(4.0f, 7.0f);
 		fm.setPosition(initPosition);
 		// Test that correct position was set
-		assertTrue(Tools.distanceBetween(initPosition, fm.getPosition()) <= precision);
+		assertTrue(Tools.distanceBetween(initPosition, fm.getPosition()) <= epsilon);
 	}
 
 	@Test
@@ -93,7 +93,7 @@ public class FlagModelTest {
 		// Test if the flag's home position is the same position as that of the
 		// team.
 		assertTrue(Tools.distanceBetween(fm.getHomePosition(),
-				teamController.getHomePosition()) <= precision);
+				teamController.getHomePosition()) <= epsilon);
 	}
 
 	@Test

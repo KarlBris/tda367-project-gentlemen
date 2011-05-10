@@ -1,7 +1,5 @@
 package models;
 
-import javax.swing.JOptionPane;
-
 import core.Body;
 import core.Geometry;
 import core.NullGeometry;
@@ -28,14 +26,18 @@ public class RuleModel implements IModel {
 	 * @param team
 	 *            the team to check for victory
 	 */
-	public void checkVictory(final TeamModel team) {
+	public boolean checkVictory(final TeamModel team) {
 		if (team.getScore() >= scoreLimit) {
 			// AW YEAH, TEAM HAS WON!
 			// Do something related to this
 
-			JOptionPane.showMessageDialog(null, team.getTeamName()
-					+ " has won!");
+			return true;
 		}
+		return false;
+	}
+
+	public int getScoreLimit() {
+		return scoreLimit;
 	}
 
 	/**
