@@ -226,6 +226,18 @@ public class Body {
 		}
 	}
 
+	public Vector2f getAcceleration() {
+		if (rigidbody != null) {
+			Vector2f acceleration = Tools.toNormalVector(rigidbody.m_force);
+
+			acceleration.scale(1.0f / getMass());
+
+			return acceleration;
+		}
+
+		return new Vector2f(0.0f, 0.0f);
+	}
+
 	/**
 	 * @return the current linear velocity of the body
 	 */
