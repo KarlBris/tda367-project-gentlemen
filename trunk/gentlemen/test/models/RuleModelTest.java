@@ -13,13 +13,11 @@ import factories.TeamFactory;
 public class RuleModelTest {
 
 	private RuleModel model;
-	private TeamModel teamModel;
 
 	@Before
 	public void setUp() throws Exception {
 		model = (RuleModel) Manager.instantiate(new RuleFactory()).getModel();
-		teamModel = (TeamModel) Manager.instantiate(new TeamFactory())
-				.getModel();
+
 	}
 
 	@After
@@ -36,6 +34,9 @@ public class RuleModelTest {
 
 	@Test
 	public void testCheckVictory() {
+		TeamModel teamModel = (TeamModel) Manager
+				.instantiate(new TeamFactory()).getModel();
+
 		// Test if the team has won before receiving any points
 		assertTrue(!model.checkVictory(teamModel));
 
