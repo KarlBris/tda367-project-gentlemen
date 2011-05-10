@@ -134,9 +134,9 @@ public class Manager {
 	 * Removes all models and controllers from the game world
 	 */
 	public static void removeAll() {
-		List<IController> controllers = controllerManager.getItems();
+		final List<IController> controllers = controllerManager.getItems();
 
-		for (IController controller : controllers) {
+		for (final IController controller : controllers) {
 			remove(controller);
 		}
 	}
@@ -236,7 +236,7 @@ public class Manager {
 	private static void updateComponents() {
 
 		for (final IComponent component : components) {
-			component.instantiatePermanentEntities();
+			// component.instantiatePermanentEntities();
 
 			component.update();
 		}
@@ -246,11 +246,14 @@ public class Manager {
 	 * Initializes the game and starts the game loop
 	 */
 	public static void start() {
+
 		if (!initializeDisplay()) {
 			return;
 		}
 
 		initializeComponents();
+
+		state.initializeEntities();
 
 		while (!Display.isCloseRequested()) {
 
@@ -261,5 +264,6 @@ public class Manager {
 
 		cleanupComponents();
 		cleanupDisplay();
+
 	}
 }
