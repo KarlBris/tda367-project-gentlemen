@@ -10,7 +10,7 @@ import core.CircleGeometry;
 import core.Geometry;
 
 /**
- * Represents a flag which other objects can interact with
+ * Represents a flag which players can interact with
  */
 public class FlagModel implements IModel {
 	private final Geometry geometry;
@@ -22,9 +22,8 @@ public class FlagModel implements IModel {
 	private TeamController teamController;
 
 	/**
-	 * 
 	 * @param c
-	 *            , Color the flag will have
+	 *            the color the flag will have
 	 */
 	public FlagModel(final Color c) {
 		flagColor = c;
@@ -53,11 +52,17 @@ public class FlagModel implements IModel {
 		return !isPickedUp;
 	}
 
+	/**
+	 * @see models.IModel#getGeometry()
+	 */
 	@Override
 	public Geometry getGeometry() {
 		return geometry;
 	}
 
+	/**
+	 * @see models.IModel#getBody()
+	 */
 	@Override
 	public Body getBody() {
 		return null;
@@ -116,13 +121,19 @@ public class FlagModel implements IModel {
 	 * Set the team the flag belongs to
 	 * 
 	 * @param team
-	 *            , is the team the flag will belong to
+	 *            the team the flag will belong to
 	 */
 	public void setTeam(final TeamController team) {
 		this.teamController = team;
 		setPosition(team.getHomePosition());
 	}
 
+	/**
+	 * Sets the color of the flag
+	 * 
+	 * @param color
+	 *            the color to be set
+	 */
 	public void setColor(final Color color) {
 		flagColor = color;
 		geometry.setColor(color);

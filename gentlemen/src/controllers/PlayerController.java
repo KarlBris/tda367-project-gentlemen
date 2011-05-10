@@ -59,14 +59,16 @@ public class PlayerController implements IController, IBodyCollisionCallback {
 		this.pickUpBallKey = pickUpBallKey;
 	}
 
+	/**
+	 * @see controllers.IController#update()
+	 */
 	@Override
 	public void update() {
 
 		// spawn ball
 		if (Manager.getKeyboard().getKey(Keyboard.KEY_SPACE)) {
-			final BallController ballController = (BallController) Manager
-					.instantiate(new BallFactory(), new Vector2f(
-							Constants.VIEWPORT_WIDTH / 2,
+			Manager.instantiate(new BallFactory(),
+					new Vector2f(Constants.VIEWPORT_WIDTH / 2,
 							Constants.VIEWPORT_HEIGHT / 2));
 		}
 
@@ -81,6 +83,9 @@ public class PlayerController implements IController, IBodyCollisionCallback {
 		model.update();
 	}
 
+	/**
+	 * Handles the flag logic
+	 */
 	private void handleFlag() {
 
 		// Try to return team flag
@@ -100,6 +105,9 @@ public class PlayerController implements IController, IBodyCollisionCallback {
 		}
 	}
 
+	/**
+	 * Handles the ball logic
+	 */
 	private void handleBall() {
 
 		if (model.isCarryingBall()) {
@@ -121,15 +129,26 @@ public class PlayerController implements IController, IBodyCollisionCallback {
 		}
 	}
 
+	/**
+	 * Drops the flag, if carried
+	 * 
+	 * @return true if the flag was dropped, false if no flag was carried at all
+	 */
 	public boolean dropFlag() {
 		return model.dropFlag();
 	}
 
+	/**
+	 * @see controllers.IController#getModel()
+	 */
 	@Override
 	public IModel getModel() {
 		return model;
 	}
 
+	/**
+	 * @see controllers.IController#start()
+	 */
 	@Override
 	public void start() {
 		// Subscribe to collision events for the model's body
@@ -140,6 +159,9 @@ public class PlayerController implements IController, IBodyCollisionCallback {
 				new KeyboardReticleFactory()).getModel();
 	}
 
+	/**
+	 * @see controllers.IController#end()
+	 */
 	@Override
 	public void end() {
 	}
@@ -213,24 +235,37 @@ public class PlayerController implements IController, IBodyCollisionCallback {
 		model.getBallController().setPosition(newBallPosition);
 	}
 
+	/**
+	 * @see controllers.IController#networkDataSend()
+	 */
 	@Override
 	public Object[] networkDataSend() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+	/**
+	 * @see controllers.IController#networkDataReceive(java.lang.Object[])
+	 */
 	@Override
 	public void networkDataReceive(final Object[] data) {
 		// TODO Auto-generated method stub
 
 	}
 
+	/**
+	 * @see controllers.IController#setPosition(org.lwjgl.util.vector.Vector2f)
+	 */
 	@Override
 	public void setPosition(final Vector2f position) {
 		model.setPosition(position);
 
 	}
 
+	/**
+	 * @see components.IBodyCollisionCallback#collisionOccured(core.Body,
+	 *      org.lwjgl.util.vector.Vector2f)
+	 */
 	@Override
 	public void collisionOccured(final Body otherBody,
 			final Vector2f collisionPoint) {
@@ -241,6 +276,12 @@ public class PlayerController implements IController, IBodyCollisionCallback {
 		}
 	}
 
+	/**
+	 * Sets the team of the player
+	 * 
+	 * @param team
+	 *            the team to which the player will belong
+	 */
 	public void setTeam(final TeamController team) {
 		model.setTeam(team);
 

@@ -77,4 +77,8 @@ public class TeamController implements IController {
 	public Vector2f getHomePosition() {
 		return model.getHomePosition();
 	}
+
+	public void setRules(final RuleController rules) {
+		model.setRules(rules);
+	}
 }

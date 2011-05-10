@@ -33,13 +33,13 @@ public class StateComponent implements IComponent {
 	@Override
 	public void instantiatePermanentEntities() {
 
-		// Instantiate the rules
-		if (Manager.find(RuleController.class).size() == 0) {
-			Manager.instantiate(new RuleFactory());
-		}
-
-		// Instantiate the player
+		// Instantiate everything
 		if (Manager.find(PlayerController.class).size() == 0) {
+
+			// Instantiate the rules
+
+			final RuleController rules = (RuleController) Manager
+					.instantiate(new RuleFactory());
 
 			// Instantiate the teams
 			final TeamController teamOne = (TeamController) Manager
@@ -52,17 +52,18 @@ public class StateComponent implements IComponent {
 			final PlayerController playerTwo = (PlayerController) Manager
 					.instantiate(new PlayerTwoFactory());
 
+			teamOne.setRules(rules);
+			teamTwo.setRules(rules);
+
 			teamOne.setTeamName("Red Team");
 			teamOne.setHomePosition(Constants.TEAM_ONE_HOME_POSITION);
 			teamTwo.setTeamName("Blue Team");
 			teamTwo.setHomePosition(Constants.TEAM_TWO_HOME_POSITION);
 
-			for (final TeamController tc : Manager.find(TeamController.class)) {
-				for (int i = 0; i < 30; i++) {
-					Manager.instantiate(new BallFactory(), new Vector2f(
-							Constants.VIEWPORT_WIDTH / 2,
-							Constants.VIEWPORT_HEIGHT / 2));
-				}
+			for (int i = 0; i < 30; i++) {
+				Manager.instantiate(new BallFactory(), new Vector2f(
+						Constants.VIEWPORT_WIDTH / 2,
+						Constants.VIEWPORT_HEIGHT / 2));
 			}
 
 			playerOne.setTeam(teamOne);
