@@ -67,6 +67,17 @@ public class Manager {
 		return instantiate(factory, new Vector2f(0.0f, 0.0f));
 	}
 
+	/**
+	 * Instantiates a new IModel/IController pair. The only way to create a new
+	 * instance of an IModel/IController.
+	 * 
+	 * @param factory
+	 *            the entity factory of the sought after IModel/IController pair
+	 * @param position
+	 *            the desired position of the entity in the game world
+	 * @return the IController instance of the newly instantiated
+	 *         IModel/IController pair
+	 */
 	public static IController instantiate(final IEntityFactory factory,
 			final Vector2f position) {
 		if (factory != null) {
@@ -123,8 +134,11 @@ public class Manager {
 	 * Removes all models and controllers from the game world
 	 */
 	public static void removeAll() {
-		modelManager.clear();
-		controllerManager.clear();
+		List<IController> controllers = controllerManager.getItems();
+
+		for (IController controller : controllers) {
+			remove(controller);
+		}
 	}
 
 	/**
