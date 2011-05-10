@@ -119,4 +119,13 @@ public class FlagModelTest {
 		assertTrue(fm.isPickUpAble());
 	}
 
+	@Test
+	public void testSetColorAndGetColor() {
+		fm.setColor(Color.RED);
+		assertTrue(fm.getColor() == Color.RED);
+
+		fm.setColor(Color.BLACK);
+		assertTrue(fm.getColor() == Color.BLACK);
+	}
+
 }
