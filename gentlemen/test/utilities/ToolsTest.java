@@ -223,11 +223,11 @@ public class ToolsTest {
 	@Test
 	public void testDistanceBetween() {
 		// Test one
-		Vector2f testVectorOne = new Vector2f(0.0f, 0.0f);
-		Vector2f testVectorTwo = new Vector2f(3.0f, 0.0f);
+		Vector2f testVectorOne = new Vector2f(3.0f, 0.0f);
+		Vector2f testVectorTwo = new Vector2f(0.0f, 4.0f);
 		float distanceBetween = Tools.distanceBetween(testVectorOne,
 				testVectorTwo);
-		assertTrue(distanceBetween - 3.0f <= precision);
+		assertTrue(distanceBetween - 5.0f <= precision);
 
 		// Test two
 		testVectorOne = new Vector2f(0.0f, -1.0f);

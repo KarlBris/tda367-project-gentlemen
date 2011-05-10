@@ -50,6 +50,13 @@ public class ShockwaveModel implements IModel {
 	}
 
 	/**
+	 * @return the position of the model
+	 */
+	public Vector2f getPosition() {
+		return geometry.getPosition();
+	}
+
+	/**
 	 * @return true if the shockwave animation has finished, false otherwise
 	 */
 	public boolean isFinished() {
