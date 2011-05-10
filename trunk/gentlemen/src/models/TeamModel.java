@@ -118,4 +118,8 @@ public class TeamModel implements IModel {
 		ruleController = rules;
 	}
 
+	public RuleController getRules() {
+		return ruleController;
+	}
+
 }
