@@ -2,6 +2,9 @@ package utilities;
 
 import org.lwjgl.util.vector.Vector2f;
 
+/**
+ * This class contains static constants used by many parts of the game
+ */
 public class Constants {
 
 	public static final float PI = (float) Math.PI;

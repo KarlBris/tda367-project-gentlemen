@@ -5,7 +5,7 @@ import models.IModel;
 import org.lwjgl.util.vector.Vector2f;
 
 /**
- * An interface which all controller will implement
+ * An interface which all controllers will implement
  */
 public interface IController {
 

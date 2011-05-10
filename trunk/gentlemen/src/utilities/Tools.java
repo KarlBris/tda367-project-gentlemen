@@ -5,6 +5,9 @@ import org.lwjgl.opengl.Display;
 import org.lwjgl.util.Point;
 import org.lwjgl.util.vector.Vector2f;
 
+/**
+ * This class contains static methods used by many parts of the game
+ */
 public class Tools {
 
 	/**

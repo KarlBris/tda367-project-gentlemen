@@ -7,6 +7,10 @@ import utilities.Color;
 import utilities.Constants;
 import utilities.Tools;
 
+/**
+ * This class represents a visible geometry in the game world. The geometry is
+ * stored as vertices to one or many triangles
+ */
 public abstract class Geometry {
 
 	private Vector2f[] vertices;

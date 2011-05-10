@@ -7,9 +7,12 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * This class represents a map in which all entities can be saved as values,
+ * with their type as key, to allow for very easy access of all entity types.
+ */
 public class TypeMap<T> {
 
-	// Store instances in a map for easy access
 	private final Map<Class<?>, List<T>> map = new HashMap<Class<?>, List<T>>();
 
 	/**
@@ -19,7 +22,7 @@ public class TypeMap<T> {
 	 *            the item to add
 	 */
 	public void add(final T item) {
-		Class<?> key = item.getClass();
+		final Class<?> key = item.getClass();
 
 		List<T> items;
 
@@ -47,10 +50,10 @@ public class TypeMap<T> {
 	 *            the item to be removed
 	 */
 	public void remove(final T item) {
-		Class<?> key = item.getClass();
+		final Class<?> key = item.getClass();
 
 		if (map.containsKey(key)) {
-			List<T> items = map.get(key);
+			final List<T> items = map.get(key);
 
 			// Remove the item
 			items.remove(item);
@@ -82,13 +85,13 @@ public class TypeMap<T> {
 	public <S extends T> List<S> find(final Class<S> type) {
 		// Find items of type S
 		if (map.containsKey(type)) {
-			List<T> items = map.get(type);
+			final List<T> items = map.get(type);
 
 			// Cast List<IController> to ArrayList<S> for the caller's
 			// convenience
-			List<S> output = new ArrayList<S>(items.size());
+			final List<S> output = new ArrayList<S>(items.size());
 
-			for (T c : items) {
+			for (final T c : items) {
 				output.add((S) c);
 			}
 
@@ -103,12 +106,12 @@ public class TypeMap<T> {
 	 */
 	public List<T> getItems() {
 		// TODO Optimize this method if needed
-		Collection<List<T>> listCollection = map.values();
+		final Collection<List<T>> listCollection = map.values();
 
 		// Add all item lists to the output list
-		List<T> output = new LinkedList<T>();
+		final List<T> output = new LinkedList<T>();
 
-		for (List<T> list : listCollection) {
+		for (final List<T> list : listCollection) {
 			output.addAll(list);
 		}
 
