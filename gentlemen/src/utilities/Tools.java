@@ -179,29 +179,29 @@ public class Tools {
 	 * @return a cloned vector
 	 */
 	public static Vector2f cloneVector(final Vector2f vector) {
-		return new Vector2f(vector.x, vector.y);
+		return new Vector2f(vector);
 	}
 
 	/**
 	 * @return the current screen width in pixels
 	 */
 	public static int getScreenWidth() {
-		if (Display.getDisplayMode() != null) {
+		if (Display.isCreated()) {
 			return Display.getDisplayMode().getWidth();
 		}
 
-		return 0;
+		return Constants.DEFAULT_SCREEN_WIDTH;
 	}
 
 	/**
 	 * @return the current screen height in pixels
 	 */
 	public static int getScreenHeight() {
-		if (Display.getDisplayMode() != null) {
+		if (Display.isCreated()) {
 			return Display.getDisplayMode().getHeight();
 		}
 
-		return 0;
+		return Constants.DEFAULT_SCREEN_HEIGHT;
 	}
 
 	/**
