@@ -37,6 +37,17 @@ public class TeamModel implements IModel {
 	}
 
 	/**
+	 * Add an amount to the team score, without checking if the team won.
+	 * 
+	 * @param amount
+	 *            , is the amount to be added to the team score
+	 */
+	public void addPoints(final int amount) {
+		totalScore += amount;
+
+	}
+
+	/**
 	 * @see models.IModel#getGeometry()
 	 */
 	@Override

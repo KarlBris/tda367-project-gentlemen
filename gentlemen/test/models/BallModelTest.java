@@ -9,14 +9,12 @@ import org.lwjgl.util.vector.Vector2f;
 
 import utilities.Constants;
 import utilities.Tools;
-import controllers.BallController;
 import core.Manager;
 import factories.BallFactory;
 
 public class BallModelTest {
 
-	private final float precision = 0.01f;
-	private BallController controller;
+	private final float epsilon = 0.01f;
 	private BallModel model;
 
 	/**
@@ -24,8 +22,7 @@ public class BallModelTest {
 	 */
 	@Before
 	public void setUp() throws Exception {
-		controller = (BallController) Manager.instantiate(new BallFactory());
-		model = (BallModel) controller.getModel();
+		model = (BallModel) Manager.instantiate(new BallFactory()).getModel();
 	}
 
 	/**
@@ -96,12 +93,12 @@ public class BallModelTest {
 		// Test if setting the ball's position from a vector and subsequently
 		// reading it returns the same value as the vector itself
 		model.setPosition(refPosition);
-		assertTrue(Tools.distanceBetween(model.getPosition(), refPosition) <= precision);
+		assertTrue(Tools.distanceBetween(model.getPosition(), refPosition) <= epsilon);
 
 		// Test the same case after moving the ball
 		refPosition.set(1.0f, 1.0f);
 		model.setPosition(refPosition);
-		assertTrue(Tools.distanceBetween(model.getPosition(), refPosition) <= precision);
+		assertTrue(Tools.distanceBetween(model.getPosition(), refPosition) <= epsilon);
 
 	}
 

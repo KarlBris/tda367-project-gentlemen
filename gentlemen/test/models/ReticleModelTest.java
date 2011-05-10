@@ -4,34 +4,26 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.After;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import org.lwjgl.util.vector.Vector2f;
 
 import utilities.Tools;
-import controllers.KeyboardReticleController;
 import core.Manager;
 import factories.KeyboardReticleFactory;
 
 public class ReticleModelTest {
-	private final float precision = 0.01f;
-	private KeyboardReticleController controller;
+	private final float epsilon = 0.01f;
 	private ReticleModel model;
-
-	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
-
-	}
 
 	@Before
 	public void setUp() throws Exception {
-		controller = (KeyboardReticleController) Manager
-				.instantiate(new KeyboardReticleFactory());
-		model = (ReticleModel) controller.getModel();
+		model = (ReticleModel) Manager
+				.instantiate(new KeyboardReticleFactory()).getModel();
 	}
 
 	@After
 	public void tearDown() throws Exception {
+		Manager.removeAll();
 	}
 
 	@Test
@@ -46,7 +38,7 @@ public class ReticleModelTest {
 		model.setPosition(newPosition);
 
 		// Test if setting the reticle's position gives it the correct values
-		assertTrue(Tools.distanceBetween(model.getPosition(), newPosition) <= precision);
+		assertTrue(Tools.distanceBetween(model.getPosition(), newPosition) <= epsilon);
 	}
 
 	@Test

@@ -7,7 +7,6 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.After;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import org.lwjgl.util.vector.Vector2f;
 
@@ -18,16 +17,9 @@ import core.Manager;
 import factories.PropFactory;
 
 public class PropModelTest {
-	private final float precision = 0.01f;
+	private final float epsilon = 0.01f;
 	private PropModel model;
 	private PropController controller;
-
-	/**
-	 * @throws java.lang.Exception
-	 */
-	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
-	}
 
 	/**
 	 * @throws java.lang.Exception
@@ -54,7 +46,7 @@ public class PropModelTest {
 	@Test
 	public void testPropModel() {
 		// Test if the model has the correct mass
-		assertTrue(Math.abs(model.getBody().getMass() - 1.0f) <= precision);
+		assertTrue(Math.abs(model.getBody().getMass() - 1.0f) <= epsilon);
 
 	}
 
@@ -77,7 +69,7 @@ public class PropModelTest {
 		model.setPosition(newPosition);
 
 		// Test if setting the prop's position gives it the correct values
-		assertTrue(Tools.distanceBetween(model.getPosition(), newPosition) <= precision);
+		assertTrue(Tools.distanceBetween(model.getPosition(), newPosition) <= epsilon);
 	}
 
 	/**
@@ -90,7 +82,7 @@ public class PropModelTest {
 
 		// Test if setting the prop's angle gives its body and geometry their
 		// correct values
-		assertTrue(Math.abs(model.getAngle() - newAngle) <= precision);
+		assertTrue(Math.abs(model.getAngle() - newAngle) <= epsilon);
 	}
 
 }
