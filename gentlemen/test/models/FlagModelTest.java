@@ -8,6 +8,7 @@ import org.junit.Test;
 import org.lwjgl.util.vector.Vector2f;
 
 import utilities.Color;
+import utilities.Constants;
 import utilities.Tools;
 import controllers.TeamController;
 import core.Manager;
@@ -15,14 +16,16 @@ import factories.TeamFactory;
 
 public class FlagModelTest {
 	private FlagModel fm;
-	private Vector2f startPos;
+	private TeamController teamController;
 	private final float precision = 0.001f;
 
 	@Before
 	public void setUp() throws Exception {
 		fm = new FlagModel(Color.BLUE);
-		startPos = new Vector2f(50.0f, 40.0f);
-
+		teamController = (TeamController) Manager
+				.instantiate(new TeamFactory());
+		teamController.setHomePosition(Constants.TEAM_ONE_HOME_POSITION);
+		fm.setTeam(teamController);
 	}
 
 	@After
@@ -64,8 +67,7 @@ public class FlagModelTest {
 
 	@Test
 	public void testSetPosition() {
-		fm.setPosition(startPos);
-		Vector2f initPosition = startPos;
+		Vector2f initPosition = new Vector2f(1.0f, 1.0f);
 		fm.setPosition(new Vector2f(7.0f, 4.0f));
 		// Test that the object has moved
 		assertTrue(!(Tools.distanceBetween(initPosition, fm.getPosition()) <= precision));
@@ -78,8 +80,6 @@ public class FlagModelTest {
 
 	@Test
 	public void testGetTeamAndSetTeam() {
-		TeamController teamController = (TeamController) Manager
-				.instantiate(new TeamFactory());
 
 		fm.setTeam(teamController);
 
@@ -89,17 +89,15 @@ public class FlagModelTest {
 
 	@Test
 	public void testGetHomePosition() {
-		// Home position should be the first position set on a flag
-		fm.setPosition(startPos);
-		fm.setPosition(new Vector2f(20.0f, 30.0f));
-		// Test if that is true
-		assertTrue(Tools.distanceBetween(fm.getHomePosition(), startPos) <= precision);
+
+		// Test if the flag's home position is the same position as that of the
+		// team.
+		assertTrue(Tools.distanceBetween(fm.getHomePosition(),
+				teamController.getHomePosition()) <= precision);
 	}
 
 	@Test
 	public void testIsAtHome() {
-		fm.setPosition(startPos);
-
 		fm.setPosition(new Vector2f(20.0f, 34.0f));
 		// Test that it's not returning true if the flag ain't home
 		assertTrue(!fm.isAtHome());
@@ -112,7 +110,6 @@ public class FlagModelTest {
 	@Test
 	public void testReturnFlagHome() {
 
-		fm.setPosition(startPos);
 		fm.setPosition(new Vector2f(23.0f, 76.0f));
 		fm.pickUpFlag();
 		fm.returnFlagHome();
