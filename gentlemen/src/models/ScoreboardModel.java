@@ -44,6 +44,10 @@ public class ScoreboardModel implements IModel {
 		teamList.add(team);
 	}
 
+	public List<TeamController> getTeamList() {
+		return teamList;
+	}
+
 	/**
 	 * @see models.IModel#getGeometry()
 	 */
