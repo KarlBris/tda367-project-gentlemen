@@ -139,4 +139,8 @@ public class FlagModel implements IModel {
 		geometry.setColor(color);
 
 	}
+
+	public Color getColor() {
+		return flagColor;
+	}
 }

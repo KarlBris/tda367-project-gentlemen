@@ -156,6 +156,14 @@ public class FlagController implements IController {
 	}
 
 	/**
+	 * 
+	 * @return the color of the flag
+	 */
+	public Color getColor() {
+		return model.getColor();
+	}
+
+	/**
 	 * Returns the home position of the team
 	 * 
 	 * @return the home position of the team
