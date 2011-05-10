@@ -104,8 +104,7 @@ public class PlayerModel implements IModel {
 					.find(FlagController.class);
 			for (final FlagController fc : flagControllers) {
 				if (fc.getTeam() == this.teamController) {
-					if (Tools.distanceBetween(body.getPosition(),
-							fc.getPosition()) <= Constants.FLAG_PICK_UP_DISTANCE
+					if (Tools.distanceBetween(getPosition(), fc.getPosition()) <= Constants.FLAG_PICK_UP_DISTANCE
 							&& fc.isAtHome()) {
 						flagController.returnFlagHome();
 						flagController = null;
@@ -191,7 +190,7 @@ public class PlayerModel implements IModel {
 	 * @return the position of the PlayerModel
 	 */
 	public Vector2f getPosition() {
-		return geometry.getPosition();
+		return body.getPosition();
 	}
 
 	/**
@@ -221,6 +220,15 @@ public class PlayerModel implements IModel {
 	}
 
 	/**
+	 * The angle the body is facing
+	 * 
+	 * @return the angle the player face
+	 */
+	public float getFacingAngle() {
+		return body.getAngle();
+	}
+
+	/**
 	 * Updates the current PlayerModel
 	 */
 	public void update() {
@@ -230,7 +238,6 @@ public class PlayerModel implements IModel {
 			// Add time counter
 			timeSinceKnockedOut += Constants.DELTA_TIME;
 
-			//
 			if (timeSinceKnockedOut >= Constants.PLAYER_KNOCKED_OUT_TIME) {
 				// No longer knocked out
 				isKnockedOut = false;
@@ -280,7 +287,7 @@ public class PlayerModel implements IModel {
 					.find(BallController.class);
 
 			for (final BallController bc : listOfBalls) {
-				if (Tools.distanceBetween(body.getPosition(), bc.getPosition()) <= Constants.BALL_PICK_UP_DISTANCE) {
+				if (Tools.distanceBetween(getPosition(), bc.getPosition()) <= Constants.BALL_PICK_UP_DISTANCE) {
 					if (bc.isPickUpAble(body.getVelocity())) {
 						bc.pickUpBall();
 						ballController = bc;
@@ -301,16 +308,25 @@ public class PlayerModel implements IModel {
 	 */
 	public void setPosition(final Vector2f position) {
 		body.setPosition(position);
-
 	}
 
 	/**
-	 * Returns the angle of the player
+	 * Returns the visual angle of the player
 	 * 
 	 * @return the angle of the player
 	 */
 	public float getAngle() {
 		return geometry.getAngle();
+	}
+
+	/**
+	 * Set the visual angle of the player
+	 * 
+	 * @param angle
+	 *            is the new visual angle
+	 */
+	public void setAngle(float angle) {
+		geometry.setAngle(angle);
 	}
 
 	/**
@@ -359,4 +375,29 @@ public class PlayerModel implements IModel {
 	private void addScore(final int amount) {
 		teamController.addScore(amount);
 	}
+
+	/**
+	 * 
+	 * @return true if the players is knocked out, otherwise false
+	 */
+	public boolean isKnockedOut() {
+		return isKnockedOut;
+	}
+
+	/**
+	 * 
+	 * @return returns the time since the player was knocked out
+	 */
+	public float getKnockedOutTimer() {
+		return timeSinceKnockedOut;
+	}
+
+	/**
+	 * 
+	 * @return the players team controller
+	 */
+	public TeamController getTeam() {
+		return teamController;
+	}
+
 }
