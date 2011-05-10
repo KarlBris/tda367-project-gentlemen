@@ -127,7 +127,6 @@ public class BallModelTest {
 	 */
 	@Test
 	public void testGetGeometry() {
-
 		// Test if the method returns a Geometry object
 		assertTrue(model.getGeometry() != null);
 	}
