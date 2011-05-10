@@ -119,11 +119,21 @@ public class Color {
 		return alpha;
 	}
 
+	/**
+	 * Randomizes a color and returns it, alpha is fixed at 1.0f
+	 * 
+	 * @return the randomized color
+	 */
 	public static Color randomColor() {
 		final Random rand = new Random();
 		return new Color(rand.nextFloat(), rand.nextFloat(), rand.nextFloat());
 	}
 
+	/**
+	 * Randomizes a color, both RGB and alpha channels, and returns it
+	 * 
+	 * @return the randomized color
+	 */
 	public static Color randomColorAndAlpha() {
 		final Random rand = new Random();
 		return new Color(rand.nextFloat(), rand.nextFloat(), rand.nextFloat(),

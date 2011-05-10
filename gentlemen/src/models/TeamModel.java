@@ -33,7 +33,7 @@ public class TeamModel implements IModel {
 		totalScore += amount;
 
 		// Check with rules. If won, celebrate!
-		ruleController.checkVictory(totalScore, this);
+		ruleController.checkVictory(this);
 	}
 
 	/**

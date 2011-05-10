@@ -18,6 +18,9 @@ import core.Manager;
 import factories.BallFactory;
 import factories.KeyboardReticleFactory;
 
+/**
+ * This class controls a player model
+ */
 public class PlayerController implements IController, IBodyCollisionCallback {
 
 	private final PlayerModel model;

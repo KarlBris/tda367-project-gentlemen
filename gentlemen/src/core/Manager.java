@@ -71,15 +71,15 @@ public class Manager {
 			final Vector2f position) {
 		if (factory != null) {
 			// Get the new model and controller
-			IModel newModel = factory.getModel();
-			IController newController = factory.getController();
+			final IModel newModel = factory.getModel();
+			final IController newController = factory.getController();
 
 			// Add model and controller to managers
 			modelManager.add(newModel);
 			controllerManager.add(newController);
 
 			// Let all components know that the new controller has been created
-			for (IComponent component : components) {
+			for (final IComponent component : components) {
 				component.controllerAdded(newController);
 			}
 
@@ -109,7 +109,7 @@ public class Manager {
 			controller.end();
 
 			// Let all components know that the controller is being removed
-			for (IComponent component : components) {
+			for (final IComponent component : components) {
 				component.controllerRemoved(controller);
 			}
 
@@ -167,7 +167,7 @@ public class Manager {
 					Constants.DEFAULT_SCREEN_HEIGHT));
 
 			Display.create();
-		} catch (LWJGLException e) {
+		} catch (final LWJGLException e) {
 			e.printStackTrace();
 
 			return false;
@@ -201,7 +201,7 @@ public class Manager {
 	 */
 	private static void initializeComponents() {
 
-		for (IComponent component : components) {
+		for (final IComponent component : components) {
 			component.initialize();
 		}
 	}
@@ -211,7 +211,7 @@ public class Manager {
 	 */
 	private static void cleanupComponents() {
 
-		for (IComponent component : components) {
+		for (final IComponent component : components) {
 			component.cleanup();
 		}
 	}
@@ -221,7 +221,7 @@ public class Manager {
 	 */
 	private static void updateComponents() {
 
-		for (IComponent component : components) {
+		for (final IComponent component : components) {
 			component.instantiatePermanentEntities();
 
 			component.update();
