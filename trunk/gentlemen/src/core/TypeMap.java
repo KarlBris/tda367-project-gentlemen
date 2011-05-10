@@ -73,6 +73,19 @@ public class TypeMap<T> {
 	}
 
 	/**
+	 * @return the total number of items in the map
+	 */
+	public int getItemCount() {
+		int count = 0;
+
+		for (List<T> lists : map.values()) {
+			count += lists.size();
+		}
+
+		return count;
+	}
+
+	/**
 	 * Finds all items of a specific type
 	 * 
 	 * @param <S>
