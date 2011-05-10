@@ -72,12 +72,11 @@ public class PropModelTest {
 	 * {@link models.PropModel#setPosition(org.lwjgl.util.vector.Vector2f)}.
 	 */
 	@Test
-	public void testSetPosition() {
+	public void testPosition() {
 		Vector2f newPosition = new Vector2f(3.0f, 3.0f);
 		model.setPosition(newPosition);
 
-		// Test if setting the prop's position gives its body and geometry their
-		// correct values
+		// Test if setting the prop's position gives it the correct values
 		assertTrue(Tools.distanceBetween(model.getPosition(), newPosition) <= precision);
 	}
 
@@ -85,7 +84,7 @@ public class PropModelTest {
 	 * Test method for {@link models.PropModel#setAngle(float)}.
 	 */
 	@Test
-	public void testSetAngle() {
+	public void testAngle() {
 		float newAngle = Constants.PI / 2;
 		model.setAngle(newAngle);
 
