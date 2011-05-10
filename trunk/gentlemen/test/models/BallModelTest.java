@@ -119,6 +119,8 @@ public class BallModelTest {
 		model.throwBall(throwVelocity);
 		assertTrue(Tools.distanceBetween(model.getBody().getVelocity(),
 				zeroVelocity) > Constants.BALL_LETHAL_SPEED);
+		// The speed is too high and should not be able to be picked up
+		assertTrue(!model.isPickUpAble(new Vector2f(0.0f, 0.0f)));
 
 	}
 
