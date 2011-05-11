@@ -62,12 +62,12 @@ public class PulsatingPropController implements IController {
 		model.update();
 
 		// Update color
-		final float phase = (((float) Math.cos(colorWheel)) / 2) + 0.5f;
+		final float phase = (float) Math.cos(colorWheel) / 2 + 0.5f;
 
-		final float tempRed = (phase * redDelta) + originColor.getRed();
-		final float tempGreen = (phase * greenDelta) + originColor.getGreen();
-		final float tempBlue = (phase * blueDelta) + originColor.getBlue();
-		final float tempAlpha = (phase * alphaDelta) + originColor.getAlpha();
+		final float tempRed = phase * redDelta + originColor.getRed();
+		final float tempGreen = phase * greenDelta + originColor.getGreen();
+		final float tempBlue = phase * blueDelta + originColor.getBlue();
+		final float tempAlpha = phase * alphaDelta + originColor.getAlpha();
 
 		this.model.getGeometry().setColor(
 				new Color(tempRed, tempGreen, tempBlue, tempAlpha));
@@ -118,24 +118,6 @@ public class PulsatingPropController implements IController {
 	 */
 	@Override
 	public void end() {
-		// TODO Auto-generated method stub
-
-	}
-
-	/**
-	 * @see controllers.IController#networkDataSend()
-	 */
-	@Override
-	public Object[] networkDataSend() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	/**
-	 * @see controllers.IController#networkDataReceive(java.lang.Object[])
-	 */
-	@Override
-	public void networkDataReceive(final Object[] data) {
 		// TODO Auto-generated method stub
 
 	}

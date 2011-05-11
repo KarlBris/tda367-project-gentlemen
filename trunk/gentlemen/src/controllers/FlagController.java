@@ -67,24 +67,6 @@ public class FlagController implements IController {
 	}
 
 	/**
-	 * @see controllers.IController#networkDataSend()
-	 */
-	@Override
-	public Object[] networkDataSend() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	/**
-	 * @see controllers.IController#networkDataReceive(java.lang.Object[])
-	 */
-	@Override
-	public void networkDataReceive(final Object[] data) {
-		// TODO Auto-generated method stub
-
-	}
-
-	/**
 	 * Checks with the model if it is "on the ground"
 	 * 
 	 * @return true if players can pick it up, false if it already is picked up
