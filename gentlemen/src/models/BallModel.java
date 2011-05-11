@@ -59,7 +59,7 @@ public class BallModel implements IModel {
 	/**
 	 * Throw the ball in the force direction and speed
 	 * 
-	 * @param force
+	 * @param velocity
 	 *            contains the speed an angle of the ball
 	 */
 	public void throwBall(final Vector2f velocity) {
@@ -75,17 +75,11 @@ public class BallModel implements IModel {
 		isPickedUp = false;
 	}
 
-	/**
-	 * @see models.IModel#getGeometry()
-	 */
 	@Override
 	public Geometry getGeometry() {
 		return geometry;
 	}
 
-	/**
-	 * @see models.IModel#getBody()
-	 */
 	@Override
 	public Body getBody() {
 		return body;

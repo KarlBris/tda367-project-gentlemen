@@ -23,17 +23,11 @@ public class ShockwaveModel implements IModel {
 		geometry.setScale(new Vector2f(0.0f, 0.0f));
 	}
 
-	/**
-	 * @see models.IModel#getGeometry()
-	 */
 	@Override
 	public Geometry getGeometry() {
 		return geometry;
 	}
 
-	/**
-	 * @see models.IModel#getBody()
-	 */
 	@Override
 	public Body getBody() {
 		return null;

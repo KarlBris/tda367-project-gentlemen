@@ -52,17 +52,11 @@ public class FlagModel implements IModel {
 		return !isPickedUp;
 	}
 
-	/**
-	 * @see models.IModel#getGeometry()
-	 */
 	@Override
 	public Geometry getGeometry() {
 		return geometry;
 	}
 
-	/**
-	 * @see models.IModel#getBody()
-	 */
 	@Override
 	public Body getBody() {
 		return null;

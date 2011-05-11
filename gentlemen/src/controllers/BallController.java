@@ -64,44 +64,29 @@ public class BallController implements IController, IBodyCollisionCallback {
 		return model.getPosition();
 	}
 
-	/**
-	 * @see controllers.IController#getModel()
-	 */
 	@Override
 	public IModel getModel() {
 		return model;
 	}
 
-	/**
-	 * @see controllers.IController#setPosition(org.lwjgl.util.vector.Vector2f)
-	 */
 	@Override
 	public void setPosition(final Vector2f position) {
 		model.setPosition(position);
 
 	}
 
-	/**
-	 * @see controllers.IController#start()
-	 */
 	@Override
 	public void start() {
 		// Subscribe to collision events for the model's body
 		model.getBody().setCollisionCallback(this);
 	}
 
-	/**
-	 * @see controllers.IController#end()
-	 */
 	@Override
 	public void end() {
 		// TODO Auto-generated method stub
 
 	}
 
-	/**
-	 * @see controllers.IController#update()
-	 */
 	@Override
 	public void update() {
 
@@ -109,10 +94,6 @@ public class BallController implements IController, IBodyCollisionCallback {
 
 	}
 
-	/**
-	 * @see components.IBodyCollisionCallback#collisionOccured(core.Body,
-	 *      org.lwjgl.util.vector.Vector2f)
-	 */
 	@Override
 	public void collisionOccured(final Body otherBody,
 			final Vector2f collisionPoint) {

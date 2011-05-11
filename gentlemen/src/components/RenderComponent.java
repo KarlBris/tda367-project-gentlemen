@@ -20,8 +20,6 @@ public class RenderComponent implements IComponent {
 	/**
 	 * Initializes the viewport projection based upon the aspect ratio of the
 	 * display window
-	 * 
-	 * @see components.IComponent#initialize()
 	 */
 	@Override
 	public void initialize() {
@@ -57,9 +55,6 @@ public class RenderComponent implements IComponent {
 		GL11.glMatrixMode(GL11.GL_MODELVIEW);
 	}
 
-	/**
-	 * @see components.IComponent#cleanup()
-	 */
 	@Override
 	public void cleanup() {
 		// TODO Auto-generated method stub
@@ -67,8 +62,6 @@ public class RenderComponent implements IComponent {
 
 	/**
 	 * Commands each instantiated Entity to render itself
-	 * 
-	 * @see components.IComponent#update()
 	 */
 	@Override
 	public void update() {
@@ -88,17 +81,11 @@ public class RenderComponent implements IComponent {
 		}
 	}
 
-	/**
-	 * @see components.IComponent#controllerAdded(core.Entity)
-	 */
 	@Override
 	public void controllerAdded(final IController controller) {
 		// TODO Auto-generated method stub
 	}
 
-	/**
-	 * @see components.IComponent#controllerRemoved(core.Entity)
-	 */
 	@Override
 	public void controllerRemoved(final IController controller) {
 		// TODO Auto-generated method stub
