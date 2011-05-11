@@ -37,6 +37,27 @@ public class PropModel implements IModel {
 	}
 
 	/**
+	 * 
+	 * @param depth
+	 *            , the layer which it's drawn in
+	 * @param width
+	 *            , the width of the prop
+	 * @param height
+	 *            , the height of the prop
+	 * @param mass
+	 *            , the mass of the prop
+	 * @param color
+	 *            , the color of the prop
+	 */
+	public PropModel(final float depth, final float width, final float height,
+			final float mass, final Color color) {
+
+		geometry = new BoxGeometry(color, depth, width, height);
+
+		body = new Body(new BoxBodyShape(width, height), mass);
+	}
+
+	/**
 	 * @see models.IModel#getGeometry()
 	 */
 	@Override
@@ -99,6 +120,17 @@ public class PropModel implements IModel {
 	 */
 	public void update() {
 		geometry.moveTowards(body.getPosition(), body.getAngle());
+	}
+
+	/**
+	 * Give prop a new color
+	 * 
+	 * @param c
+	 *            , is the new color
+	 */
+	public void setColor(Color c) {
+		geometry.setColor(c);
+
 	}
 
 }
