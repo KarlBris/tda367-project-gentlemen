@@ -97,10 +97,13 @@ public class StateComponent implements IComponent {
 		teamTwo.setTeamName("Blue Team");
 		teamTwo.setHomePosition(Constants.TEAM_TWO_HOME_POSITION);
 
-		for (int i = 0; i < 30; i++) {
-			Manager.instantiate(new BallFactory(),
-					new Vector2f(Constants.VIEWPORT_WIDTH / 2,
-							Constants.VIEWPORT_HEIGHT / 2));
+		for (int i = 0; i < 140; i++) {
+			// Added a random number so the physics engine move the ball apart
+			Manager.instantiate(new BallFactory(), new Vector2f(
+					Constants.VIEWPORT_WIDTH / 2.0f + (float) Math.random()
+							/ 1000, Constants.VIEWPORT_HEIGHT / 2
+							+ (float) Math.random() / 100));
+
 		}
 
 		playerOne.setTeam(teamOne);
@@ -150,5 +153,4 @@ public class StateComponent implements IComponent {
 					2.0f + i));
 		}
 	}
-
 }

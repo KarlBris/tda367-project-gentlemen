@@ -6,18 +6,12 @@ import models.PropModel;
 import org.lwjgl.util.vector.Vector2f;
 
 import utilities.Color;
-import utilities.Constants;
 
-/**
- * This class controls a prop model
- */
-public class PulsatingPropController implements IController {
+public class PropController implements IController {
 
-	private float colorWheel = 0.0f;
-	private final float colorStep = Constants.TWO_PI / 300;
 	private final PropModel model;
 
-	public PulsatingPropController(final PropModel model) {
+	public PropController(final PropModel model) {
 		this.model = model;
 	}
 
@@ -29,17 +23,16 @@ public class PulsatingPropController implements IController {
 		// Update model
 		model.update();
 
-		// Update color
-		float tempColor = (float) Math.cos(colorWheel) / 2;
-		tempColor += 0.5f;
+	}
 
-		this.model.getGeometry().setColor(new Color(1.0f, 0.0f, tempColor));
-		colorWheel += colorStep;
-
-		if (colorWheel >= Constants.TWO_PI) {
-			colorWheel = 0.0f;
-		}
-
+	/**
+	 * Give prop a new color
+	 * 
+	 * @param c
+	 *            , is the new color
+	 */
+	public void setColor(Color c) {
+		model.setColor(c);
 	}
 
 	/**
