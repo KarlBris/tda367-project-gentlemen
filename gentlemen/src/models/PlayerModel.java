@@ -25,6 +25,8 @@ public class PlayerModel implements IModel {
 
 	private final Body body = new Body(new CircleBodyShape(0.5f), 2.0f, 3.0f);
 
+	private final Color playerColor;
+
 	private BallController ballController = null;
 
 	private FlagController flagController = null;
@@ -41,8 +43,8 @@ public class PlayerModel implements IModel {
 	 *            player will have
 	 */
 	public PlayerModel(final Color teamColor) {
+		playerColor = teamColor;
 		geometry = new CircleGeometry(teamColor, 1.0f, 0.5f, 5);
-
 	}
 
 	/**
@@ -235,12 +237,23 @@ public class PlayerModel implements IModel {
 		geometry.moveTowards(body.getPosition(), body.getAngle(),
 				Constants.GEOMETRY_TO_PHYSICS_INTERPOLATION, 0.1f);
 		if (isKnockedOut) {
+
 			// Add time counter
 			timeSinceKnockedOut += Constants.DELTA_TIME;
 
+			// Set the color of the player to a shade of gray
+			geometry.setColor(new Color((playerColor.getRed() + 0.5f) / 2,
+					(playerColor.getGreen() + 0.5f) / 2,
+					(playerColor.getBlue() + 0.5f) / 2,
+					(playerColor.getAlpha() + 0.5f) / 2));
+
 			if (timeSinceKnockedOut >= Constants.PLAYER_KNOCKED_OUT_TIME) {
+
 				// No longer knocked out
 				isKnockedOut = false;
+
+				// Reset the color of the player
+				geometry.setColor(playerColor);
 			}
 		}
 
@@ -325,7 +338,7 @@ public class PlayerModel implements IModel {
 	 * @param angle
 	 *            is the new visual angle
 	 */
-	public void setAngle(float angle) {
+	public void setAngle(final float angle) {
 		geometry.setAngle(angle);
 	}
 

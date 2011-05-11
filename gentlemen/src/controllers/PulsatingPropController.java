@@ -25,6 +25,19 @@ public class PulsatingPropController implements IController {
 
 	private final Color originColor;
 
+	/**
+	 * Creates a PulsatingPropController that pulses between two colors at a set
+	 * speed
+	 * 
+	 * @param model
+	 *            the PropModel this PulsatingPropController will control
+	 * @param colorOne
+	 *            the first color to pulse between
+	 * @param colorTwo
+	 *            the second color to pulse between
+	 * @param animationSteps
+	 *            the number of frames it takes to complete a pulse cycle
+	 */
 	public PulsatingPropController(final PropModel model, final Color colorOne,
 			final Color colorTwo, final int animationSteps) {
 		this.model = model;
