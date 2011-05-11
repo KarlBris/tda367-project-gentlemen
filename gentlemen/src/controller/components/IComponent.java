@@ -1,4 +1,4 @@
-package components;
+package controller.components;
 
 import controllers.IController;
 
@@ -11,11 +11,6 @@ public interface IComponent {
 	 * Allows the component to initialize itself at startup
 	 */
 	public void initialize();
-
-	/**
-	 * Allows the component to perform cleanup tasks before the game exits
-	 */
-	public void cleanup();
 
 	/**
 	 * Allows the component to perform update tasks every frame of the game loop

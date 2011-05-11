@@ -1,29 +1,25 @@
-package components;
+package view;
 
 import java.util.List;
 
+import model.IMainModel;
 import models.IModel;
 
 import org.lwjgl.opengl.GL11;
 
 import utilities.Constants;
 import utilities.Tools;
-import controllers.IController;
-import core.Manager;
 
-/**
- * This class is responsible for setting up the viewport projection and making
- * Entities render themselves
- */
-public class RenderComponent implements IComponent {
+public class View2D implements IView {
 
-	/**
-	 * Initializes the viewport projection based upon the aspect ratio of the
-	 * display window
-	 */
+	public IMainModel mainModel;
+
+	public View2D(IMainModel mainModel) {
+		this.mainModel = mainModel;
+	}
+
 	@Override
 	public void initialize() {
-
 		// The width and height of the viewport in game units
 		float width;
 		float height;
@@ -56,39 +52,21 @@ public class RenderComponent implements IComponent {
 	}
 
 	@Override
-	public void cleanup() {
-		// TODO Auto-generated method stub
-	}
-
-	/**
-	 * Commands each instantiated Entity to render itself
-	 */
-	@Override
-	public void update() {
-
-		final List<IModel> models = Manager.getModels();
-
+	public void render() {
 		GL11.glGetError();
 
 		// Clear the color buffer and depth buffer
 		GL11.glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
 		GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
 
-		// Let each entity render itself
+		// Render all models
+		final List<IModel> models = mainModel.getModels();
+
 		for (final IModel m : models) {
 
+			// TODO: Implement a better/more flexible solution
 			m.getGeometry().render();
 		}
-	}
-
-	@Override
-	public void controllerAdded(final IController controller) {
-		// TODO Auto-generated method stub
-	}
-
-	@Override
-	public void controllerRemoved(final IController controller) {
-		// TODO Auto-generated method stub
 	}
 
 }

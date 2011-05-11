@@ -1,4 +1,4 @@
-package components;
+package controller.components;
 
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.World;
@@ -17,10 +17,6 @@ public class PhysicsComponent implements IComponent {
 	public void initialize() {
 		// Attach the contact listener to the world
 		world.setContactListener(listener);
-	}
-
-	@Override
-	public void cleanup() {
 	}
 
 	@Override

@@ -1,4 +1,4 @@
-package components;
+package controller.components;
 
 import org.lwjgl.input.Mouse;
 import org.lwjgl.util.vector.Vector2f;
@@ -22,12 +22,6 @@ public class MouseComponent implements IComponent {
 
 	@Override
 	public void initialize() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void cleanup() {
 		// TODO Auto-generated method stub
 
 	}

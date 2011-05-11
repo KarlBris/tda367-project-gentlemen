@@ -1,4 +1,4 @@
-package components;
+package controller.components;
 
 import org.jbox2d.callbacks.ContactImpulse;
 import org.jbox2d.callbacks.ContactListener;
