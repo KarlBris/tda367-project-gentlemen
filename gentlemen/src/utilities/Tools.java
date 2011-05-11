@@ -234,4 +234,56 @@ public class Tools {
 				(int) (position.x / Constants.VIEWPORT_WIDTH * getScreenWidth()),
 				(int) (position.y / Constants.VIEWPORT_HEIGHT * getScreenHeight()));
 	}
+
+	/**
+	 * Returns a random Vector2f in the given area
+	 * 
+	 * @param start
+	 *            the starting point of the area
+	 * @param size
+	 *            the size of the area
+	 * @return the randomized vector
+	 */
+	public static Vector2f randomVectorInArea(Vector2f start, Vector2f size) {
+		float posX = (float) Math.random() * (size.x) + start.x;
+		float posY = (float) Math.random() * (size.y) + start.y;
+
+		return new Vector2f(posX, posY);
+	}
+
+	/**
+	 * Returns a random Vector2f, in the given area, which is far away enough
+	 * from provided restriction vectors
+	 * 
+	 * @param start
+	 *            the starting point of the area
+	 * @param size
+	 *            the size of the area
+	 * @param restrictions
+	 *            the restriction vectors
+	 * @return the randomized vector
+	 */
+	public static Vector2f randomVectorInArea(Vector2f start, Vector2f size,
+			Vector2f[] restrictions) {
+		float posX, posY;
+		Vector2f newVector = new Vector2f(0.0f, 0.0f);
+		boolean tooClose = true;
+
+		while (tooClose == true) {
+			posX = (float) Math.random() * (size.x) + start.x;
+			posY = (float) Math.random() * (size.y) + start.y;
+			newVector.set(posX, posY);
+
+			for (Vector2f restriction : restrictions) {
+				if (distanceBetween(newVector, restriction) < 4) {
+					tooClose = true;
+					break;
+				} else {
+					tooClose = false;
+				}
+			}
+
+		}
+		return newVector;
+	}
 }

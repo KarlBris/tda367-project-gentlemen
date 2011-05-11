@@ -3,6 +3,7 @@ package components;
 import org.lwjgl.util.vector.Vector2f;
 
 import utilities.Constants;
+import utilities.Tools;
 import controllers.FlagController;
 import controllers.IController;
 import controllers.PlayerController;
@@ -11,6 +12,7 @@ import controllers.ScoreboardController;
 import controllers.TeamController;
 import core.Manager;
 import factories.BallFactory;
+import factories.BuildingPropFactory;
 import factories.CratePropFactory;
 import factories.FlagFactory;
 import factories.HorizontalWallPropFactory;
@@ -133,9 +135,29 @@ public class StateComponent implements IComponent {
 				Constants.VIEWPORT_WIDTH, Constants.VIEWPORT_HEIGHT / 2));
 
 		// Crates
-		for (int i = 0; i < 3; i++) {
-			Manager.instantiate(new CratePropFactory(), new Vector2f(2.0f,
-					2.0f + i));
+		for (int i = 0; i < 30; i++) {
+
+			Vector2f[] restrictions = { Constants.TEAM_ONE_HOME_POSITION,
+					Constants.TEAM_TWO_HOME_POSITION };
+
+			Manager.instantiate(new CratePropFactory(), Tools
+					.randomVectorInArea(new Vector2f(0, 0),
+							new Vector2f(Constants.VIEWPORT_WIDTH,
+									Constants.VIEWPORT_HEIGHT), restrictions));
+
+		}
+
+		// Buildings
+		for (int i = 0; i < 10; i++) {
+
+			Vector2f[] restrictions = { Constants.TEAM_ONE_HOME_POSITION,
+					Constants.TEAM_TWO_HOME_POSITION };
+
+			Manager.instantiate(new BuildingPropFactory(), Tools
+					.randomVectorInArea(new Vector2f(0, 0),
+							new Vector2f(Constants.VIEWPORT_WIDTH,
+									Constants.VIEWPORT_HEIGHT), restrictions));
+
 		}
 	}
 }
