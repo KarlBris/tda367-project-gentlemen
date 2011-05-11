@@ -4,13 +4,13 @@ import models.IModel;
 import models.PropModel;
 import utilities.Constants;
 import controllers.IController;
-import controllers.PropController;
+import controllers.PulsatingPropController;
 
 public class VerticalWallPropFactory implements IEntityFactory {
 
 	private final PropModel model = new PropModel(1.0f, 1.0f,
 			Constants.VIEWPORT_HEIGHT, 0.0f);
-	private final PropController controller = new PropController(model);
+	private final PulsatingPropController controller = new PulsatingPropController(model);
 
 	@Override
 	public IModel getModel() {

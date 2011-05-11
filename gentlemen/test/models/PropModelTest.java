@@ -12,21 +12,21 @@ import org.lwjgl.util.vector.Vector2f;
 
 import utilities.Constants;
 import utilities.Tools;
-import controllers.PropController;
+import controllers.PulsatingPropController;
 import core.Manager;
 import factories.PropFactory;
 
 public class PropModelTest {
 	private final float epsilon = 0.01f;
 	private PropModel model;
-	private PropController controller;
+	private PulsatingPropController controller;
 
 	/**
 	 * @throws java.lang.Exception
 	 */
 	@Before
 	public void setUp() throws Exception {
-		controller = (PropController) Manager.instantiate(new PropFactory());
+		controller = (PulsatingPropController) Manager.instantiate(new PropFactory());
 		model = (PropModel) controller.getModel();
 
 	}

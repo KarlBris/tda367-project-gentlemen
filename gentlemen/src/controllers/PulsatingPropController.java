@@ -11,11 +11,11 @@ import utilities.Constants;
 /**
  * This class controls a prop model
  */
-public class PropController implements IController {
+public class PulsatingPropController implements IController {
 
 	private final PropModel model;
 
-	public PropController(final PropModel model) {
+	public PulsatingPropController(final PropModel model) {
 		this.model = model;
 	}
 
