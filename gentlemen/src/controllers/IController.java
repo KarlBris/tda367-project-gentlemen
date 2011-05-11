@@ -36,16 +36,4 @@ public interface IController {
 	 * Allows the controller to perform update tasks; called once a frame
 	 */
 	public void update();
-
-	/**
-	 * Allows the controller to send data over the network for synchronization
-	 * purposes
-	 */
-	public Object[] networkDataSend();
-
-	/**
-	 * Allows the controller to handle data sent over the network for
-	 * synchronization purposes
-	 */
-	public void networkDataReceive(Object[] data);
 }
