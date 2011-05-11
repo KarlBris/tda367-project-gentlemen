@@ -3,12 +3,12 @@ package factories;
 import models.IModel;
 import models.PropModel;
 import controllers.IController;
-import controllers.PropController;
+import controllers.PulsatingPropController;
 
 public class PropFactory implements IEntityFactory {
 
 	private PropModel model = new PropModel(0.0f, 1.0f, 1.0f, 1.0f);
-	private PropController controller = new PropController(model);
+	private PulsatingPropController controller = new PulsatingPropController(model);
 
 	@Override
 	public IModel getModel() {
