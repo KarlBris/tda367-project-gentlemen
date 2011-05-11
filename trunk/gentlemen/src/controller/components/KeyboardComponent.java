@@ -1,4 +1,4 @@
-package components;
+package controller.components;
 
 import org.lwjgl.input.Keyboard;
 
@@ -59,12 +59,6 @@ public class KeyboardComponent implements IComponent {
 
 	@Override
 	public void initialize() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void cleanup() {
 		// TODO Auto-generated method stub
 
 	}

@@ -7,7 +7,7 @@ import org.lwjgl.util.vector.Vector2f;
 
 import utilities.Constants;
 
-import components.IBodyCollisionCallback;
+import controller.components.IBodyCollisionCallback;
 
 import core.Body;
 import core.Manager;

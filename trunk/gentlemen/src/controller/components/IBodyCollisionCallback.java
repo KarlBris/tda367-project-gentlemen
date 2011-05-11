@@ -1,4 +1,4 @@
-package components;
+package controller.components;
 
 import org.lwjgl.util.vector.Vector2f;
 

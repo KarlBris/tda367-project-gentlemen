@@ -2,7 +2,8 @@ package core;
 
 import java.util.List;
 
-import models.IModel;
+import model.IMainModel;
+import model.MainModel;
 
 import org.lwjgl.LWJGLException;
 import org.lwjgl.opengl.Display;
@@ -10,48 +11,38 @@ import org.lwjgl.opengl.DisplayMode;
 import org.lwjgl.util.vector.Vector2f;
 
 import utilities.Constants;
+import view.IView;
+import view.View2D;
 
-import components.IComponent;
-import components.KeyboardComponent;
-import components.MouseComponent;
-import components.PhysicsComponent;
-import components.RenderComponent;
-import components.StateComponent;
-import components.UpdateComponent;
 
+import controller.IMainController;
+import controller.MainController;
+import controller.components.KeyboardComponent;
+import controller.components.MouseComponent;
 import controllers.IController;
 import factories.IEntityFactory;
 
 public class Manager {
 
-	// Models and Controllers
-	private static TypeMap<IModel> modelManager = new TypeMap<IModel>();
-	private static TypeMap<IController> controllerManager = new TypeMap<IController>();
+	private static IMainModel mainModel = new MainModel();
 
-	// Components
-	private static PhysicsComponent physics = new PhysicsComponent();
-	private static StateComponent state = new StateComponent();
-	private static UpdateComponent update = new UpdateComponent();
-	private static RenderComponent render = new RenderComponent();
-	private static KeyboardComponent keyboard = new KeyboardComponent();
-	private static MouseComponent mouse = new MouseComponent();
+	private static IMainController mainController = new MainController(
+			mainModel);
 
-	// All components in a easy to use format
-	private static IComponent[] components = { physics, state, update, render,
-			keyboard, mouse };
+	private static IView view = new View2D(mainModel);
 
 	/**
 	 * @return gets the keyboard component
 	 */
 	public static KeyboardComponent getKeyboard() {
-		return keyboard;
+		return mainController.getKeyboardComponent();
 	}
 
 	/**
 	 * @return gets the mouse component
 	 */
 	public static MouseComponent getMouse() {
-		return mouse;
+		return mainController.getMouseComponent();
 	}
 
 	/**
@@ -81,24 +72,11 @@ public class Manager {
 	public static IController instantiate(final IEntityFactory factory,
 			final Vector2f position) {
 		if (factory != null) {
+
 			// Get the new model and controller
-			final IModel newModel = factory.getModel();
 			final IController newController = factory.getController();
 
-			// Add model and controller to managers
-			modelManager.add(newModel);
-			controllerManager.add(newController);
-
-			// Let all components know that the new controller has been created
-			for (final IComponent component : components) {
-				component.controllerAdded(newController);
-			}
-
-			// Set position
-			newController.setPosition(position);
-
-			// Let the controller know that it has been created
-			newController.start();
+			mainController.add(newController, position);
 
 			return newController;
 		}
@@ -115,18 +93,7 @@ public class Manager {
 	 */
 	public static void remove(final IController controller) {
 		if (controller != null) {
-
-			// Let the controller know that it is being removed
-			controller.end();
-
-			// Let all components know that the controller is being removed
-			for (final IComponent component : components) {
-				component.controllerRemoved(controller);
-			}
-
-			// Remove the model and the controller from the managers
-			modelManager.remove(controller.getModel());
-			controllerManager.remove(controller);
+			mainController.remove(controller);
 		}
 	}
 
@@ -134,7 +101,7 @@ public class Manager {
 	 * Removes all models and controllers from the game world
 	 */
 	public static void removeAll() {
-		final List<IController> controllers = controllerManager.getItems();
+		final List<IController> controllers = mainController.getControllers();
 
 		for (final IController controller : controllers) {
 			remove(controller);
@@ -150,23 +117,8 @@ public class Manager {
 	 *            the sought after type class
 	 * @return a list of controllers of type T
 	 */
-	public static <T extends IController> List<T> find(
-			final Class<T> controllerType) {
-		return controllerManager.find(controllerType);
-	}
-
-	/**
-	 * @return a list of all IModel instances
-	 */
-	public static List<IModel> getModels() {
-		return modelManager.getItems();
-	}
-
-	/**
-	 * @return a list of all IController instances
-	 */
-	public static List<IController> getControllers() {
-		return controllerManager.getItems();
+	public static <T extends IController> List<T> find(final Class<T> type) {
+		return mainController.find(type);
 	}
 
 	/**
@@ -211,38 +163,6 @@ public class Manager {
 	}
 
 	/**
-	 * Initializes all components
-	 */
-	private static void initializeComponents() {
-
-		for (final IComponent component : components) {
-			component.initialize();
-		}
-	}
-
-	/**
-	 * Cleans up all the components
-	 */
-	private static void cleanupComponents() {
-
-		for (final IComponent component : components) {
-			component.cleanup();
-		}
-	}
-
-	/**
-	 * Updates all the components
-	 */
-	private static void updateComponents() {
-
-		for (final IComponent component : components) {
-			// component.instantiatePermanentEntities();
-
-			component.update();
-		}
-	}
-
-	/**
 	 * Initializes the game and starts the game loop
 	 */
 	public static void start() {
@@ -251,19 +171,19 @@ public class Manager {
 			return;
 		}
 
-		initializeComponents();
+		mainController.initialize();
 
-		state.initializeEntities();
+		view.initialize();
 
 		while (!Display.isCloseRequested()) {
 
-			updateComponents();
+			mainController.update();
+
+			view.render();
 
 			updateDisplay();
 		}
 
-		cleanupComponents();
 		cleanupDisplay();
-
 	}
 }
