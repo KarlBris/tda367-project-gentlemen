@@ -2,6 +2,7 @@ package factories;
 
 import models.IModel;
 import models.PropModel;
+import utilities.Color;
 import utilities.Constants;
 import controllers.IController;
 import controllers.PulsatingPropController;
@@ -10,7 +11,8 @@ public class VerticalWallPropFactory implements IEntityFactory {
 
 	private final PropModel model = new PropModel(1.0f, 1.0f,
 			Constants.VIEWPORT_HEIGHT, 0.0f);
-	private final PulsatingPropController controller = new PulsatingPropController(model);
+	private final PulsatingPropController controller = new PulsatingPropController(
+			model, Color.RED, Color.MAGENTA, 300);
 
 	@Override
 	public IModel getModel() {

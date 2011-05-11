@@ -13,12 +13,31 @@ import utilities.Constants;
  */
 public class PulsatingPropController implements IController {
 
-	private float colorWheel = 0.0f;
-	private final float colorStep = Constants.TWO_PI / 300;
 	private final PropModel model;
 
-	public PulsatingPropController(final PropModel model) {
+	private float colorWheel = 0.0f;
+	private final float colorStep;
+
+	private final float redDelta;
+	private final float greenDelta;
+	private final float blueDelta;
+	private final float alphaDelta;
+
+	private final Color originColor;
+
+	public PulsatingPropController(final PropModel model, final Color colorOne,
+			final Color colorTwo, final int animationSteps) {
 		this.model = model;
+
+		this.originColor = colorTwo;
+
+		colorStep = Constants.TWO_PI / animationSteps;
+
+		redDelta = colorOne.getRed() - colorTwo.getRed();
+		greenDelta = colorOne.getGreen() - colorTwo.getGreen();
+		blueDelta = colorOne.getBlue() - colorTwo.getBlue();
+		alphaDelta = colorOne.getAlpha() - colorTwo.getAlpha();
+
 	}
 
 	/**
@@ -30,10 +49,15 @@ public class PulsatingPropController implements IController {
 		model.update();
 
 		// Update color
-		float tempColor = (float) Math.cos(colorWheel) / 2;
-		tempColor += 0.5f;
+		final float phase = (((float) Math.cos(colorWheel)) / 2) + 0.5f;
 
-		this.model.getGeometry().setColor(new Color(1.0f, 0.0f, tempColor));
+		final float tempRed = (phase * redDelta) + originColor.getRed();
+		final float tempGreen = (phase * greenDelta) + originColor.getGreen();
+		final float tempBlue = (phase * blueDelta) + originColor.getBlue();
+		final float tempAlpha = (phase * alphaDelta) + originColor.getAlpha();
+
+		this.model.getGeometry().setColor(
+				new Color(tempRed, tempGreen, tempBlue, tempAlpha));
 		colorWheel += colorStep;
 
 		if (colorWheel >= Constants.TWO_PI) {
