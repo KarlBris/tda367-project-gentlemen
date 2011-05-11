@@ -17,25 +17,16 @@ public class FlagController implements IController {
 		this.model = model;
 	}
 
-	/**
-	 * @see controllers.IController#getModel()
-	 */
 	@Override
 	public IModel getModel() {
 		return model;
 	}
 
-	/**
-	 * @see controllers.IController#update()
-	 */
 	@Override
 	public void update() {
 
 	}
 
-	/**
-	 * @see controllers.IController#setPosition(org.lwjgl.util.vector.Vector2f)
-	 */
 	@Override
 	public void setPosition(final Vector2f position) {
 		model.setPosition(position);
@@ -48,18 +39,12 @@ public class FlagController implements IController {
 		return model.getPosition();
 	}
 
-	/**
-	 * @see controllers.IController#start()
-	 */
 	@Override
 	public void start() {
 		// TODO Auto-generated method stub
 
 	}
 
-	/**
-	 * @see controllers.IController#end()
-	 */
 	@Override
 	public void end() {
 		// TODO Auto-generated method stub
@@ -138,7 +123,6 @@ public class FlagController implements IController {
 	}
 
 	/**
-	 * 
 	 * @return the color of the flag
 	 */
 	public Color getColor() {

@@ -40,7 +40,7 @@ public class BallModelTest {
 	public void testIsLethal() {
 
 		// Test if standing still is above lethal speed
-		Vector2f relativeVelocity = new Vector2f(0.0f, 0.0f);
+		final Vector2f relativeVelocity = new Vector2f(0.0f, 0.0f);
 		assertTrue(!model.isLethal(relativeVelocity));
 
 		// Test if moving faster than lethal speed is above lethal speed
@@ -57,7 +57,7 @@ public class BallModelTest {
 	 */
 	@Test
 	public void testIsPickUpAble() {
-		Vector2f playerVelocity = new Vector2f(0.0f, 0.0f);
+		final Vector2f playerVelocity = new Vector2f(0.0f, 0.0f);
 
 		// Test if the ball is possible to pick up when both player and ball are
 		// still
@@ -88,7 +88,7 @@ public class BallModelTest {
 	 */
 	@Test
 	public void testPosition() {
-		Vector2f refPosition = new Vector2f(0.0f, 0.0f);
+		final Vector2f refPosition = new Vector2f(0.0f, 0.0f);
 
 		// Test if setting the ball's position from a vector and subsequently
 		// reading it returns the same value as the vector itself
@@ -103,13 +103,14 @@ public class BallModelTest {
 	}
 
 	/**
-	 * Test method for {@link models.BallModel#ThrowBall(Vector2f)}.
+	 * Test method for {@link models.BallModel#throwBall(Vector2f)}.
 	 */
 	@Test
 	public void testThrowBall() {
 
-		Vector2f zeroVelocity = new Vector2f(0.0f, 0.0f);
-		Vector2f throwVelocity = new Vector2f(Constants.BALL_LETHAL_SPEED + 1,
+		final Vector2f zeroVelocity = new Vector2f(0.0f, 0.0f);
+		final Vector2f throwVelocity = new Vector2f(
+				Constants.BALL_LETHAL_SPEED + 1,
 				Constants.BALL_LETHAL_SPEED + 1);
 
 		model.pickUp();

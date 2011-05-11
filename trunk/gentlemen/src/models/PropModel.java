@@ -57,18 +57,12 @@ public class PropModel implements IModel {
 		body = new Body(new BoxBodyShape(width, height), mass);
 	}
 
-	/**
-	 * @see models.IModel#getGeometry()
-	 */
 	@Override
 	public Geometry getGeometry() {
 
 		return geometry;
 	}
 
-	/**
-	 * @see models.IModel#getBody()
-	 */
 	@Override
 	public Body getBody() {
 
@@ -128,7 +122,7 @@ public class PropModel implements IModel {
 	 * @param c
 	 *            , is the new color
 	 */
-	public void setColor(Color c) {
+	public void setColor(final Color c) {
 		geometry.setColor(c);
 
 	}

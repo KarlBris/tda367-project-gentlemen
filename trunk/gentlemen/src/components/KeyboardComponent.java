@@ -57,18 +57,12 @@ public class KeyboardComponent implements IComponent {
 		}
 	}
 
-	/**
-	 * @see components.IComponent#initialize()
-	 */
 	@Override
 	public void initialize() {
 		// TODO Auto-generated method stub
 
 	}
 
-	/**
-	 * @see components.IComponent#cleanup()
-	 */
 	@Override
 	public void cleanup() {
 		// TODO Auto-generated method stub
@@ -78,8 +72,6 @@ public class KeyboardComponent implements IComponent {
 	/**
 	 * Updates the current and last keyboard states in order for the getKey()
 	 * and getKeyDown() logic to function correctly
-	 * 
-	 * @see components.IComponent#update()
 	 */
 	@Override
 	public void update() {
@@ -97,18 +89,12 @@ public class KeyboardComponent implements IComponent {
 
 	}
 
-	/**
-	 * @see components.IComponent#controllerAdded(core.Entity)
-	 */
 	@Override
 	public void controllerAdded(final IController controller) {
 		// TODO Auto-generated method stub
 
 	}
 
-	/**
-	 * @see components.IComponent#controllerRemoved(core.Entity)
-	 */
 	@Override
 	public void controllerRemoved(final IController controller) {
 		// TODO Auto-generated method stub

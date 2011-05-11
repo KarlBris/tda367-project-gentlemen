@@ -15,9 +15,6 @@ public class PropController implements IController {
 		this.model = model;
 	}
 
-	/**
-	 * @see controllers.IController#update()
-	 */
 	@Override
 	public void update() {
 		// Update model
@@ -31,13 +28,10 @@ public class PropController implements IController {
 	 * @param c
 	 *            , is the new color
 	 */
-	public void setColor(Color c) {
+	public void setColor(final Color c) {
 		model.setColor(c);
 	}
 
-	/**
-	 * @see controllers.IController#setPosition(org.lwjgl.util.vector.Vector2f)
-	 */
 	@Override
 	public void setPosition(final Vector2f position) {
 		model.setPosition(position);
@@ -53,25 +47,16 @@ public class PropController implements IController {
 		model.setAngle(angle);
 	}
 
-	/**
-	 * @see controllers.IController#getModel()
-	 */
 	@Override
 	public IModel getModel() {
 		return model;
 	}
 
-	/**
-	 * @see controllers.IController#start()
-	 */
 	@Override
 	public void start() {
 
 	}
 
-	/**
-	 * @see controllers.IController#end()
-	 */
 	@Override
 	public void end() {
 		// TODO Auto-generated method stub

@@ -48,17 +48,11 @@ public class ScoreboardModel implements IModel {
 		return teamList;
 	}
 
-	/**
-	 * @see models.IModel#getGeometry()
-	 */
 	@Override
 	public Geometry getGeometry() {
 		return geometry;
 	}
 
-	/**
-	 * @see models.IModel#getBody()
-	 */
 	@Override
 	public Body getBody() {
 		// TODO Auto-generated method stub

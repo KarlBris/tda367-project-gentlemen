@@ -22,7 +22,7 @@ public class Body {
 	private float damping = Constants.BODY_DEFAULT_DAMPING;
 	private float angularDamping = Constants.BODY_DEFAULT_ANGULAR_DAMPING;
 
-	private IBodyShape shape;
+	private final IBodyShape shape;
 	private IBodyCollisionCallback collisionCallback;
 
 	// References
@@ -31,10 +31,9 @@ public class Body {
 	/**
 	 * Initializes a static/dynamic body
 	 * 
-	 * @param width
-	 *            the width of the body
-	 * @param height
-	 *            the height of the body
+	 * @param shape
+	 *            the body shape of the body
+	 * 
 	 * @param mass
 	 *            the mass of the body; if 0 the body will be static, otherwise
 	 *            dynamic
@@ -57,7 +56,7 @@ public class Body {
 	 *            the world
 	 */
 	public void addToWorld(final World world) {
-		BodyDef bodyDef = new BodyDef();
+		final BodyDef bodyDef = new BodyDef();
 
 		if (mass == 0.0f) {
 			bodyDef.type = BodyType.STATIC;
@@ -125,7 +124,7 @@ public class Body {
 
 		// Update rigidbody
 		if (rigidbody != null && rigidbody.getType() == BodyType.DYNAMIC) {
-			MassData data = new MassData();
+			final MassData data = new MassData();
 
 			rigidbody.getMassData(data);
 			data.mass = this.mass;
@@ -228,7 +227,8 @@ public class Body {
 
 	public Vector2f getAcceleration() {
 		if (rigidbody != null) {
-			Vector2f acceleration = Tools.toNormalVector(rigidbody.m_force);
+			final Vector2f acceleration = Tools
+					.toNormalVector(rigidbody.m_force);
 
 			acceleration.scale(1.0f / getMass());
 
@@ -254,7 +254,7 @@ public class Body {
 	 */
 	public Vector2f getVelocityAtPoint(final Vector2f point) {
 		if (rigidbody != null) {
-			Vec2 velocityAtPoint = new Vec2(0.0f, 0.0f);
+			final Vec2 velocityAtPoint = new Vec2(0.0f, 0.0f);
 
 			rigidbody.getLinearVelocityFromWorldPointToOut(
 					Tools.toPhysicsVector(point), velocityAtPoint);
@@ -316,7 +316,7 @@ public class Body {
 	 */
 	public void applyVelocityChange(final Vector2f velocity) {
 		if (rigidbody != null) {
-			Vec2 impulse = Tools.toPhysicsVector(velocity);
+			final Vec2 impulse = Tools.toPhysicsVector(velocity);
 
 			impulse.mul(mass);
 

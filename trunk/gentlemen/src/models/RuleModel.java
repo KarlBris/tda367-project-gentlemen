@@ -40,9 +40,6 @@ public class RuleModel implements IModel {
 		return scoreLimit;
 	}
 
-	/**
-	 * @see models.IModel#getGeometry()
-	 */
 	@Override
 	public Geometry getGeometry() {
 		return geometry;

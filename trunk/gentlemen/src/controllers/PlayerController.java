@@ -141,17 +141,11 @@ public class PlayerController implements IController, IBodyCollisionCallback {
 		return model.dropFlag();
 	}
 
-	/**
-	 * @see controllers.IController#getModel()
-	 */
 	@Override
 	public IModel getModel() {
 		return model;
 	}
 
-	/**
-	 * @see controllers.IController#start()
-	 */
 	@Override
 	public void start() {
 		// Subscribe to collision events for the model's body
@@ -162,9 +156,6 @@ public class PlayerController implements IController, IBodyCollisionCallback {
 				new KeyboardReticleFactory()).getModel();
 	}
 
-	/**
-	 * @see controllers.IController#end()
-	 */
 	@Override
 	public void end() {
 	}
@@ -238,19 +229,12 @@ public class PlayerController implements IController, IBodyCollisionCallback {
 		model.getBallController().setPosition(newBallPosition);
 	}
 
-	/**
-	 * @see controllers.IController#setPosition(org.lwjgl.util.vector.Vector2f)
-	 */
 	@Override
 	public void setPosition(final Vector2f position) {
 		model.setPosition(position);
 
 	}
 
-	/**
-	 * @see components.IBodyCollisionCallback#collisionOccured(core.Body,
-	 *      org.lwjgl.util.vector.Vector2f)
-	 */
 	@Override
 	public void collisionOccured(final Body otherBody,
 			final Vector2f collisionPoint) {

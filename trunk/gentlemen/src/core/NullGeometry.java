@@ -5,9 +5,6 @@ package core;
  */
 public class NullGeometry extends Geometry {
 
-	/**
-	 * @see core.Geometry#render()
-	 */
 	@Override
 	public void render() {
 

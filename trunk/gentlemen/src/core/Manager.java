@@ -146,7 +146,7 @@ public class Manager {
 	 * 
 	 * @param <T>
 	 *            the sought after sub-type to IController
-	 * @param type
+	 * @param controllerType
 	 *            the sought after type class
 	 * @return a list of controllers of type T
 	 */
