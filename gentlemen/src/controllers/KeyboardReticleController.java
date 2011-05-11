@@ -75,7 +75,14 @@ public class KeyboardReticleController implements IController {
 	@Override
 	public void setPosition(final Vector2f position) {
 		model.setPosition(position);
+	}
 
+	/**
+	 * 
+	 * @return the position of the reticle
+	 */
+	public Vector2f getPosition() {
+		return model.getPosition();
 	}
 
 }
