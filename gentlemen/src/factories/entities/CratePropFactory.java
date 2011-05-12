@@ -9,7 +9,7 @@ import controller.entities.PropController;
 public class CratePropFactory implements IEntityFactory {
 
 	private final PropModel model = new PropModel(1.0f, 0.5f, 0.5f, 5.0f,
-			Color.IT);
+			Color.BROWN);
 	private final PropController controller = new PropController(model);
 
 	@Override
