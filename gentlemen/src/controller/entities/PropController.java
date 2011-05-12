@@ -32,6 +32,13 @@ public class PropController implements IController {
 		model.setColor(c);
 	}
 
+	/**
+	 * @return the color of the prop
+	 */
+	public Color getColor() {
+		return model.getColor();
+	}
+
 	@Override
 	public void setPosition(final Vector2f position) {
 		model.setPosition(position);

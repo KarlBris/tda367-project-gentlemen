@@ -106,4 +106,20 @@ public class PulsatingPropController implements IController {
 
 	}
 
+	/**
+	 * 
+	 * @return the position of the prop
+	 */
+	public Vector2f getPosition() {
+		return model.getPosition();
+	}
+
+	/**
+	 * 
+	 * @return angle of the prop
+	 */
+	public float getAngle() {
+		return model.getAngle();
+	}
+
 }

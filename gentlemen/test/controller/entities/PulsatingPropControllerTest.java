@@ -11,16 +11,17 @@ import org.lwjgl.util.vector.Vector2f;
 import utilities.Color;
 import utilities.Tools;
 import core.Manager;
-import factories.entities.PropFactory;
+import factories.entities.VerticalWallPropFactory;
 
-public class PropControllerTest {
+public class PulsatingPropControllerTest {
 	private PropModel pm;
-	private PropController pc;
+	private PulsatingPropController pc;
 	private final float precision = 0.001f;
 
 	@Before
 	public void setUp() throws Exception {
-		pc = (PropController) Manager.instantiate(new PropFactory());
+		pc = (PulsatingPropController) Manager
+				.instantiate(new VerticalWallPropFactory());
 		pm = (PropModel) pc.getModel();
 	}
 
@@ -33,18 +34,9 @@ public class PropControllerTest {
 	public void testPropControllerAndGetModel() {
 		// Set up new PropController
 		pm = new PropModel(10.0f, 0.0f, 0.0f, 10.0f);
-		pc = new PropController(pm);
+		pc = new PulsatingPropController(pm, Color.BLACK, Color.BLUE, 4);
 		// Test the model is the correct one
 		assertTrue(pc.getModel() == pm);
-	}
-
-	@Test
-	public void testSetColorAndGetColor() {
-		pc.setColor(Color.BLACK);
-		assertTrue(pc.getColor() == Color.BLACK);
-
-		pc.setColor(Color.BLUE);
-		assertTrue(pc.getColor() == Color.BLUE);
 	}
 
 	@Test
