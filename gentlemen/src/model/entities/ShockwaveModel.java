@@ -6,9 +6,9 @@ import utilities.Color;
 import utilities.Constants;
 import utilities.Tools;
 import core.body.Body;
-import core.geometry.CircleGeometry;
 import core.geometry.AbstractGeometry;
 import core.geometry.IGeometry;
+import core.geometry.twodimensions.CircleGeometry;
 
 /**
  * Represents a shockwave in the game

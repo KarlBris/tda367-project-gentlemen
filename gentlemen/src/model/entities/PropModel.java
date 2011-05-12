@@ -5,9 +5,9 @@ import org.lwjgl.util.vector.Vector2f;
 import utilities.Color;
 import core.body.Body;
 import core.body.RectangleBodyShape;
-import core.geometry.RectangleGeometry;
 import core.geometry.AbstractGeometry;
 import core.geometry.IGeometry;
+import core.geometry.twodimensions.RectangleGeometry;
 
 /**
  * Represent inanimate within the game world.

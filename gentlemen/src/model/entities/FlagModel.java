@@ -6,9 +6,9 @@ import utilities.Color;
 import utilities.Tools;
 import controller.entities.TeamController;
 import core.body.Body;
-import core.geometry.CircleGeometry;
 import core.geometry.AbstractGeometry;
 import core.geometry.IGeometry;
+import core.geometry.twodimensions.CircleGeometry;
 
 /**
  * Represents a flag which players can interact with
