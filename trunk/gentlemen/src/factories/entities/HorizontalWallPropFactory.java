@@ -10,7 +10,7 @@ import controller.entities.PulsatingPropController;
 public class HorizontalWallPropFactory implements IEntityFactory {
 
 	private final PropModel model = new PropModel(0.2f,
-			Constants.VIEWPORT_WIDTH, 1.0f, 0.0f);
+			Constants.VIEWPORT_WIDTH, 0.5f, 0.0f);
 	private final PulsatingPropController controller = new PulsatingPropController(
 			model, Color.RED, Color.MAGENTA, 300);
 

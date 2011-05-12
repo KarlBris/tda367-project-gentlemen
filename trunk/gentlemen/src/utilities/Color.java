@@ -15,6 +15,7 @@ public class Color {
 	public static final Color YELLOW = new Color(1.0f, 1.0f, 0.0f);
 	public static final Color CYAN = new Color(0.0f, 1.0f, 1.0f);
 	public static final Color MAGENTA = new Color(1.0f, 0.0f, 1.0f);
+	public static final Color BROWN = new Color(0.6f, 0.4f, 0.2f);
 	public static final Color IT = new Color(0.04f, 0.8f, 0.85f);
 
 	private final float red;
