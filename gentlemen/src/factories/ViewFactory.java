@@ -2,7 +2,7 @@ package factories;
 
 import model.IMainModel;
 import view.IView;
-import view.View2D;
+import view.twodimensions.View2D;
 
 public class ViewFactory {
 
