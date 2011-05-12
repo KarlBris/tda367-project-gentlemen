@@ -5,7 +5,7 @@ import org.lwjgl.util.vector.Vector2f;
 import core.body.Body;
 import core.geometry.AbstractGeometry;
 import core.geometry.IGeometry;
-import core.geometry.ReticleGeometry;
+import core.geometry.twodimensions.ReticleGeometry;
 
 /**
  * Represents a reticle in the game

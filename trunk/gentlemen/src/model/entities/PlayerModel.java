@@ -13,9 +13,9 @@ import controller.entities.TeamController;
 import core.Manager;
 import core.body.Body;
 import core.body.CircleBodyShape;
-import core.geometry.CircleGeometry;
 import core.geometry.AbstractGeometry;
 import core.geometry.IGeometry;
+import core.geometry.twodimensions.CircleGeometry;
 
 /**
  * PlayerModel represents a player in the game world

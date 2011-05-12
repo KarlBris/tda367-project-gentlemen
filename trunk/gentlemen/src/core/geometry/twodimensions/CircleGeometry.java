@@ -1,6 +1,8 @@
-package core.geometry;
+package core.geometry.twodimensions;
 
 import org.lwjgl.util.vector.Vector2f;
+
+import core.geometry.AbstractGeometry;
 
 import utilities.Color;
 import utilities.Constants;
