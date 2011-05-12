@@ -49,7 +49,8 @@ public class Constants {
 	public static final Vector2f TEAM_TWO_HOME_POSITION = new Vector2f(28.0f,
 			10.0f);
 
-	public static final int FLAG_CAPTURE_SCORE = 3;
-	public static final int FLAG_RETURN_SCORE = 1;
+	public static final int FLAG_CAPTURE_SCORE = 15;
+	public static final int FLAG_RETURN_SCORE = 4;
 	public static final int KNOCK_OUT_SCORE = 1;
+	public static final int SCORE_LIMIT = 100;
 }

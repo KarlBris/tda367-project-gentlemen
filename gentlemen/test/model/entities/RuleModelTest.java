@@ -2,13 +2,11 @@ package model.entities;
 
 import static org.junit.Assert.assertTrue;
 
-import model.entities.RuleModel;
-import model.entities.TeamModel;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import utilities.Constants;
 import core.Manager;
 import factories.entities.RuleFactory;
 import factories.entities.TeamFactory;
@@ -32,7 +30,7 @@ public class RuleModelTest {
 	public void testRuleModel() {
 		// Tests if the score limit has a correct value. Also tests
 		// getScoreLimit()
-		assertTrue(model.getScoreLimit() == 20);
+		assertTrue(model.getScoreLimit() == Constants.SCORE_LIMIT);
 	}
 
 	@Test

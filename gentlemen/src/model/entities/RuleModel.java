@@ -1,5 +1,6 @@
 package model.entities;
 
+import utilities.Constants;
 import core.body.Body;
 import core.geometry.Geometry;
 import core.geometry.NullGeometry;
@@ -12,13 +13,9 @@ import core.geometry.NullGeometry;
  */
 public class RuleModel implements IModel {
 
-	private final int scoreLimit;
+	private final int scoreLimit = Constants.SCORE_LIMIT;
 
 	private final Geometry geometry = new NullGeometry();
-
-	public RuleModel(final int scoreLimit) {
-		this.scoreLimit = scoreLimit;
-	}
 
 	/**
 	 * Checks if the given team has won or not
