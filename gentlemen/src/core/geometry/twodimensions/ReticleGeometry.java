@@ -2,9 +2,8 @@ package core.geometry.twodimensions;
 
 import org.lwjgl.util.vector.Vector2f;
 
-import core.geometry.AbstractGeometry;
-
 import utilities.Color;
+import core.geometry.AbstractGeometry;
 
 /**
  * ReticleGeometry represents the reticle geometry.
@@ -35,7 +34,7 @@ public class ReticleGeometry extends AbstractGeometry {
 			new Vector2f(), new Vector2f() };
 
 	public ReticleGeometry() {
-		super(Color.IT, 1.0f);
+		super(Color.IT, 0.0f);
 	}
 
 	@Override
