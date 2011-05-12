@@ -1,7 +1,7 @@
 /**
  * 
  */
-package models;
+package model.entities;
 
 import static org.junit.Assert.assertTrue;
 
