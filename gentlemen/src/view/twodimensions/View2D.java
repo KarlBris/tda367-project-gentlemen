@@ -67,7 +67,10 @@ public class View2D implements IView {
 		GL11.glGetError();
 
 		// Clear the color buffer and depth buffer
-		GL11.glClearColor(1.0f, 1.0f, 1.0f, 0.0f);
+		Color clearColor = Constants.BACKGROUND_COLOR;
+
+		GL11.glClearColor(clearColor.getRed(), clearColor.getGreen(),
+				clearColor.getBlue(), 0.0f);
 		GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
 
 		// Render all models

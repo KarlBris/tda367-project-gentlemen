@@ -4,6 +4,9 @@ import org.lwjgl.util.vector.Vector2f;
 
 import utilities.Color;
 
+/**
+ * The base for all geometry. All implementations of IView use this.
+ */
 public interface IGeometry {
 
 	/**

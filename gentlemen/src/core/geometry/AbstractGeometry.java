@@ -7,8 +7,8 @@ import utilities.Constants;
 import utilities.Tools;
 
 /**
- * This class represents a visible geometry in the game world. The geometry is
- * stored as vertices to one or many triangles
+ * This class represents a visible geometry in the game world. This class
+ * includes basic world state and state interpolation code.
  */
 public abstract class AbstractGeometry implements IGeometry {
 
@@ -57,6 +57,7 @@ public abstract class AbstractGeometry implements IGeometry {
 	/**
 	 * @return the position of the geometry
 	 */
+	@Override
 	public Vector2f getPosition() {
 		return new Vector2f(position);
 	}
@@ -73,6 +74,7 @@ public abstract class AbstractGeometry implements IGeometry {
 	/**
 	 * @return the angle of the geometry
 	 */
+	@Override
 	public float getAngle() {
 		return angle;
 	}
@@ -90,6 +92,7 @@ public abstract class AbstractGeometry implements IGeometry {
 	/**
 	 * @return the scale of the geometry
 	 */
+	@Override
 	public Vector2f getScale() {
 		return new Vector2f(scale);
 	}
