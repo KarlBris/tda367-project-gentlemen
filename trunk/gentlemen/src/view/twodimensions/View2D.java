@@ -1,4 +1,4 @@
-package view;
+package view.twodimensions;
 
 import java.util.List;
 
@@ -11,6 +11,7 @@ import org.lwjgl.util.vector.Vector2f;
 import utilities.Color;
 import utilities.Constants;
 import utilities.Tools;
+import view.IView;
 import core.geometry.IGeometry;
 
 public class View2D implements IView {
