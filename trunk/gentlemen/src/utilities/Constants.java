@@ -20,6 +20,8 @@ public class Constants {
 	public static final float VIEWPORT_WIDTH = 30.0f;
 	public static final float VIEWPORT_HEIGHT = VIEWPORT_WIDTH / VIEWPORT_RATIO;
 
+	public static final Color BACKGROUND_COLOR = new Color(0.25f, 0.4f, 0.2f);
+
 	public static final float GEOMETRY_TO_PHYSICS_INTERPOLATION = 0.8f;
 
 	public static final float BODY_DEFAULT_DAMPING = 2.0f;
