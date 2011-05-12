@@ -1,4 +1,4 @@
-package controllers;
+package controller.entities;
 
 import static org.junit.Assert.assertTrue;
 import model.entities.FlagModel;
