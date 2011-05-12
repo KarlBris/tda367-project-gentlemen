@@ -7,7 +7,7 @@ import controller.entities.RuleController;
 
 public class RuleFactory implements IEntityFactory {
 
-	private final RuleModel model = new RuleModel(20);
+	private final RuleModel model = new RuleModel();
 	private final RuleController controller = new RuleController(model);
 
 	@Override
