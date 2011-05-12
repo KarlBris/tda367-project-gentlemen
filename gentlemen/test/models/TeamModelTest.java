@@ -2,13 +2,15 @@ package models;
 
 import static org.junit.Assert.assertTrue;
 
+import model.entities.TeamModel;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.lwjgl.util.vector.Vector2f;
 
 import utilities.Tools;
-import controllers.RuleController;
+import controller.entities.RuleController;
 import core.Manager;
 import factories.RuleFactory;
 import factories.TeamFactory;

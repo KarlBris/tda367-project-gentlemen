@@ -1,13 +1,13 @@
 package factories;
 
-import models.IModel;
-import models.PlayerModel;
+import model.entities.IModel;
+import model.entities.PlayerModel;
 
 import org.lwjgl.input.Keyboard;
 
 import utilities.Constants;
-import controllers.IController;
-import controllers.PlayerController;
+import controller.entities.IController;
+import controller.entities.PlayerController;
 
 public class PlayerTwoFactory implements IEntityFactory {
 

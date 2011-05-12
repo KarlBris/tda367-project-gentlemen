@@ -5,6 +5,8 @@ package models;
 
 import static org.junit.Assert.assertTrue;
 
+import model.entities.PropModel;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -12,7 +14,7 @@ import org.lwjgl.util.vector.Vector2f;
 
 import utilities.Constants;
 import utilities.Tools;
-import controllers.PulsatingPropController;
+import controller.entities.PulsatingPropController;
 import core.Manager;
 import factories.PropFactory;
 
@@ -41,7 +43,7 @@ public class PropModelTest {
 
 	/**
 	 * Test method for
-	 * {@link models.PropModel#PropModel(float, float, float, float)}.
+	 * {@link model.entities.PropModel#PropModel(float, float, float, float)}.
 	 */
 	@Test
 	public void testPropModel() {
@@ -51,7 +53,7 @@ public class PropModelTest {
 	}
 
 	/**
-	 * Test method for {@link models.PropModel#getGeometry()}.
+	 * Test method for {@link model.entities.PropModel#getGeometry()}.
 	 */
 	@Test
 	public void testGetGeometry() {
@@ -61,7 +63,7 @@ public class PropModelTest {
 
 	/**
 	 * Test method for
-	 * {@link models.PropModel#setPosition(org.lwjgl.util.vector.Vector2f)}.
+	 * {@link model.entities.PropModel#setPosition(org.lwjgl.util.vector.Vector2f)}.
 	 */
 	@Test
 	public void testPosition() {
@@ -73,7 +75,7 @@ public class PropModelTest {
 	}
 
 	/**
-	 * Test method for {@link models.PropModel#setAngle(float)}.
+	 * Test method for {@link model.entities.PropModel#setAngle(float)}.
 	 */
 	@Test
 	public void testAngle() {

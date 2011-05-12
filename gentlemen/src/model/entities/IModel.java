@@ -1,4 +1,4 @@
-package models;
+package model.entities;
 
 import core.Body;
 import core.Geometry;

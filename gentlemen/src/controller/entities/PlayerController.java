@@ -1,8 +1,8 @@
-package controllers;
+package controller.entities;
 
-import models.IModel;
-import models.PlayerModel;
-import models.ReticleModel;
+import model.entities.IModel;
+import model.entities.PlayerModel;
+import model.entities.ReticleModel;
 
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.util.vector.Vector2f;
@@ -63,7 +63,7 @@ public class PlayerController implements IController, IBodyCollisionCallback {
 	}
 
 	/**
-	 * @see controllers.IController#update()
+	 * @see controller.entities.IController#update()
 	 */
 	@Override
 	public void update() {

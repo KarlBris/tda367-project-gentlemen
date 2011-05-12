@@ -1,13 +1,16 @@
 package controllers;
 
 import static org.junit.Assert.assertTrue;
-import models.FlagModel;
-import models.TeamModel;
+import model.entities.FlagModel;
+import model.entities.TeamModel;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.lwjgl.util.vector.Vector2f;
+
+import controller.entities.FlagController;
+import controller.entities.TeamController;
 
 import utilities.Color;
 import utilities.Tools;

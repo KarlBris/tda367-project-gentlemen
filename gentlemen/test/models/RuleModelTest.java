@@ -2,6 +2,9 @@ package models;
 
 import static org.junit.Assert.assertTrue;
 
+import model.entities.RuleModel;
+import model.entities.TeamModel;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

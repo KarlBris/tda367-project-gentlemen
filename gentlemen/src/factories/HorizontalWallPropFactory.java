@@ -1,11 +1,11 @@
 package factories;
 
-import models.IModel;
-import models.PropModel;
+import model.entities.IModel;
+import model.entities.PropModel;
 import utilities.Color;
 import utilities.Constants;
-import controllers.IController;
-import controllers.PulsatingPropController;
+import controller.entities.IController;
+import controller.entities.PulsatingPropController;
 
 public class HorizontalWallPropFactory implements IEntityFactory {
 

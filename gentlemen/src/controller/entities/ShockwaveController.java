@@ -1,7 +1,7 @@
-package controllers;
+package controller.entities;
 
-import models.IModel;
-import models.ShockwaveModel;
+import model.entities.IModel;
+import model.entities.ShockwaveModel;
 
 import org.lwjgl.util.vector.Vector2f;
 

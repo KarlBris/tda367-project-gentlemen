@@ -1,9 +1,9 @@
 package factories;
 
-import models.IModel;
-import models.RuleModel;
-import controllers.IController;
-import controllers.RuleController;
+import model.entities.IModel;
+import model.entities.RuleModel;
+import controller.entities.IController;
+import controller.entities.RuleController;
 
 public class RuleFactory implements IEntityFactory {
 

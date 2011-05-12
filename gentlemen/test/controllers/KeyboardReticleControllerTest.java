@@ -1,12 +1,14 @@
 package controllers;
 
 import static org.junit.Assert.assertTrue;
-import models.ReticleModel;
+import model.entities.ReticleModel;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.lwjgl.util.vector.Vector2f;
+
+import controller.entities.KeyboardReticleController;
 
 import utilities.Tools;
 

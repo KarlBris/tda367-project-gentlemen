@@ -1,7 +1,7 @@
 package factories;
 
-import models.IModel;
-import controllers.IController;
+import model.entities.IModel;
+import controller.entities.IController;
 
 /**
  * An interface which all factorys will implement

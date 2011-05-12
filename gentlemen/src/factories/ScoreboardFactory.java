@@ -1,9 +1,9 @@
 package factories;
 
-import models.IModel;
-import models.ScoreboardModel;
-import controllers.IController;
-import controllers.ScoreboardController;
+import model.entities.IModel;
+import model.entities.ScoreboardModel;
+import controller.entities.IController;
+import controller.entities.ScoreboardController;
 
 public class ScoreboardFactory implements IEntityFactory {
 

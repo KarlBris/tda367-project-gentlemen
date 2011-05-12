@@ -1,8 +1,8 @@
-package controllers;
+package controller.entities;
 
-import models.IModel;
-import models.RuleModel;
-import models.TeamModel;
+import model.entities.IModel;
+import model.entities.RuleModel;
+import model.entities.TeamModel;
 
 import org.lwjgl.util.vector.Vector2f;
 

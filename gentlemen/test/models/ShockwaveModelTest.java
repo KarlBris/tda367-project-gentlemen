@@ -2,6 +2,8 @@ package models;
 
 import static org.junit.Assert.assertTrue;
 
+import model.entities.ShockwaveModel;
+
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

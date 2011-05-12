@@ -1,9 +1,9 @@
-package models;
+package model.entities;
 
 import org.lwjgl.util.vector.Vector2f;
 
 import utilities.Tools;
-import controllers.RuleController;
+import controller.entities.RuleController;
 import core.Body;
 import core.Geometry;
 import core.NullGeometry;

@@ -12,7 +12,7 @@ import controller.components.KeyboardComponent;
 import controller.components.MouseComponent;
 import controller.components.PhysicsComponent;
 import controller.components.StateComponent;
-import controllers.IController;
+import controller.entities.IController;
 import core.TypeMap;
 
 public class MainController implements IMainController {

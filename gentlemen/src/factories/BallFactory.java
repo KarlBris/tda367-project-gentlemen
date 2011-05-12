@@ -1,9 +1,9 @@
 package factories;
 
-import models.BallModel;
-import models.IModel;
-import controllers.BallController;
-import controllers.IController;
+import model.entities.BallModel;
+import model.entities.IModel;
+import controller.entities.BallController;
+import controller.entities.IController;
 
 public class BallFactory implements IEntityFactory {
 

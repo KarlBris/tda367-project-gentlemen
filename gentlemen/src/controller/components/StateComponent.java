@@ -4,12 +4,12 @@ import org.lwjgl.util.vector.Vector2f;
 
 import utilities.Constants;
 import utilities.Tools;
-import controllers.FlagController;
-import controllers.IController;
-import controllers.PlayerController;
-import controllers.RuleController;
-import controllers.ScoreboardController;
-import controllers.TeamController;
+import controller.entities.FlagController;
+import controller.entities.IController;
+import controller.entities.PlayerController;
+import controller.entities.RuleController;
+import controller.entities.ScoreboardController;
+import controller.entities.TeamController;
 import core.Manager;
 import factories.BallFactory;
 import factories.BuildingPropFactory;
