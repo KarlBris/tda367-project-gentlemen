@@ -8,6 +8,7 @@ import utilities.Tools;
 import core.body.Body;
 import core.geometry.CircleGeometry;
 import core.geometry.Geometry;
+import core.geometry.IGeometry;
 
 /**
  * Represents a shockwave in the game
@@ -24,7 +25,7 @@ public class ShockwaveModel implements IModel {
 	}
 
 	@Override
-	public Geometry getGeometry() {
+	public IGeometry getGeometry() {
 		return geometry;
 	}
 

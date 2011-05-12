@@ -15,6 +15,7 @@ import core.body.Body;
 import core.body.CircleBodyShape;
 import core.geometry.CircleGeometry;
 import core.geometry.Geometry;
+import core.geometry.IGeometry;
 
 /**
  * PlayerModel represents a player in the game world
@@ -64,7 +65,7 @@ public class PlayerModel implements IModel {
 	}
 
 	@Override
-	public Geometry getGeometry() {
+	public IGeometry getGeometry() {
 		return geometry;
 	}
 

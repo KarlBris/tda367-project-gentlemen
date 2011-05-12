@@ -7,6 +7,7 @@ import core.body.Body;
 import core.body.BoxBodyShape;
 import core.geometry.BoxGeometry;
 import core.geometry.Geometry;
+import core.geometry.IGeometry;
 
 /**
  * Represent inanimate within the game world.
@@ -58,7 +59,7 @@ public class PropModel implements IModel {
 	}
 
 	@Override
-	public Geometry getGeometry() {
+	public IGeometry getGeometry() {
 
 		return geometry;
 	}

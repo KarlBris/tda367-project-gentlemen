@@ -5,7 +5,7 @@ import java.util.List;
 
 import controller.entities.TeamController;
 import core.body.Body;
-import core.geometry.Geometry;
+import core.geometry.IGeometry;
 import core.geometry.NullGeometry;
 
 /**
@@ -15,7 +15,7 @@ import core.geometry.NullGeometry;
  */
 public class ScoreboardModel implements IModel {
 
-	private final Geometry geometry = new NullGeometry();
+	private final IGeometry geometry = new NullGeometry();
 
 	private final List<TeamController> teamList = new LinkedList<TeamController>();
 
@@ -49,7 +49,7 @@ public class ScoreboardModel implements IModel {
 	}
 
 	@Override
-	public Geometry getGeometry() {
+	public IGeometry getGeometry() {
 		return geometry;
 	}
 

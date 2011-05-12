@@ -2,7 +2,6 @@ package core.geometry;
 
 import org.lwjgl.util.vector.Vector2f;
 
-
 import utilities.Color;
 
 public class BoxGeometry extends Geometry {
@@ -28,8 +27,20 @@ public class BoxGeometry extends Geometry {
 			v.x *= width;
 			v.y *= height;
 		}
+	}
 
-		setVertices(vertices);
-		setUvs(uvs);
+	@Override
+	public boolean isVisible() {
+		return true;
+	}
+
+	@Override
+	public Vector2f[] getVertices() {
+		return vertices;
+	}
+
+	@Override
+	public Vector2f[] getUvs() {
+		return uvs;
 	}
 }

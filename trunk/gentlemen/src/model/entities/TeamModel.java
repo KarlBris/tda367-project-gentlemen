@@ -5,7 +5,7 @@ import org.lwjgl.util.vector.Vector2f;
 import utilities.Tools;
 import controller.entities.RuleController;
 import core.body.Body;
-import core.geometry.Geometry;
+import core.geometry.IGeometry;
 import core.geometry.NullGeometry;
 
 /**
@@ -19,7 +19,7 @@ public class TeamModel implements IModel {
 
 	private RuleController ruleController;
 
-	private final Geometry geometry = new NullGeometry();
+	private final IGeometry geometry = new NullGeometry();
 
 	private int totalScore = 0;
 
@@ -48,7 +48,7 @@ public class TeamModel implements IModel {
 	}
 
 	@Override
-	public Geometry getGeometry() {
+	public IGeometry getGeometry() {
 		return geometry;
 	}
 

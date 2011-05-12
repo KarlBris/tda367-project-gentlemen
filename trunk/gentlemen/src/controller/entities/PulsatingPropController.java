@@ -66,8 +66,7 @@ public class PulsatingPropController implements IController {
 		final float tempBlue = phase * blueDelta + originColor.getBlue();
 		final float tempAlpha = phase * alphaDelta + originColor.getAlpha();
 
-		this.model.getGeometry().setColor(
-				new Color(tempRed, tempGreen, tempBlue, tempAlpha));
+		this.model.setColor(new Color(tempRed, tempGreen, tempBlue, tempAlpha));
 		colorWheel += colorStep;
 
 		if (colorWheel >= Constants.TWO_PI) {
