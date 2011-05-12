@@ -1,9 +1,9 @@
 package factories;
 
-import models.IModel;
-import models.ReticleModel;
-import controllers.IController;
-import controllers.KeyboardReticleController;
+import model.entities.IModel;
+import model.entities.ReticleModel;
+import controller.entities.IController;
+import controller.entities.KeyboardReticleController;
 
 public class KeyboardReticleFactory implements IEntityFactory {
 

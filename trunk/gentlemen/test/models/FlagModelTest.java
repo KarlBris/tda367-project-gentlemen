@@ -2,6 +2,8 @@ package models;
 
 import static org.junit.Assert.assertTrue;
 
+import model.entities.FlagModel;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -10,7 +12,7 @@ import org.lwjgl.util.vector.Vector2f;
 import utilities.Color;
 import utilities.Constants;
 import utilities.Tools;
-import controllers.TeamController;
+import controller.entities.TeamController;
 import core.Manager;
 import factories.TeamFactory;
 

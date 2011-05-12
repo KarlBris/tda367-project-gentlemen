@@ -2,6 +2,8 @@ package models;
 
 import static org.junit.Assert.assertTrue;
 
+import model.entities.BallModel;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -34,7 +36,7 @@ public class BallModelTest {
 	}
 
 	/**
-	 * Test method for {@link models.BallModel#isLethal(Vector2f)}.
+	 * Test method for {@link model.entities.BallModel#isLethal(Vector2f)}.
 	 */
 	@Test
 	public void testIsLethal() {
@@ -53,7 +55,7 @@ public class BallModelTest {
 	}
 
 	/**
-	 * Test method for {@link models.BallModel#isPickUpAble(Vector2f)}.
+	 * Test method for {@link model.entities.BallModel#isPickUpAble(Vector2f)}.
 	 */
 	@Test
 	public void testIsPickUpAble() {
@@ -83,8 +85,8 @@ public class BallModelTest {
 	}
 
 	/**
-	 * Test method for {@link models.BallModel#setPosition(Vector2f)} and
-	 * {@link models.BallModel#getPosition()}.
+	 * Test method for {@link model.entities.BallModel#setPosition(Vector2f)} and
+	 * {@link model.entities.BallModel#getPosition()}.
 	 */
 	@Test
 	public void testPosition() {
@@ -103,7 +105,7 @@ public class BallModelTest {
 	}
 
 	/**
-	 * Test method for {@link models.BallModel#throwBall(Vector2f)}.
+	 * Test method for {@link model.entities.BallModel#throwBall(Vector2f)}.
 	 */
 	@Test
 	public void testThrowBall() {
@@ -126,7 +128,7 @@ public class BallModelTest {
 	}
 
 	/**
-	 * Test method for {@link models.BallModel#getGeometry()}.
+	 * Test method for {@link model.entities.BallModel#getGeometry()}.
 	 */
 	@Test
 	public void testGetGeometry() {

@@ -3,7 +3,7 @@ package view;
 import java.util.List;
 
 import model.IMainModel;
-import models.IModel;
+import model.entities.IModel;
 
 import org.lwjgl.opengl.GL11;
 

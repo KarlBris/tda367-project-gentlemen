@@ -1,4 +1,4 @@
-package models;
+package model.entities;
 
 import org.lwjgl.util.vector.Vector2f;
 

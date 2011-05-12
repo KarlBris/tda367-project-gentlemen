@@ -1,9 +1,9 @@
-package models;
+package model.entities;
 
 import java.util.LinkedList;
 import java.util.List;
 
-import controllers.TeamController;
+import controller.entities.TeamController;
 import core.Body;
 import core.Geometry;
 import core.NullGeometry;

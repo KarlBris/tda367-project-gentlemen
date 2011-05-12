@@ -7,7 +7,7 @@ import org.lwjgl.util.vector.Vector2f;
 
 import controller.components.KeyboardComponent;
 import controller.components.MouseComponent;
-import controllers.IController;
+import controller.entities.IController;
 
 public interface IMainController {
 

@@ -2,6 +2,8 @@ package models;
 
 import static org.junit.Assert.assertTrue;
 
+import model.entities.PlayerModel;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -10,10 +12,10 @@ import org.lwjgl.util.vector.Vector2f;
 
 import utilities.Constants;
 import utilities.Tools;
-import controllers.BallController;
-import controllers.FlagController;
-import controllers.RuleController;
-import controllers.TeamController;
+import controller.entities.BallController;
+import controller.entities.FlagController;
+import controller.entities.RuleController;
+import controller.entities.TeamController;
 import core.Manager;
 import factories.BallFactory;
 import factories.FlagFactory;

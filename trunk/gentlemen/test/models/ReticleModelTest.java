@@ -2,6 +2,8 @@ package models;
 
 import static org.junit.Assert.assertTrue;
 
+import model.entities.ReticleModel;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

@@ -2,11 +2,13 @@ package models;
 
 import static org.junit.Assert.assertTrue;
 
+import model.entities.ScoreboardModel;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import controllers.TeamController;
+import controller.entities.TeamController;
 import core.Manager;
 import factories.ScoreboardFactory;
 import factories.TeamFactory;

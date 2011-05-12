@@ -1,7 +1,7 @@
-package controllers;
+package controller.entities;
 
-import models.FlagModel;
-import models.IModel;
+import model.entities.FlagModel;
+import model.entities.IModel;
 
 import org.lwjgl.util.vector.Vector2f;
 

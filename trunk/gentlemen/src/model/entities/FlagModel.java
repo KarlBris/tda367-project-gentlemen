@@ -1,10 +1,10 @@
-package models;
+package model.entities;
 
 import org.lwjgl.util.vector.Vector2f;
 
 import utilities.Color;
 import utilities.Tools;
-import controllers.TeamController;
+import controller.entities.TeamController;
 import core.Body;
 import core.CircleGeometry;
 import core.Geometry;

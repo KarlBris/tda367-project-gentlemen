@@ -1,9 +1,9 @@
 package factories;
 
-import models.IModel;
-import models.TeamModel;
-import controllers.IController;
-import controllers.TeamController;
+import model.entities.IModel;
+import model.entities.TeamModel;
+import controller.entities.IController;
+import controller.entities.TeamController;
 
 public class TeamFactory implements IEntityFactory {
 

@@ -1,12 +1,14 @@
 package controllers;
 
 import static org.junit.Assert.assertTrue;
-import models.BallModel;
+import model.entities.BallModel;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.lwjgl.util.vector.Vector2f;
+
+import controller.entities.BallController;
 
 import utilities.Constants;
 import utilities.Tools;

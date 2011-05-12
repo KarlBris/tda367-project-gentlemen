@@ -1,4 +1,4 @@
-package models;
+package model.entities;
 
 import java.util.List;
 
@@ -7,9 +7,9 @@ import org.lwjgl.util.vector.Vector2f;
 import utilities.Color;
 import utilities.Constants;
 import utilities.Tools;
-import controllers.BallController;
-import controllers.FlagController;
-import controllers.TeamController;
+import controller.entities.BallController;
+import controller.entities.FlagController;
+import controller.entities.TeamController;
 import core.Body;
 import core.CircleBodyShape;
 import core.CircleGeometry;

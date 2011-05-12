@@ -1,10 +1,10 @@
 package factories;
 
-import models.IModel;
-import models.PropModel;
+import model.entities.IModel;
+import model.entities.PropModel;
 import utilities.Color;
-import controllers.IController;
-import controllers.PropController;
+import controller.entities.IController;
+import controller.entities.PropController;
 
 public class CratePropFactory implements IEntityFactory {
 
