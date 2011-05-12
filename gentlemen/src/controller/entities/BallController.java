@@ -11,7 +11,7 @@ import controller.components.IBodyCollisionCallback;
 
 import core.Body;
 import core.Manager;
-import factories.ShockwaveFactory;
+import factories.entities.ShockwaveFactory;
 
 /**
  * This class controls a ball model

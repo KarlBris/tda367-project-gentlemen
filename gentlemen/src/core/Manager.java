@@ -20,7 +20,7 @@ import controller.MainController;
 import controller.components.KeyboardComponent;
 import controller.components.MouseComponent;
 import controller.entities.IController;
-import factories.IEntityFactory;
+import factories.entities.IEntityFactory;
 
 public class Manager {
 

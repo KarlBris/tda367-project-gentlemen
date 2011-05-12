@@ -12,8 +12,8 @@ import org.lwjgl.util.vector.Vector2f;
 import utilities.Tools;
 import controller.entities.RuleController;
 import core.Manager;
-import factories.RuleFactory;
-import factories.TeamFactory;
+import factories.entities.RuleFactory;
+import factories.entities.TeamFactory;
 
 public class TeamModelTest {
 	private TeamModel model;

@@ -10,8 +10,8 @@ import org.junit.Test;
 
 import controller.entities.TeamController;
 import core.Manager;
-import factories.ScoreboardFactory;
-import factories.TeamFactory;
+import factories.entities.ScoreboardFactory;
+import factories.entities.TeamFactory;
 
 public class ScoreboardModelTest {
 	private ScoreboardModel model;

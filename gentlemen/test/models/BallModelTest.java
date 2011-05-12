@@ -12,7 +12,7 @@ import org.lwjgl.util.vector.Vector2f;
 import utilities.Constants;
 import utilities.Tools;
 import core.Manager;
-import factories.BallFactory;
+import factories.entities.BallFactory;
 
 public class BallModelTest {
 

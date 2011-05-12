@@ -15,8 +15,8 @@ import controller.entities.TeamController;
 import utilities.Color;
 import utilities.Tools;
 import core.Manager;
-import factories.FlagFactory;
-import factories.TeamFactory;
+import factories.entities.FlagFactory;
+import factories.entities.TeamFactory;
 
 public class FlagControllerTest {
 	private FlagController fc;

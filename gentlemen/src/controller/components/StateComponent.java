@@ -11,17 +11,17 @@ import controller.entities.RuleController;
 import controller.entities.ScoreboardController;
 import controller.entities.TeamController;
 import core.Manager;
-import factories.BallFactory;
-import factories.BuildingPropFactory;
-import factories.CratePropFactory;
-import factories.FlagFactory;
-import factories.HorizontalWallPropFactory;
-import factories.PlayerOneFactory;
-import factories.PlayerTwoFactory;
-import factories.RuleFactory;
-import factories.ScoreboardFactory;
-import factories.TeamFactory;
-import factories.VerticalWallPropFactory;
+import factories.entities.BallFactory;
+import factories.entities.BuildingPropFactory;
+import factories.entities.CratePropFactory;
+import factories.entities.FlagFactory;
+import factories.entities.HorizontalWallPropFactory;
+import factories.entities.PlayerOneFactory;
+import factories.entities.PlayerTwoFactory;
+import factories.entities.RuleFactory;
+import factories.entities.ScoreboardFactory;
+import factories.entities.TeamFactory;
+import factories.entities.VerticalWallPropFactory;
 
 public class StateComponent implements IComponent {
 

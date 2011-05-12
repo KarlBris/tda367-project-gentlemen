@@ -11,7 +11,7 @@ import org.lwjgl.util.vector.Vector2f;
 
 import utilities.Tools;
 import core.Manager;
-import factories.KeyboardReticleFactory;
+import factories.entities.KeyboardReticleFactory;
 
 public class ReticleModelTest {
 	private final float epsilon = 0.01f;
