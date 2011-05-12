@@ -22,8 +22,8 @@ public class Constants {
 
 	public static final float GEOMETRY_TO_PHYSICS_INTERPOLATION = 0.8f;
 
-	public static final float BODY_DEFAULT_DAMPING = 1.0f;
-	public static final float BODY_DEFAULT_ANGULAR_DAMPING = 1.0f;
+	public static final float BODY_DEFAULT_DAMPING = 2.0f;
+	public static final float BODY_DEFAULT_ANGULAR_DAMPING = 1.5f;
 
 	public static final float PLAYER_MOVEMENT_ACCELERATION = 20.0f;
 	public static final float PLAYER_RETICLE_DISTANCE = 1.0f;
@@ -38,8 +38,6 @@ public class Constants {
 	public static final float BALL_SHOCKWAVE_SPEED = 5.0f;
 
 	public static final float SHOCKWAVE_ANIMATION_TIME = 0.3f;
-
-	public static final int NETWORK_PORT = 13781;
 
 	public static final Color TEAM_ONE_COLOR = Color.RED;
 	public static final Color TEAM_TWO_COLOR = Color.BLUE;
