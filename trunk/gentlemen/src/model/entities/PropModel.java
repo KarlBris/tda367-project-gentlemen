@@ -128,4 +128,12 @@ public class PropModel implements IModel {
 
 	}
 
+	/**
+	 * 
+	 * @return color of the prop
+	 */
+	public Color getColor() {
+		return geometry.getColor();
+	}
+
 }
