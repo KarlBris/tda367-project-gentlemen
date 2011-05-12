@@ -38,6 +38,14 @@ public class PropController implements IController {
 	}
 
 	/**
+	 * 
+	 * @return the props position
+	 */
+	public Vector2f getPosition() {
+		return model.getPosition();
+	}
+
+	/**
 	 * Sets the angle of the prop
 	 * 
 	 * @param angle
@@ -45,6 +53,10 @@ public class PropController implements IController {
 	 */
 	public void setAngle(final float angle) {
 		model.setAngle(angle);
+	}
+
+	public float getAngle() {
+		return model.getAngle();
 	}
 
 	@Override

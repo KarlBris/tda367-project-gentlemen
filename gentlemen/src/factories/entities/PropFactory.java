@@ -2,15 +2,13 @@ package factories.entities;
 
 import model.entities.IModel;
 import model.entities.PropModel;
-import utilities.Color;
 import controller.entities.IController;
-import controller.entities.PulsatingPropController;
+import controller.entities.PropController;
 
 public class PropFactory implements IEntityFactory {
 
 	private final PropModel model = new PropModel(0.0f, 1.0f, 1.0f, 1.0f);
-	private final PulsatingPropController controller = new PulsatingPropController(
-			model, Color.CYAN, Color.YELLOW, 300);
+	private final PropController controller = new PropController(model);
 
 	@Override
 	public IModel getModel() {
