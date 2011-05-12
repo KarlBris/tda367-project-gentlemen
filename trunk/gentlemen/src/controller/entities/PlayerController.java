@@ -15,8 +15,8 @@ import controller.components.KeyboardComponent;
 
 import core.Body;
 import core.Manager;
-import factories.BallFactory;
-import factories.KeyboardReticleFactory;
+import factories.entities.BallFactory;
+import factories.entities.KeyboardReticleFactory;
 
 /**
  * This class controls a player model

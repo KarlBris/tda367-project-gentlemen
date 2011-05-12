@@ -13,7 +13,7 @@ import controller.entities.BallController;
 import utilities.Constants;
 import utilities.Tools;
 import core.Manager;
-import factories.BallFactory;
+import factories.entities.BallFactory;
 
 public class BallControllerTest {
 	private BallController bc;

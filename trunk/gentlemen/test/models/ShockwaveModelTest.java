@@ -13,7 +13,7 @@ import org.lwjgl.util.vector.Vector2f;
 
 import utilities.Constants;
 import core.Manager;
-import factories.ShockwaveFactory;
+import factories.entities.ShockwaveFactory;
 
 public class ShockwaveModelTest {
 

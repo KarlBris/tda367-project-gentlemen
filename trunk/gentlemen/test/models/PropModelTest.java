@@ -16,7 +16,7 @@ import utilities.Constants;
 import utilities.Tools;
 import controller.entities.PulsatingPropController;
 import core.Manager;
-import factories.PropFactory;
+import factories.entities.PropFactory;
 
 public class PropModelTest {
 	private final float epsilon = 0.01f;

@@ -14,7 +14,7 @@ import utilities.Constants;
 import utilities.Tools;
 import controller.entities.TeamController;
 import core.Manager;
-import factories.TeamFactory;
+import factories.entities.TeamFactory;
 
 public class FlagModelTest {
 	private FlagModel fm;

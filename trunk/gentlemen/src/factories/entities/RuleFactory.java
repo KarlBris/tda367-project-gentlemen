@@ -1,4 +1,4 @@
-package factories;
+package factories.entities;
 
 import model.entities.IModel;
 import model.entities.RuleModel;

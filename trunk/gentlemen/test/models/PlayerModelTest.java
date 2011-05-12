@@ -17,11 +17,11 @@ import controller.entities.FlagController;
 import controller.entities.RuleController;
 import controller.entities.TeamController;
 import core.Manager;
-import factories.BallFactory;
-import factories.FlagFactory;
-import factories.PlayerOneFactory;
-import factories.RuleFactory;
-import factories.TeamFactory;
+import factories.entities.BallFactory;
+import factories.entities.FlagFactory;
+import factories.entities.PlayerOneFactory;
+import factories.entities.RuleFactory;
+import factories.entities.TeamFactory;
 
 public class PlayerModelTest {
 	private PlayerModel pm;
