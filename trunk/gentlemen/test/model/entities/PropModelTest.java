@@ -5,8 +5,6 @@ package model.entities;
 
 import static org.junit.Assert.assertTrue;
 
-import model.entities.PropModel;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -14,21 +12,21 @@ import org.lwjgl.util.vector.Vector2f;
 
 import utilities.Constants;
 import utilities.Tools;
-import controller.entities.PulsatingPropController;
+import controller.entities.PropController;
 import core.Manager;
 import factories.entities.PropFactory;
 
 public class PropModelTest {
 	private final float epsilon = 0.01f;
 	private PropModel model;
-	private PulsatingPropController controller;
+	private PropController controller;
 
 	/**
 	 * @throws java.lang.Exception
 	 */
 	@Before
 	public void setUp() throws Exception {
-		controller = (PulsatingPropController) Manager.instantiate(new PropFactory());
+		controller = (PropController) Manager.instantiate(new PropFactory());
 		model = (PropModel) controller.getModel();
 
 	}
@@ -63,7 +61,8 @@ public class PropModelTest {
 
 	/**
 	 * Test method for
-	 * {@link model.entities.PropModel#setPosition(org.lwjgl.util.vector.Vector2f)}.
+	 * {@link model.entities.PropModel#setPosition(org.lwjgl.util.vector.Vector2f)}
+	 * .
 	 */
 	@Test
 	public void testPosition() {
