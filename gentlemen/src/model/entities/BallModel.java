@@ -15,7 +15,7 @@ import core.geometry.twodimensions.CircleGeometry;
 public class BallModel implements IModel {
 
 	private final AbstractGeometry geometry = new CircleGeometry(
-			utilities.Color.randomColor(), 1.0f, 0.2f, 8);
+			utilities.Color.randomColor(), 0.1f, 0.2f, 8);
 
 	private final Body body = new Body(new CircleBodyShape(0.2f), 1.0f, 1.0f);
 
