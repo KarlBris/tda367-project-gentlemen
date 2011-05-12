@@ -1,11 +1,12 @@
 package controller.components;
 
+import model.body.Body;
+
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.World;
 
 import utilities.Constants;
 import controller.entities.IController;
-import core.body.Body;
 
 public class PhysicsComponent implements IComponent {
 

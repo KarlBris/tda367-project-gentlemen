@@ -1,5 +1,6 @@
 package controller.entities;
 
+import model.body.Body;
 import model.entities.IModel;
 import model.entities.PlayerModel;
 import model.entities.ReticleModel;
@@ -14,7 +15,6 @@ import controller.components.IBodyCollisionCallback;
 import controller.components.KeyboardComponent;
 
 import core.Manager;
-import core.body.Body;
 import factories.entities.BallFactory;
 import factories.entities.KeyboardReticleFactory;
 

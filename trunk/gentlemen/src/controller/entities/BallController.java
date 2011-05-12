@@ -1,5 +1,6 @@
 package controller.entities;
 
+import model.body.Body;
 import model.entities.BallModel;
 import model.entities.IModel;
 
@@ -10,7 +11,6 @@ import utilities.Constants;
 import controller.components.IBodyCollisionCallback;
 
 import core.Manager;
-import core.body.Body;
 import factories.entities.ShockwaveFactory;
 
 /**
