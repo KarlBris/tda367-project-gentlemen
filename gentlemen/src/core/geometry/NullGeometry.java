@@ -1,4 +1,5 @@
-package core;
+package core.geometry;
+
 
 /**
  * This class represents a nonexistent geometry

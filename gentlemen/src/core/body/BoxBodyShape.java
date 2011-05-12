@@ -1,7 +1,8 @@
-package core;
+package core.body;
 
 import org.jbox2d.collision.shapes.PolygonShape;
 import org.jbox2d.collision.shapes.Shape;
+
 
 public class BoxBodyShape implements IBodyShape {
 

@@ -4,9 +4,9 @@ import org.lwjgl.util.vector.Vector2f;
 
 import utilities.Tools;
 import controller.entities.RuleController;
-import core.Body;
-import core.Geometry;
-import core.NullGeometry;
+import core.body.Body;
+import core.geometry.Geometry;
+import core.geometry.NullGeometry;
 
 /**
  * Represents a team in the game

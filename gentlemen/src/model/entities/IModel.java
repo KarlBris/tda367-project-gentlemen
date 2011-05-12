@@ -1,7 +1,7 @@
 package model.entities;
 
-import core.Body;
-import core.Geometry;
+import core.body.Body;
+import core.geometry.Geometry;
 
 /**
  * An interface which all models will implement

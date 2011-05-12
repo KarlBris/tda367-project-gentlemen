@@ -5,7 +5,7 @@ import org.jbox2d.dynamics.World;
 
 import utilities.Constants;
 import controller.entities.IController;
-import core.Body;
+import core.body.Body;
 
 public class PhysicsComponent implements IComponent {
 

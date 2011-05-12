@@ -5,9 +5,9 @@ import org.lwjgl.util.vector.Vector2f;
 import utilities.Color;
 import utilities.Constants;
 import utilities.Tools;
-import core.Body;
-import core.CircleGeometry;
-import core.Geometry;
+import core.body.Body;
+import core.geometry.CircleGeometry;
+import core.geometry.Geometry;
 
 /**
  * Represents a shockwave in the game

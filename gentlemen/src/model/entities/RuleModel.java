@@ -1,8 +1,8 @@
 package model.entities;
 
-import core.Body;
-import core.Geometry;
-import core.NullGeometry;
+import core.body.Body;
+import core.geometry.Geometry;
+import core.geometry.NullGeometry;
 
 /**
  * 

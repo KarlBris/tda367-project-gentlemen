@@ -9,7 +9,7 @@ import org.jbox2d.dynamics.contacts.Contact;
 import org.lwjgl.util.vector.Vector2f;
 
 import utilities.Tools;
-import core.Body;
+import core.body.Body;
 
 public class PhysicsContactListener implements ContactListener {
 
