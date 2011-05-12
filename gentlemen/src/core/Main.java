@@ -1,4 +1,4 @@
-import core.Manager;
+package core;
 
 public class Main {
 

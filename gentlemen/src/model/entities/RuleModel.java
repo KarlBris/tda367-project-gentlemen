@@ -1,9 +1,10 @@
 package model.entities;
 
+import common.geometry.IGeometry;
+import common.geometry.NullGeometry;
+
 import utilities.Constants;
 import core.body.Body;
-import core.geometry.IGeometry;
-import core.geometry.NullGeometry;
 
 /**
  * 

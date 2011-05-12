@@ -1,9 +1,10 @@
-package core.geometry.twodimensions;
+package common.geometry.twodimensions;
 
 import org.lwjgl.util.vector.Vector2f;
 
+import common.geometry.AbstractGeometry;
+
 import utilities.Color;
-import core.geometry.AbstractGeometry;
 
 /**
  * ReticleGeometry represents the reticle geometry.

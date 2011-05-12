@@ -8,11 +8,12 @@ import model.entities.IModel;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.util.vector.Vector2f;
 
+import common.geometry.IGeometry;
+
 import utilities.Color;
 import utilities.Constants;
 import utilities.Tools;
 import view.IView;
-import core.geometry.IGeometry;
 
 public class View2D implements IView {
 

@@ -3,10 +3,11 @@ package model.entities;
 import java.util.LinkedList;
 import java.util.List;
 
+import common.geometry.IGeometry;
+import common.geometry.NullGeometry;
+
 import controller.entities.TeamController;
 import core.body.Body;
-import core.geometry.IGeometry;
-import core.geometry.NullGeometry;
 
 /**
  * Represents a visual scoreboard in the game. Teams are added to the list and
