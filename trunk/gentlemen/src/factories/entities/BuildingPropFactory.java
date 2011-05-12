@@ -8,7 +8,10 @@ import controller.entities.PulsatingPropController;
 
 public class BuildingPropFactory implements IEntityFactory {
 
-	private PropModel model = new PropModel(1.0f, 4.0f, 3.0f, 0.0f);
+	private float sizeX = (float) Math.random() * 3 + 3;
+	private float sizeY = (float) Math.random() * 3 + 2;
+
+	private PropModel model = new PropModel(1.0f, sizeX, sizeY, 0.0f);
 	private PulsatingPropController controller = new PulsatingPropController(
 			model, Color.randomColor(), Color.randomColor(),
 			(int) (Math.random() * 200 + 100));
