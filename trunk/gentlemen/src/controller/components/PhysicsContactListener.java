@@ -10,6 +10,8 @@ import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.contacts.Contact;
 import org.lwjgl.util.vector.Vector2f;
 
+import controller.entities.IBodyCollisionCallback;
+
 import utilities.Tools;
 
 public class PhysicsContactListener implements ContactListener {

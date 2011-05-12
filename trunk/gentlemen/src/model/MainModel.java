@@ -2,8 +2,9 @@ package model;
 
 import java.util.List;
 
+import common.TypeMap;
+
 import model.entities.IModel;
-import core.TypeMap;
 
 public class MainModel implements IMainModel {
 

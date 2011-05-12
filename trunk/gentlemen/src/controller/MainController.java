@@ -6,6 +6,8 @@ import model.IMainModel;
 
 import org.lwjgl.util.vector.Vector2f;
 
+import common.TypeMap;
+
 
 import controller.components.IComponent;
 import controller.components.KeyboardComponent;
@@ -13,7 +15,6 @@ import controller.components.MouseComponent;
 import controller.components.PhysicsComponent;
 import controller.components.StateComponent;
 import controller.entities.IController;
-import core.TypeMap;
 
 public class MainController implements IMainController {
 

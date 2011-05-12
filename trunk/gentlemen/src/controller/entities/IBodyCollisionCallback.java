@@ -1,4 +1,4 @@
-package controller.components;
+package controller.entities;
 
 import model.body.Body;
 

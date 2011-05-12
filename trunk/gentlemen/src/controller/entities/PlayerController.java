@@ -11,7 +11,6 @@ import org.lwjgl.util.vector.Vector2f;
 import utilities.Constants;
 import utilities.Tools;
 
-import controller.components.IBodyCollisionCallback;
 import controller.components.KeyboardComponent;
 
 import core.Manager;
