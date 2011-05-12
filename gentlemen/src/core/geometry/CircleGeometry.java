@@ -9,7 +9,7 @@ import utilities.Constants;
  * This class represents a n-sided convex regular polygon
  * 
  */
-public class CircleGeometry extends Geometry {
+public class CircleGeometry extends AbstractGeometry {
 
 	private final Vector2f[] vertices;
 

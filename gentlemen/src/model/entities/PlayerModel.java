@@ -14,7 +14,7 @@ import core.Manager;
 import core.body.Body;
 import core.body.CircleBodyShape;
 import core.geometry.CircleGeometry;
-import core.geometry.Geometry;
+import core.geometry.AbstractGeometry;
 import core.geometry.IGeometry;
 
 /**
@@ -22,7 +22,7 @@ import core.geometry.IGeometry;
  */
 public class PlayerModel implements IModel {
 
-	private final Geometry geometry;
+	private final AbstractGeometry geometry;
 
 	private final Body body = new Body(new CircleBodyShape(0.5f), 2.0f, 3.0f);
 

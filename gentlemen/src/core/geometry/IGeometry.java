@@ -6,12 +6,24 @@ import utilities.Color;
 
 public interface IGeometry {
 
+	/**
+	 * @return true if the geometry instance is visible, false otherwise
+	 */
 	public boolean isVisible();
 
+	/**
+	 * @return the position of the geometry
+	 */
 	public Vector2f getPosition();
 
+	/**
+	 * @return the angle of the geometry
+	 */
 	public float getAngle();
 
+	/**
+	 * @return the scale of the geometry
+	 */
 	public Vector2f getScale();
 
 	/**
@@ -24,8 +36,14 @@ public interface IGeometry {
 	 */
 	public float getDepth();
 
+	/**
+	 * @return the vertices of the geometry
+	 */
 	public Vector2f[] getVertices();
 
+	/**
+	 * @return the texture coordinates of the geometry
+	 */
 	public Vector2f[] getUvs();
 
 }

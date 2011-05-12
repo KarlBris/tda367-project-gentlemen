@@ -4,9 +4,9 @@ import org.lwjgl.util.vector.Vector2f;
 
 import utilities.Color;
 import core.body.Body;
-import core.body.BoxBodyShape;
-import core.geometry.BoxGeometry;
-import core.geometry.Geometry;
+import core.body.RectangleBodyShape;
+import core.geometry.RectangleGeometry;
+import core.geometry.AbstractGeometry;
 import core.geometry.IGeometry;
 
 /**
@@ -14,7 +14,7 @@ import core.geometry.IGeometry;
  */
 public class PropModel implements IModel {
 
-	private final Geometry geometry;
+	private final AbstractGeometry geometry;
 
 	private final Body body;
 
@@ -32,9 +32,9 @@ public class PropModel implements IModel {
 	public PropModel(final float depth, final float width, final float height,
 			final float mass) {
 
-		geometry = new BoxGeometry(Color.RED, depth, width, height);
+		geometry = new RectangleGeometry(Color.RED, depth, width, height);
 
-		body = new Body(new BoxBodyShape(width, height), mass);
+		body = new Body(new RectangleBodyShape(width, height), mass);
 	}
 
 	/**
@@ -53,9 +53,9 @@ public class PropModel implements IModel {
 	public PropModel(final float depth, final float width, final float height,
 			final float mass, final Color color) {
 
-		geometry = new BoxGeometry(color, depth, width, height);
+		geometry = new RectangleGeometry(color, depth, width, height);
 
-		body = new Body(new BoxBodyShape(width, height), mass);
+		body = new Body(new RectangleBodyShape(width, height), mass);
 	}
 
 	@Override

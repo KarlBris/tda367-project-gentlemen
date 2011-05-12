@@ -7,7 +7,7 @@ import utilities.Constants;
 import utilities.Tools;
 import core.body.Body;
 import core.geometry.CircleGeometry;
-import core.geometry.Geometry;
+import core.geometry.AbstractGeometry;
 import core.geometry.IGeometry;
 
 /**
@@ -15,7 +15,7 @@ import core.geometry.IGeometry;
  */
 public class ShockwaveModel implements IModel {
 
-	private final Geometry geometry = new CircleGeometry(Color.RED, -0.5f,
+	private final AbstractGeometry geometry = new CircleGeometry(Color.RED, -0.5f,
 			0.5f, 5);
 
 	private float removeTimer = 0.0f;
