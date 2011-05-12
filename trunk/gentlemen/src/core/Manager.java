@@ -3,7 +3,6 @@ package core;
 import java.util.List;
 
 import model.IMainModel;
-import model.MainModel;
 
 import org.lwjgl.LWJGLException;
 import org.lwjgl.opengl.Display;
@@ -12,24 +11,23 @@ import org.lwjgl.util.vector.Vector2f;
 
 import utilities.Constants;
 import view.IView;
-import view.View2D;
-
-
 import controller.IMainController;
-import controller.MainController;
 import controller.components.KeyboardComponent;
 import controller.components.MouseComponent;
 import controller.entities.IController;
+import factories.MainControllerFactory;
+import factories.MainModelFactory;
+import factories.ViewFactory;
 import factories.entities.IEntityFactory;
 
 public class Manager {
 
-	private static IMainModel mainModel = new MainModel();
+	private static IMainModel mainModel = MainModelFactory.get();
 
-	private static IMainController mainController = new MainController(
-			mainModel);
+	private static IMainController mainController = MainControllerFactory
+			.get(mainModel);
 
-	private static IView view = new View2D(mainModel);
+	private static IView view = ViewFactory.get(mainModel);
 
 	/**
 	 * @return gets the keyboard component
