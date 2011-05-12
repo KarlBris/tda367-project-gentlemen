@@ -10,11 +10,11 @@ import utilities.Tools;
 import controller.entities.BallController;
 import controller.entities.FlagController;
 import controller.entities.TeamController;
-import core.Body;
-import core.CircleBodyShape;
-import core.CircleGeometry;
-import core.Geometry;
 import core.Manager;
+import core.body.Body;
+import core.body.CircleBodyShape;
+import core.geometry.CircleGeometry;
+import core.geometry.Geometry;
 
 /**
  * PlayerModel represents a player in the game world

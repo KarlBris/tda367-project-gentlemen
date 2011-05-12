@@ -3,10 +3,10 @@ package model.entities;
 import org.lwjgl.util.vector.Vector2f;
 
 import utilities.Constants;
-import core.Body;
-import core.CircleBodyShape;
-import core.CircleGeometry;
-import core.Geometry;
+import core.body.Body;
+import core.body.CircleBodyShape;
+import core.geometry.CircleGeometry;
+import core.geometry.Geometry;
 
 /**
  * Represents a ball which can be interacted with by other objects

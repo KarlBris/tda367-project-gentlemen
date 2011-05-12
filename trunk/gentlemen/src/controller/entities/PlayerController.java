@@ -13,8 +13,8 @@ import utilities.Tools;
 import controller.components.IBodyCollisionCallback;
 import controller.components.KeyboardComponent;
 
-import core.Body;
 import core.Manager;
+import core.body.Body;
 import factories.entities.BallFactory;
 import factories.entities.KeyboardReticleFactory;
 

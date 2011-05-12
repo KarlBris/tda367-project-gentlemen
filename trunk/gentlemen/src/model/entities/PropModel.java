@@ -3,10 +3,10 @@ package model.entities;
 import org.lwjgl.util.vector.Vector2f;
 
 import utilities.Color;
-import core.Body;
-import core.BoxBodyShape;
-import core.BoxGeometry;
-import core.Geometry;
+import core.body.Body;
+import core.body.BoxBodyShape;
+import core.geometry.BoxGeometry;
+import core.geometry.Geometry;
 
 /**
  * Represent inanimate within the game world.

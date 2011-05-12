@@ -4,9 +4,9 @@ import java.util.LinkedList;
 import java.util.List;
 
 import controller.entities.TeamController;
-import core.Body;
-import core.Geometry;
-import core.NullGeometry;
+import core.body.Body;
+import core.geometry.Geometry;
+import core.geometry.NullGeometry;
 
 /**
  * Represents a visual scoreboard in the game. Teams are added to the list and
