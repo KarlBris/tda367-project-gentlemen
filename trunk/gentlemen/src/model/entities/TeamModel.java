@@ -2,11 +2,12 @@ package model.entities;
 
 import org.lwjgl.util.vector.Vector2f;
 
+import common.geometry.IGeometry;
+import common.geometry.NullGeometry;
+
 import utilities.Tools;
 import controller.entities.RuleController;
 import core.body.Body;
-import core.geometry.IGeometry;
-import core.geometry.NullGeometry;
 
 /**
  * Represents a team in the game

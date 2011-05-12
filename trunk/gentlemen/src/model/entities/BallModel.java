@@ -2,12 +2,13 @@ package model.entities;
 
 import org.lwjgl.util.vector.Vector2f;
 
+import common.geometry.AbstractGeometry;
+import common.geometry.IGeometry;
+import common.geometry.twodimensions.CircleGeometry;
+
 import utilities.Constants;
 import core.body.Body;
 import core.body.CircleBodyShape;
-import core.geometry.AbstractGeometry;
-import core.geometry.IGeometry;
-import core.geometry.twodimensions.CircleGeometry;
 
 /**
  * Represents a ball which can be interacted with by other objects

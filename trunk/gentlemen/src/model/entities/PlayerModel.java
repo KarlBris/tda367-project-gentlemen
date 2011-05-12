@@ -4,6 +4,10 @@ import java.util.List;
 
 import org.lwjgl.util.vector.Vector2f;
 
+import common.geometry.AbstractGeometry;
+import common.geometry.IGeometry;
+import common.geometry.twodimensions.CircleGeometry;
+
 import utilities.Color;
 import utilities.Constants;
 import utilities.Tools;
@@ -13,9 +17,6 @@ import controller.entities.TeamController;
 import core.Manager;
 import core.body.Body;
 import core.body.CircleBodyShape;
-import core.geometry.AbstractGeometry;
-import core.geometry.IGeometry;
-import core.geometry.twodimensions.CircleGeometry;
 
 /**
  * PlayerModel represents a player in the game world

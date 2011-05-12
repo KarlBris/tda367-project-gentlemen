@@ -1,4 +1,4 @@
-package core.geometry;
+package common.geometry;
 
 import org.lwjgl.util.vector.Vector2f;
 
