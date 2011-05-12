@@ -1,5 +1,7 @@
 package controller.components;
 
+import model.body.Body;
+
 import org.jbox2d.callbacks.ContactImpulse;
 import org.jbox2d.callbacks.ContactListener;
 import org.jbox2d.collision.Manifold;
@@ -9,7 +11,6 @@ import org.jbox2d.dynamics.contacts.Contact;
 import org.lwjgl.util.vector.Vector2f;
 
 import utilities.Tools;
-import core.body.Body;
 
 public class PhysicsContactListener implements ContactListener {
 

@@ -2,6 +2,9 @@ package model.entities;
 
 import java.util.List;
 
+import model.body.Body;
+import model.body.CircleBodyShape;
+
 import org.lwjgl.util.vector.Vector2f;
 
 import common.geometry.AbstractGeometry;
@@ -15,8 +18,6 @@ import controller.entities.BallController;
 import controller.entities.FlagController;
 import controller.entities.TeamController;
 import core.Manager;
-import core.body.Body;
-import core.body.CircleBodyShape;
 
 /**
  * PlayerModel represents a player in the game world

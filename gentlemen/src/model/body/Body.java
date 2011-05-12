@@ -1,4 +1,4 @@
-package core.body;
+package model.body;
 
 import org.jbox2d.collision.shapes.MassData;
 import org.jbox2d.common.Vec2;

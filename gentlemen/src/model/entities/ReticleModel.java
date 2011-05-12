@@ -1,12 +1,13 @@
 package model.entities;
 
+import model.body.Body;
+
 import org.lwjgl.util.vector.Vector2f;
 
 import common.geometry.AbstractGeometry;
 import common.geometry.IGeometry;
 import common.geometry.twodimensions.ReticleGeometry;
 
-import core.body.Body;
 
 /**
  * Represents a reticle in the game

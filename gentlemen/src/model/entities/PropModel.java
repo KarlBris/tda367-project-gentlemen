@@ -1,5 +1,8 @@
 package model.entities;
 
+import model.body.Body;
+import model.body.RectangleBodyShape;
+
 import org.lwjgl.util.vector.Vector2f;
 
 import common.geometry.AbstractGeometry;
@@ -7,8 +10,6 @@ import common.geometry.IGeometry;
 import common.geometry.twodimensions.RectangleGeometry;
 
 import utilities.Color;
-import core.body.Body;
-import core.body.RectangleBodyShape;
 
 /**
  * Represent inanimate within the game world.

@@ -1,5 +1,7 @@
 package model.entities;
 
+import model.body.Body;
+
 import org.lwjgl.util.vector.Vector2f;
 
 import common.geometry.IGeometry;
@@ -7,7 +9,6 @@ import common.geometry.NullGeometry;
 
 import utilities.Tools;
 import controller.entities.RuleController;
-import core.body.Body;
 
 /**
  * Represents a team in the game
