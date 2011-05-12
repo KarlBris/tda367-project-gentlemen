@@ -10,7 +10,7 @@ import org.lwjgl.util.vector.Vector2f;
 import utilities.Constants;
 import utilities.Tools;
 
-import controller.components.IBodyCollisionCallback;
+import controller.entities.IBodyCollisionCallback;
 
 /**
  * The physical representation of a model in the game world

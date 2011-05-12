@@ -8,7 +8,6 @@ import org.lwjgl.util.vector.Vector2f;
 
 import utilities.Constants;
 
-import controller.components.IBodyCollisionCallback;
 
 import core.Manager;
 import factories.entities.ShockwaveFactory;

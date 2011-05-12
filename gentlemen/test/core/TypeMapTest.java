@@ -10,6 +10,8 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import common.TypeMap;
+
 public class TypeMapTest {
 
 	private static TypeMap<Object> map;
