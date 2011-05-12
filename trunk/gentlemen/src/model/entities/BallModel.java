@@ -6,7 +6,7 @@ import utilities.Constants;
 import core.body.Body;
 import core.body.CircleBodyShape;
 import core.geometry.CircleGeometry;
-import core.geometry.Geometry;
+import core.geometry.AbstractGeometry;
 import core.geometry.IGeometry;
 
 /**
@@ -14,7 +14,7 @@ import core.geometry.IGeometry;
  */
 public class BallModel implements IModel {
 
-	private final Geometry geometry = new CircleGeometry(
+	private final AbstractGeometry geometry = new CircleGeometry(
 			utilities.Color.randomColor(), 1.0f, 0.2f, 8);
 
 	private final Body body = new Body(new CircleBodyShape(0.2f), 1.0f, 1.0f);

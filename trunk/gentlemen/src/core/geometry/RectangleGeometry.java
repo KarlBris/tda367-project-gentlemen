@@ -4,7 +4,7 @@ import org.lwjgl.util.vector.Vector2f;
 
 import utilities.Color;
 
-public class BoxGeometry extends Geometry {
+public class RectangleGeometry extends AbstractGeometry {
 
 	private final Vector2f[] vertices = {
 			new Vector2f(-0.5f, -0.5f), // Top-right triangle
@@ -18,7 +18,7 @@ public class BoxGeometry extends Geometry {
 			new Vector2f(0.0f, 0.0f), // Bottom-left triangle
 			new Vector2f(1.0f, 1.0f), new Vector2f(0.0f, 1.0f) };
 
-	public BoxGeometry(final Color color, final float depth, final float width,
+	public RectangleGeometry(final Color color, final float depth, final float width,
 			final float height) {
 		super(color, depth);
 

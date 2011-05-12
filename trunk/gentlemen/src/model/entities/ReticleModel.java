@@ -3,7 +3,7 @@ package model.entities;
 import org.lwjgl.util.vector.Vector2f;
 
 import core.body.Body;
-import core.geometry.Geometry;
+import core.geometry.AbstractGeometry;
 import core.geometry.IGeometry;
 import core.geometry.ReticleGeometry;
 
@@ -12,7 +12,7 @@ import core.geometry.ReticleGeometry;
  */
 public class ReticleModel implements IModel {
 
-	private final Geometry geometry = new ReticleGeometry();
+	private final AbstractGeometry geometry = new ReticleGeometry();
 
 	@Override
 	public IGeometry getGeometry() {

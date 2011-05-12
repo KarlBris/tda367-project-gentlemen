@@ -10,7 +10,7 @@ import utilities.Tools;
  * This class represents a visible geometry in the game world. The geometry is
  * stored as vertices to one or many triangles
  */
-public abstract class Geometry implements IGeometry {
+public abstract class AbstractGeometry implements IGeometry {
 
 	private Vector2f position = new Vector2f();
 	private float angle = 0.0f;
@@ -19,7 +19,7 @@ public abstract class Geometry implements IGeometry {
 	private Color color;
 	private float depth;
 
-	public Geometry(final Color color, final float depth) {
+	public AbstractGeometry(final Color color, final float depth) {
 		this.color = color;
 		this.depth = depth;
 	}

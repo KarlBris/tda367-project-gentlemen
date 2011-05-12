@@ -7,14 +7,14 @@ import utilities.Tools;
 import controller.entities.TeamController;
 import core.body.Body;
 import core.geometry.CircleGeometry;
-import core.geometry.Geometry;
+import core.geometry.AbstractGeometry;
 import core.geometry.IGeometry;
 
 /**
  * Represents a flag which players can interact with
  */
 public class FlagModel implements IModel {
-	private final Geometry geometry;
+	private final AbstractGeometry geometry;
 
 	private Color flagColor;
 
