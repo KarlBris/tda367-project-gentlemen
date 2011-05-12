@@ -2,7 +2,6 @@ package core.geometry;
 
 import org.lwjgl.util.vector.Vector2f;
 
-
 import utilities.Color;
 
 /**
@@ -15,7 +14,7 @@ public class ReticleGeometry extends Geometry {
 	private static float distance = 0.1f;
 
 	// Sets the coordinates of the reticle geometry
-	private static Vector2f[] verticies = {
+	private static Vector2f[] vertices = {
 			new Vector2f(0.0f, -distance), // Top triangle
 			new Vector2f(-width, -length),
 			new Vector2f(width, -length),
@@ -34,7 +33,22 @@ public class ReticleGeometry extends Geometry {
 			new Vector2f(), new Vector2f() };
 
 	public ReticleGeometry() {
-		super(Color.IT, 1.0f, verticies, uvs);
+		super(Color.IT, 1.0f);
+	}
+
+	@Override
+	public boolean isVisible() {
+		return true;
+	}
+
+	@Override
+	public Vector2f[] getVertices() {
+		return vertices;
+	}
+
+	@Override
+	public Vector2f[] getUvs() {
+		return uvs;
 	}
 
 }

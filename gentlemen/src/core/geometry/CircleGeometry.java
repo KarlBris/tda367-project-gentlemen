@@ -2,7 +2,6 @@ package core.geometry;
 
 import org.lwjgl.util.vector.Vector2f;
 
-
 import utilities.Color;
 import utilities.Constants;
 
@@ -47,9 +46,21 @@ public class CircleGeometry extends Geometry {
 		for (int i = 0; i < sides * 3; i++) {
 			uvs[i] = new Vector2f();
 		}
+	}
 
-		setVertices(vertices);
-		setUvs(uvs);
+	@Override
+	public boolean isVisible() {
+		return true;
+	}
+
+	@Override
+	public Vector2f[] getVertices() {
+		return vertices;
+	}
+
+	@Override
+	public Vector2f[] getUvs() {
+		return uvs;
 	}
 
 }

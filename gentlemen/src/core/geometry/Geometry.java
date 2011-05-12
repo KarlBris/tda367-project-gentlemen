@@ -1,6 +1,5 @@
 package core.geometry;
 
-import org.lwjgl.opengl.GL11;
 import org.lwjgl.util.vector.Vector2f;
 
 import utilities.Color;
@@ -11,10 +10,7 @@ import utilities.Tools;
  * This class represents a visible geometry in the game world. The geometry is
  * stored as vertices to one or many triangles
  */
-public abstract class Geometry {
-
-	private Vector2f[] vertices;
-	private Vector2f[] uvs;
+public abstract class Geometry implements IGeometry {
 
 	private Vector2f position = new Vector2f();
 	private float angle = 0.0f;
@@ -23,20 +19,39 @@ public abstract class Geometry {
 	private Color color;
 	private float depth;
 
-	public Geometry() {
-	}
-
 	public Geometry(final Color color, final float depth) {
 		this.color = color;
 		this.depth = depth;
 	}
 
-	public Geometry(final Color color, final float depth,
-			final Vector2f[] vertices, final Vector2f[] uvs) {
-		this(color, depth);
+	@Override
+	public Color getColor() {
+		return color;
+	}
 
-		this.vertices = vertices;
-		this.uvs = uvs;
+	/**
+	 * Sets the color of the geometry
+	 * 
+	 * @param color
+	 *            the new color of the geometry
+	 */
+	public void setColor(final Color color) {
+		this.color = color;
+	}
+
+	@Override
+	public float getDepth() {
+		return depth;
+	}
+
+	/**
+	 * Sets the depth of the geometry
+	 * 
+	 * @param depth
+	 *            the new depth of the geometry
+	 */
+	public void setDepth(final float depth) {
+		this.depth = depth;
 	}
 
 	/**
@@ -89,41 +104,6 @@ public abstract class Geometry {
 	}
 
 	/**
-	 * Sets the vertices of the geometry
-	 * 
-	 * @param vertices
-	 */
-	public void setVertices(final Vector2f[] vertices) {
-		this.vertices = vertices;
-	}
-
-	/**
-	 * Sets the uvs of the geometry
-	 * 
-	 * @param uvs
-	 */
-	public void setUvs(final Vector2f[] uvs) {
-		this.uvs = uvs;
-	}
-
-	/**
-	 * @return the color of the geometry
-	 */
-	public Color getColor() {
-		return color;
-	}
-
-	/**
-	 * Sets the color of the geometry
-	 * 
-	 * @param color
-	 *            the new color of the geometry
-	 */
-	public void setColor(final Color color) {
-		this.color = color;
-	}
-
-	/**
 	 * Moves the geometry towards a target.
 	 * 
 	 * @param targetPosition
@@ -169,35 +149,5 @@ public abstract class Geometry {
 		moveTowards(targetPosition, targetAngle,
 				Constants.GEOMETRY_TO_PHYSICS_INTERPOLATION,
 				Constants.GEOMETRY_TO_PHYSICS_INTERPOLATION);
-	}
-
-	/**
-	 * Renders the geometry
-	 */
-	public void render() {
-
-		// Set color
-		GL11.glColor3f(color.getRed(), color.getGreen(), color.getBlue());
-
-		// Set position and angle
-		GL11.glLoadIdentity();
-		GL11.glTranslatef(position.x, position.y, 0.0f);
-		GL11.glRotatef(angle * Constants.TO_DEGREES, 0.0f, 0.0f, -1.0f);
-		GL11.glScalef(scale.x, scale.y, 1.0f);
-
-		// Begin rendering triangles
-		GL11.glBegin(GL11.GL_TRIANGLES);
-
-		// Render the geometry as triangles
-		for (final Vector2f vertex : vertices) {
-			GL11.glVertex3f(vertex.x, vertex.y, depth);
-		}
-
-		for (final Vector2f uv : uvs) {
-			GL11.glTexCoord2f(uv.x, uv.y);
-		}
-
-		// End rendering triangles
-		GL11.glEnd();
 	}
 }

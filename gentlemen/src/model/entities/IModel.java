@@ -1,7 +1,7 @@
 package model.entities;
 
 import core.body.Body;
-import core.geometry.Geometry;
+import core.geometry.IGeometry;
 
 /**
  * An interface which all models will implement
@@ -11,7 +11,7 @@ public interface IModel {
 	/**
 	 * @return the Geometry object of the current Model
 	 */
-	public Geometry getGeometry();
+	public IGeometry getGeometry();
 
 	/**
 	 * @return the Body object of the current Model

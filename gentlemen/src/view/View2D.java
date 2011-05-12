@@ -6,15 +6,18 @@ import model.IMainModel;
 import model.entities.IModel;
 
 import org.lwjgl.opengl.GL11;
+import org.lwjgl.util.vector.Vector2f;
 
+import utilities.Color;
 import utilities.Constants;
 import utilities.Tools;
+import core.geometry.IGeometry;
 
 public class View2D implements IView {
 
 	public IMainModel mainModel;
 
-	public View2D(IMainModel mainModel) {
+	public View2D(final IMainModel mainModel) {
 		this.mainModel = mainModel;
 	}
 
@@ -64,8 +67,44 @@ public class View2D implements IView {
 
 		for (final IModel m : models) {
 
-			// TODO: Implement a better/more flexible solution
-			m.getGeometry().render();
+			IGeometry geometry = m.getGeometry();
+
+			if (geometry.isVisible()) {
+				// Set color
+				Color color = geometry.getColor();
+
+				GL11.glColor3f(color.getRed(), color.getGreen(),
+						color.getBlue());
+
+				// Set position and angle
+				Vector2f position = geometry.getPosition();
+				float angle = geometry.getAngle();
+				Vector2f scale = geometry.getScale();
+
+				GL11.glLoadIdentity();
+				GL11.glTranslatef(position.x, position.y, 0.0f);
+				GL11.glRotatef(angle * Constants.TO_DEGREES, 0.0f, 0.0f, -1.0f);
+				GL11.glScalef(scale.x, scale.y, 1.0f);
+
+				// Begin rendering triangles
+				GL11.glBegin(GL11.GL_TRIANGLES);
+
+				// Render the geometry as triangles
+				Vector2f[] vertices = geometry.getVertices();
+				Vector2f[] uvs = geometry.getUvs();
+				float depth = geometry.getDepth();
+
+				for (final Vector2f vertex : vertices) {
+					GL11.glVertex3f(vertex.x, vertex.y, depth);
+				}
+
+				for (final Vector2f uv : uvs) {
+					GL11.glTexCoord2f(uv.x, uv.y);
+				}
+
+				// End rendering triangles
+				GL11.glEnd();
+			}
 		}
 	}
 

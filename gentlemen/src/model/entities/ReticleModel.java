@@ -4,6 +4,7 @@ import org.lwjgl.util.vector.Vector2f;
 
 import core.body.Body;
 import core.geometry.Geometry;
+import core.geometry.IGeometry;
 import core.geometry.ReticleGeometry;
 
 /**
@@ -14,7 +15,7 @@ public class ReticleModel implements IModel {
 	private final Geometry geometry = new ReticleGeometry();
 
 	@Override
-	public Geometry getGeometry() {
+	public IGeometry getGeometry() {
 		return geometry;
 	}
 

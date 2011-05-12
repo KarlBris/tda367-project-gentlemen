@@ -7,6 +7,7 @@ import core.body.Body;
 import core.body.CircleBodyShape;
 import core.geometry.CircleGeometry;
 import core.geometry.Geometry;
+import core.geometry.IGeometry;
 
 /**
  * Represents a ball which can be interacted with by other objects
@@ -76,7 +77,7 @@ public class BallModel implements IModel {
 	}
 
 	@Override
-	public Geometry getGeometry() {
+	public IGeometry getGeometry() {
 		return geometry;
 	}
 

@@ -8,6 +8,7 @@ import controller.entities.TeamController;
 import core.body.Body;
 import core.geometry.CircleGeometry;
 import core.geometry.Geometry;
+import core.geometry.IGeometry;
 
 /**
  * Represents a flag which players can interact with
@@ -53,7 +54,7 @@ public class FlagModel implements IModel {
 	}
 
 	@Override
-	public Geometry getGeometry() {
+	public IGeometry getGeometry() {
 		return geometry;
 	}
 
