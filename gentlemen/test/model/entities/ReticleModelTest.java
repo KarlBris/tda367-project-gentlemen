@@ -2,8 +2,6 @@ package model.entities;
 
 import static org.junit.Assert.assertTrue;
 
-import model.entities.ReticleModel;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -14,7 +12,7 @@ import core.Manager;
 import factories.entities.KeyboardReticleFactory;
 
 public class ReticleModelTest {
-	private final float epsilon = 0.01f;
+
 	private ReticleModel model;
 
 	@Before
@@ -35,12 +33,41 @@ public class ReticleModelTest {
 	}
 
 	@Test
-	public void testPosition() {
-		Vector2f newPosition = new Vector2f(3.0f, 3.0f);
+	public void testGetBody() {
+		// Test if the method returns a Body object
+		assertTrue(model.getBody() != null);
+	}
+
+	@Test
+	public void testSetPosition() {
+		// Test if setting the prop's position to different values renders any
+		// errors.
+		Vector2f newPosition = new Vector2f(1.0f, 1.0f);
 		model.setPosition(newPosition);
 
-		// Test if setting the reticle's position gives it the correct values
-		assertTrue(Tools.distanceBetween(model.getPosition(), newPosition) <= epsilon);
+		newPosition = new Vector2f(2.0f, 2.0f);
+		model.setPosition(newPosition);
+
+		newPosition = new Vector2f(-1.0f, -1.0f);
+		model.setPosition(newPosition);
+
+	}
+
+	@Test
+	public void testGetPosition() {
+
+		Vector2f position = new Vector2f(1.0f, 1.0f);
+		model.setPosition(position);
+
+		// Test if getting the prop's position returns the correct value
+		assertTrue(Tools.isVectorsEqual(position, model.getPosition()));
+
+		position = new Vector2f(2.0f, 2.0f);
+		model.setPosition(position);
+
+		// Same test with new values
+		assertTrue(Tools.isVectorsEqual(position, model.getPosition()));
+
 	}
 
 	@Test
@@ -51,6 +78,6 @@ public class ReticleModelTest {
 
 		// Test if moving the reticle results in it having a different position.
 		assertTrue(Tools.distanceBetween(oldPosition, model.getPosition()) != 0);
-
 	}
+
 }
