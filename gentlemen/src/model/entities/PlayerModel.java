@@ -2,18 +2,18 @@ package model.entities;
 
 import java.util.List;
 
-import model.body.Body;
-import model.body.CircleBodyShape;
-
 import org.lwjgl.util.vector.Vector2f;
-
-import common.geometry.AbstractGeometry;
-import common.geometry.IGeometry;
-import common.geometry.twodimensions.CircleGeometry;
 
 import utilities.Color;
 import utilities.Constants;
 import utilities.Tools;
+
+import common.body.Body;
+import common.body.CircleBodyShape;
+import common.geometry.AbstractGeometry;
+import common.geometry.IGeometry;
+import common.geometry.twodimensions.CircleGeometry;
+
 import controller.entities.BallController;
 import controller.entities.FlagController;
 import controller.entities.TeamController;
@@ -317,6 +317,7 @@ public class PlayerModel implements IModel {
 	 *            the position to be set
 	 */
 	public void setPosition(final Vector2f position) {
+		geometry.setPosition(position);
 		body.setPosition(position);
 	}
 

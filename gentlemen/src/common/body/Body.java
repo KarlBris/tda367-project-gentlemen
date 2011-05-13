@@ -1,4 +1,4 @@
-package model.body;
+package common.body;
 
 import org.jbox2d.collision.shapes.MassData;
 import org.jbox2d.common.Vec2;
@@ -10,7 +10,6 @@ import org.lwjgl.util.vector.Vector2f;
 import utilities.Constants;
 import utilities.Tools;
 
-import controller.entities.IBodyCollisionCallback;
 
 /**
  * The physical representation of a model in the game world

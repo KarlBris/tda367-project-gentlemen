@@ -1,6 +1,5 @@
 package controller.components;
 
-import model.body.Body;
 
 import org.jbox2d.callbacks.ContactImpulse;
 import org.jbox2d.callbacks.ContactListener;
@@ -10,7 +9,9 @@ import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.contacts.Contact;
 import org.lwjgl.util.vector.Vector2f;
 
-import controller.entities.IBodyCollisionCallback;
+import common.body.Body;
+import common.body.IBodyCollisionCallback;
+
 
 import utilities.Tools;
 

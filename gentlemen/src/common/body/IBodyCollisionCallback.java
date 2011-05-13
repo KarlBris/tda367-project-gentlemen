@@ -1,8 +1,8 @@
-package controller.entities;
+package common.body;
 
-import model.body.Body;
 
 import org.lwjgl.util.vector.Vector2f;
+
 
 
 public interface IBodyCollisionCallback {

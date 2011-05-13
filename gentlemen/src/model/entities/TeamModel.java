@@ -1,9 +1,9 @@
 package model.entities;
 
-import model.body.Body;
 
 import org.lwjgl.util.vector.Vector2f;
 
+import common.body.Body;
 import common.geometry.IGeometry;
 import common.geometry.NullGeometry;
 

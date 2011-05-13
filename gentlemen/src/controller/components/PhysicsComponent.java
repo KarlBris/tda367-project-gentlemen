@@ -1,9 +1,10 @@
 package controller.components;
 
-import model.body.Body;
 
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.World;
+
+import common.body.Body;
 
 import utilities.Constants;
 import controller.entities.IController;
