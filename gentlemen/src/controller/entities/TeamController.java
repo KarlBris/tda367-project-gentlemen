@@ -19,13 +19,29 @@ public class TeamController implements IController {
 	}
 
 	/**
-	 * Adds an amount of score points to the team
+	 * Adds an amount of score points to the team score
 	 * 
 	 * @param amount
 	 *            the amount of score points to be added
+	 * 
+	 * @throws NumberFormatException
+	 *             is thrown if amount is negative
 	 */
-	public void addScore(final int amount) {
+	public void addScore(final int amount) throws NumberFormatException {
 		model.addScore(amount);
+	}
+
+	/**
+	 * Subtracts an amount of score points from the team score
+	 * 
+	 * @param amount
+	 *            the amount of score points to subtract
+	 * 
+	 * @throws NumberFormatException
+	 *             is thrown if amount is negative
+	 */
+	public void subtractScore(final int amount) throws NumberFormatException {
+		model.subtractScore(amount);
 	}
 
 	@Override
