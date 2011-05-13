@@ -12,9 +12,9 @@ import org.lwjgl.util.vector.Vector2f;
 import utilities.Constants;
 import view.IView;
 import controller.IMainController;
+import controller.common.IController;
 import controller.components.KeyboardComponent;
 import controller.components.MouseComponent;
-import controller.entities.IController;
 import factories.MainControllerFactory;
 import factories.MainModelFactory;
 import factories.ViewFactory;
@@ -69,17 +69,7 @@ public class Manager {
 	 */
 	public static IController instantiate(final IEntityFactory factory,
 			final Vector2f position) {
-		if (factory != null) {
-
-			// Get the new model and controller
-			final IController newController = factory.getController();
-
-			mainController.add(newController, position);
-
-			return newController;
-		}
-
-		return null;
+		return mainController.instantiate(factory, position);
 	}
 
 	/**

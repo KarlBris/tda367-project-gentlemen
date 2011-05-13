@@ -3,6 +3,8 @@ package model.entities;
 import java.util.LinkedList;
 import java.util.List;
 
+import model.common.IModel;
+
 
 import common.body.Body;
 import common.geometry.IGeometry;

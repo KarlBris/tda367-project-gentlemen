@@ -1,6 +1,6 @@
-package controller.entities;
+package controller.common;
 
-import model.entities.IModel;
+import model.common.IModel;
 
 import org.lwjgl.util.vector.Vector2f;
 

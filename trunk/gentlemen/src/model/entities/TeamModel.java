@@ -1,6 +1,8 @@
 package model.entities;
 
 
+import model.common.IModel;
+
 import org.lwjgl.util.vector.Vector2f;
 
 import common.body.Body;

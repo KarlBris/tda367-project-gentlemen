@@ -1,10 +1,10 @@
 package factories.entities;
 
+import model.common.IModel;
 import model.entities.FlagModel;
-import model.entities.IModel;
 import utilities.Color;
+import controller.common.IController;
 import controller.entities.FlagController;
-import controller.entities.IController;
 
 public class FlagFactory implements IEntityFactory {
 

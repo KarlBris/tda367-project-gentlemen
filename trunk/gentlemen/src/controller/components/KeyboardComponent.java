@@ -2,7 +2,7 @@ package controller.components;
 
 import org.lwjgl.input.Keyboard;
 
-import controller.entities.IController;
+import controller.common.IController;
 
 /**
  * Provides functionality related to keyboard input by reading the state of the

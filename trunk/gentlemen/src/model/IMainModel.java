@@ -2,7 +2,7 @@ package model;
 
 import java.util.List;
 
-import model.entities.IModel;
+import model.common.IModel;
 
 public interface IMainModel {
 

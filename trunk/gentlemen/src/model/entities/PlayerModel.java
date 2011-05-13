@@ -2,6 +2,8 @@ package model.entities;
 
 import java.util.List;
 
+import model.common.IModel;
+
 import org.lwjgl.util.vector.Vector2f;
 
 import utilities.Color;
