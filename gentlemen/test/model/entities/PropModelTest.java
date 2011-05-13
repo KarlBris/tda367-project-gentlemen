@@ -1,6 +1,3 @@
-/**
- * 
- */
 package model.entities;
 
 import static org.junit.Assert.assertTrue;
@@ -10,6 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.lwjgl.util.vector.Vector2f;
 
+import utilities.Color;
 import utilities.Constants;
 import utilities.Tools;
 import controller.entities.PropController;
@@ -17,7 +15,7 @@ import core.Manager;
 import factories.entities.PropFactory;
 
 public class PropModelTest {
-	private final float epsilon = 0.01f;
+
 	private PropModel model;
 	private PropController controller;
 
@@ -39,15 +37,31 @@ public class PropModelTest {
 		Manager.removeAll();
 	}
 
-	/**
-	 * Test method for
-	 * {@link model.entities.PropModel#PropModel(float, float, float, float)}.
-	 */
 	@Test
-	public void testPropModel() {
-		// Test if the model has the correct mass
-		assertTrue(Math.abs(model.getBody().getMass() - 1.0f) <= epsilon);
+	public void testPropModelFloatFloatFloatFloat() {
+		// Test if this constructor works for a number of different parameter
+		// values.
+		model = new PropModel(1.0f, 1.0f, 1.0f, 1.0f);
 
+		model = new PropModel(0.0f, 0.0f, 0.0f, 0.0f);
+
+		model = new PropModel(-1.0f, -1.0f, -1.0f, -1.0f);
+	}
+
+	@Test
+	public void testPropModelFloatFloatFloatFloatColor() {
+		// Test if this constructor works for a number of different parameter
+		// values.
+		Color color = new Color(1.0f, 1.0f, 1.0f);
+		model = new PropModel(1.0f, 1.0f, 1.0f, 1.0f, color);
+
+		color = new Color(2.0f, 2.0f, 2.0f);
+		model = new PropModel(1.0f, 1.0f, 1.0f, 1.0f, color);
+
+		color = new Color(-1.0f, -1.0f, -1.0f);
+		model = new PropModel(1.0f, 1.0f, 1.0f, 1.0f, color);
+
+		model = new PropModel(-1.0f, -1.0f, -1.0f, -1.0f, color);
 	}
 
 	/**
@@ -59,31 +73,113 @@ public class PropModelTest {
 		assertTrue(model.getGeometry() != null);
 	}
 
-	/**
-	 * Test method for
-	 * {@link model.entities.PropModel#setPosition(org.lwjgl.util.vector.Vector2f)}
-	 * .
-	 */
 	@Test
-	public void testPosition() {
-		Vector2f newPosition = new Vector2f(3.0f, 3.0f);
+	public void testGetBody() {
+		// Test if the method returns a Body object
+		assertTrue(model.getBody() != null);
+	}
+
+	@Test
+	public void testSetPosition() {
+		// Test if setting the prop's position to different values renders any
+		// errors.
+		Vector2f newPosition = new Vector2f(1.0f, 1.0f);
 		model.setPosition(newPosition);
 
-		// Test if setting the prop's position gives it the correct values
-		assertTrue(Tools.distanceBetween(model.getPosition(), newPosition) <= epsilon);
+		newPosition = new Vector2f(2.0f, 2.0f);
+		model.setPosition(newPosition);
+
+		newPosition = new Vector2f(-1.0f, -1.0f);
+		model.setPosition(newPosition);
+
 	}
 
-	/**
-	 * Test method for {@link model.entities.PropModel#setAngle(float)}.
-	 */
 	@Test
-	public void testAngle() {
-		float newAngle = Constants.PI / 2;
+	public void testSetAngle() {
+		// Test if setting the prop's angle to different values renders any
+		// errors.
+		model.setAngle(1.0f);
+		model.setAngle(Constants.PI);
+		model.setAngle(Constants.TWO_PI - 1);
+
+		model.setAngle(-Constants.PI);
+		model.setAngle(-Constants.TWO_PI - 1);
+
+		model.setAngle(0.0f);
+	}
+
+	@Test
+	public void testGetPosition() {
+		Vector2f position = new Vector2f(1.0f, 1.0f);
+		model.setPosition(position);
+
+		// Test if getting the prop's position returns the correct value
+		assertTrue(Tools.isVectorsEqual(position, model.getPosition()));
+
+		position = new Vector2f(2.0f, 2.0f);
+		model.setPosition(position);
+
+		// Same test with new values
+		assertTrue(Tools.isVectorsEqual(position, model.getPosition()));
+
+	}
+
+	@Test
+	public void testGetAngle() {
+		float newAngle = 1.0f;
 		model.setAngle(newAngle);
 
-		// Test if setting the prop's angle gives its body and geometry their
-		// correct values
-		assertTrue(Math.abs(model.getAngle() - newAngle) <= epsilon);
+		// Test if getting the prop's angle returns the correct value
+		assertTrue(model.getAngle() == newAngle);
+
+		newAngle = Constants.TWO_PI - 1;
+		model.setAngle(newAngle);
+
+		// Same test with new values
+		assertTrue(model.getAngle() == newAngle);
 	}
 
+	@Test
+	public void testSetColor() {
+		// Test if setting the prop's color to different values renders any
+		// errors.
+		Color color = new Color(1.0f, 1.0f, 1.0f);
+		model.setColor(color);
+
+		color = new Color(2.0f, 2.0f, 2.0f);
+		model.setColor(color);
+
+		color = new Color(-1.0f, -1.0f, -1.0f);
+		model.setColor(color);
+	}
+
+	@Test
+	public void testGetColor() {
+		Color color = new Color(1.0f, 1.0f, 1.0f);
+		model.setColor(color);
+
+		// Test if getting the prop's color returns the correct RGB values
+		assertTrue(model.getColor().getBlue() == color.getBlue());
+		assertTrue(model.getColor().getRed() == color.getRed());
+		assertTrue(model.getColor().getGreen() == color.getGreen());
+		assertTrue(model.getColor().getAlpha() == color.getAlpha());
+
+		color = new Color(2.0f, 2.0f, 2.0f);
+		model.setColor(color);
+
+		// Same test with new values
+		assertTrue(model.getColor().getBlue() == color.getBlue());
+		assertTrue(model.getColor().getRed() == color.getRed());
+		assertTrue(model.getColor().getGreen() == color.getGreen());
+		assertTrue(model.getColor().getAlpha() == color.getAlpha());
+
+		color = new Color(-1.0f, -1.0f, -1.0f);
+		model.setColor(color);
+
+		// Same test with new values
+		assertTrue(model.getColor().getBlue() == color.getBlue());
+		assertTrue(model.getColor().getRed() == color.getRed());
+		assertTrue(model.getColor().getGreen() == color.getGreen());
+		assertTrue(model.getColor().getAlpha() == color.getAlpha());
+	}
 }
