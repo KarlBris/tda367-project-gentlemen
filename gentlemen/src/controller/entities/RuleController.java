@@ -1,6 +1,5 @@
 package controller.entities;
 
-import model.common.IModel;
 import model.entities.RuleModel;
 import model.entities.TeamModel;
 
@@ -11,7 +10,7 @@ import controller.common.IController;
 /**
  * This class controls a rule model
  */
-public class RuleController implements IController {
+public class RuleController implements IController<RuleModel> {
 
 	private final RuleModel model;
 
@@ -30,7 +29,7 @@ public class RuleController implements IController {
 	}
 
 	@Override
-	public IModel getModel() {
+	public RuleModel getModel() {
 		return model;
 	}
 

@@ -1,15 +1,13 @@
 package controller.entities;
 
-import model.common.IModel;
 import model.entities.PropModel;
 
 import org.lwjgl.util.vector.Vector2f;
 
+import utilities.Color;
 import controller.common.IController;
 
-import utilities.Color;
-
-public class PropController implements IController {
+public class PropController implements IController<PropModel> {
 
 	private final PropModel model;
 
@@ -69,7 +67,7 @@ public class PropController implements IController {
 	}
 
 	@Override
-	public IModel getModel() {
+	public PropModel getModel() {
 		return model;
 	}
 

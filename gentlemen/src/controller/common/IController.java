@@ -7,12 +7,12 @@ import org.lwjgl.util.vector.Vector2f;
 /**
  * An interface which all controllers will implement
  */
-public interface IController {
+public interface IController<M extends IModel> {
 
 	/**
 	 * @return the model of this controller
 	 */
-	public IModel getModel();
+	public M getModel();
 
 	/**
 	 * Sets the position of the controller

@@ -1,5 +1,7 @@
 package controller.components;
 
+import model.common.IModel;
+
 import org.lwjgl.input.Mouse;
 import org.lwjgl.util.vector.Vector2f;
 
@@ -40,18 +42,6 @@ public class MouseComponent implements IComponent {
 		for (int i = 0; i < buttonDownArray.length; i++) {
 			buttonDownArray[i] = Mouse.isButtonDown(i);
 		}
-
-	}
-
-	@Override
-	public void controllerAdded(final IController controller) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void controllerRemoved(final IController controller) {
-		// TODO Auto-generated method stub
 
 	}
 
@@ -111,6 +101,18 @@ public class MouseComponent implements IComponent {
 			return false;
 		}
 
+	}
+
+	@Override
+	public <M extends IModel> void controllerAdded(
+			final IController<M> controller) {
+		// Do nothing
+	}
+
+	@Override
+	public <M extends IModel> void controllerRemoved(
+			final IController<M> controller) {
+		// Do nothing
 	}
 
 }

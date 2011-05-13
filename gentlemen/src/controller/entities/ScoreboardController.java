@@ -1,6 +1,5 @@
 package controller.entities;
 
-import model.common.IModel;
 import model.entities.ScoreboardModel;
 
 import org.lwjgl.util.vector.Vector2f;
@@ -10,7 +9,7 @@ import controller.common.IController;
 /**
  * This class controls a scoreboard model
  */
-public class ScoreboardController implements IController {
+public class ScoreboardController implements IController<ScoreboardModel> {
 
 	public ScoreboardModel model;
 
@@ -29,33 +28,28 @@ public class ScoreboardController implements IController {
 	}
 
 	@Override
-	public IModel getModel() {
-		// TODO Auto-generated method stub
+	public ScoreboardModel getModel() {
 		return model;
 	}
 
 	@Override
 	public void setPosition(final Vector2f position) {
-		// TODO Auto-generated method stub
-
+		// Do nothing
 	}
 
 	@Override
 	public void start() {
-		// TODO Auto-generated method stub
-
+		// Do nothing
 	}
 
 	@Override
 	public void end() {
-		// TODO Auto-generated method stub
-
+		// Do nothing
 	}
 
 	@Override
 	public void update() {
 		model.update();
-
 	}
 
 }

@@ -1,5 +1,7 @@
 package controller.components;
 
+import model.common.IModel;
+
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.util.vector.Vector2f;
 
@@ -25,8 +27,7 @@ public class StateComponent implements IComponent {
 
 	@Override
 	public void initialize() {
-		// TODO Auto-generated method stub
-
+		// Do nothing
 	}
 
 	@Override
@@ -39,20 +40,8 @@ public class StateComponent implements IComponent {
 
 	}
 
-	@Override
-	public void controllerAdded(final IController controller) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void controllerRemoved(final IController controller) {
-		// TODO Auto-generated method stub
-
-	}
-
 	/**
-	 * Initalizes the entities nessecary to play the game
+	 * Initializes the entities necessary to play the game
 	 */
 	public void initializeEntities() {
 
@@ -123,5 +112,17 @@ public class StateComponent implements IComponent {
 		scoreboard.addTeam(teamOne);
 		scoreboard.addTeam(teamTwo);
 
+	}
+
+	@Override
+	public <M extends IModel> void controllerAdded(
+			final IController<M> controller) {
+		// Do nothing
+	}
+
+	@Override
+	public <M extends IModel> void controllerRemoved(
+			final IController<M> controller) {
+		// Do nothing
 	}
 }

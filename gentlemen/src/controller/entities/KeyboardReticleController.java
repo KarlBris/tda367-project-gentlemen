@@ -1,6 +1,5 @@
 package controller.entities;
 
-import model.common.IModel;
 import model.entities.ReticleModel;
 
 import org.lwjgl.util.vector.Vector2f;
@@ -10,7 +9,7 @@ import controller.common.IController;
 /**
  * This class controls a keyboardReticle model
  */
-public class KeyboardReticleController implements IController {
+public class KeyboardReticleController implements IController<ReticleModel> {
 
 	private final ReticleModel model;
 
@@ -25,7 +24,7 @@ public class KeyboardReticleController implements IController {
 	}
 
 	@Override
-	public IModel getModel() {
+	public ReticleModel getModel() {
 		return model;
 	}
 

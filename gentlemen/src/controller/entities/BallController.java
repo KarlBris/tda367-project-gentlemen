@@ -1,24 +1,23 @@
 package controller.entities;
 
-import model.common.IModel;
 import model.entities.BallModel;
 
 import org.lwjgl.util.vector.Vector2f;
 
-import common.body.Body;
-import common.body.IBodyCollisionCallback;
-import controller.common.IController;
-
 import utilities.Constants;
 
+import common.body.Body;
+import common.body.IBodyCollisionCallback;
 
+import controller.common.IController;
 import core.Manager;
 import factories.entities.ShockwaveFactory;
 
 /**
  * This class controls a ball model
  */
-public class BallController implements IController, IBodyCollisionCallback {
+public class BallController implements IController<BallModel>,
+		IBodyCollisionCallback {
 
 	private final BallModel model;
 
@@ -67,7 +66,7 @@ public class BallController implements IController, IBodyCollisionCallback {
 	}
 
 	@Override
-	public IModel getModel() {
+	public BallModel getModel() {
 		return model;
 	}
 

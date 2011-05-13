@@ -1,18 +1,17 @@
 package controller.entities;
 
-import model.common.IModel;
 import model.entities.FlagModel;
 
 import org.lwjgl.util.vector.Vector2f;
 
-import controller.common.IController;
-
 import utilities.Color;
+import controller.common.IController;
 
 /**
  * This class controls a flag model
  */
-public class FlagController implements IController {
+public class FlagController implements IController<FlagModel> {
+
 	private final FlagModel model;
 
 	public FlagController(final FlagModel model) {
@@ -20,7 +19,7 @@ public class FlagController implements IController {
 	}
 
 	@Override
-	public IModel getModel() {
+	public FlagModel getModel() {
 		return model;
 	}
 
