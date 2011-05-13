@@ -4,8 +4,9 @@ import org.lwjgl.input.Keyboard;
 import org.lwjgl.util.vector.Vector2f;
 
 import utilities.Constants;
-import utilities.Tools;
 import controller.common.IController;
+import controller.components.levels.AbstractLevel;
+import controller.components.levels.RandomLevel;
 import controller.entities.FlagController;
 import controller.entities.PlayerController;
 import controller.entities.RuleController;
@@ -13,16 +14,12 @@ import controller.entities.ScoreboardController;
 import controller.entities.TeamController;
 import core.Manager;
 import factories.entities.BallFactory;
-import factories.entities.BuildingPropFactory;
-import factories.entities.CratePropFactory;
 import factories.entities.FlagFactory;
-import factories.entities.HorizontalWallPropFactory;
 import factories.entities.PlayerOneFactory;
 import factories.entities.PlayerTwoFactory;
 import factories.entities.RuleFactory;
 import factories.entities.ScoreboardFactory;
 import factories.entities.TeamFactory;
-import factories.entities.VerticalWallPropFactory;
 
 public class StateComponent implements IComponent {
 
@@ -59,6 +56,14 @@ public class StateComponent implements IComponent {
 	 */
 	public void initializeEntities() {
 
+		final AbstractLevel level = new RandomLevel();
+
+		buildTeams(level);
+
+	}
+
+	private void buildTeams(final AbstractLevel level) {
+
 		// Instantiate the rules
 
 		final RuleController rules = (RuleController) Manager
@@ -79,16 +84,19 @@ public class StateComponent implements IComponent {
 		teamTwo.setRules(rules);
 
 		teamOne.setTeamName("Red Team");
-		teamOne.setHomePosition(Constants.TEAM_ONE_HOME_POSITION);
+		teamOne.setHomePosition(level.getTeamOneHomePosition());
 		teamTwo.setTeamName("Blue Team");
-		teamTwo.setHomePosition(Constants.TEAM_TWO_HOME_POSITION);
+		teamTwo.setHomePosition(level.getTeamTwoHomePosition());
 
 		for (int i = 0; i < 140; i++) {
 			// Added a random number so the physics engine move the ball apart
-			Manager.instantiate(new BallFactory(), new Vector2f(
-					Constants.VIEWPORT_WIDTH / 2.0f + (float) Math.random()
-							/ 1000, Constants.VIEWPORT_HEIGHT / 2
-							+ (float) Math.random() / 100));
+			Manager.instantiate(
+					new BallFactory(),
+					new Vector2f(level.getBallSpawnPosition().x
+							+ (float) Math.random() / 1000, level
+							.getBallSpawnPosition().y
+							+ (float) Math.random()
+							/ 100));
 
 		}
 
@@ -115,48 +123,5 @@ public class StateComponent implements IComponent {
 		scoreboard.addTeam(teamOne);
 		scoreboard.addTeam(teamTwo);
 
-		// Instantiate props
-
-		// Top wall
-		Manager.instantiate(new HorizontalWallPropFactory(), new Vector2f(
-				Constants.VIEWPORT_WIDTH / 2, Constants.VIEWPORT_HEIGHT));
-
-		// Bottom wall
-		Manager.instantiate(new HorizontalWallPropFactory(), new Vector2f(
-				Constants.VIEWPORT_WIDTH / 2, 0.0f));
-
-		// Left wall
-		Manager.instantiate(new VerticalWallPropFactory(), new Vector2f(0.0f,
-				Constants.VIEWPORT_HEIGHT / 2));
-
-		// Right wall
-		Manager.instantiate(new VerticalWallPropFactory(), new Vector2f(
-				Constants.VIEWPORT_WIDTH, Constants.VIEWPORT_HEIGHT / 2));
-
-		// Crates
-		for (int i = 0; i < 30; i++) {
-
-			final Vector2f[] restrictions = { Constants.TEAM_ONE_HOME_POSITION,
-					Constants.TEAM_TWO_HOME_POSITION };
-
-			Manager.instantiate(new CratePropFactory(), Tools
-					.randomVectorInArea(new Vector2f(0, 0),
-							new Vector2f(Constants.VIEWPORT_WIDTH,
-									Constants.VIEWPORT_HEIGHT), restrictions));
-
-		}
-
-		// Buildings
-		for (int i = 0; i < 10; i++) {
-
-			final Vector2f[] restrictions = { Constants.TEAM_ONE_HOME_POSITION,
-					Constants.TEAM_TWO_HOME_POSITION };
-
-			Manager.instantiate(new BuildingPropFactory(), Tools
-					.randomVectorInArea(new Vector2f(0, 0),
-							new Vector2f(Constants.VIEWPORT_WIDTH,
-									Constants.VIEWPORT_HEIGHT), restrictions));
-
-		}
 	}
 }
