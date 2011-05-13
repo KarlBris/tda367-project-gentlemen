@@ -14,7 +14,7 @@ import controller.entities.TeamController;
 import core.Manager;
 import factories.entities.TeamFactory;
 
-public class FlagModelTest {
+public class FlagModelTestOld {
 	private FlagModel fm;
 	private TeamController teamController;
 
@@ -34,109 +34,65 @@ public class FlagModelTest {
 
 	@Test
 	public void testFlagModel() {
-		// No error should occur
-		FlagModel flagModel = new FlagModel(Color.BLACK);
-	}
-
-	@Test
-	public void testPickUpFlag() {
-		// No error should occur
-		fm.pickUpFlag();
-
-		// No error should occur
-		fm.pickUpFlag();
-	}
-
-	@Test
-	public void testReleaseFlag() {
-		// No error should occur
-		fm.releaseFlag();
-
-		// No error should occur
-		fm.releaseFlag();
+		// Test if the color was successfully added to the geometry
+		assertTrue(fm.getGeometry().getColor() == Color.BLUE);
 	}
 
 	@Test
 	public void testIsPickUpAble() {
-		// At start the flag should be pickup able
+		// Test if the ball was pick up able from the start
 		assertTrue(fm.isPickUpAble());
-
-		// If a flag is picked up the flag should no longer be pickup able
 		fm.pickUpFlag();
+		// Test if the ball is unpick up able when something told it that it was
+		// picked up
 		assertTrue(!fm.isPickUpAble());
-		// Redundancy
-		fm.pickUpFlag();
-		assertTrue(!fm.isPickUpAble());
-
-		// If a flag is released the flag should be pickup able again
 		fm.releaseFlag();
+		// Test if the ball is pick up able when something told it that is was
+		// dropped
 		assertTrue(fm.isPickUpAble());
-		// Redundancy
-		fm.releaseFlag();
-		assertTrue(fm.isPickUpAble());
-
 	}
 
 	@Test
 	public void testGetGeometry() {
+		// Test if the geometry ain't null
 		assertTrue(fm.getGeometry() != null);
 	}
 
 	@Test
 	public void testGetBody() {
+		// Test if the body is null
 		assertTrue(fm.getBody() == null);
 	}
 
 	@Test
 	public void testSetPosition() {
-		// No error should occur
-		fm.setPosition(new Vector2f(20.0f, 10.0f));
-
-		fm.setPosition(new Vector2f(10.0f, 10.0f));
-	}
-
-	@Test
-	public void testGetPosition() {
 		Vector2f initPosition = new Vector2f(1.0f, 1.0f);
 		fm.setPosition(new Vector2f(7.0f, 4.0f));
 		// Test that the object has moved
-		assertTrue(!Tools.isVectorsEqual(initPosition, fm.getPosition()));
+		assertTrue(!(Tools.distanceBetween(initPosition, fm.getPosition()) <= Constants.EPSILON));
 
 		initPosition = new Vector2f(4.0f, 7.0f);
 		fm.setPosition(initPosition);
 		// Test that correct position was set
-		assertTrue(Tools.isVectorsEqual(initPosition, fm.getPosition()));
-
+		assertTrue(Tools.distanceBetween(initPosition, fm.getPosition()) <= Constants.EPSILON);
 	}
 
 	@Test
-	public void testSetTeam() {
-		TeamController tc = (TeamController) Manager
-				.instantiate(new TeamFactory());
-		tc.setHomePosition(new Vector2f(10.0f, 9.0f));
-		fm.setTeam(tc);
+	public void testGetTeamAndSetTeam() {
 
-	}
+		fm.setTeam(teamController);
 
-	@Test
-	public void testGetTeam() {
-
+		// Test correct team was set
 		assertTrue(fm.getTeam() == teamController);
-
-		TeamController tc = (TeamController) Manager
-				.instantiate(new TeamFactory());
-		tc.setHomePosition(new Vector2f(10.0f, 9.0f));
-
-		fm.setTeam(tc);
-		assertTrue(fm.getTeam() == tc);
 	}
 
 	@Test
 	public void testGetHomePosition() {
+
 		// Test if the flag's home position is the same position as that of the
 		// team.
-		assertTrue(Tools.isVectorsEqual(fm.getHomePosition(),
-				teamController.getHomePosition()));
+		assertTrue(Tools.distanceBetween(fm.getHomePosition(),
+				teamController.getHomePosition()) <= Constants.EPSILON);
 	}
 
 	@Test
@@ -152,6 +108,7 @@ public class FlagModelTest {
 
 	@Test
 	public void testReturnFlagHome() {
+
 		fm.setPosition(new Vector2f(23.0f, 76.0f));
 		fm.pickUpFlag();
 		fm.returnFlagHome();
@@ -162,12 +119,7 @@ public class FlagModelTest {
 	}
 
 	@Test
-	public void testSetColor() {
-		fm.setColor(Color.BLACK);
-	}
-
-	@Test
-	public void testGetColor() {
+	public void testSetColorAndGetColor() {
 		fm.setColor(Color.RED);
 		assertTrue(fm.getColor() == Color.RED);
 

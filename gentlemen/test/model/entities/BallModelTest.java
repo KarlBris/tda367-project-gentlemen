@@ -2,8 +2,6 @@ package model.entities;
 
 import static org.junit.Assert.assertTrue;
 
-import model.entities.BallModel;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -15,98 +13,111 @@ import core.Manager;
 import factories.entities.BallFactory;
 
 public class BallModelTest {
+	private BallModel bm;
 
-	private final float epsilon = 0.01f;
-	private BallModel model;
-
-	/**
-	 * @throws java.lang.Exception
-	 */
 	@Before
 	public void setUp() throws Exception {
-		model = (BallModel) Manager.instantiate(new BallFactory()).getModel();
+		bm = (BallModel) Manager.instantiate(new BallFactory()).getModel();
 	}
 
-	/**
-	 * @throws java.lang.Exception
-	 */
 	@After
 	public void tearDown() throws Exception {
 		Manager.removeAll();
 	}
 
-	/**
-	 * Test method for {@link model.entities.BallModel#isLethal(Vector2f)}.
-	 */
+	@Test
+	public void testGetGeometry() {
+		assertTrue(bm.getGeometry() != null);
+	}
+
+	@Test
+	public void testGetBody() {
+		assertTrue(bm.getBody() != null);
+	}
+
 	@Test
 	public void testIsLethal() {
 
 		// Test if standing still is above lethal speed
 		final Vector2f relativeVelocity = new Vector2f(0.0f, 0.0f);
-		assertTrue(!model.isLethal(relativeVelocity));
+		assertTrue(!bm.isLethal(relativeVelocity));
 
 		// Test if moving faster than lethal speed is above lethal speed
-		model.getBody().applyVelocityChange(
+		bm.getBody().applyVelocityChange(
 				new Vector2f(Constants.BALL_LETHAL_SPEED + 1,
 						Constants.BALL_LETHAL_SPEED + 1));
-		assertTrue(model.isLethal(relativeVelocity));
+		assertTrue(bm.isLethal(relativeVelocity));
 
-		model.getBody().clearVelocity();
+		bm.getBody().clearVelocity();
 	}
 
-	/**
-	 * Test method for {@link model.entities.BallModel#isPickUpAble(Vector2f)}.
-	 */
+	@Test
+	public void testPickUp() {
+		// No error should occur
+		bm.pickUp();
+
+		// No error should occur
+		bm.pickUp();
+	}
+
+	@Test
+	public void testReleaseBall() {
+		// No error should occur
+		bm.releaseBall();
+
+		// No error should occur
+		bm.releaseBall();
+	}
+
 	@Test
 	public void testIsPickUpAble() {
 		final Vector2f playerVelocity = new Vector2f(0.0f, 0.0f);
 
 		// Test if the ball is possible to pick up when both player and ball are
 		// still
-		assertTrue(model.isPickUpAble(playerVelocity));
+		assertTrue(bm.isPickUpAble(playerVelocity));
 
 		// Test if the ball can get picked up when already picked up
-		model.pickUp();
-		assertTrue(!model.isPickUpAble(playerVelocity));
+		bm.pickUp();
+		assertTrue(!bm.isPickUpAble(playerVelocity));
 
 		// Test if the ball can get picked up when moving faster than at lethal
 		// speed
-		model.releaseBall();
-		model.getBody().applyVelocityChange(
+		bm.releaseBall();
+		bm.getBody().applyVelocityChange(
 				new Vector2f(Constants.BALL_LETHAL_SPEED + 1,
 						Constants.BALL_LETHAL_SPEED));
-		assertTrue(!model.isPickUpAble(playerVelocity));
-		model.releaseBall();
+		assertTrue(!bm.isPickUpAble(playerVelocity));
+		bm.releaseBall();
 
 		// Test if the ball can get picked up again once it has been released
 		// and speed has been reduced to zero
-		model.getBody().clearVelocity();
-		assertTrue(model.isPickUpAble(playerVelocity));
+		bm.getBody().clearVelocity();
+		assertTrue(bm.isPickUpAble(playerVelocity));
 	}
 
-	/**
-	 * Test method for {@link model.entities.BallModel#setPosition(Vector2f)} and
-	 * {@link model.entities.BallModel#getPosition()}.
-	 */
 	@Test
-	public void testPosition() {
-		final Vector2f refPosition = new Vector2f(0.0f, 0.0f);
+	public void testSetPosition() {
+		// No error should occur
 
-		// Test if setting the ball's position from a vector and subsequently
-		// reading it returns the same value as the vector itself
-		model.setPosition(refPosition);
-		assertTrue(Tools.distanceBetween(model.getPosition(), refPosition) <= epsilon);
+		bm.setPosition(new Vector2f(20.0f, 10.0f));
 
-		// Test the same case after moving the ball
-		refPosition.set(1.0f, 1.0f);
-		model.setPosition(refPosition);
-		assertTrue(Tools.distanceBetween(model.getPosition(), refPosition) <= epsilon);
-
+		bm.setPosition(new Vector2f(10.0f, 10.0f));
 	}
 
-	/**
-	 * Test method for {@link model.entities.BallModel#throwBall(Vector2f)}.
-	 */
+	@Test
+	public void testGetPosition() {
+		Vector2f initPosition = new Vector2f(1.0f, 1.0f);
+		bm.setPosition(new Vector2f(7.0f, 4.0f));
+		// Test that the object has moved
+		assertTrue(!Tools.isVectorsEqual(initPosition, bm.getPosition()));
+
+		initPosition = new Vector2f(4.0f, 7.0f);
+		bm.setPosition(initPosition);
+		// Test that correct position was set
+		assertTrue(Tools.isVectorsEqual(initPosition, bm.getPosition()));
+	}
+
 	@Test
 	public void testThrowBall() {
 
@@ -115,25 +126,20 @@ public class BallModelTest {
 				Constants.BALL_LETHAL_SPEED + 1,
 				Constants.BALL_LETHAL_SPEED + 1);
 
-		model.pickUp();
+		bm.pickUp();
 
 		// Test if the ball being thrown at a speed higher than lethal speed
 		// results in it having a higher speed than lethal speed
-		model.throwBall(throwVelocity);
-		assertTrue(Tools.distanceBetween(model.getBody().getVelocity(),
+		bm.throwBall(throwVelocity);
+		assertTrue(Tools.distanceBetween(bm.getBody().getVelocity(),
 				zeroVelocity) > Constants.BALL_LETHAL_SPEED);
 		// The speed is too high and should not be able to be picked up
-		assertTrue(!model.isPickUpAble(new Vector2f(0.0f, 0.0f)));
-
+		assertTrue(!bm.isPickUpAble(new Vector2f(0.0f, 0.0f)));
 	}
 
-	/**
-	 * Test method for {@link model.entities.BallModel#getGeometry()}.
-	 */
 	@Test
-	public void testGetGeometry() {
-		// Test if the method returns a Geometry object
-		assertTrue(model.getGeometry() != null);
+	public void testUpdate() {
+		// Update is to fat for testing at the moment
 	}
 
 }
