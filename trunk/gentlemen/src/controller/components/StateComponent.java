@@ -1,5 +1,6 @@
 package controller.components;
 
+import org.lwjgl.input.Keyboard;
 import org.lwjgl.util.vector.Vector2f;
 
 import utilities.Constants;
@@ -33,7 +34,11 @@ public class StateComponent implements IComponent {
 
 	@Override
 	public void update() {
-		// TODO Auto-generated method stub
+		if (Manager.getKeyboard().getKey(Keyboard.KEY_LCONTROL)
+				&& Manager.getKeyboard().getKeyDown(Keyboard.KEY_R)) {
+			Manager.removeAll();
+			initializeEntities();
+		}
 
 	}
 
@@ -131,7 +136,7 @@ public class StateComponent implements IComponent {
 		// Crates
 		for (int i = 0; i < 30; i++) {
 
-			Vector2f[] restrictions = { Constants.TEAM_ONE_HOME_POSITION,
+			final Vector2f[] restrictions = { Constants.TEAM_ONE_HOME_POSITION,
 					Constants.TEAM_TWO_HOME_POSITION };
 
 			Manager.instantiate(new CratePropFactory(), Tools
@@ -144,7 +149,7 @@ public class StateComponent implements IComponent {
 		// Buildings
 		for (int i = 0; i < 10; i++) {
 
-			Vector2f[] restrictions = { Constants.TEAM_ONE_HOME_POSITION,
+			final Vector2f[] restrictions = { Constants.TEAM_ONE_HOME_POSITION,
 					Constants.TEAM_TWO_HOME_POSITION };
 
 			Manager.instantiate(new BuildingPropFactory(), Tools
