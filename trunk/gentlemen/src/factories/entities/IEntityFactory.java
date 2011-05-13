@@ -4,18 +4,18 @@ import model.common.IModel;
 import controller.common.IController;
 
 /**
- * An interface which all factorys will implement
+ * An interface which all game factories will implement
  */
-public interface IEntityFactory {
-	
+public interface IEntityFactory<M extends IModel, C extends IController> {
+
 	/**
 	 * @return the model which was created by the factory
 	 */
-	public IModel getModel();
-	
+	public M getModel();
+
 	/**
 	 * @return the controller linked to the model created by the factory
 	 */
-	public IController getController();
+	public C getController();
 
 }

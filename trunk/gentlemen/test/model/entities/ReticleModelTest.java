@@ -35,7 +35,7 @@ public class ReticleModelTest {
 	@Test
 	public void testGetBody() {
 		// Test if the method returns a Body object
-		assertTrue(model.getBody() != null);
+		assertTrue(model.getBody() == null);
 	}
 
 	@Test

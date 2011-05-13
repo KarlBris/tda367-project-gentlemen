@@ -2,6 +2,8 @@ package controller;
 
 import java.util.List;
 
+import model.common.IModel;
+
 import org.lwjgl.util.vector.Vector2f;
 
 import controller.common.IController;
@@ -11,8 +13,8 @@ import factories.entities.IEntityFactory;
 
 public interface IMainController {
 
-	public <T extends IController> T instantiate(IEntityFactory factory,
-			Vector2f position);
+	public <M extends IModel, C extends IController, T extends IEntityFactory<M, C>> C instantiate(
+			IEntityFactory<M, C> factory, Vector2f position);
 
 	public void remove(IController controller);
 

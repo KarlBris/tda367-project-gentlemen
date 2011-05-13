@@ -1,15 +1,14 @@
 package factories.entities;
 
-import model.common.IModel;
 import model.entities.PlayerModel;
 
 import org.lwjgl.input.Keyboard;
 
 import utilities.Constants;
-import controller.common.IController;
 import controller.entities.PlayerController;
 
-public class PlayerOneFactory implements IEntityFactory {
+public class PlayerOneFactory implements
+		IEntityFactory<PlayerModel, PlayerController> {
 
 	private final PlayerModel model = new PlayerModel(Constants.TEAM_ONE_COLOR);
 	private final PlayerController controller = new PlayerController(model,
@@ -17,12 +16,12 @@ public class PlayerOneFactory implements IEntityFactory {
 			Keyboard.KEY_V, Keyboard.KEY_V);
 
 	@Override
-	public IModel getModel() {
+	public PlayerModel getModel() {
 		return model;
 	}
 
 	@Override
-	public IController getController() {
+	public PlayerController getController() {
 		return controller;
 	}
 
