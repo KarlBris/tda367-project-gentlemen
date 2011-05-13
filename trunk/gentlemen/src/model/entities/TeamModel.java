@@ -1,15 +1,15 @@
 package model.entities;
 
-
 import model.common.IModel;
 
 import org.lwjgl.util.vector.Vector2f;
+
+import utilities.Tools;
 
 import common.body.Body;
 import common.geometry.IGeometry;
 import common.geometry.NullGeometry;
 
-import utilities.Tools;
 import controller.entities.RuleController;
 
 /**
@@ -31,24 +31,41 @@ public class TeamModel implements IModel {
 	 * Add an amount to the team score
 	 * 
 	 * @param amount
-	 *            , is the amount to be added to the team score
+	 *            is the amount to be added to the team score
+	 * 
+	 * @throws NumberFormatException
+	 *             is thrown if amount is negative
 	 */
-	public void addScore(final int amount) {
-		totalScore += amount;
+	public void addScore(final int amount) throws NumberFormatException {
+		if (amount < 0) {
+			throw new NumberFormatException("Number must be positive");
+		} else {
 
-		// Check with rules. If won, celebrate!
-		ruleController.checkVictory(this);
+			totalScore += amount;
+
+			// Check with rules. If won, celebrate!
+			ruleController.checkVictory(this);
+		}
+
 	}
 
 	/**
-	 * Add an amount to the team score, without checking if the team won.
+	 * Subtracts an amount from the team score
 	 * 
 	 * @param amount
-	 *            , is the amount to be added to the team score
+	 *            the amount to be subtracted from the team score
+	 * 
+	 * @throws NumberFormatException
+	 *             is thrown if amount is negative
 	 */
-	public void addPoints(final int amount) {
-		totalScore += amount;
+	public void subtractScore(final int amount) throws NumberFormatException {
+		if (amount < 0) {
+			throw new NumberFormatException("Number must be positive");
+		} else {
 
+			totalScore -= amount;
+
+		}
 	}
 
 	@Override
