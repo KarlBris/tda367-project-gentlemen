@@ -245,8 +245,8 @@ public class Tools {
 	 * @return the randomized vector
 	 */
 	public static Vector2f randomVectorInArea(Vector2f start, Vector2f size) {
-		float posX = (float) Math.random() * (size.x) + start.x;
-		float posY = (float) Math.random() * (size.y) + start.y;
+		float posX = (float) Math.random() * size.x + start.x;
+		float posY = (float) Math.random() * size.y + start.y;
 
 		return new Vector2f(posX, posY);
 	}
@@ -270,8 +270,8 @@ public class Tools {
 		boolean tooClose = true;
 
 		while (tooClose == true) {
-			posX = (float) Math.random() * (size.x) + start.x;
-			posY = (float) Math.random() * (size.y) + start.y;
+			posX = (float) Math.random() * size.x + start.x;
+			posY = (float) Math.random() * size.y + start.y;
 			newVector.set(posX, posY);
 
 			for (Vector2f restriction : restrictions) {
@@ -286,4 +286,19 @@ public class Tools {
 		}
 		return newVector;
 	}
+
+	/**
+	 * Test if the two vectors are equal with a difference of a epsilon
+	 * 
+	 * @param vector1
+	 *            , is the first vector to be tested
+	 * @param vector2
+	 *            , is the second vector the vector1 is compared to
+	 * @return true if the vectors are equal to the specification described in
+	 *         the description, otherwise false.
+	 */
+	public static boolean isVectorsEqual(Vector2f vector1, Vector2f vector2) {
+		return Tools.distanceBetween(vector1, vector2) <= Constants.EPSILON;
+	}
+
 }
