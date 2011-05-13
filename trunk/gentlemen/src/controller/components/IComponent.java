@@ -1,5 +1,6 @@
 package controller.components;
 
+import model.common.IModel;
 import controller.common.IController;
 
 /**
@@ -24,7 +25,7 @@ public interface IComponent {
 	 * @param controller
 	 *            the instantiated controller
 	 */
-	public void controllerAdded(IController controller);
+	public <M extends IModel> void controllerAdded(IController<M> controller);
 
 	/**
 	 * Allows the component to perform certain tasks when a controller is
@@ -33,6 +34,6 @@ public interface IComponent {
 	 * @param controller
 	 *            the removed controller
 	 */
-	public void controllerRemoved(IController controller);
+	public <M extends IModel> void controllerRemoved(IController<M> controller);
 
 }

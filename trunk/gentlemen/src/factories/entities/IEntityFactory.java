@@ -6,7 +6,7 @@ import controller.common.IController;
 /**
  * An interface which all game factories will implement
  */
-public interface IEntityFactory<M extends IModel, C extends IController> {
+public interface IEntityFactory<M extends IModel, C extends IController<M>> {
 
 	/**
 	 * @return the model which was created by the factory

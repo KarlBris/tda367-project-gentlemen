@@ -3,6 +3,7 @@ package core;
 import java.util.List;
 
 import model.IMainModel;
+import model.common.IModel;
 
 import org.lwjgl.LWJGLException;
 import org.lwjgl.opengl.Display;
@@ -52,7 +53,8 @@ public class Manager {
 	 * @return the IController instance of the newly instantiated
 	 *         IModel/IController pair
 	 */
-	public static IController instantiate(final IEntityFactory factory) {
+	public static <M extends IModel, C extends IController<M>> C instantiate(
+			final IEntityFactory<M, C> factory) {
 		return instantiate(factory, new Vector2f(0.0f, 0.0f));
 	}
 
@@ -67,8 +69,8 @@ public class Manager {
 	 * @return the IController instance of the newly instantiated
 	 *         IModel/IController pair
 	 */
-	public static IController instantiate(final IEntityFactory factory,
-			final Vector2f position) {
+	public static <M extends IModel, C extends IController<M>> C instantiate(
+			final IEntityFactory<M, C> factory, final Vector2f position) {
 		return mainController.instantiate(factory, position);
 	}
 
@@ -79,7 +81,7 @@ public class Manager {
 	 * @param controller
 	 *            the IController instance to be removed
 	 */
-	public static void remove(final IController controller) {
+	public static void remove(final IController<? extends IModel> controller) {
 		if (controller != null) {
 			mainController.remove(controller);
 		}
@@ -89,9 +91,10 @@ public class Manager {
 	 * Removes all models and controllers from the game world
 	 */
 	public static void removeAll() {
-		final List<IController> controllers = mainController.getControllers();
+		final List<IController<? extends IModel>> controllers = mainController
+				.getControllers();
 
-		for (final IController controller : controllers) {
+		for (final IController<? extends IModel> controller : controllers) {
 			remove(controller);
 		}
 	}
@@ -105,7 +108,8 @@ public class Manager {
 	 *            the sought after type class
 	 * @return a list of controllers of type T
 	 */
-	public static <T extends IController> List<T> find(final Class<T> type) {
+	public static <M extends IModel, C extends IController<M>> List<C> find(
+			final Class<C> type) {
 		return mainController.find(type);
 	}
 

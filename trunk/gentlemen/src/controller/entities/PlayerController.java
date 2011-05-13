@@ -1,21 +1,19 @@
 package controller.entities;
 
-import model.common.IModel;
 import model.entities.PlayerModel;
 import model.entities.ReticleModel;
 
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.util.vector.Vector2f;
 
-import common.body.Body;
-import common.body.IBodyCollisionCallback;
-
 import utilities.Constants;
 import utilities.Tools;
 
+import common.body.Body;
+import common.body.IBodyCollisionCallback;
+
 import controller.common.IController;
 import controller.components.KeyboardComponent;
-
 import core.Manager;
 import factories.entities.BallFactory;
 import factories.entities.KeyboardReticleFactory;
@@ -23,7 +21,8 @@ import factories.entities.KeyboardReticleFactory;
 /**
  * This class controls a player model
  */
-public class PlayerController implements IController, IBodyCollisionCallback {
+public class PlayerController implements IController<PlayerModel>,
+		IBodyCollisionCallback {
 
 	private final PlayerModel model;
 	private ReticleModel reticleModel;
@@ -144,7 +143,7 @@ public class PlayerController implements IController, IBodyCollisionCallback {
 	}
 
 	@Override
-	public IModel getModel() {
+	public PlayerModel getModel() {
 		return model;
 	}
 

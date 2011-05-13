@@ -13,14 +13,15 @@ import factories.entities.IEntityFactory;
 
 public interface IMainController {
 
-	public <M extends IModel, C extends IController, T extends IEntityFactory<M, C>> C instantiate(
+	public <M extends IModel, C extends IController<M>, T extends IEntityFactory<M, C>> C instantiate(
 			IEntityFactory<M, C> factory, Vector2f position);
 
-	public void remove(IController controller);
+	public <M extends IModel> void remove(IController<M> controller);
 
-	public <T extends IController> List<T> find(Class<T> type);
+	public <M extends IModel, C extends IController<M>> List<C> find(
+			Class<C> type);
 
-	public List<IController> getControllers();
+	public List<IController<? extends IModel>> getControllers();
 
 	public KeyboardComponent getKeyboardComponent();
 

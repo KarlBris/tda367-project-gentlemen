@@ -1,18 +1,16 @@
 package controller.entities;
 
-import model.common.IModel;
 import model.entities.ShockwaveModel;
 
 import org.lwjgl.util.vector.Vector2f;
 
 import controller.common.IController;
-
 import core.Manager;
 
 /**
  * This class controls a shockwave model
  */
-public class ShockwaveController implements IController {
+public class ShockwaveController implements IController<ShockwaveModel> {
 
 	private final ShockwaveModel model;
 
@@ -21,7 +19,7 @@ public class ShockwaveController implements IController {
 	}
 
 	@Override
-	public IModel getModel() {
+	public ShockwaveModel getModel() {
 		return model;
 	}
 

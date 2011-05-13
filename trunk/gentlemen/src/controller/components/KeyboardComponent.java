@@ -1,5 +1,7 @@
 package controller.components;
 
+import model.common.IModel;
+
 import org.lwjgl.input.Keyboard;
 
 import controller.common.IController;
@@ -84,15 +86,15 @@ public class KeyboardComponent implements IComponent {
 	}
 
 	@Override
-	public void controllerAdded(final IController controller) {
-		// TODO Auto-generated method stub
-
+	public <M extends IModel> void controllerAdded(
+			final IController<M> controller) {
+		// Do nothing
 	}
 
 	@Override
-	public void controllerRemoved(final IController controller) {
-		// TODO Auto-generated method stub
-
+	public <M extends IModel> void controllerRemoved(
+			final IController<M> controller) {
+		// Do nothing
 	}
 
 }

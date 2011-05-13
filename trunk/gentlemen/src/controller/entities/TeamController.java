@@ -1,6 +1,5 @@
 package controller.entities;
 
-import model.common.IModel;
 import model.entities.TeamModel;
 
 import org.lwjgl.util.vector.Vector2f;
@@ -10,7 +9,7 @@ import controller.common.IController;
 /**
  * This class controls a team model
  */
-public class TeamController implements IController {
+public class TeamController implements IController<TeamModel> {
 
 	private final TeamModel model;
 
@@ -45,7 +44,7 @@ public class TeamController implements IController {
 	}
 
 	@Override
-	public IModel getModel() {
+	public TeamModel getModel() {
 		return model;
 	}
 

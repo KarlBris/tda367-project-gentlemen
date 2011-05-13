@@ -1,19 +1,17 @@
 package controller.entities;
 
-import model.common.IModel;
 import model.entities.PropModel;
 
 import org.lwjgl.util.vector.Vector2f;
 
-import controller.common.IController;
-
 import utilities.Color;
 import utilities.Constants;
+import controller.common.IController;
 
 /**
  * This class controls a prop model
  */
-public class PulsatingPropController implements IController {
+public class PulsatingPropController implements IController<PropModel> {
 
 	private final PropModel model;
 
@@ -93,7 +91,7 @@ public class PulsatingPropController implements IController {
 	}
 
 	@Override
-	public IModel getModel() {
+	public PropModel getModel() {
 		return model;
 	}
 

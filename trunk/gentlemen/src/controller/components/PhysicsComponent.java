@@ -1,12 +1,14 @@
 package controller.components;
 
+import model.common.IModel;
 
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.World;
 
+import utilities.Constants;
+
 import common.body.Body;
 
-import utilities.Constants;
 import controller.common.IController;
 
 public class PhysicsComponent implements IComponent {
@@ -31,7 +33,8 @@ public class PhysicsComponent implements IComponent {
 	}
 
 	@Override
-	public void controllerAdded(final IController controller) {
+	public <M extends IModel> void controllerAdded(
+			final IController<M> controller) {
 		// Create the body and add it to the world
 		final Body body = controller.getModel().getBody();
 
@@ -41,7 +44,8 @@ public class PhysicsComponent implements IComponent {
 	}
 
 	@Override
-	public void controllerRemoved(final IController controller) {
+	public <M extends IModel> void controllerRemoved(
+			final IController<M> controller) {
 		// Destroy the body and remove it from the world
 		final Body body = controller.getModel().getBody();
 

@@ -23,7 +23,7 @@ public class MainController implements IMainController {
 	private IMainModel mainModel;
 
 	// Collection of controllers
-	private TypeMap<IController> controllerMap = new TypeMap<IController>();
+	private TypeMap<IController<? extends IModel>> controllerMap = new TypeMap<IController<? extends IModel>>();
 
 	// Components
 	private PhysicsComponent physicsComponent = new PhysicsComponent();
@@ -39,7 +39,7 @@ public class MainController implements IMainController {
 	}
 
 	@Override
-	public <M extends IModel, C extends IController, T extends IEntityFactory<M, C>> C instantiate(
+	public <M extends IModel, C extends IController<M>, T extends IEntityFactory<M, C>> C instantiate(
 			final IEntityFactory<M, C> factory, final Vector2f position) {
 		if (factory != null) {
 			C controller = factory.getController();
@@ -67,7 +67,7 @@ public class MainController implements IMainController {
 	}
 
 	@Override
-	public void remove(final IController controller) {
+	public <M extends IModel> void remove(final IController<M> controller) {
 		// Let the controller know that it is being removed
 		controller.end();
 
@@ -83,12 +83,13 @@ public class MainController implements IMainController {
 	}
 
 	@Override
-	public <T extends IController> List<T> find(final Class<T> type) {
+	public <M extends IModel, C extends IController<M>> List<C> find(
+			final Class<C> type) {
 		return controllerMap.find(type);
 	}
 
 	@Override
-	public List<IController> getControllers() {
+	public List<IController<? extends IModel>> getControllers() {
 		return controllerMap.getItems();
 	}
 
@@ -124,9 +125,10 @@ public class MainController implements IMainController {
 		}
 
 		// Update all controllers
-		List<IController> allControllers = controllerMap.getItems();
+		List<IController<? extends IModel>> allControllers = controllerMap
+				.getItems();
 
-		for (IController controller : allControllers) {
+		for (IController<? extends IModel> controller : allControllers) {
 			controller.update();
 		}
 	}
