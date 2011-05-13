@@ -53,4 +53,6 @@ public class Constants {
 	public static final int FLAG_RETURN_SCORE = 4;
 	public static final int KNOCK_OUT_SCORE = 1;
 	public static final int SCORE_LIMIT = 100;
+
+	public static final float EPSILON = 0.001f;
 }
