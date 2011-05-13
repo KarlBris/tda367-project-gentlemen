@@ -1,10 +1,10 @@
 package model.entities;
 
-import model.body.Body;
-import model.body.RectangleBodyShape;
 
 import org.lwjgl.util.vector.Vector2f;
 
+import common.body.Body;
+import common.body.RectangleBodyShape;
 import common.geometry.AbstractGeometry;
 import common.geometry.IGeometry;
 import common.geometry.twodimensions.RectangleGeometry;

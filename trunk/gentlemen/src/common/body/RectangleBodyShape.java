@@ -1,4 +1,4 @@
-package model.body;
+package common.body;
 
 import org.jbox2d.collision.shapes.PolygonShape;
 import org.jbox2d.collision.shapes.Shape;

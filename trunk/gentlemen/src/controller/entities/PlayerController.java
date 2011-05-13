@@ -1,12 +1,14 @@
 package controller.entities;
 
-import model.body.Body;
 import model.entities.IModel;
 import model.entities.PlayerModel;
 import model.entities.ReticleModel;
 
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.util.vector.Vector2f;
+
+import common.body.Body;
+import common.body.IBodyCollisionCallback;
 
 import utilities.Constants;
 import utilities.Tools;

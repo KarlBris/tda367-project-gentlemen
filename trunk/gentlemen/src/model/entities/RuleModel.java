@@ -1,6 +1,6 @@
 package model.entities;
 
-import model.body.Body;
+import common.body.Body;
 import common.geometry.IGeometry;
 import common.geometry.NullGeometry;
 
