@@ -137,4 +137,24 @@ public class TeamModel implements IModel {
 		return ruleController;
 	}
 
+	/**
+	 * Add an amount to the team score, without looking if someone won. Main
+	 * purpuse of this method is to use if for testing.
+	 * 
+	 * @param amount
+	 *            is the amount to be added to the team score
+	 * 
+	 * @throws NumberFormatException
+	 *             is thrown if amount is negative
+	 */
+	public void addPoints(int amount) throws NumberFormatException {
+		if (amount < 0) {
+			throw new NumberFormatException("Number must be positive");
+		} else {
+
+			totalScore += amount;
+
+		}
+	}
+
 }
