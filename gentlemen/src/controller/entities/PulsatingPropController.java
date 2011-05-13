@@ -1,9 +1,11 @@
 package controller.entities;
 
-import model.entities.IModel;
+import model.common.IModel;
 import model.entities.PropModel;
 
 import org.lwjgl.util.vector.Vector2f;
+
+import controller.common.IController;
 
 import utilities.Color;
 import utilities.Constants;

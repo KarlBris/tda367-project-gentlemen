@@ -8,20 +8,23 @@ import org.lwjgl.util.vector.Vector2f;
 
 import common.TypeMap;
 
-
+import controller.common.IController;
 import controller.components.IComponent;
 import controller.components.KeyboardComponent;
 import controller.components.MouseComponent;
 import controller.components.PhysicsComponent;
 import controller.components.StateComponent;
-import controller.entities.IController;
+import factories.entities.IEntityFactory;
 
 public class MainController implements IMainController {
 
+	// References
 	private IMainModel mainModel;
 
-	private TypeMap<IController> controllers = new TypeMap<IController>();
+	// Collection of controllers
+	private TypeMap<IController> controllerMap = new TypeMap<IController>();
 
+	// Components
 	private PhysicsComponent physicsComponent = new PhysicsComponent();
 	private StateComponent stateComponent = new StateComponent();
 	private KeyboardComponent keyboardComponent = new KeyboardComponent();
@@ -30,32 +33,40 @@ public class MainController implements IMainController {
 	private IComponent[] components = { physicsComponent, stateComponent,
 			keyboardComponent, mouseComponent };
 
-	public MainController(IMainModel mainModel) {
+	public MainController(final IMainModel mainModel) {
 		this.mainModel = mainModel;
 	}
 
 	@Override
-	public void add(IController controller, Vector2f position) {
+	public <T extends IController> T instantiate(final IEntityFactory factory,
+			final Vector2f position) {
+		if (factory != null) {
+			T controller = (T) factory.getController();
 
-		// Add model and controller
-		mainModel.add(controller.getModel());
+			// Add model and controller
+			mainModel.add(controller.getModel());
 
-		controllers.add(controller);
+			controllerMap.add(controller);
 
-		// Let all components know about the creation of this controller
-		for (IComponent component : components) {
-			component.controllerAdded(controller);
+			// Let all components know about the creation of this controller
+			for (IComponent component : components) {
+				component.controllerAdded(controller);
+			}
+
+			// Set the start position of the controller
+			controller.setPosition(position);
+
+			// Let the controller know that it has been created
+			controller.start();
+
+			return controller;
 		}
 
-		// Set the start position of the controller
-		controller.setPosition(position);
-
-		// Let the controller know that it has been created
-		controller.start();
+		return null;
 	}
 
 	@Override
-	public void remove(IController controller) {
+	public void remove(final IController controller) {
 		// Let the controller know that it is being removed
 		controller.end();
 
@@ -67,17 +78,17 @@ public class MainController implements IMainController {
 		// Remove model and controller
 		mainModel.remove(controller.getModel());
 
-		controllers.remove(controller);
+		controllerMap.remove(controller);
 	}
 
 	@Override
-	public <T extends IController> List<T> find(Class<T> type) {
-		return controllers.find(type);
+	public <T extends IController> List<T> find(final Class<T> type) {
+		return controllerMap.find(type);
 	}
 
 	@Override
 	public List<IController> getControllers() {
-		return controllers.getItems();
+		return controllerMap.getItems();
 	}
 
 	@Override
@@ -112,9 +123,9 @@ public class MainController implements IMainController {
 		}
 
 		// Update all controllers
-		List<IController> list = controllers.getItems();
+		List<IController> allControllers = controllerMap.getItems();
 
-		for (IController controller : list) {
+		for (IController controller : allControllers) {
 			controller.update();
 		}
 	}

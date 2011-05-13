@@ -1,12 +1,13 @@
 package controller.entities;
 
+import model.common.IModel;
 import model.entities.BallModel;
-import model.entities.IModel;
 
 import org.lwjgl.util.vector.Vector2f;
 
 import common.body.Body;
 import common.body.IBodyCollisionCallback;
+import controller.common.IController;
 
 import utilities.Constants;
 

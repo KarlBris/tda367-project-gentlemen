@@ -3,7 +3,7 @@ package view.twodimensions;
 import java.util.List;
 
 import model.IMainModel;
-import model.entities.IModel;
+import model.common.IModel;
 
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.util.vector.Vector2f;

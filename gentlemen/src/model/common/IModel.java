@@ -1,4 +1,4 @@
-package model.entities;
+package model.common;
 
 import common.body.Body;
 import common.geometry.IGeometry;

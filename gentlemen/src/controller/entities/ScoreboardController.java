@@ -1,9 +1,11 @@
 package controller.entities;
 
-import model.entities.IModel;
+import model.common.IModel;
 import model.entities.ScoreboardModel;
 
 import org.lwjgl.util.vector.Vector2f;
+
+import controller.common.IController;
 
 /**
  * This class controls a scoreboard model

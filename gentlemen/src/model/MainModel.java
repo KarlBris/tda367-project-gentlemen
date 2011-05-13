@@ -4,7 +4,7 @@ import java.util.List;
 
 import common.TypeMap;
 
-import model.entities.IModel;
+import model.common.IModel;
 
 public class MainModel implements IMainModel {
 

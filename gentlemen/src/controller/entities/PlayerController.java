@@ -1,6 +1,6 @@
 package controller.entities;
 
-import model.entities.IModel;
+import model.common.IModel;
 import model.entities.PlayerModel;
 import model.entities.ReticleModel;
 
@@ -13,6 +13,7 @@ import common.body.IBodyCollisionCallback;
 import utilities.Constants;
 import utilities.Tools;
 
+import controller.common.IController;
 import controller.components.KeyboardComponent;
 
 import core.Manager;
@@ -64,7 +65,7 @@ public class PlayerController implements IController, IBodyCollisionCallback {
 	}
 
 	/**
-	 * @see controller.entities.IController#update()
+	 * @see controller.common.IController#update()
 	 */
 	@Override
 	public void update() {

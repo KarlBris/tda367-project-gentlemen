@@ -1,10 +1,10 @@
 package factories.entities;
 
-import model.entities.IModel;
+import model.common.IModel;
 import model.entities.PropModel;
 import utilities.Color;
 import utilities.Constants;
-import controller.entities.IController;
+import controller.common.IController;
 import controller.entities.PulsatingPropController;
 
 public class VerticalWallPropFactory implements IEntityFactory {

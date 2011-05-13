@@ -4,7 +4,7 @@ import org.lwjgl.input.Mouse;
 import org.lwjgl.util.vector.Vector2f;
 
 import utilities.Tools;
-import controller.entities.IController;
+import controller.common.IController;
 
 /**
  * Provides mouse input functionality by reading the mouse state with each frame

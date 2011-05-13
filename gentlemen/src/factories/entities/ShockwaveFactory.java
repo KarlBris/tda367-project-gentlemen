@@ -1,8 +1,8 @@
 package factories.entities;
 
-import model.entities.IModel;
+import model.common.IModel;
 import model.entities.ShockwaveModel;
-import controller.entities.IController;
+import controller.common.IController;
 import controller.entities.ShockwaveController;
 
 public class ShockwaveFactory implements IEntityFactory {

@@ -5,8 +5,8 @@ import org.lwjgl.util.vector.Vector2f;
 
 import utilities.Constants;
 import utilities.Tools;
+import controller.common.IController;
 import controller.entities.FlagController;
-import controller.entities.IController;
 import controller.entities.PlayerController;
 import controller.entities.RuleController;
 import controller.entities.ScoreboardController;

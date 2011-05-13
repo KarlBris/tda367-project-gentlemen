@@ -1,6 +1,6 @@
 package controller.components;
 
-import controller.entities.IController;
+import controller.common.IController;
 
 /**
  * A component handles entities in some way
