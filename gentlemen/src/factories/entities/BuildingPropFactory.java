@@ -1,12 +1,11 @@
 package factories.entities;
 
-import model.common.IModel;
 import model.entities.PropModel;
 import utilities.Color;
-import controller.common.IController;
 import controller.entities.PulsatingPropController;
 
-public class BuildingPropFactory implements IEntityFactory {
+public class BuildingPropFactory implements
+		IEntityFactory<PropModel, PulsatingPropController> {
 
 	private float sizeX = (float) Math.random() * 3 + 3;
 	private float sizeY = (float) Math.random() * 3 + 2;
@@ -17,12 +16,12 @@ public class BuildingPropFactory implements IEntityFactory {
 			(int) (Math.random() * 200 + 100));
 
 	@Override
-	public IModel getModel() {
+	public PropModel getModel() {
 		return model;
 	}
 
 	@Override
-	public IController getController() {
+	public PulsatingPropController getController() {
 		return controller;
 	}
 

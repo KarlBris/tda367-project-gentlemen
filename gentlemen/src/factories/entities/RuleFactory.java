@@ -1,22 +1,20 @@
 package factories.entities;
 
-import model.common.IModel;
 import model.entities.RuleModel;
-import controller.common.IController;
 import controller.entities.RuleController;
 
-public class RuleFactory implements IEntityFactory {
+public class RuleFactory implements IEntityFactory<RuleModel, RuleController> {
 
 	private final RuleModel model = new RuleModel();
 	private final RuleController controller = new RuleController(model);
 
 	@Override
-	public IModel getModel() {
+	public RuleModel getModel() {
 		return model;
 	}
 
 	@Override
-	public IController getController() {
+	public RuleController getController() {
 		return controller;
 	}
 

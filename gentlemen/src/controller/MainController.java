@@ -3,6 +3,7 @@ package controller;
 import java.util.List;
 
 import model.IMainModel;
+import model.common.IModel;
 
 import org.lwjgl.util.vector.Vector2f;
 
@@ -38,10 +39,10 @@ public class MainController implements IMainController {
 	}
 
 	@Override
-	public <T extends IController> T instantiate(final IEntityFactory factory,
-			final Vector2f position) {
+	public <M extends IModel, C extends IController, T extends IEntityFactory<M, C>> C instantiate(
+			final IEntityFactory<M, C> factory, final Vector2f position) {
 		if (factory != null) {
-			T controller = (T) factory.getController();
+			C controller = factory.getController();
 
 			// Add model and controller
 			mainModel.add(controller.getModel());
