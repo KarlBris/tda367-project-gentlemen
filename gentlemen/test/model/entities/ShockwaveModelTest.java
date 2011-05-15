@@ -2,16 +2,13 @@ package model.entities;
 
 import static org.junit.Assert.assertTrue;
 
-import model.entities.ShockwaveModel;
-
 import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import org.lwjgl.util.vector.Vector2f;
 
 import utilities.Constants;
+import utilities.Tools;
 import core.Manager;
 import factories.entities.ShockwaveFactory;
 
@@ -19,18 +16,9 @@ public class ShockwaveModelTest {
 
 	private ShockwaveModel model;
 
-	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
-	}
-
-	@AfterClass
-	public static void tearDownAfterClass() throws Exception {
-	}
-
 	@Before
 	public void setUp() throws Exception {
-		model = (ShockwaveModel) Manager.instantiate(new ShockwaveFactory())
-				.getModel();
+		model = Manager.instantiate(new ShockwaveFactory()).getModel();
 	}
 
 	@After
@@ -40,40 +28,54 @@ public class ShockwaveModelTest {
 
 	@Test
 	public void testShockwaveModel() {
+		model = Manager.instantiate(new ShockwaveFactory()).getModel();
 		assertTrue(!model.isFinished());
 		assertTrue(model.getAnimationScalar() == 0.0f);
 	}
 
 	@Test
 	public void testGetGeometry() {
+		// Test if the method returns a Geometry object
 		assertTrue(model.getGeometry() != null);
 	}
 
 	@Test
 	public void testGetBody() {
+		// Test if the method returns a Body object
 		assertTrue(model.getBody() == null);
 	}
 
 	@Test
-	public void testPosition() {
-		model.setPosition(new Vector2f(5.0f, 4.0f));
+	public void testSetPosition() {
+		// Test if setting the prop's position to different values renders any
+		// errors.
+		Vector2f newPosition = new Vector2f(1.0f, 1.0f);
+		model.setPosition(newPosition);
 
-		assertTrue(model.getPosition().x == 5.0f);
-		assertTrue(model.getPosition().y == 4.0f);
+		newPosition = new Vector2f(2.0f, 2.0f);
+		model.setPosition(newPosition);
+
+		newPosition = new Vector2f(-1.0f, -1.0f);
+		model.setPosition(newPosition);
 	}
 
 	@Test
-	public void testUpdateAndGetAnimationScalar() {
-		assertTrue(model.getAnimationScalar() == 0.0f);
+	public void testGetPosition() {
+		Vector2f position = new Vector2f(1.0f, 1.0f);
+		model.setPosition(position);
 
-		model.update();
+		// Test if getting the prop's position returns the correct value
+		assertTrue(Tools.isVectorsEqual(position, model.getPosition()));
 
-		assertTrue(model.getAnimationScalar() > 0.0f);
+		position = new Vector2f(2.0f, 2.0f);
+		model.setPosition(position);
+
+		// Same test with new values
+		assertTrue(Tools.isVectorsEqual(position, model.getPosition()));
 	}
 
 	@Test
 	public void testIsFinished() {
-
 		assertTrue(!model.isFinished());
 
 		// Animate the shockwave throughout its full animation length
@@ -84,6 +86,15 @@ public class ShockwaveModelTest {
 		}
 
 		assertTrue(model.isFinished());
+	}
+
+	@Test
+	public void testUpdateAndGetAnimationScalar() {
+		assertTrue(model.getAnimationScalar() == 0.0f);
+
+		model.update();
+
+		assertTrue(model.getAnimationScalar() > 0.0f);
 	}
 
 }
