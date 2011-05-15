@@ -17,8 +17,7 @@ public class RuleModelTest {
 
 	@Before
 	public void setUp() throws Exception {
-		model = (RuleModel) Manager.instantiate(new RuleFactory()).getModel();
-
+		model = Manager.instantiate(new RuleFactory()).getModel();
 	}
 
 	@After
@@ -27,16 +26,8 @@ public class RuleModelTest {
 	}
 
 	@Test
-	public void testRuleModel() {
-		// Tests if the score limit has a correct value. Also tests
-		// getScoreLimit()
-		assertTrue(model.getScoreLimit() == Constants.SCORE_LIMIT);
-	}
-
-	@Test
 	public void testCheckVictory() {
-		TeamModel teamModel = (TeamModel) Manager
-				.instantiate(new TeamFactory()).getModel();
+		TeamModel teamModel = Manager.instantiate(new TeamFactory()).getModel();
 
 		// Test if the team has won before receiving any points
 		assertTrue(!model.checkVictory(teamModel));
@@ -52,4 +43,18 @@ public class RuleModelTest {
 		// Test if the method returns a Geometry object
 		assertTrue(model.getGeometry() != null);
 	}
+
+	@Test
+	public void testGetScoreLimit() {
+		// Check if the rule model's score limit has the correct value
+		assertTrue(model.getScoreLimit() == Constants.SCORE_LIMIT);
+	}
+
+	@Test
+	public void testGetBody() {
+		// Test if the method returns a Body object. Since RuleModel does not
+		// have a body, this should not be the case
+		assertTrue(model.getBody() == null);
+	}
+
 }
