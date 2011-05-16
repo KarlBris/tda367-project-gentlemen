@@ -5,6 +5,7 @@ import model.entities.FlagModel;
 import org.lwjgl.util.vector.Vector2f;
 
 import utilities.Color;
+import utilities.Tools;
 import controller.common.IController;
 
 /**
@@ -13,6 +14,8 @@ import controller.common.IController;
 public class FlagController implements IController<FlagModel> {
 
 	private final FlagModel model;
+
+	private TeamController teamController;
 
 	public FlagController(final FlagModel model) {
 		this.model = model;
@@ -76,14 +79,16 @@ public class FlagController implements IController<FlagModel> {
 	 *         else
 	 */
 	public boolean isAtHome() {
-		return model.isAtHome();
+		return Tools.distanceBetween(model.getPosition(),
+				teamController.getHomePosition()) <= 0.001f;
 	}
 
 	/**
 	 * Returns the flag to its home position
 	 */
 	public void returnFlagHome() {
-		model.returnFlagHome();
+		model.releaseFlag();
+		model.setPosition(teamController.getHomePosition());
 	}
 
 	/**
@@ -94,14 +99,14 @@ public class FlagController implements IController<FlagModel> {
 	}
 
 	/**
-	 * Sets the team to which the flag belongs
+	 * Set the team the flag belongs to
 	 * 
 	 * @param team
 	 *            the team the flag will belong to
 	 */
 	public void setTeam(final TeamController team) {
-		model.setTeam(team);
-
+		this.teamController = team;
+		setPosition(team.getHomePosition());
 	}
 
 	/**
@@ -110,7 +115,7 @@ public class FlagController implements IController<FlagModel> {
 	 * @return the team owning the flag
 	 */
 	public TeamController getTeam() {
-		return model.getTeam();
+		return teamController;
 	}
 
 	/**
@@ -136,6 +141,6 @@ public class FlagController implements IController<FlagModel> {
 	 * @return the home position of the team
 	 */
 	public Vector2f getHomePosition() {
-		return model.getHomePosition();
+		return Tools.cloneVector(teamController.getHomePosition());
 	}
 }

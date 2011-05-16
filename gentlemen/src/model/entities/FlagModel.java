@@ -1,18 +1,15 @@
 package model.entities;
 
-
 import model.common.IModel;
 
 import org.lwjgl.util.vector.Vector2f;
+
+import utilities.Color;
 
 import common.body.Body;
 import common.geometry.AbstractGeometry;
 import common.geometry.IGeometry;
 import common.geometry.twodimensions.CircleGeometry;
-
-import utilities.Color;
-import utilities.Tools;
-import controller.entities.TeamController;
 
 /**
  * Represents a flag which players can interact with
@@ -23,8 +20,6 @@ public class FlagModel implements IModel {
 	private Color flagColor;
 
 	private boolean isPickedUp = false;
-
-	private TeamController teamController;
 
 	/**
 	 * @param c
@@ -86,45 +81,10 @@ public class FlagModel implements IModel {
 	}
 
 	/**
-	 * @return the team controller the flag belongs to
-	 */
-	public TeamController getTeam() {
-		return teamController;
-	}
-
-	/**
-	 * @return the home position of the flag
-	 */
-	public Vector2f getHomePosition() {
-		return Tools.cloneVector(teamController.getHomePosition());
-	}
-
-	/**
 	 * Return the flag back to it's home position, and make it pick up able by
 	 * other players
 	 */
 	public void returnFlagHome() {
-		isPickedUp = false;
-		geometry.setPosition(teamController.getHomePosition());
-	}
-
-	/**
-	 * @return true if the flag is at it's home position and is pick up able
-	 */
-	public boolean isAtHome() {
-		return Tools.distanceBetween(geometry.getPosition(),
-				teamController.getHomePosition()) <= 0.001f;
-	}
-
-	/**
-	 * Set the team the flag belongs to
-	 * 
-	 * @param team
-	 *            the team the flag will belong to
-	 */
-	public void setTeam(final TeamController team) {
-		this.teamController = team;
-		setPosition(team.getHomePosition());
 	}
 
 	/**
