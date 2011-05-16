@@ -1,8 +1,5 @@
 package model.entities;
 
-import java.util.LinkedList;
-import java.util.List;
-
 import model.common.IModel;
 
 import common.body.Body;
@@ -18,8 +15,6 @@ public class ScoreboardModel implements IModel {
 
 	private final IGeometry geometry = new NullGeometry();
 
-	private final List<TeamModel> teamList = new LinkedList<TeamModel>();
-
 	@Override
 	public IGeometry getGeometry() {
 		return geometry;
@@ -32,21 +27,6 @@ public class ScoreboardModel implements IModel {
 	}
 
 	/**
-	 * Updates the scoreboard text according to the teams' scores
-	 */
-	public void update() {
-
-		String scoreString = "";
-
-		for (final TeamModel t : teamList) {
-			scoreString = scoreString + t.getTeamName() + ": " + t.getScore()
-					+ " ";
-		}
-
-		setText(scoreString);
-	}
-
-	/**
 	 * Sets the scoreboard text
 	 * 
 	 * @param scoreString
@@ -54,11 +34,6 @@ public class ScoreboardModel implements IModel {
 	 */
 	public void setText(final String scoreString) {
 		org.lwjgl.opengl.Display.setTitle(scoreString);
-
-	}
-
-	public void addTeam(final TeamModel model) {
-		teamList.add(model);
 
 	}
 
