@@ -14,24 +14,24 @@ import controller.components.IComponent;
 import controller.components.KeyboardComponent;
 import controller.components.MouseComponent;
 import controller.components.PhysicsComponent;
-import controller.components.StateComponent;
+import core.LevelManager;
 import factories.entities.IEntityFactory;
 
 public class MainController implements IMainController {
 
 	// References
-	private IMainModel mainModel;
+	private final IMainModel mainModel;
 
 	// Collection of controllers
-	private TypeMap<IController<? extends IModel>> controllerMap = new TypeMap<IController<? extends IModel>>();
+	private final TypeMap<IController<? extends IModel>> controllerMap = new TypeMap<IController<? extends IModel>>();
 
 	// Components
-	private PhysicsComponent physicsComponent = new PhysicsComponent();
-	private StateComponent stateComponent = new StateComponent();
-	private KeyboardComponent keyboardComponent = new KeyboardComponent();
-	private MouseComponent mouseComponent = new MouseComponent();
+	private final PhysicsComponent physicsComponent = new PhysicsComponent();
+	private final LevelManager stateComponent = new LevelManager();
+	private final KeyboardComponent keyboardComponent = new KeyboardComponent();
+	private final MouseComponent mouseComponent = new MouseComponent();
 
-	private IComponent[] components = { physicsComponent, stateComponent,
+	private final IComponent[] components = { physicsComponent,
 			keyboardComponent, mouseComponent };
 
 	public MainController(final IMainModel mainModel) {
@@ -42,7 +42,7 @@ public class MainController implements IMainController {
 	public <M extends IModel, C extends IController<M>, T extends IEntityFactory<M, C>> C instantiate(
 			final IEntityFactory<M, C> factory, final Vector2f position) {
 		if (factory != null) {
-			C controller = factory.getController();
+			final C controller = factory.getController();
 
 			// Add model and controller
 			mainModel.add(controller.getModel());
@@ -50,7 +50,7 @@ public class MainController implements IMainController {
 			controllerMap.add(controller);
 
 			// Let all components know about the creation of this controller
-			for (IComponent component : components) {
+			for (final IComponent component : components) {
 				component.controllerAdded(controller);
 			}
 
@@ -72,7 +72,7 @@ public class MainController implements IMainController {
 		controller.end();
 
 		// Let all components know about the removal of this controller
-		for (IComponent component : components) {
+		for (final IComponent component : components) {
 			component.controllerRemoved(controller);
 		}
 
@@ -107,7 +107,7 @@ public class MainController implements IMainController {
 	public void initialize() {
 
 		// Initialize all components
-		for (IComponent component : components) {
+		for (final IComponent component : components) {
 			component.initialize();
 		}
 
@@ -120,15 +120,15 @@ public class MainController implements IMainController {
 	public void update() {
 
 		// Update all components
-		for (IComponent component : components) {
+		for (final IComponent component : components) {
 			component.update();
 		}
 
 		// Update all controllers
-		List<IController<? extends IModel>> allControllers = controllerMap
+		final List<IController<? extends IModel>> allControllers = controllerMap
 				.getItems();
 
-		for (IController<? extends IModel> controller : allControllers) {
+		for (final IController<? extends IModel> controller : allControllers) {
 			controller.update();
 		}
 	}

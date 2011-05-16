@@ -1,20 +1,16 @@
-package controller.components;
-
-import model.common.IModel;
+package core;
 
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.util.vector.Vector2f;
 
 import utilities.Constants;
-import controller.common.IController;
-import controller.components.levels.AbstractLevel;
-import controller.components.levels.RandomLevel;
 import controller.entities.FlagController;
 import controller.entities.PlayerController;
 import controller.entities.RuleController;
 import controller.entities.ScoreboardController;
 import controller.entities.TeamController;
-import core.Manager;
+import core.levels.AbstractLevel;
+import core.levels.RandomLevel;
 import factories.entities.BallFactory;
 import factories.entities.FlagFactory;
 import factories.entities.PlayerOneFactory;
@@ -23,14 +19,11 @@ import factories.entities.RuleFactory;
 import factories.entities.ScoreboardFactory;
 import factories.entities.TeamFactory;
 
-public class StateComponent implements IComponent {
+/**
+ * This class is responsible for managing and setting up levels
+ */
+public class LevelManager {
 
-	@Override
-	public void initialize() {
-		// Do nothing
-	}
-
-	@Override
 	public void update() {
 		if (Manager.getKeyboard().getKey(Keyboard.KEY_LCONTROL)
 				&& Manager.getKeyboard().getKeyDown(Keyboard.KEY_R)) {
@@ -55,18 +48,15 @@ public class StateComponent implements IComponent {
 
 		// Instantiate the rules
 
-		final RuleController rules = (RuleController) Manager
-				.instantiate(new RuleFactory());
+		final RuleController rules = Manager.instantiate(new RuleFactory());
 
 		// Instantiate the teams
-		final TeamController teamOne = (TeamController) Manager
-				.instantiate(new TeamFactory());
-		final TeamController teamTwo = (TeamController) Manager
-				.instantiate(new TeamFactory());
+		final TeamController teamOne = Manager.instantiate(new TeamFactory());
+		final TeamController teamTwo = Manager.instantiate(new TeamFactory());
 
-		final PlayerController playerOne = (PlayerController) Manager
+		final PlayerController playerOne = Manager
 				.instantiate(new PlayerOneFactory());
-		final PlayerController playerTwo = (PlayerController) Manager
+		final PlayerController playerTwo = Manager
 				.instantiate(new PlayerTwoFactory());
 
 		teamOne.setRules(rules);
@@ -93,9 +83,9 @@ public class StateComponent implements IComponent {
 		playerTwo.setTeam(teamTwo);
 
 		// Instantiate flags
-		final FlagController teamOneFlag = (FlagController) Manager
+		final FlagController teamOneFlag = Manager
 				.instantiate(new FlagFactory());
-		final FlagController teamTwoFlag = (FlagController) Manager
+		final FlagController teamTwoFlag = Manager
 				.instantiate(new FlagFactory());
 
 		teamOneFlag.setTeam(teamOne);
@@ -106,7 +96,7 @@ public class StateComponent implements IComponent {
 
 		// Instantiate scoreboard
 
-		final ScoreboardController scoreboard = (ScoreboardController) Manager
+		final ScoreboardController scoreboard = Manager
 				.instantiate(new ScoreboardFactory());
 
 		scoreboard.addTeam(teamOne);
@@ -114,15 +104,4 @@ public class StateComponent implements IComponent {
 
 	}
 
-	@Override
-	public <M extends IModel> void controllerAdded(
-			final IController<M> controller) {
-		// Do nothing
-	}
-
-	@Override
-	public <M extends IModel> void controllerRemoved(
-			final IController<M> controller) {
-		// Do nothing
-	}
 }
