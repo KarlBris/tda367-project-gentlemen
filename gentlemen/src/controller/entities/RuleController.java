@@ -1,7 +1,6 @@
 package controller.entities;
 
 import model.entities.RuleModel;
-import model.entities.TeamModel;
 
 import org.lwjgl.util.vector.Vector2f;
 
@@ -24,8 +23,8 @@ public class RuleController implements IController<RuleModel> {
 	 * @param team
 	 *            the team to check for victory
 	 */
-	public void checkVictory(final TeamModel team) {
-		model.checkVictory(team);
+	public void checkVictory(final TeamController team) {
+		model.checkVictory(team.getModel());
 	}
 
 	@Override
