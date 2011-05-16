@@ -346,7 +346,6 @@ public class PlayerController implements IController<PlayerModel>,
 					if (fc.isPickUpAble() && !fc.isAtHome()) {
 						fc.returnFlagHome();
 						teamController.addScore(Constants.FLAG_RETURN_SCORE);
-						model.releaseFlag();
 						return true;
 					}
 				}
