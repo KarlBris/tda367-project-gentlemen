@@ -42,6 +42,7 @@ public class PulsatingPropController implements IController<PropModel> {
 			final Color colorTwo, final int animationSteps) {
 		this.model = model;
 
+		model.setColor(colorOne);
 		this.originColor = colorTwo;
 
 		colorStep = Constants.TWO_PI / animationSteps;
