@@ -10,8 +10,6 @@ import common.body.Body;
 import common.geometry.IGeometry;
 import common.geometry.NullGeometry;
 
-import controller.entities.RuleController;
-
 /**
  * Represents a team in the game
  */
@@ -20,8 +18,6 @@ public class TeamModel implements IModel {
 	private Vector2f homePosition;
 
 	private String teamName;
-
-	private RuleController ruleController;
 
 	private final IGeometry geometry = new NullGeometry();
 
@@ -40,11 +36,7 @@ public class TeamModel implements IModel {
 		if (amount < 0) {
 			throw new NumberFormatException("Number must be positive");
 		} else {
-
 			totalScore += amount;
-
-			// Check with rules. If won, celebrate!
-			ruleController.checkVictory(this);
 		}
 
 	}
@@ -121,20 +113,6 @@ public class TeamModel implements IModel {
 	 */
 	public Vector2f getHomePosition() {
 		return Tools.cloneVector(homePosition);
-	}
-
-	/**
-	 * Set the rules the team will follow
-	 * 
-	 * @param rules
-	 *            the rules to follow
-	 */
-	public void setRules(final RuleController rules) {
-		ruleController = rules;
-	}
-
-	public RuleController getRules() {
-		return ruleController;
 	}
 
 	/**

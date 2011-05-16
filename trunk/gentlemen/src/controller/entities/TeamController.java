@@ -13,21 +13,27 @@ public class TeamController implements IController<TeamModel> {
 
 	private final TeamModel model;
 
+	private RuleController ruleController;
+
 	public TeamController(final TeamModel model) {
 		this.model = model;
 	}
 
 	/**
-	 * Adds an amount of score points to the team score
+	 * Add an amount to the team score
 	 * 
 	 * @param amount
-	 *            the amount of score points to be added
+	 *            is the amount to be added to the team score
 	 * 
 	 * @throws NumberFormatException
 	 *             is thrown if amount is negative
 	 */
 	public void addScore(final int amount) throws NumberFormatException {
 		model.addScore(amount);
+
+		// Check with rules. If won, celebrate!
+		ruleController.checkVictory(this);
+
 	}
 
 	/**
@@ -120,12 +126,20 @@ public class TeamController implements IController<TeamModel> {
 	}
 
 	/**
-	 * Sets the rules the team will adhere to
+	 * Set the rules the team will follow
 	 * 
 	 * @param rules
-	 *            the rules to set
+	 *            the rules to follow
 	 */
 	public void setRules(final RuleController rules) {
-		model.setRules(rules);
+		ruleController = rules;
+	}
+
+	/**
+	 * 
+	 * @return the rules controller
+	 */
+	public RuleController getRules() {
+		return ruleController;
 	}
 }
