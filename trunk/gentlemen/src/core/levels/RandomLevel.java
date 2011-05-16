@@ -1,4 +1,4 @@
-package controller.components.levels;
+package core.levels;
 
 import org.lwjgl.util.vector.Vector2f;
 
