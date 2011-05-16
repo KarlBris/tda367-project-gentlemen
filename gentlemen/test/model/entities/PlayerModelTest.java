@@ -2,340 +2,209 @@ package model.entities;
 
 import static org.junit.Assert.assertTrue;
 
-import model.entities.PlayerModel;
-
 import org.junit.After;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import org.lwjgl.util.vector.Vector2f;
 
+import utilities.Color;
 import utilities.Constants;
 import utilities.Tools;
-import controller.entities.BallController;
-import controller.entities.FlagController;
-import controller.entities.RuleController;
-import controller.entities.TeamController;
 import core.Manager;
-import factories.entities.BallFactory;
-import factories.entities.FlagFactory;
 import factories.entities.PlayerOneFactory;
-import factories.entities.RuleFactory;
-import factories.entities.TeamFactory;
 
 public class PlayerModelTest {
-	private PlayerModel pm;
-	// Instantiate the teams
-	private TeamController teamOne;
-	private TeamController teamTwo;
-	// Instantiate flags
-	private FlagController teamOneFlag;
-	private FlagController teamTwoFlag;
-	// Instantiate ball
-	private BallController bc;
-
-	private final float precision = 0.001f;
-
-	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
-	}
+	private PlayerModel model;
 
 	@Before
 	public void setUp() throws Exception {
-
-		RuleController ruleController = (RuleController) Manager
-				.instantiate(new RuleFactory());
-
-		teamOne = (TeamController) Manager.instantiate(new TeamFactory());
-		teamTwo = (TeamController) Manager.instantiate(new TeamFactory());
-		teamOne.setHomePosition(new Vector2f(0.0f, 0.0f));
-		teamTwo.setHomePosition(new Vector2f(0.0f, 10.0f));
-		teamOne.setRules(ruleController);
-		teamTwo.setRules(ruleController);
-
-		teamOneFlag = (FlagController) Manager.instantiate(new FlagFactory(),
-				new Vector2f(0.0f, 0.0f));
-		teamTwoFlag = (FlagController) Manager.instantiate(new FlagFactory(),
-				new Vector2f(0.0f, 10.0f));
-
-		pm = (PlayerModel) Manager.instantiate(new PlayerOneFactory())
-				.getModel();
-		// pm = new PlayerModel(Constants.TEAM_ONE_COLOR);
-		teamOne.setTeamName("Red Team");
-		teamTwo.setTeamName("Blue Team");
-		pm.setTeam(teamOne);
-
-		teamOneFlag.setTeam(teamOne);
-		teamTwoFlag.setTeam(teamTwo);
-
-		teamOneFlag.setColor(Constants.TEAM_ONE_COLOR);
-		teamTwoFlag.setColor(Constants.TEAM_TWO_COLOR);
-
-		bc = (BallController) Manager.instantiate(new BallFactory());
+		model = Manager.instantiate(new PlayerOneFactory()).getModel();
 	}
 
 	@After
 	public void tearDown() throws Exception {
 		Manager.removeAll();
-		bc = null;
-		pm = null;
-		teamOne = null;
-		teamTwo = null;
-		teamOneFlag = null;
-		teamTwoFlag = null;
 	}
 
 	@Test
 	public void testPlayerModel() {
-		// Test if the player got it's teamColor
-		assertTrue(pm.getGeometry().getColor() == Constants.TEAM_ONE_COLOR);
+		Color c = new Color(1.0f, 1.0f, 1.0f);
+		model = new PlayerModel(c);
+
+		c = new Color(2.0f, 2.0f, 2.0f);
+		model = new PlayerModel(c);
+
+		c = new Color(-1.0f, -1.0f, -1.0f);
+		model = new PlayerModel(c);
 	}
 
 	@Test
-	public void testSetPositionAndGetPosition() {
-		pm.setPosition(new Vector2f(1.0f, 3.0f));
-		assertTrue(Tools.distanceBetween(pm.getPosition(), new Vector2f(1.0f,
-				3.0f)) <= precision);
-
-		pm.setPosition(new Vector2f(3.0f, 3.0f));
-		assertTrue(Tools.distanceBetween(pm.getPosition(), new Vector2f(3.0f,
-				3.0f)) <= precision);
-
+	public void testIsKnockedOut() {
+		assertTrue(!model.isKnockedOut());
 	}
 
 	@Test
-	public void testPickUpBallAndGetBallControllerAndIsCarryingBallAndThrowBall() {
+	public void testIsCarryingBall() {
+		assertTrue(!model.isCarryingBall());
+	}
 
-		// Test player have no ball
-		assertTrue(pm.getBallController() == null);
-		assertTrue(!pm.isCarryingBall());
-
-		bc.setPosition(new Vector2f(Constants.BALL_PICK_UP_DISTANCE, 0.0f));
-		pm.setPosition(new Vector2f(0.0f, 0.0f));
-
-		// Test should be success and return true
-		assertTrue(pm.pickUpBall());
-
-		// Test player should now be carrying ball
-		assertTrue(pm.getBallController() != null);
-		assertTrue(pm.isCarryingBall());
-
-		// The ball has no speed
-		assertTrue(bc.getModel().getBody().getVelocity().x == 0
-				&& bc.getModel().getBody().getVelocity().y == 0);
-
-		// Throw ball should return true
-		assertTrue(pm.throwBall());
-		// Shouldent be carrying a ball anymore
-		assertTrue(!pm.isCarryingBall());
-		// The ball should have a velocity
-		assertTrue(bc.getModel().getBody().getVelocity().x != 0
-				|| bc.getModel().getBody().getVelocity().y != 0);
-
-		// No longer has a ball and should now return false
-		assertTrue(!pm.throwBall());
-
-		// Test player should now no long carry ball
-		assertTrue(pm.getBallController() == null);
-
-		// Place the ball too far away from the players to be picked up
-		bc.setPosition(new Vector2f((Constants.BALL_PICK_UP_DISTANCE + 0.01f),
-				0.0f));
-		// Test should generate false, because the ball is too far way to be
-		// picked up
-		assertTrue(!pm.pickUpBall());
-
-		// The player should not have a ball in memory
-		assertTrue(pm.getBallController() == null);
-		assertTrue(!pm.isCarryingBall());
+	@Test
+	public void testIsCarryingFlag() {
+		assertTrue(!model.isCarryingFlag());
 	}
 
 	@Test
 	public void testPlayerKnockOut() {
-		// Test at start the player ain't knocked out
-		assertTrue(!pm.isKnockedOut());
+		assertTrue(!model.isKnockedOut());
+		model.playerKnockOut();
 
-		pm.playerKnockOut();
-		// Timer should be reseted
-		assertTrue(pm.getKnockedOutTimer() == 0.0f);
-
-		assertTrue(pm.isKnockedOut());
+		assertTrue(model.isKnockedOut());
 	}
 
 	@Test
 	public void testGetGeometry() {
-		assertTrue(pm.getGeometry() != null);
+		// Test if the method returns a Geometry objects
+		assertTrue(model.getGeometry() != null);
+
 	}
 
 	@Test
 	public void testGetBody() {
-		assertTrue(pm.getBody() != null);
+		// Test if the method returns a Body object
+		assertTrue(model.getBody() != null);
 	}
 
 	@Test
-	public void testPickUpFlagAndGetFlagControllerAndIsCarryingFlagAndDropFlag() {
-		// Test player have no flag
-		assertTrue(pm.getFlagController() == null);
-		assertTrue(!pm.isCarryingFlag());
+	public void testPickUpFlag() {
+		assertTrue(!model.isCarryingFlag());
+		model.pickUpFlag();
 
-		teamTwoFlag.setPosition(new Vector2f(Constants.FLAG_PICK_UP_DISTANCE,
-				0.0f));
-		pm.setPosition(new Vector2f(0.0f, 0.0f));
-
-		// Test should be success and return true
-		assertTrue(pm.pickUpFlag());
-
-		// Test player should now be carrying flag
-		assertTrue(pm.getFlagController() != null);
-		assertTrue(pm.isCarryingFlag());
-		assertTrue(pm.getFlagController().getTeam() != pm.getTeam());
-
-		// The flag should be taken by the player
-		assertTrue(!teamTwoFlag.isPickUpAble());
-		// Drop should be success
-		assertTrue(pm.dropFlag());
-		// The flag should be droped by the player
-		assertTrue(teamTwoFlag.isPickUpAble());
-		// An other drop should fail
-		assertTrue(!pm.dropFlag());
-
-		// Test player should now no long carry flag
-		assertTrue(pm.getBallController() == null);
-
-		// Place the flag too far away from the players to be picked up
-		teamTwoFlag.setPosition(new Vector2f(
-				(Constants.FLAG_PICK_UP_DISTANCE + 0.01f), 0.0f));
-		// Test should generate false, because the flag is too far way to be
-		// picked up
-		assertTrue(!pm.pickUpFlag());
-
-		// The player should not have a flag in memory
-		assertTrue(pm.getFlagController() == null);
-		assertTrue(!pm.isCarryingFlag());
+		assertTrue(model.isCarryingFlag());
 	}
 
 	@Test
-	public void testCaptureEnemyFlag() {
-		// Test player should not be carrying flag
-		assertTrue(!pm.isCarryingFlag());
+	public void testReleaseFlag() {
+		model.pickUpFlag();
+		assertTrue(model.isCarryingFlag());
 
-		teamTwoFlag.setPosition(new Vector2f(20.0f, 10.0f));
-		pm.setPosition(new Vector2f(20.0f, 10.0f));
-		// The other teams flag should be picked up
-		assertTrue(pm.pickUpFlag());
+		model.releaseFlag();
+		assertTrue(!model.isCarryingFlag());
+	}
 
-		pm.setPosition(new Vector2f(Constants.FLAG_PICK_UP_DISTANCE + 0.01f,
-				0.0f));
-		teamOneFlag.setPosition(new Vector2f(
-				Constants.FLAG_PICK_UP_DISTANCE + 0.01f, 0.0f));
-		// This should generate false, the flag ain't at its home position which
-		// is (0.0f, 0.0f)
-		assertTrue(!pm.captureEnemyFlag());
-		assertTrue(pm.isCarryingFlag());
+	@Test
+	public void testPickUpBall() {
+		assertTrue(!model.isCarryingBall());
+		model.pickUpBall();
 
-		teamOneFlag.returnFlagHome();
-		assertTrue(teamOneFlag.isAtHome());
+		assertTrue(model.isCarryingBall());
+	}
 
-		// This should generate false, the team flag is out of reach
-		assertTrue(!pm.captureEnemyFlag());
-		assertTrue(pm.isCarryingFlag());
+	@Test
+	public void testReleaseBall() {
+		model.pickUpBall();
+		assertTrue(model.isCarryingBall());
 
-		pm.setPosition(new Vector2f(Constants.FLAG_PICK_UP_DISTANCE, 0.0f));
+		model.releaseBall();
+		assertTrue(!model.isCarryingBall());
+	}
 
-		// This should generate true, the flag is in reach
-		assertTrue(pm.captureEnemyFlag());
-		assertTrue(!pm.isCarryingFlag());
-		// The enemy flag should be returned home
-		assertTrue(teamTwoFlag.isAtHome());
+	@Test
+	public void testSetPosition() {
+		// Test if setting the player's position to different values renders any
+		// errors.
+		Vector2f newPosition = new Vector2f(1.0f, 1.0f);
+		model.setPosition(newPosition);
+
+		newPosition = new Vector2f(2.0f, 2.0f);
+		model.setPosition(newPosition);
+
+		newPosition = new Vector2f(-1.0f, -1.0f);
+		model.setPosition(newPosition);
 
 	}
 
 	@Test
-	public void testReturnTeamFlag() {
-		teamOneFlag.returnFlagHome();
-		pm.setPosition(new Vector2f(teamOneFlag.getHomePosition()));
-		// The flag is already home
-		assertTrue(!pm.returnTeamFlag());
+	public void testGetPosition() {
+		Vector2f position = new Vector2f(1.0f, 1.0f);
+		model.setPosition(position);
 
-		teamOneFlag.setPosition(new Vector2f(Constants.FLAG_PICK_UP_DISTANCE,
-				0.0f));
-		// The flag is in range of the team player and the flag ain't at it's
-		// home position
-		assertTrue(pm.returnTeamFlag());
-		assertTrue(teamOneFlag.isAtHome());
+		// Test if getting the player's position returns the correct value
+		assertTrue(Tools.isVectorsEqual(position, model.getPosition()));
 
-		teamOneFlag.setPosition(new Vector2f(
-				Constants.FLAG_PICK_UP_DISTANCE + 0.1f, 0.0f));
-		// The flag is out of range of the team player
-		assertTrue(!pm.returnTeamFlag());
-		assertTrue(!teamOneFlag.isAtHome());
+		position = new Vector2f(2.0f, 2.0f);
+		model.setPosition(position);
 
-		teamTwoFlag.setPosition(new Vector2f(0.0f, 0.0f));
-
-		// Pick up other teams flag
-		assertTrue(pm.pickUpFlag());
-
-		teamOneFlag.setPosition(new Vector2f(Constants.FLAG_PICK_UP_DISTANCE,
-				0.0f));
-		// The player should be able to return the flag even if he is carrying a
-		// flag of his own
-		assertTrue(pm.returnTeamFlag());
+		// Same test with new values
+		assertTrue(Tools.isVectorsEqual(position, model.getPosition()));
 
 	}
 
 	@Test
 	public void testMove() {
 		// At start the player should not move
-		assertTrue(pm.getBody().getAcceleration().x <= 0.001f
-				&& pm.getBody().getAcceleration().y <= 0.0001f);
+		assertTrue(model.getBody().getAcceleration().x <= 0.001f
+				&& model.getBody().getAcceleration().y <= 0.0001f);
 
-		pm.move(new Vector2f(10.0f, 10.0f));
+		model.move(new Vector2f(10.0f, 10.0f));
 
-		assertTrue(pm.getBody().getAcceleration().x >= 0.001f
-				&& pm.getBody().getAcceleration().y >= 0.0001f);
+		assertTrue(model.getBody().getAcceleration().x >= 0.001f
+				&& model.getBody().getAcceleration().y >= 0.0001f);
 	}
 
 	@Test
 	public void testFaceTowards() {
-		pm.faceTowards(Constants.PI);
-		assertTrue(pm.getFacingAngle() == Constants.PI);
-		pm.faceTowards(Constants.PI / 2);
-		assertTrue(pm.getFacingAngle() == Constants.PI / 2);
+
+		model.faceTowards(0);
+
+		model.faceTowards(Constants.PI);
+
+		model.faceTowards(Constants.PI / 2);
+
+		model.faceTowards(Constants.PI / -2);
+
 	}
 
 	@Test
-	public void testUpdate() {
-		// Update is one of the method that is allowed to be different
+	public void testGetFacingAngle() {
+		model.faceTowards(Constants.PI);
+		assertTrue(model.getFacingAngle() == Constants.PI);
+		model.faceTowards(Constants.PI / 2);
+		assertTrue(model.getFacingAngle() == Constants.PI / 2);
+
 	}
 
 	@Test
-	public void testSetAngleAndGetAngle() {
-		pm.setAngle(2.0f);
-		assertTrue(pm.getAngle() == 2.0f);
+	public void testSetAngle() {
+		// Test if setting the player's angle to different values renders any
+		// errors.
+		model.setAngle(1.0f);
+		model.setAngle(Constants.PI);
+		model.setAngle(Constants.TWO_PI - 1);
 
-		pm.setAngle(Constants.PI);
-		assertTrue(pm.getAngle() == Constants.PI);
+		model.setAngle(-Constants.PI);
+		model.setAngle(-Constants.TWO_PI - 1);
+
+		model.setAngle(0.0f);
 	}
 
 	@Test
-	public void testUpdateFlagPosition() {
-		pm.setPosition(new Vector2f(0.0f, 10.0f));
-		assertTrue(pm.pickUpFlag());
-		Vector2f pos = teamTwoFlag.getPosition();
+	public void testGetAngle() {
+		float newAngle = 1.0f;
+		model.setAngle(newAngle);
 
-		// Give player a new position
-		pm.setPosition(new Vector2f(10.0f, 10.0f));
-		pm.updateFlagPosition();
+		// Test if getting the player's angle returns the correct value
+		assertTrue(model.getAngle() == newAngle);
 
-		// The flag should have changed position
-		assertTrue(!(Tools.distanceBetween(teamTwoFlag.getPosition(), pos) <= 0.01f));
+		newAngle = Constants.TWO_PI - 1;
+		model.setAngle(newAngle);
+
+		// Same test with new values
+		assertTrue(model.getAngle() == newAngle);
 	}
 
 	@Test
-	public void testSetTeamAndGetTeam() {
-		assertTrue(pm.getTeam() == teamOne);
-		pm.setTeam(teamTwo);
-		assertTrue(pm.getTeam() == teamTwo);
+	public void testGetKnockedOutTimer() {
+
 	}
 
 }
