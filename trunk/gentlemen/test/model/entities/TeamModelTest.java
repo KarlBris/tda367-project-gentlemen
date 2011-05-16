@@ -10,6 +10,7 @@ import org.lwjgl.util.vector.Vector2f;
 
 import utilities.Tools;
 
+import common.body.IBody;
 import common.geometry.IGeometry;
 
 import core.Manager;
@@ -40,7 +41,7 @@ public class TeamModelTest {
 
 	@Test
 	public void testGetBody() {
-		assertTrue(model.getBody() == null);
+		assertTrue(model.getBody() instanceof IBody);
 	}
 
 	@Test

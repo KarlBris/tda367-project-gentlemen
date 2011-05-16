@@ -9,6 +9,10 @@ import org.lwjgl.util.vector.Vector2f;
 
 import utilities.Constants;
 import utilities.Tools;
+
+import common.body.IBody;
+import common.geometry.IGeometry;
+
 import core.Manager;
 import factories.entities.ShockwaveFactory;
 
@@ -36,13 +40,13 @@ public class ShockwaveModelTest {
 	@Test
 	public void testGetGeometry() {
 		// Test if the method returns a Geometry object
-		assertTrue(model.getGeometry() != null);
+		assertTrue(model.getGeometry() instanceof IGeometry);
 	}
 
 	@Test
 	public void testGetBody() {
 		// Test if the method returns a Body object
-		assertTrue(model.getBody() == null);
+		assertTrue(model.getBody() instanceof IBody);
 	}
 
 	@Test

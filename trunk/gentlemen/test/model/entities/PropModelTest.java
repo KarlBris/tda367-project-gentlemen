@@ -10,6 +10,10 @@ import org.lwjgl.util.vector.Vector2f;
 import utilities.Color;
 import utilities.Constants;
 import utilities.Tools;
+
+import common.body.IBody;
+import common.geometry.IGeometry;
+
 import controller.entities.PropController;
 import core.Manager;
 import factories.entities.PropFactory;
@@ -24,8 +28,8 @@ public class PropModelTest {
 	 */
 	@Before
 	public void setUp() throws Exception {
-		controller = (PropController) Manager.instantiate(new PropFactory());
-		model = (PropModel) controller.getModel();
+		controller = Manager.instantiate(new PropFactory());
+		model = controller.getModel();
 
 	}
 
@@ -70,13 +74,13 @@ public class PropModelTest {
 	@Test
 	public void testGetGeometry() {
 		// Test if the method returns a Geometry object
-		assertTrue(model.getGeometry() != null);
+		assertTrue(model.getGeometry() instanceof IGeometry);
 	}
 
 	@Test
 	public void testGetBody() {
 		// Test if the method returns a Body object
-		assertTrue(model.getBody() != null);
+		assertTrue(model.getBody() instanceof IBody);
 	}
 
 	@Test

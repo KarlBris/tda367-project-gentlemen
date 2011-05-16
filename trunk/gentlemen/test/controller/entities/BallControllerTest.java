@@ -8,10 +8,11 @@ import org.junit.Before;
 import org.junit.Test;
 import org.lwjgl.util.vector.Vector2f;
 
-import controller.entities.BallController;
-
 import utilities.Constants;
 import utilities.Tools;
+
+import common.body.Body;
+
 import core.Manager;
 import factories.entities.BallFactory;
 
@@ -21,7 +22,7 @@ public class BallControllerTest {
 
 	@Before
 	public void setUp() throws Exception {
-		bc = (BallController) Manager.instantiate(new BallFactory());
+		bc = Manager.instantiate(new BallFactory());
 	}
 
 	@After
@@ -70,8 +71,8 @@ public class BallControllerTest {
 		// Test if the ball being thrown at a speed higher than lethal speed
 		// results in it having a higher speed than lethal speed
 		bc.throwBall(throwVelocity);
-		assertTrue(Tools.distanceBetween(bc.getModel().getBody().getVelocity(),
-				zeroVelocity) > Constants.BALL_LETHAL_SPEED);
+		assertTrue(Tools.distanceBetween(
+				((Body) bc.getModel().getBody()).getVelocity(), zeroVelocity) > Constants.BALL_LETHAL_SPEED);
 		// The speed is too high and should not be able to be picked up
 		assertTrue(!bc.isPickUpAble(new Vector2f(0.0f, 0.0f)));
 	}
