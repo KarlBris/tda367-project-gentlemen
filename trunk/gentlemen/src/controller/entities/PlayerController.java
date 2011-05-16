@@ -1,7 +1,8 @@
 package controller.entities;
 
+import java.util.List;
+
 import model.entities.PlayerModel;
-import model.entities.ReticleModel;
 
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.util.vector.Vector2f;
@@ -25,7 +26,14 @@ public class PlayerController implements IController<PlayerModel>,
 		IBodyCollisionCallback {
 
 	private final PlayerModel model;
-	private ReticleModel reticleModel;
+
+	private KeyboardReticleController reticleController;
+
+	private BallController ballController = null;
+
+	private FlagController flagController = null;
+
+	private TeamController teamController = null;
 
 	private final int moveRightKey;
 	private final int moveLeftKey;
@@ -93,19 +101,18 @@ public class PlayerController implements IController<PlayerModel>,
 	private void handleFlag() {
 
 		// Try to return team flag
-		model.returnTeamFlag();
+		returnTeamFlag();
 
 		if (model.isCarryingFlag()) {
 			// Change the flag position
-			model.updateFlagPosition();
+			updateFlagPosition();
 
 			// Try to pick up enemy flag
-			if (model.captureEnemyFlag()) {
-				// Add score there
-			}
+			captureEnemyFlag();
+
 		} else {
 			// Try to capture enemy flag
-			model.pickUpFlag();
+			pickUpFlag();
 		}
 	}
 
@@ -121,14 +128,14 @@ public class PlayerController implements IController<PlayerModel>,
 
 			// Throw ball if correct key is pressed
 			if (Manager.getKeyboard().getKeyDown(throwBallKey)) {
-				model.throwBall();
+				throwBall();
 			}
 
 		} else {
 
 			// Pick up ball if correct key is pressed
 			if (Manager.getKeyboard().getKeyDown(pickUpBallKey)) {
-				model.pickUpBall();
+				pickUpBall();
 			}
 		}
 	}
@@ -136,10 +143,17 @@ public class PlayerController implements IController<PlayerModel>,
 	/**
 	 * Drops the flag, if carried
 	 * 
-	 * @return true if the flag was dropped, false if no flag was carried at all
+	 * @return true if the flag was dropped, false if no flag was carried
 	 */
 	public boolean dropFlag() {
-		return model.dropFlag();
+		if (model.isCarryingFlag()) {
+			flagController.releaseFlag();
+			flagController = null;
+			model.releaseFlag();
+			return true;
+		}
+		return false;
+
 	}
 
 	@Override
@@ -153,8 +167,7 @@ public class PlayerController implements IController<PlayerModel>,
 		model.getBody().setCollisionCallback(this);
 
 		// Instantiate the reticle and save the model reference
-		reticleModel = (ReticleModel) Manager.instantiate(
-				new KeyboardReticleFactory()).getModel();
+		reticleController = Manager.instantiate(new KeyboardReticleFactory());
 	}
 
 	@Override
@@ -214,7 +227,7 @@ public class PlayerController implements IController<PlayerModel>,
 		Vector2f.add(model.getPosition(), newReticlePosition,
 				newReticlePosition);
 
-		reticleModel.setPosition(newReticlePosition);
+		reticleController.setPosition(newReticlePosition);
 	}
 
 	/**
@@ -227,7 +240,7 @@ public class PlayerController implements IController<PlayerModel>,
 
 		Vector2f.add(model.getPosition(), newBallPosition, newBallPosition);
 
-		model.getBallController().setPosition(newBallPosition);
+		ballController.setPosition(newBallPosition);
 	}
 
 	@Override
@@ -242,19 +255,201 @@ public class PlayerController implements IController<PlayerModel>,
 
 		// If something fast hits this player, drop ball and flag
 		if (otherBody.getVelocity().length() >= Constants.BALL_LETHAL_SPEED) {
-			model.playerKnockOut();
+			playerKnockOut();
 		}
 	}
 
 	/**
-	 * Sets the team of the player
+	 * Sets the team to which the player will belong
 	 * 
 	 * @param team
-	 *            the team to which the player will belong
+	 *            the team the player will belong to
 	 */
 	public void setTeam(final TeamController team) {
-		model.setTeam(team);
+		this.teamController = team;
+		setPosition(team.getHomePosition());
 
+	}
+
+	/**
+	 * 
+	 * @return the players team controller
+	 */
+	public TeamController getTeam() {
+		return teamController;
+	}
+
+	/**
+	 * Init knocked out
+	 */
+	public void playerKnockOut() {
+		model.playerKnockOut();
+		throwBall();
+		dropFlag();
+		for (final TeamController tc : Manager.find(TeamController.class)) {
+			if (tc != this.teamController) {
+				tc.addScore(Constants.KNOCK_OUT_SCORE);
+			}
+		}
+	}
+
+	/**
+	 * @return the flag controller of the flag the player carries, return null
+	 *         if the player has no flag
+	 */
+	public FlagController getFlagController() {
+		return flagController;
+	}
+
+	/**
+	 * Try to capture the enemy flag at your home base. It require that team
+	 * flag is placed at home
+	 * 
+	 * @return true if the flag was capture, otherwise false
+	 */
+	private boolean captureEnemyFlag() {
+		if (model.isCarryingFlag()) {
+			final List<FlagController> flagControllers = Manager
+					.find(FlagController.class);
+			for (final FlagController fc : flagControllers) {
+				if (fc.getTeam() == this.teamController) {
+					if (Tools.distanceBetween(model.getPosition(),
+							fc.getPosition()) <= Constants.FLAG_PICK_UP_DISTANCE
+							&& fc.isAtHome()) {
+						flagController.returnFlagHome();
+						flagController = null;
+						teamController.addScore(Constants.FLAG_CAPTURE_SCORE);
+						model.releaseFlag();
+						return true;
+					}
+				}
+			}
+		}
+
+		return false;
+	}
+
+	/**
+	 * returnTeamFlag checks if the team flag is within pick up distance, and if
+	 * it is, and it's not at home it returns it home
+	 * 
+	 * @return true if team flag was picked up, otherwise false
+	 */
+	private boolean returnTeamFlag() {
+
+		final List<FlagController> flagControllers = Manager
+				.find(FlagController.class);
+		for (final FlagController fc : flagControllers) {
+			if (fc.getTeam() == this.teamController) {
+				if (Tools
+						.distanceBetween(model.getPosition(), fc.getPosition()) <= Constants.FLAG_PICK_UP_DISTANCE) {
+					if (fc.isPickUpAble() && !fc.isAtHome()) {
+						fc.returnFlagHome();
+						teamController.addScore(Constants.FLAG_RETURN_SCORE);
+						model.releaseFlag();
+						return true;
+					}
+				}
+			}
+		}
+
+		return false;
+	}
+
+	/**
+	 * Try to pick up an enemy flag if it's within pick up distance
+	 * 
+	 * @return true if a flag was picked up, otherwise false
+	 */
+	private boolean pickUpFlag() {
+		if (!model.isCarryingFlag() && !model.isKnockedOut()) {
+			final List<FlagController> flagControllers = Manager
+					.find(FlagController.class);
+			for (final FlagController fc : flagControllers) {
+				if (fc.getTeam() != this.teamController) {
+					if (Tools.distanceBetween(model.getPosition(),
+							fc.getPosition()) <= Constants.FLAG_PICK_UP_DISTANCE) {
+						if (fc.isPickUpAble()) {
+							fc.pickUpFlag();
+							flagController = fc;
+							model.pickUpFlag();
+							return true;
+						}
+					}
+				}
+			}
+		}
+
+		return false;
+	}
+
+	/**
+	 * Try to throw a ball
+	 * 
+	 * @return true if a ball was thrown, otherwise false
+	 */
+	private boolean throwBall() {
+		if (model.isCarryingBall()) {
+
+			final Vector2f velocityAtPoint = model.getBody()
+					.getVelocityAtPoint(ballController.getPosition());
+			final Vector2f direction = Tools.angleToVector(model.getBody()
+					.getAngle());
+			final Vector2f velocity = new Vector2f(direction);
+
+			velocity.scale(Constants.BALL_THROW_SPEED);
+
+			Vector2f.add(velocity, velocityAtPoint, velocity);
+
+			ballController.throwBall(velocity);
+
+			ballController.releaseBall();
+
+			ballController = null;
+
+			model.releaseBall();
+
+			return true;
+		}
+
+		return false;
+	}
+
+	/**
+	 * Try to pick up a ball near the player
+	 * 
+	 * @return true if a ball was picked up, otherwise false
+	 */
+	private boolean pickUpBall() {
+
+		if (!model.isCarryingBall()) {
+			final List<BallController> listOfBalls = Manager
+					.find(BallController.class);
+
+			for (final BallController bc : listOfBalls) {
+				if (Tools
+						.distanceBetween(model.getPosition(), bc.getPosition()) <= Constants.BALL_PICK_UP_DISTANCE) {
+					if (bc.isPickUpAble(model.getBody().getVelocity())) {
+						bc.pickUpBall();
+						model.pickUpBall();
+						ballController = bc;
+						return true;
+					}
+				}
+
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * If a flag is carried, update the position of the flag
+	 */
+	private void updateFlagPosition() {
+		if (model.isCarryingFlag()) {
+			flagController.setPosition(new Vector2f(model.getPosition().x,
+					model.getPosition().y - 0.7f));
+		}
 	}
 
 }
