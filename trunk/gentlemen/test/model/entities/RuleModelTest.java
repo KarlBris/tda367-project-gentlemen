@@ -30,12 +30,14 @@ public class RuleModelTest {
 		TeamModel teamModel = Manager.instantiate(new TeamFactory()).getModel();
 
 		// Test if the team has won before receiving any points
-		assertTrue(!model.checkVictory(teamModel));
+		assertTrue(!model.checkVictory(teamModel.getScore(),
+				teamModel.getTeamName()));
 
 		teamModel.addPoints(model.getScoreLimit() + 1);
 
 		// Test if the team has won after passing score limit
-		assertTrue(model.checkVictory(teamModel));
+		assertTrue(model.checkVictory(teamModel.getScore(),
+				teamModel.getTeamName()));
 	}
 
 	@Test
