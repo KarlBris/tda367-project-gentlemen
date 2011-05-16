@@ -1,17 +1,17 @@
 package model.entities;
 
-
 import model.common.IModel;
 
 import org.lwjgl.util.vector.Vector2f;
 
+import utilities.Color;
+
 import common.body.Body;
+import common.body.IBody;
 import common.body.RectangleBodyShape;
 import common.geometry.AbstractGeometry;
 import common.geometry.IGeometry;
 import common.geometry.twodimensions.RectangleGeometry;
-
-import utilities.Color;
 
 /**
  * Represent inanimate within the game world.
@@ -69,7 +69,7 @@ public class PropModel implements IModel {
 	}
 
 	@Override
-	public Body getBody() {
+	public IBody getBody() {
 
 		return body;
 	}

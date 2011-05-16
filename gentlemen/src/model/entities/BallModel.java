@@ -1,17 +1,18 @@
 package model.entities;
 
-
 import model.common.IModel;
 
 import org.lwjgl.util.vector.Vector2f;
 
+import utilities.Constants;
+
 import common.body.Body;
 import common.body.CircleBodyShape;
+import common.body.IBody;
+import common.body.IBodyCollisionCallback;
 import common.geometry.AbstractGeometry;
 import common.geometry.IGeometry;
 import common.geometry.twodimensions.CircleGeometry;
-
-import utilities.Constants;
 
 /**
  * Represents a ball which can be interacted with by other objects
@@ -24,6 +25,24 @@ public class BallModel implements IModel {
 	private final Body body = new Body(new CircleBodyShape(0.2f), 1.0f, 1.0f);
 
 	private boolean isPickedUp = false;
+
+	/**
+	 * Subscribes to collision callback for the model
+	 * 
+	 * @param collisionCallback
+	 *            the object to call when collisions occurs
+	 */
+	public void setCollisionCallback(
+			final IBodyCollisionCallback collisionCallback) {
+		body.setCollisionCallback(collisionCallback);
+	}
+
+	/**
+	 * @return the velocity of the model
+	 */
+	public Vector2f getVelocity() {
+		return body.getVelocity();
+	}
 
 	/**
 	 * @param referenceVelocity
@@ -86,7 +105,7 @@ public class BallModel implements IModel {
 	}
 
 	@Override
-	public Body getBody() {
+	public IBody getBody() {
 		return body;
 	}
 

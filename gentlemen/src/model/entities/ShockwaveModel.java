@@ -1,18 +1,18 @@
 package model.entities;
 
-
 import model.common.IModel;
 
 import org.lwjgl.util.vector.Vector2f;
 
-import common.body.Body;
-import common.geometry.AbstractGeometry;
-import common.geometry.IGeometry;
-import common.geometry.twodimensions.CircleGeometry;
-
 import utilities.Color;
 import utilities.Constants;
 import utilities.Tools;
+
+import common.body.IBody;
+import common.body.NullBody;
+import common.geometry.AbstractGeometry;
+import common.geometry.IGeometry;
+import common.geometry.twodimensions.CircleGeometry;
 
 /**
  * Represents a shockwave in the game
@@ -21,6 +21,7 @@ public class ShockwaveModel implements IModel {
 
 	private final AbstractGeometry geometry = new CircleGeometry(Color.RED,
 			0.05f, 0.5f, 5);
+	private final IBody body = new NullBody();
 
 	private float removeTimer = 0.0f;
 
@@ -34,8 +35,8 @@ public class ShockwaveModel implements IModel {
 	}
 
 	@Override
-	public Body getBody() {
-		return null;
+	public IBody getBody() {
+		return body;
 	}
 
 	/**

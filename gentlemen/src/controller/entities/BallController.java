@@ -79,7 +79,7 @@ public class BallController implements IController<BallModel>,
 	@Override
 	public void start() {
 		// Subscribe to collision events for the model's body
-		model.getBody().setCollisionCallback(this);
+		model.setCollisionCallback(this);
 	}
 
 	@Override
@@ -99,7 +99,7 @@ public class BallController implements IController<BallModel>,
 	public void collisionOccured(final Body otherBody,
 			final Vector2f collisionPoint) {
 		// Instantiate a shockwave if the ball travels fast enough
-		if (model.getBody().getVelocity().length() >= Constants.BALL_SHOCKWAVE_SPEED) {
+		if (model.getVelocity().length() >= Constants.BALL_SHOCKWAVE_SPEED) {
 			Manager.instantiate(new ShockwaveFactory(), collisionPoint);
 		}
 	}

@@ -1,15 +1,14 @@
 package model.entities;
 
-
 import model.common.IModel;
 
 import org.lwjgl.util.vector.Vector2f;
 
-import common.body.Body;
+import common.body.IBody;
+import common.body.NullBody;
 import common.geometry.AbstractGeometry;
 import common.geometry.IGeometry;
 import common.geometry.twodimensions.ReticleGeometry;
-
 
 /**
  * Represents a reticle in the game
@@ -17,6 +16,7 @@ import common.geometry.twodimensions.ReticleGeometry;
 public class ReticleModel implements IModel {
 
 	private final AbstractGeometry geometry = new ReticleGeometry();
+	private final IBody body = new NullBody();
 
 	@Override
 	public IGeometry getGeometry() {
@@ -24,8 +24,8 @@ public class ReticleModel implements IModel {
 	}
 
 	@Override
-	public Body getBody() {
-		return null;
+	public IBody getBody() {
+		return body;
 	}
 
 	/**
