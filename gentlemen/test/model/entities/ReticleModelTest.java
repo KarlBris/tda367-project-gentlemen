@@ -8,6 +8,10 @@ import org.junit.Test;
 import org.lwjgl.util.vector.Vector2f;
 
 import utilities.Tools;
+
+import common.body.IBody;
+import common.geometry.IGeometry;
+
 import core.Manager;
 import factories.entities.KeyboardReticleFactory;
 
@@ -17,8 +21,7 @@ public class ReticleModelTest {
 
 	@Before
 	public void setUp() throws Exception {
-		model = (ReticleModel) Manager
-				.instantiate(new KeyboardReticleFactory()).getModel();
+		model = Manager.instantiate(new KeyboardReticleFactory()).getModel();
 	}
 
 	@After
@@ -29,13 +32,13 @@ public class ReticleModelTest {
 	@Test
 	public void testGetGeometry() {
 		// Test if the method returns a Geometry object
-		assertTrue(model.getGeometry() != null);
+		assertTrue(model.getGeometry() instanceof IGeometry);
 	}
 
 	@Test
 	public void testGetBody() {
 		// Test if the method returns a Body object
-		assertTrue(model.getBody() == null);
+		assertTrue(model.getBody() instanceof IBody);
 	}
 
 	@Test

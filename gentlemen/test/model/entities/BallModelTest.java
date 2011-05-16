@@ -9,6 +9,10 @@ import org.lwjgl.util.vector.Vector2f;
 
 import utilities.Constants;
 import utilities.Tools;
+
+import common.body.Body;
+import common.geometry.IGeometry;
+
 import core.Manager;
 import factories.entities.BallFactory;
 
@@ -17,7 +21,7 @@ public class BallModelTest {
 
 	@Before
 	public void setUp() throws Exception {
-		bm = (BallModel) Manager.instantiate(new BallFactory()).getModel();
+		bm = Manager.instantiate(new BallFactory()).getModel();
 	}
 
 	@After
@@ -27,12 +31,12 @@ public class BallModelTest {
 
 	@Test
 	public void testGetGeometry() {
-		assertTrue(bm.getGeometry() != null);
+		assertTrue(bm.getGeometry() instanceof IGeometry);
 	}
 
 	@Test
 	public void testGetBody() {
-		assertTrue(bm.getBody() != null);
+		assertTrue(bm.getBody() instanceof Body);
 	}
 
 	@Test
@@ -43,12 +47,12 @@ public class BallModelTest {
 		assertTrue(!bm.isLethal(relativeVelocity));
 
 		// Test if moving faster than lethal speed is above lethal speed
-		bm.getBody().applyVelocityChange(
-				new Vector2f(Constants.BALL_LETHAL_SPEED + 1,
-						Constants.BALL_LETHAL_SPEED + 1));
+		((Body) bm.getBody()).applyVelocityChange(new Vector2f(
+				Constants.BALL_LETHAL_SPEED + 1,
+				Constants.BALL_LETHAL_SPEED + 1));
 		assertTrue(bm.isLethal(relativeVelocity));
 
-		bm.getBody().clearVelocity();
+		((Body) bm.getBody()).clearVelocity();
 	}
 
 	@Test
@@ -84,15 +88,14 @@ public class BallModelTest {
 		// Test if the ball can get picked up when moving faster than at lethal
 		// speed
 		bm.releaseBall();
-		bm.getBody().applyVelocityChange(
-				new Vector2f(Constants.BALL_LETHAL_SPEED + 1,
-						Constants.BALL_LETHAL_SPEED));
+		((Body) bm.getBody()).applyVelocityChange(new Vector2f(
+				Constants.BALL_LETHAL_SPEED + 1, Constants.BALL_LETHAL_SPEED));
 		assertTrue(!bm.isPickUpAble(playerVelocity));
 		bm.releaseBall();
 
 		// Test if the ball can get picked up again once it has been released
 		// and speed has been reduced to zero
-		bm.getBody().clearVelocity();
+		((Body) bm.getBody()).clearVelocity();
 		assertTrue(bm.isPickUpAble(playerVelocity));
 	}
 
@@ -131,7 +134,7 @@ public class BallModelTest {
 		// Test if the ball being thrown at a speed higher than lethal speed
 		// results in it having a higher speed than lethal speed
 		bm.throwBall(throwVelocity);
-		assertTrue(Tools.distanceBetween(bm.getBody().getVelocity(),
+		assertTrue(Tools.distanceBetween(((Body) bm.getBody()).getVelocity(),
 				zeroVelocity) > Constants.BALL_LETHAL_SPEED);
 		// The speed is too high and should not be able to be picked up
 		assertTrue(!bm.isPickUpAble(new Vector2f(0.0f, 0.0f)));

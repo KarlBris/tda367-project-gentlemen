@@ -10,6 +10,10 @@ import org.lwjgl.util.vector.Vector2f;
 import utilities.Color;
 import utilities.Constants;
 import utilities.Tools;
+
+import common.body.Body;
+import common.geometry.IGeometry;
+
 import core.Manager;
 import factories.entities.PlayerOneFactory;
 
@@ -64,14 +68,14 @@ public class PlayerModelTest {
 	@Test
 	public void testGetGeometry() {
 		// Test if the method returns a Geometry objects
-		assertTrue(model.getGeometry() != null);
+		assertTrue(model.getGeometry() instanceof IGeometry);
 
 	}
 
 	@Test
 	public void testGetBody() {
 		// Test if the method returns a Body object
-		assertTrue(model.getBody() != null);
+		assertTrue(model.getBody() instanceof Body);
 	}
 
 	@Test
@@ -142,13 +146,13 @@ public class PlayerModelTest {
 	@Test
 	public void testMove() {
 		// At start the player should not move
-		assertTrue(model.getBody().getAcceleration().x <= 0.001f
-				&& model.getBody().getAcceleration().y <= 0.0001f);
+		assertTrue(((Body) model.getBody()).getAcceleration().x <= 0.001f
+				&& ((Body) model.getBody()).getAcceleration().y <= 0.0001f);
 
 		model.move(new Vector2f(10.0f, 10.0f));
 
-		assertTrue(model.getBody().getAcceleration().x >= 0.001f
-				&& model.getBody().getAcceleration().y >= 0.0001f);
+		assertTrue(((Body) model.getBody()).getAcceleration().x >= 0.001f
+				&& ((Body) model.getBody()).getAcceleration().y >= 0.0001f);
 	}
 
 	@Test
