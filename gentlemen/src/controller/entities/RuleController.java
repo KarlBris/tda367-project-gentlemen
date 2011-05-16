@@ -24,7 +24,7 @@ public class RuleController implements IController<RuleModel> {
 	 *            the team to check for victory
 	 */
 	public void checkVictory(final TeamController team) {
-		model.checkVictory(team.getModel());
+		model.checkVictory(team.getScore(), team.getTeamName());
 	}
 
 	@Override
