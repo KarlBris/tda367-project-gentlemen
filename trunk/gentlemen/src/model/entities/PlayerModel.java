@@ -9,6 +9,8 @@ import utilities.Constants;
 
 import common.body.Body;
 import common.body.CircleBodyShape;
+import common.body.IBody;
+import common.body.IBodyCollisionCallback;
 import common.geometry.AbstractGeometry;
 import common.geometry.IGeometry;
 import common.geometry.twodimensions.CircleGeometry;
@@ -33,6 +35,17 @@ public class PlayerModel implements IModel {
 	private float timeSinceKnockedOut = 0.0f;
 
 	/**
+	 * Subscribes to collision callback for the model
+	 * 
+	 * @param collisionCallback
+	 *            the object to call when collisions occurs
+	 */
+	public void setCollisionCallback(
+			final IBodyCollisionCallback collisionCallback) {
+		body.setCollisionCallback(collisionCallback);
+	}
+
+	/**
 	 * @param teamColor
 	 *            , is the color the team the players in, and also the color the
 	 *            player will have
@@ -40,6 +53,14 @@ public class PlayerModel implements IModel {
 	public PlayerModel(final Color teamColor) {
 		playerColor = teamColor;
 		geometry = new CircleGeometry(teamColor, 1.0f, 0.5f, 5);
+	}
+
+	public Vector2f getVelocity() {
+		return body.getVelocity();
+	}
+
+	public Vector2f getVelocityAtPoint(final Vector2f point) {
+		return body.getVelocityAtPoint(point);
 	}
 
 	/**
@@ -57,7 +78,7 @@ public class PlayerModel implements IModel {
 	}
 
 	@Override
-	public Body getBody() {
+	public IBody getBody() {
 		return body;
 	}
 
@@ -119,6 +140,8 @@ public class PlayerModel implements IModel {
 	 *            the direction to move in
 	 */
 	public void move(final Vector2f movement) {
+		body.clearAngularVelocity();
+
 		final Vector2f force = new Vector2f(movement);
 
 		force.scale(Constants.PLAYER_MOVEMENT_ACCELERATION);

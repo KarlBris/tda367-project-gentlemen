@@ -6,7 +6,8 @@ import org.lwjgl.util.vector.Vector2f;
 
 import utilities.Tools;
 
-import common.body.Body;
+import common.body.IBody;
+import common.body.NullBody;
 import common.geometry.IGeometry;
 import common.geometry.NullGeometry;
 
@@ -20,6 +21,7 @@ public class TeamModel implements IModel {
 	private String teamName;
 
 	private final IGeometry geometry = new NullGeometry();
+	private final IBody body = new NullBody();
 
 	private int totalScore = 0;
 
@@ -66,9 +68,8 @@ public class TeamModel implements IModel {
 	}
 
 	@Override
-	public Body getBody() {
-		// TODO Auto-generated method stub
-		return null;
+	public IBody getBody() {
+		return body;
 	}
 
 	/**
@@ -125,7 +126,7 @@ public class TeamModel implements IModel {
 	 * @throws NumberFormatException
 	 *             is thrown if amount is negative
 	 */
-	public void addPoints(int amount) throws NumberFormatException {
+	public void addPoints(final int amount) throws NumberFormatException {
 		if (amount < 0) {
 			throw new NumberFormatException("Number must be positive");
 		} else {

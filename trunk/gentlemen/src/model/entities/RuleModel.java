@@ -3,7 +3,8 @@ package model.entities;
 import model.common.IModel;
 import utilities.Constants;
 
-import common.body.Body;
+import common.body.IBody;
+import common.body.NullBody;
 import common.geometry.IGeometry;
 import common.geometry.NullGeometry;
 
@@ -18,6 +19,7 @@ public class RuleModel implements IModel {
 	private final int scoreLimit = Constants.SCORE_LIMIT;
 
 	private final IGeometry geometry = new NullGeometry();
+	private final IBody body = new NullBody();
 
 	/**
 	 * Checks if the given team has won or not
@@ -48,9 +50,9 @@ public class RuleModel implements IModel {
 	 * returns null, since the rules does not have a body
 	 */
 	@Override
-	public Body getBody() {
+	public IBody getBody() {
 		// TODO Auto-generated method stub
-		return null;
+		return body;
 	}
 
 }

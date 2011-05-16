@@ -2,7 +2,8 @@ package model.entities;
 
 import model.common.IModel;
 
-import common.body.Body;
+import common.body.IBody;
+import common.body.NullBody;
 import common.geometry.IGeometry;
 import common.geometry.NullGeometry;
 
@@ -14,6 +15,7 @@ import common.geometry.NullGeometry;
 public class ScoreboardModel implements IModel {
 
 	private final IGeometry geometry = new NullGeometry();
+	private final IBody body = new NullBody();
 
 	@Override
 	public IGeometry getGeometry() {
@@ -21,9 +23,8 @@ public class ScoreboardModel implements IModel {
 	}
 
 	@Override
-	public Body getBody() {
-		// TODO Auto-generated method stub
-		return null;
+	public IBody getBody() {
+		return body;
 	}
 
 	/**

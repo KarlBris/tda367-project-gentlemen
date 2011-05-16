@@ -164,7 +164,7 @@ public class PlayerController implements IController<PlayerModel>,
 	@Override
 	public void start() {
 		// Subscribe to collision events for the model's body
-		model.getBody().setCollisionCallback(this);
+		model.setCollisionCallback(this);
 
 		// Instantiate the reticle and save the model reference
 		reticleController = Manager.instantiate(new KeyboardReticleFactory());
@@ -208,8 +208,6 @@ public class PlayerController implements IController<PlayerModel>,
 		}
 
 		if (keyPressed) {
-			model.getBody().clearAngularVelocity();
-
 			model.move(dirVect);
 			model.faceTowards(Tools.vectorToAngle(dirVect));
 		}
@@ -390,10 +388,10 @@ public class PlayerController implements IController<PlayerModel>,
 	private boolean throwBall() {
 		if (model.isCarryingBall()) {
 
-			final Vector2f velocityAtPoint = model.getBody()
+			final Vector2f velocityAtPoint = model
 					.getVelocityAtPoint(ballController.getPosition());
-			final Vector2f direction = Tools.angleToVector(model.getBody()
-					.getAngle());
+			final Vector2f direction = Tools.angleToVector(model
+					.getFacingAngle());
 			final Vector2f velocity = new Vector2f(direction);
 
 			velocity.scale(Constants.BALL_THROW_SPEED);
@@ -428,7 +426,7 @@ public class PlayerController implements IController<PlayerModel>,
 			for (final BallController bc : listOfBalls) {
 				if (Tools
 						.distanceBetween(model.getPosition(), bc.getPosition()) <= Constants.BALL_PICK_UP_DISTANCE) {
-					if (bc.isPickUpAble(model.getBody().getVelocity())) {
+					if (bc.isPickUpAble(model.getVelocity())) {
 						bc.pickUpBall();
 						model.pickUpBall();
 						ballController = bc;

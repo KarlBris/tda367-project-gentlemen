@@ -6,7 +6,8 @@ import org.lwjgl.util.vector.Vector2f;
 
 import utilities.Color;
 
-import common.body.Body;
+import common.body.IBody;
+import common.body.NullBody;
 import common.geometry.AbstractGeometry;
 import common.geometry.IGeometry;
 import common.geometry.twodimensions.CircleGeometry;
@@ -16,6 +17,7 @@ import common.geometry.twodimensions.CircleGeometry;
  */
 public class FlagModel implements IModel {
 	private final AbstractGeometry geometry;
+	private IBody body = new NullBody();
 
 	private Color flagColor;
 
@@ -58,8 +60,8 @@ public class FlagModel implements IModel {
 	}
 
 	@Override
-	public Body getBody() {
-		return null;
+	public IBody getBody() {
+		return body;
 	}
 
 	/**
