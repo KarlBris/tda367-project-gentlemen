@@ -10,7 +10,6 @@ import org.lwjgl.util.vector.Vector2f;
 import utilities.Constants;
 import utilities.Tools;
 
-
 /**
  * The physical representation of a model in the game world
  */
@@ -22,10 +21,11 @@ public class Body {
 	private float angularDamping = Constants.BODY_DEFAULT_ANGULAR_DAMPING;
 
 	private final IBodyShape shape;
-	private IBodyCollisionCallback collisionCallback;
 
-	// References
+	// External references
 	private org.jbox2d.dynamics.Body rigidbody;
+
+	private IBodyCollisionCallback collisionCallback;
 
 	/**
 	 * Initializes a static/dynamic body
@@ -42,6 +42,18 @@ public class Body {
 		this.mass = mass;
 	}
 
+	/**
+	 * Initializes a static/dynamic body
+	 * 
+	 * @param shape
+	 *            the body shape of the body
+	 * 
+	 * @param mass
+	 *            the mass of the body; if 0 the body will be static, otherwise
+	 *            dynamic
+	 * @param damping
+	 *            the desired linear damping of the body
+	 */
 	public Body(final IBodyShape shape, final float mass, final float damping) {
 		this(shape, mass);
 

@@ -30,6 +30,8 @@ public class Manager {
 
 	private static IView view = ViewFactory.get(mainModel);
 
+	private static LevelManager levelManager = new LevelManager();
+
 	/**
 	 * @return gets the keyboard component
 	 */
@@ -159,6 +161,7 @@ public class Manager {
 	 */
 	public static void start() {
 
+		// Initialize game
 		if (!initializeDisplay()) {
 			return;
 		}
@@ -167,10 +170,18 @@ public class Manager {
 
 		view.initialize();
 
+		// Load level
+		levelManager.initializeEntities();
+
 		while (!Display.isCloseRequested()) {
 
+			// Update game
 			mainController.update();
 
+			// Update level manager
+			levelManager.update();
+
+			// Render game
 			view.render();
 
 			updateDisplay();
