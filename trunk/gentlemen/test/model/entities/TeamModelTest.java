@@ -12,21 +12,20 @@ import utilities.Tools;
 
 import common.geometry.IGeometry;
 
-import controller.entities.RuleController;
 import core.Manager;
-import factories.entities.RuleFactory;
 import factories.entities.TeamFactory;
 
 public class TeamModelTest {
 	private TeamModel model;
-	private RuleController ruleController;
+
+	// private RuleController ruleController;
 
 	@Before
 	public void setUp() throws Exception {
-		model = (TeamModel) Manager.instantiate(new TeamFactory()).getModel();
-		ruleController = (RuleController) Manager
-				.instantiate(new RuleFactory());
-		model.setRules(ruleController);
+		model = Manager.instantiate(new TeamFactory()).getModel();
+		// ruleController = (RuleController) Manager
+		// .instantiate(new RuleFactory());
+		// model.setRules(ruleController);
 	}
 
 	@After
@@ -121,19 +120,6 @@ public class TeamModelTest {
 		Vector2f v = new Vector2f(10.0f, 12.0f);
 		model.setHomePosition(v);
 		assertTrue(Tools.isVectorsEqual(v, model.getHomePosition()));
-	}
-
-	@Test
-	public void testSetRules() {
-		RuleController rc = new RuleController(new RuleModel());
-		model.setRules(rc);
-	}
-
-	@Test
-	public void testGetRules() {
-		RuleController rc = new RuleController(new RuleModel());
-		model.setRules(rc);
-		assertTrue(rc == model.getRules());
 	}
 
 }
