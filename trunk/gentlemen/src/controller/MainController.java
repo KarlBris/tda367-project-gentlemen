@@ -14,7 +14,6 @@ import controller.components.IComponent;
 import controller.components.KeyboardComponent;
 import controller.components.MouseComponent;
 import controller.components.PhysicsComponent;
-import core.LevelManager;
 import factories.entities.IEntityFactory;
 
 public class MainController implements IMainController {
@@ -27,7 +26,6 @@ public class MainController implements IMainController {
 
 	// Components
 	private final PhysicsComponent physicsComponent = new PhysicsComponent();
-	private final LevelManager stateComponent = new LevelManager();
 	private final KeyboardComponent keyboardComponent = new KeyboardComponent();
 	private final MouseComponent mouseComponent = new MouseComponent();
 
@@ -110,9 +108,6 @@ public class MainController implements IMainController {
 		for (final IComponent component : components) {
 			component.initialize();
 		}
-
-		// Initialize all entities
-		stateComponent.initializeEntities();
 
 	}
 
