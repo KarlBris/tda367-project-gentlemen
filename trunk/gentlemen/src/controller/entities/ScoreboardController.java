@@ -1,5 +1,8 @@
 package controller.entities;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import model.entities.ScoreboardModel;
 
 import org.lwjgl.util.vector.Vector2f;
@@ -13,6 +16,8 @@ public class ScoreboardController implements IController<ScoreboardModel> {
 
 	private final ScoreboardModel model;
 
+	private final List<TeamController> teamList = new LinkedList<TeamController>();
+
 	public ScoreboardController(final ScoreboardModel model) {
 		this.model = model;
 	}
@@ -24,7 +29,7 @@ public class ScoreboardController implements IController<ScoreboardModel> {
 	 *            the team to add to the scoreboard
 	 */
 	public void addTeam(final TeamController team) {
-		model.addTeam(team.getModel());
+		teamList.add(team);
 	}
 
 	@Override
@@ -49,7 +54,15 @@ public class ScoreboardController implements IController<ScoreboardModel> {
 
 	@Override
 	public void update() {
-		model.update();
+
+		String scoreString = "";
+
+		for (final TeamController t : teamList) {
+			scoreString = scoreString + t.getTeamName() + ": " + t.getScore()
+					+ " ";
+		}
+
+		model.setText(scoreString);
 	}
 
 }
