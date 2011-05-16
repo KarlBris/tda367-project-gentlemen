@@ -11,7 +11,7 @@ import controller.common.IController;
  */
 public class ScoreboardController implements IController<ScoreboardModel> {
 
-	public ScoreboardModel model;
+	private final ScoreboardModel model;
 
 	public ScoreboardController(final ScoreboardModel model) {
 		this.model = model;
@@ -24,7 +24,7 @@ public class ScoreboardController implements IController<ScoreboardModel> {
 	 *            the team to add to the scoreboard
 	 */
 	public void addTeam(final TeamController team) {
-		model.addTeam(team);
+		model.addTeam(team.getModel());
 	}
 
 	@Override

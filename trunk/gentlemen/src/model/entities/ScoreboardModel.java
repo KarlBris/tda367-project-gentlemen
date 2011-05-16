@@ -5,12 +5,9 @@ import java.util.List;
 
 import model.common.IModel;
 
-
 import common.body.Body;
 import common.geometry.IGeometry;
 import common.geometry.NullGeometry;
-
-import controller.entities.TeamController;
 
 /**
  * Represents a visual scoreboard in the game. Teams are added to the list and
@@ -21,36 +18,7 @@ public class ScoreboardModel implements IModel {
 
 	private final IGeometry geometry = new NullGeometry();
 
-	private final List<TeamController> teamList = new LinkedList<TeamController>();
-
-	/**
-	 * update() is called every frame and updates the visual scoreboard in the
-	 * window frame
-	 */
-	public void update() {
-		String scoreString = "";
-		for (final TeamController team : teamList) {
-			scoreString = scoreString + team.getTeamName() + ": "
-					+ team.getScore() + " ";
-		}
-
-		org.lwjgl.opengl.Display.setTitle(scoreString);
-	}
-
-	/**
-	 * Adds a team to the scoreboard. This allows the team have its score
-	 * printed on the screen
-	 * 
-	 * @param team
-	 *            the TeamController of a given team
-	 */
-	public void addTeam(final TeamController team) {
-		teamList.add(team);
-	}
-
-	public List<TeamController> getTeamList() {
-		return teamList;
-	}
+	private final List<TeamModel> teamList = new LinkedList<TeamModel>();
 
 	@Override
 	public IGeometry getGeometry() {
@@ -61,6 +29,37 @@ public class ScoreboardModel implements IModel {
 	public Body getBody() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	/**
+	 * Updates the scoreboard text according to the teams' scores
+	 */
+	public void update() {
+
+		String scoreString = "";
+
+		for (final TeamModel t : teamList) {
+			scoreString = scoreString + t.getTeamName() + ": " + t.getScore()
+					+ " ";
+		}
+
+		setText(scoreString);
+	}
+
+	/**
+	 * Sets the scoreboard text
+	 * 
+	 * @param scoreString
+	 *            the text to be set on the scoreboard
+	 */
+	public void setText(final String scoreString) {
+		org.lwjgl.opengl.Display.setTitle(scoreString);
+
+	}
+
+	public void addTeam(final TeamModel model) {
+		teamList.add(model);
+
 	}
 
 }

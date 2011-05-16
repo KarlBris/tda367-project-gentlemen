@@ -1,11 +1,11 @@
 package model.entities;
 
 import model.common.IModel;
+import utilities.Constants;
+
 import common.body.Body;
 import common.geometry.IGeometry;
 import common.geometry.NullGeometry;
-
-import utilities.Constants;
 
 /**
  * 
@@ -25,8 +25,8 @@ public class RuleModel implements IModel {
 	 * @param team
 	 *            the team to check for victory
 	 */
-	public boolean checkVictory(final TeamModel team) {
-		if (team.getScore() >= scoreLimit) {
+	public boolean checkVictory(final int score, final String teamName) {
+		if (score >= scoreLimit) {
 			// AW YEAH, TEAM HAS WON!
 			// Do something related to this
 
