@@ -4,11 +4,14 @@ import org.lwjgl.util.vector.Vector2f;
 
 import utilities.Constants;
 import utilities.Tools;
-import core.Manager;
+import controller.IMainController;
+import factories.MainControllerFactory;
 import factories.entities.BuildingPropFactory;
 import factories.entities.CratePropFactory;
 
 public class RandomLevel extends AbstractLevel {
+
+	private IMainController main = MainControllerFactory.get();
 
 	public RandomLevel() {
 		super(Constants.TEAM_ONE_HOME_POSITION,
@@ -29,7 +32,7 @@ public class RandomLevel extends AbstractLevel {
 			final Vector2f[] restrictions = { getTeamOneHomePosition(),
 					getTeamTwoHomePosition() };
 
-			Manager.instantiate(new CratePropFactory(), Tools
+			main.instantiate(new CratePropFactory(), Tools
 					.randomVectorInArea(new Vector2f(0, 0),
 							new Vector2f(Constants.VIEWPORT_WIDTH,
 									Constants.VIEWPORT_HEIGHT), restrictions));
@@ -42,7 +45,7 @@ public class RandomLevel extends AbstractLevel {
 			final Vector2f[] restrictions = { getTeamOneHomePosition(),
 					getTeamTwoHomePosition() };
 
-			Manager.instantiate(new BuildingPropFactory(), Tools
+			main.instantiate(new BuildingPropFactory(), Tools
 					.randomVectorInArea(new Vector2f(0, 0),
 							new Vector2f(Constants.VIEWPORT_WIDTH,
 									Constants.VIEWPORT_HEIGHT), restrictions));

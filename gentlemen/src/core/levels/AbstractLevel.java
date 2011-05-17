@@ -3,11 +3,14 @@ package core.levels;
 import org.lwjgl.util.vector.Vector2f;
 
 import utilities.Constants;
-import core.Manager;
+import controller.IMainController;
+import factories.MainControllerFactory;
 import factories.entities.HorizontalWallPropFactory;
 import factories.entities.VerticalWallPropFactory;
 
 public abstract class AbstractLevel {
+
+	private IMainController main = MainControllerFactory.get();
 
 	private final Vector2f teamOneHomePosition;
 	private final Vector2f teamTwoHomePosition;
@@ -28,19 +31,19 @@ public abstract class AbstractLevel {
 
 	public void instatiateWalls() {
 		// Top wall
-		Manager.instantiate(new HorizontalWallPropFactory(), new Vector2f(
+		main.instantiate(new HorizontalWallPropFactory(), new Vector2f(
 				Constants.VIEWPORT_WIDTH / 2, Constants.VIEWPORT_HEIGHT));
 
 		// Bottom wall
-		Manager.instantiate(new HorizontalWallPropFactory(), new Vector2f(
+		main.instantiate(new HorizontalWallPropFactory(), new Vector2f(
 				Constants.VIEWPORT_WIDTH / 2, 0.0f));
 
 		// Left wall
-		Manager.instantiate(new VerticalWallPropFactory(), new Vector2f(0.0f,
+		main.instantiate(new VerticalWallPropFactory(), new Vector2f(0.0f,
 				Constants.VIEWPORT_HEIGHT / 2));
 
 		// Right wall
-		Manager.instantiate(new VerticalWallPropFactory(), new Vector2f(
+		main.instantiate(new VerticalWallPropFactory(), new Vector2f(
 				Constants.VIEWPORT_WIDTH, Constants.VIEWPORT_HEIGHT / 2));
 	}
 

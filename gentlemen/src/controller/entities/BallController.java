@@ -10,7 +10,7 @@ import common.body.Body;
 import common.body.IBodyCollisionCallback;
 
 import controller.common.IController;
-import core.Manager;
+import factories.MainControllerFactory;
 import factories.entities.ShockwaveFactory;
 
 /**
@@ -100,7 +100,8 @@ public class BallController implements IController<BallModel>,
 			final Vector2f collisionPoint) {
 		// Instantiate a shockwave if the ball travels fast enough
 		if (model.getVelocity().length() >= Constants.BALL_SHOCKWAVE_SPEED) {
-			Manager.instantiate(new ShockwaveFactory(), collisionPoint);
+			MainControllerFactory.get().instantiate(new ShockwaveFactory(),
+					collisionPoint);
 		}
 	}
 }
