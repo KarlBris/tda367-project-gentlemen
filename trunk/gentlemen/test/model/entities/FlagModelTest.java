@@ -10,8 +10,8 @@ import org.lwjgl.util.vector.Vector2f;
 import utilities.Color;
 import utilities.Constants;
 import utilities.Tools;
+import controller.MainControllerFactory;
 import controller.entities.TeamController;
-import factories.MainControllerFactory;
 import factories.entities.TeamFactory;
 
 public class FlagModelTest {

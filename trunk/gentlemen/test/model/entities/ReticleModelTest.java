@@ -8,7 +8,7 @@ import org.junit.Test;
 import org.lwjgl.util.vector.Vector2f;
 
 import utilities.Tools;
-import factories.MainControllerFactory;
+import controller.MainControllerFactory;
 import factories.entities.KeyboardReticleFactory;
 
 public class ReticleModelTest {

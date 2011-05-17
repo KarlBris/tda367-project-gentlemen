@@ -7,7 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import utilities.Constants;
-import factories.MainControllerFactory;
+import controller.MainControllerFactory;
 import factories.entities.RuleFactory;
 import factories.entities.TeamFactory;
 

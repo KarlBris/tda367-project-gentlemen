@@ -13,7 +13,7 @@ import utilities.Tools;
 
 import common.body.Body;
 
-import factories.MainControllerFactory;
+import controller.MainControllerFactory;
 import factories.entities.PlayerOneFactory;
 
 public class PlayerModelTest {
