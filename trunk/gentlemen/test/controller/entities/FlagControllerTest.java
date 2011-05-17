@@ -12,7 +12,7 @@ import org.lwjgl.util.vector.Vector2f;
 import utilities.Color;
 import utilities.Constants;
 import utilities.Tools;
-import core.Manager;
+import controller.MainControllerFactory;
 import factories.entities.FlagFactory;
 import factories.entities.TeamFactory;
 
@@ -22,12 +22,13 @@ public class FlagControllerTest {
 
 	@Before
 	public void setUp() throws Exception {
-		fc = Manager.instantiate(new FlagFactory());
-		tc = Manager.instantiate(new TeamFactory());
+		fc = MainControllerFactory.get().instantiate(new FlagFactory());
+		tc = MainControllerFactory.get().instantiate(new TeamFactory());
 	}
 
 	@After
 	public void tearDown() throws Exception {
+		MainControllerFactory.get().removeAll();
 	}
 
 	@Test
