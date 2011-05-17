@@ -49,6 +49,12 @@ public class MainController implements IMainController {
 
 	@Override
 	public <M extends IModel, C extends IController<M>, T extends IEntityFactory<M, C>> C instantiate(
+			final IEntityFactory<M, C> factory) {
+		return instantiate(factory, new Vector2f());
+	}
+
+	@Override
+	public <M extends IModel, C extends IController<M>, T extends IEntityFactory<M, C>> C instantiate(
 			final IEntityFactory<M, C> factory, final Vector2f position) {
 		if (factory != null) {
 			final C controller = factory.getController();
@@ -89,6 +95,15 @@ public class MainController implements IMainController {
 		mainModel.remove(controller.getModel());
 
 		controllerMap.remove(controller);
+	}
+
+	@Override
+	public void removeAll() {
+		List<IController<? extends IModel>> controllers = getControllers();
+
+		for (IController<? extends IModel> controller : controllers) {
+			remove(controller);
+		}
 	}
 
 	@Override

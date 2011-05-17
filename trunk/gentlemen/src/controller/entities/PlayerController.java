@@ -13,9 +13,10 @@ import utilities.Tools;
 import common.body.Body;
 import common.body.IBodyCollisionCallback;
 
+import controller.IMainController;
 import controller.common.IController;
 import controller.components.KeyboardComponent;
-import core.Manager;
+import factories.MainControllerFactory;
 import factories.entities.BallFactory;
 import factories.entities.KeyboardReticleFactory;
 
@@ -24,6 +25,8 @@ import factories.entities.KeyboardReticleFactory;
  */
 public class PlayerController implements IController<PlayerModel>,
 		IBodyCollisionCallback {
+
+	private IMainController main = MainControllerFactory.get();
 
 	private final PlayerModel model;
 
@@ -78,8 +81,8 @@ public class PlayerController implements IController<PlayerModel>,
 	public void update() {
 
 		// spawn ball
-		if (Manager.getKeyboard().getKey(Keyboard.KEY_SPACE)) {
-			Manager.instantiate(new BallFactory(),
+		if (main.getKeyboardComponent().getKey(Keyboard.KEY_SPACE)) {
+			main.instantiate(new BallFactory(),
 					new Vector2f(Constants.VIEWPORT_WIDTH / 2,
 							Constants.VIEWPORT_HEIGHT / 2));
 		}
@@ -121,20 +124,22 @@ public class PlayerController implements IController<PlayerModel>,
 	 */
 	private void handleBall() {
 
+		KeyboardComponent keyboard = main.getKeyboardComponent();
+
 		if (model.isCarryingBall()) {
 
 			// Set the position of the ball being carried by the player
 			setBallPosition();
 
 			// Throw ball if correct key is pressed
-			if (Manager.getKeyboard().getKeyDown(throwBallKey)) {
+			if (keyboard.getKeyDown(throwBallKey)) {
 				throwBall();
 			}
 
 		} else {
 
 			// Pick up ball if correct key is pressed
-			if (Manager.getKeyboard().getKeyDown(pickUpBallKey)) {
+			if (keyboard.getKeyDown(pickUpBallKey)) {
 				pickUpBall();
 			}
 		}
@@ -167,7 +172,7 @@ public class PlayerController implements IController<PlayerModel>,
 		model.setCollisionCallback(this);
 
 		// Instantiate the reticle and save the model reference
-		reticleController = Manager.instantiate(new KeyboardReticleFactory());
+		reticleController = main.instantiate(new KeyboardReticleFactory());
 	}
 
 	@Override
@@ -179,7 +184,7 @@ public class PlayerController implements IController<PlayerModel>,
 	 */
 	private void handleMovement() {
 		final Vector2f dirVect = new Vector2f();
-		final KeyboardComponent keyboard = Manager.getKeyboard();
+		final KeyboardComponent keyboard = main.getKeyboardComponent();
 		boolean keyPressed = false;
 
 		if (keyboard.getKey(moveUpKey)) {
@@ -284,7 +289,7 @@ public class PlayerController implements IController<PlayerModel>,
 		model.playerKnockOut();
 		throwBall();
 		dropFlag();
-		for (final TeamController tc : Manager.find(TeamController.class)) {
+		for (final TeamController tc : main.find(TeamController.class)) {
 			if (tc != this.teamController) {
 				tc.addScore(Constants.KNOCK_OUT_SCORE);
 			}
@@ -307,7 +312,7 @@ public class PlayerController implements IController<PlayerModel>,
 	 */
 	private boolean captureEnemyFlag() {
 		if (model.isCarryingFlag()) {
-			final List<FlagController> flagControllers = Manager
+			final List<FlagController> flagControllers = main
 					.find(FlagController.class);
 			for (final FlagController fc : flagControllers) {
 				if (fc.getTeam() == this.teamController) {
@@ -335,7 +340,7 @@ public class PlayerController implements IController<PlayerModel>,
 	 */
 	private boolean returnTeamFlag() {
 
-		final List<FlagController> flagControllers = Manager
+		final List<FlagController> flagControllers = main
 				.find(FlagController.class);
 		for (final FlagController fc : flagControllers) {
 			if (fc.getTeam() == this.teamController) {
@@ -360,7 +365,7 @@ public class PlayerController implements IController<PlayerModel>,
 	 */
 	private boolean pickUpFlag() {
 		if (!model.isCarryingFlag() && !model.isKnockedOut()) {
-			final List<FlagController> flagControllers = Manager
+			final List<FlagController> flagControllers = main
 					.find(FlagController.class);
 			for (final FlagController fc : flagControllers) {
 				if (fc.getTeam() != this.teamController) {
@@ -420,7 +425,7 @@ public class PlayerController implements IController<PlayerModel>,
 	private boolean pickUpBall() {
 
 		if (!model.isCarryingBall()) {
-			final List<BallController> listOfBalls = Manager
+			final List<BallController> listOfBalls = main
 					.find(BallController.class);
 
 			for (final BallController bc : listOfBalls) {

@@ -5,7 +5,7 @@ import model.entities.ShockwaveModel;
 import org.lwjgl.util.vector.Vector2f;
 
 import controller.common.IController;
-import core.Manager;
+import factories.MainControllerFactory;
 
 /**
  * This class controls a shockwave model
@@ -45,7 +45,7 @@ public class ShockwaveController implements IController<ShockwaveModel> {
 		model.update();
 
 		if (model.isFinished()) {
-			Manager.remove(this);
+			MainControllerFactory.get().remove(this);
 		}
 	}
 
