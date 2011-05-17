@@ -113,12 +113,12 @@ public class BallModelTest {
 		Vector2f initPosition = new Vector2f(1.0f, 1.0f);
 		bm.setPosition(new Vector2f(7.0f, 4.0f));
 		// Test that the object has moved
-		assertTrue(!Tools.isVectorsEqual(initPosition, bm.getPosition()));
+		assertTrue(!Tools.vectorsEqual(initPosition, bm.getPosition()));
 
 		initPosition = new Vector2f(4.0f, 7.0f);
 		bm.setPosition(initPosition);
 		// Test that correct position was set
-		assertTrue(Tools.isVectorsEqual(initPosition, bm.getPosition()));
+		assertTrue(Tools.vectorsEqual(initPosition, bm.getPosition()));
 	}
 
 	@Test

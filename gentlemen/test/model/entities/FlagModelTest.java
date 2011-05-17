@@ -100,12 +100,12 @@ public class FlagModelTest {
 		Vector2f initPosition = new Vector2f(1.0f, 1.0f);
 		fm.setPosition(new Vector2f(7.0f, 4.0f));
 		// Test that the object has moved
-		assertTrue(!Tools.isVectorsEqual(initPosition, fm.getPosition()));
+		assertTrue(!Tools.vectorsEqual(initPosition, fm.getPosition()));
 
 		initPosition = new Vector2f(4.0f, 7.0f);
 		fm.setPosition(initPosition);
 		// Test that correct position was set
-		assertTrue(Tools.isVectorsEqual(initPosition, fm.getPosition()));
+		assertTrue(Tools.vectorsEqual(initPosition, fm.getPosition()));
 
 	}
 

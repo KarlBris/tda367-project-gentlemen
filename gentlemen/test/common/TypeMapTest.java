@@ -1,4 +1,4 @@
-package core;
+package common;
 
 import static org.junit.Assert.assertTrue;
 
