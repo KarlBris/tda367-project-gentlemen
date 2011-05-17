@@ -8,9 +8,9 @@ import org.junit.Before;
 import org.junit.Test;
 import org.lwjgl.util.vector.Vector2f;
 
-import controller.entities.KeyboardReticleController;
-
 import utilities.Tools;
+import controller.MainControllerFactory;
+import factories.entities.KeyboardReticleFactory;
 
 public class KeyboardReticleControllerTest {
 	KeyboardReticleController krc;
@@ -18,12 +18,14 @@ public class KeyboardReticleControllerTest {
 
 	@Before
 	public void setUp() throws Exception {
-		rm = new ReticleModel();
-		krc = new KeyboardReticleController(rm);
+		krc = MainControllerFactory.get().instantiate(
+				new KeyboardReticleFactory());
+		rm = krc.getModel();
 	}
 
 	@After
 	public void tearDown() throws Exception {
+		MainControllerFactory.get().removeAll();
 	}
 
 	@Test

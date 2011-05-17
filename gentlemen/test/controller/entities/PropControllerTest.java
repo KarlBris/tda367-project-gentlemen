@@ -11,7 +11,7 @@ import org.lwjgl.util.vector.Vector2f;
 import utilities.Color;
 import utilities.Constants;
 import utilities.Tools;
-import core.Manager;
+import controller.MainControllerFactory;
 import factories.entities.PropFactory;
 
 public class PropControllerTest {
@@ -20,13 +20,13 @@ public class PropControllerTest {
 
 	@Before
 	public void setUp() throws Exception {
-		pc = Manager.instantiate(new PropFactory());
+		pc = MainControllerFactory.get().instantiate(new PropFactory());
 		pm = pc.getModel();
 	}
 
 	@After
 	public void tearDown() throws Exception {
-		Manager.removeAll();
+		MainControllerFactory.get().removeAll();
 	}
 
 	@Test
