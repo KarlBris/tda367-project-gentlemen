@@ -1,6 +1,5 @@
 package view;
 
-import view.twodimensions.View2D;
 
 public class ViewFactory {
 
