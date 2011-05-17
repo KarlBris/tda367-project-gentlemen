@@ -244,7 +244,8 @@ public class Tools {
 	 *            the size of the area
 	 * @return the randomized vector
 	 */
-	public static Vector2f randomVectorInArea(Vector2f start, Vector2f size) {
+	public static Vector2f randomVectorInArea(final Vector2f start,
+			final Vector2f size) {
 		float posX = (float) Math.random() * size.x + start.x;
 		float posY = (float) Math.random() * size.y + start.y;
 
@@ -263,8 +264,8 @@ public class Tools {
 	 *            the restriction vectors
 	 * @return the randomized vector
 	 */
-	public static Vector2f randomVectorInArea(Vector2f start, Vector2f size,
-			Vector2f[] restrictions) {
+	public static Vector2f randomVectorInArea(final Vector2f start,
+			final Vector2f size, final Vector2f[] restrictions) {
 		float posX, posY;
 		Vector2f newVector = new Vector2f(0.0f, 0.0f);
 		boolean tooClose = true;
@@ -288,7 +289,20 @@ public class Tools {
 	}
 
 	/**
-	 * Test if the two vectors are equal with a difference of a epsilon
+	 * Tests if floating point values are equal (within the epsilon threshold)
+	 * 
+	 * @param a
+	 *            the first floating point value
+	 * @param b
+	 *            the second floating point value
+	 * @return true if equal, false otherwise
+	 */
+	public static boolean floatsEqual(final float a, final float b) {
+		return Math.abs(a - b) <= Constants.EPSILON;
+	}
+
+	/**
+	 * Test if the two vectors are equal (within the epsilon threshold)
 	 * 
 	 * @param vector1
 	 *            , is the first vector to be tested
@@ -297,8 +311,8 @@ public class Tools {
 	 * @return true if the vectors are equal to the specification described in
 	 *         the description, otherwise false.
 	 */
-	public static boolean isVectorsEqual(Vector2f vector1, Vector2f vector2) {
+	public static boolean vectorsEqual(final Vector2f vector1,
+			final Vector2f vector2) {
 		return Tools.distanceBetween(vector1, vector2) <= Constants.EPSILON;
 	}
-
 }

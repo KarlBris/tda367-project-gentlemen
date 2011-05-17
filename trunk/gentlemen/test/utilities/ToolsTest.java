@@ -273,13 +273,13 @@ public class ToolsTest {
 	@Test
 	public void testIsVectorsEqual() {
 		// Test different vectors;
-		assertTrue(Tools.isVectorsEqual(new Vector2f(10.0f, 10.0f),
+		assertTrue(Tools.vectorsEqual(new Vector2f(10.0f, 10.0f),
 				new Vector2f(10.0f, 10.0f)));
 
-		assertTrue(!Tools.isVectorsEqual(new Vector2f(10.1f, 10.0f),
+		assertTrue(!Tools.vectorsEqual(new Vector2f(10.1f, 10.0f),
 				new Vector2f(10.0f, 10.0f)));
 
-		assertTrue(!Tools.isVectorsEqual(new Vector2f(-10.0f, -10.0f),
+		assertTrue(!Tools.vectorsEqual(new Vector2f(-10.0f, -10.0f),
 				new Vector2f(10.0f, 10.0f)));
 	}
 

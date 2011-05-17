@@ -117,7 +117,7 @@ public class TeamModelTest {
 	public void testGetHomePosition() {
 		Vector2f v = new Vector2f(10.0f, 12.0f);
 		model.setHomePosition(v);
-		assertTrue(Tools.isVectorsEqual(v, model.getHomePosition()));
+		assertTrue(Tools.vectorsEqual(v, model.getHomePosition()));
 	}
 
 }

@@ -133,13 +133,13 @@ public class PlayerModelTest {
 		model.setPosition(position);
 
 		// Test if getting the player's position returns the correct value
-		assertTrue(Tools.isVectorsEqual(position, model.getPosition()));
+		assertTrue(Tools.vectorsEqual(position, model.getPosition()));
 
 		position = new Vector2f(2.0f, 2.0f);
 		model.setPosition(position);
 
 		// Same test with new values
-		assertTrue(Tools.isVectorsEqual(position, model.getPosition()));
+		assertTrue(Tools.vectorsEqual(position, model.getPosition()));
 
 	}
 
