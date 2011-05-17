@@ -9,7 +9,7 @@ import org.lwjgl.util.vector.Vector2f;
 
 import utilities.Constants;
 import utilities.Tools;
-import core.Manager;
+import factories.MainControllerFactory;
 import factories.entities.ShockwaveFactory;
 
 public class ShockwaveModelTest {
@@ -18,17 +18,19 @@ public class ShockwaveModelTest {
 
 	@Before
 	public void setUp() throws Exception {
-		model = Manager.instantiate(new ShockwaveFactory()).getModel();
+		model = MainControllerFactory.get().instantiate(new ShockwaveFactory())
+				.getModel();
 	}
 
 	@After
 	public void tearDown() throws Exception {
-		Manager.removeAll();
+		MainControllerFactory.get().removeAll();
 	}
 
 	@Test
 	public void testShockwaveModel() {
-		model = Manager.instantiate(new ShockwaveFactory()).getModel();
+		model = MainControllerFactory.get().instantiate(new ShockwaveFactory())
+				.getModel();
 		assertTrue(!model.isFinished());
 		assertTrue(model.getAnimationScalar() == 0.0f);
 	}

@@ -11,7 +11,7 @@ import utilities.Color;
 import utilities.Constants;
 import utilities.Tools;
 import controller.entities.TeamController;
-import core.Manager;
+import factories.MainControllerFactory;
 import factories.entities.TeamFactory;
 
 public class FlagModelTest {
@@ -20,7 +20,8 @@ public class FlagModelTest {
 
 	@Before
 	public void setUp() throws Exception {
-		teamController = Manager.instantiate(new TeamFactory());
+		teamController = MainControllerFactory.get().instantiate(
+				new TeamFactory());
 		teamController.setHomePosition(Constants.TEAM_ONE_HOME_POSITION);
 		fm = new FlagModel(Color.BLUE);
 		// fm.setTeam(teamController);
@@ -28,7 +29,7 @@ public class FlagModelTest {
 
 	@After
 	public void tearDown() throws Exception {
-		Manager.removeAll();
+		MainControllerFactory.get().removeAll();
 	}
 
 	@Test
@@ -110,7 +111,8 @@ public class FlagModelTest {
 
 	// @Test
 	// public void testSetTeam() {
-	// TeamController tc = Manager.instantiate(new TeamFactory());
+	// TeamController tc = MainControllerFactory.get().instantiate(new
+	// TeamFactory());
 	// tc.setHomePosition(new Vector2f(10.0f, 9.0f));
 	// fm.setTeam(tc);
 	//
@@ -121,7 +123,8 @@ public class FlagModelTest {
 	//
 	// assertTrue(fm.getTeam() == teamController);
 	//
-	// TeamController tc = Manager.instantiate(new TeamFactory());
+	// TeamController tc = MainControllerFactory.get().instantiate(new
+	// TeamFactory());
 	// tc.setHomePosition(new Vector2f(10.0f, 9.0f));
 	//
 	// fm.setTeam(tc);

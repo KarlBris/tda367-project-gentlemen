@@ -8,7 +8,7 @@ import org.junit.Test;
 import org.lwjgl.util.vector.Vector2f;
 
 import utilities.Tools;
-import core.Manager;
+import factories.MainControllerFactory;
 import factories.entities.KeyboardReticleFactory;
 
 public class ReticleModelTest {
@@ -17,12 +17,13 @@ public class ReticleModelTest {
 
 	@Before
 	public void setUp() throws Exception {
-		model = Manager.instantiate(new KeyboardReticleFactory()).getModel();
+		model = MainControllerFactory.get()
+				.instantiate(new KeyboardReticleFactory()).getModel();
 	}
 
 	@After
 	public void tearDown() throws Exception {
-		Manager.removeAll();
+		MainControllerFactory.get().removeAll();
 	}
 
 	@Test

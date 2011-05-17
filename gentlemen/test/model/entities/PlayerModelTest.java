@@ -13,7 +13,7 @@ import utilities.Tools;
 
 import common.body.Body;
 
-import core.Manager;
+import factories.MainControllerFactory;
 import factories.entities.PlayerOneFactory;
 
 public class PlayerModelTest {
@@ -21,12 +21,13 @@ public class PlayerModelTest {
 
 	@Before
 	public void setUp() throws Exception {
-		model = Manager.instantiate(new PlayerOneFactory()).getModel();
+		model = MainControllerFactory.get().instantiate(new PlayerOneFactory())
+				.getModel();
 	}
 
 	@After
 	public void tearDown() throws Exception {
-		Manager.removeAll();
+		MainControllerFactory.get().removeAll();
 	}
 
 	@Test
