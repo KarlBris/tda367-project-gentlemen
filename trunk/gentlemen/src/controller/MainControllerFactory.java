@@ -1,7 +1,5 @@
-package factories;
+package controller;
 
-import controller.IMainController;
-import controller.MainController;
 
 public class MainControllerFactory {
 

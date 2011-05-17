@@ -4,7 +4,7 @@ import org.lwjgl.util.vector.Vector2f;
 
 import utilities.Constants;
 import controller.IMainController;
-import factories.MainControllerFactory;
+import controller.MainControllerFactory;
 import factories.entities.HorizontalWallPropFactory;
 import factories.entities.VerticalWallPropFactory;
 

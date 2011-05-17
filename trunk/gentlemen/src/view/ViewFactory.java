@@ -1,6 +1,5 @@
-package factories;
+package view;
 
-import view.IView;
 import view.twodimensions.View2D;
 
 public class ViewFactory {

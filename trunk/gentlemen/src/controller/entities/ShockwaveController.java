@@ -4,8 +4,8 @@ import model.entities.ShockwaveModel;
 
 import org.lwjgl.util.vector.Vector2f;
 
+import controller.MainControllerFactory;
 import controller.common.IController;
-import factories.MainControllerFactory;
 
 /**
  * This class controls a shockwave model

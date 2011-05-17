@@ -5,6 +5,7 @@ import org.lwjgl.util.vector.Vector2f;
 
 import utilities.Constants;
 import controller.IMainController;
+import controller.MainControllerFactory;
 import controller.components.KeyboardComponent;
 import controller.entities.FlagController;
 import controller.entities.PlayerController;
@@ -13,7 +14,6 @@ import controller.entities.ScoreboardController;
 import controller.entities.TeamController;
 import core.levels.AbstractLevel;
 import core.levels.RandomLevel;
-import factories.MainControllerFactory;
 import factories.entities.BallFactory;
 import factories.entities.FlagFactory;
 import factories.entities.PlayerOneFactory;

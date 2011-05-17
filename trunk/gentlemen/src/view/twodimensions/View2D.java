@@ -3,6 +3,7 @@ package view.twodimensions;
 import java.util.List;
 
 import model.IMainModel;
+import model.MainModelFactory;
 import model.common.IModel;
 
 import org.lwjgl.opengl.GL11;
@@ -15,7 +16,6 @@ import view.IView;
 
 import common.geometry.IGeometry;
 
-import factories.MainModelFactory;
 
 public class View2D implements IView {
 

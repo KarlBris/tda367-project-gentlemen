@@ -9,8 +9,8 @@ import utilities.Constants;
 import common.body.Body;
 import common.body.IBodyCollisionCallback;
 
+import controller.MainControllerFactory;
 import controller.common.IController;
-import factories.MainControllerFactory;
 import factories.entities.ShockwaveFactory;
 
 /**
