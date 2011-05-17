@@ -16,8 +16,6 @@ import common.geometry.NullGeometry;
  */
 public class RuleModel implements IModel {
 
-	private final int scoreLimit = Constants.SCORE_LIMIT;
-
 	private final IGeometry geometry = new NullGeometry();
 	private final IBody body = new NullBody();
 
@@ -28,7 +26,7 @@ public class RuleModel implements IModel {
 	 *            the team to check for victory
 	 */
 	public boolean checkVictory(final int score, final String teamName) {
-		if (score >= scoreLimit) {
+		if (score >= Constants.SCORE_LIMIT) {
 			// AW YEAH, TEAM HAS WON!
 			// Do something related to this
 
@@ -38,7 +36,7 @@ public class RuleModel implements IModel {
 	}
 
 	public int getScoreLimit() {
-		return scoreLimit;
+		return Constants.SCORE_LIMIT;
 	}
 
 	@Override

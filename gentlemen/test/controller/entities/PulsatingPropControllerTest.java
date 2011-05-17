@@ -9,6 +9,7 @@ import org.junit.Test;
 import org.lwjgl.util.vector.Vector2f;
 
 import utilities.Color;
+import utilities.Constants;
 import utilities.Tools;
 import core.Manager;
 import factories.entities.VerticalWallPropFactory;
@@ -16,13 +17,11 @@ import factories.entities.VerticalWallPropFactory;
 public class PulsatingPropControllerTest {
 	private PropModel pm;
 	private PulsatingPropController pc;
-	private final float precision = 0.001f;
 
 	@Before
 	public void setUp() throws Exception {
-		pc = (PulsatingPropController) Manager
-				.instantiate(new VerticalWallPropFactory());
-		pm = (PropModel) pc.getModel();
+		pc = Manager.instantiate(new VerticalWallPropFactory());
+		pm = pc.getModel();
 	}
 
 	@After
@@ -44,12 +43,12 @@ public class PulsatingPropControllerTest {
 		Vector2f pos = new Vector2f(10.0f, 10.0f);
 		pc.setPosition(pos);
 		// Test if the distance is zero (or near zero)
-		assertTrue(Tools.distanceBetween(pc.getPosition(), pos) <= precision);
+		assertTrue(Tools.distanceBetween(pc.getPosition(), pos) <= Constants.EPSILON);
 
 		pos = new Vector2f(0.0f, 10.0f);
 		pc.setPosition(pos);
 		// Test if the distance is zero (or near zero)
-		assertTrue(Tools.distanceBetween(pc.getPosition(), pos) <= precision);
+		assertTrue(Tools.distanceBetween(pc.getPosition(), pos) <= Constants.EPSILON);
 	}
 
 	@Test
@@ -57,12 +56,12 @@ public class PulsatingPropControllerTest {
 		float angle = 0.1f;
 		pc.setAngle(angle);
 		// Test the angle is the same
-		assertTrue(pc.getAngle() == angle);
+		assertTrue(Math.abs(pc.getAngle() - angle) <= Constants.EPSILON);
 
 		angle = 1.0f;
 		pc.setAngle(angle);
 		// Test the angle is the same
-		assertTrue(pc.getAngle() == angle);
+		assertTrue(Math.abs(pc.getAngle() - angle) <= Constants.EPSILON);
 	}
 
 }

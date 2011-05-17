@@ -11,7 +11,6 @@ import utilities.Constants;
 import utilities.Tools;
 
 import common.body.Body;
-import common.geometry.IGeometry;
 
 import core.Manager;
 import factories.entities.BallFactory;
@@ -31,7 +30,7 @@ public class BallModelTest {
 
 	@Test
 	public void testGetGeometry() {
-		assertTrue(bm.getGeometry() instanceof IGeometry);
+		assertTrue(bm.getGeometry() != null);
 	}
 
 	@Test
