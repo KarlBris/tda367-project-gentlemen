@@ -1,5 +1,6 @@
 package utilities;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import org.jbox2d.common.Vec2;
@@ -17,6 +18,26 @@ public class ToolsTest {
 
 	@After
 	public void tearDown() throws Exception {
+	}
+
+	@Test
+	public void testFloatsEqual() {
+
+		float floatTest = 0.0f;
+		assertTrue(Tools.floatsEqual(floatTest, floatTest));
+
+		floatTest = -1.0f;
+		assertTrue(Tools.floatsEqual(floatTest, floatTest));
+
+		floatTest = 100.0f;
+		assertTrue(Tools.floatsEqual(floatTest, floatTest));
+
+		floatTest = 1.0f;
+		assertTrue(Tools.floatsEqual(floatTest, floatTest));
+
+		assertFalse(Tools.floatsEqual(floatTest, floatTest + 0.1f));
+		assertFalse(Tools.floatsEqual(floatTest, floatTest + 0.01f));
+		assertFalse(Tools.floatsEqual(floatTest, floatTest + 0.001f));
 	}
 
 	@Test
@@ -220,8 +241,8 @@ public class ToolsTest {
 	@Test
 	public void testToPhysicsVector() {
 
-		Vector2f testVector = new Vector2f(-2.0f, 4.0f);
-		Vec2 convertedVector = Tools.toPhysicsVector(testVector);
+		final Vector2f testVector = new Vector2f(-2.0f, 4.0f);
+		final Vec2 convertedVector = Tools.toPhysicsVector(testVector);
 		assertTrue(testVector.x == convertedVector.x);
 		assertTrue(testVector.y == convertedVector.y);
 
@@ -230,8 +251,8 @@ public class ToolsTest {
 	@Test
 	public void testToNormalVector() {
 
-		Vec2 testVector = new Vec2(-2.0f, 4.0f);
-		Vector2f convertedVector = Tools.toNormalVector(testVector);
+		final Vec2 testVector = new Vec2(-2.0f, 4.0f);
+		final Vector2f convertedVector = Tools.toNormalVector(testVector);
 		assertTrue(testVector.x == convertedVector.x);
 		assertTrue(testVector.y == convertedVector.y);
 
@@ -240,8 +261,8 @@ public class ToolsTest {
 	@Test
 	public void testCloneVector() {
 
-		Vector2f testVector = new Vector2f(-2.0f, 4.0f);
-		Vector2f clonedVector = Tools.cloneVector(testVector);
+		final Vector2f testVector = new Vector2f(-2.0f, 4.0f);
+		final Vector2f clonedVector = Tools.cloneVector(testVector);
 		assertTrue(testVector != clonedVector);
 		assertTrue(testVector.x == clonedVector.x);
 		assertTrue(testVector.y == clonedVector.y);
@@ -252,8 +273,8 @@ public class ToolsTest {
 
 		// Test if the viewport aspect ratio is the same as the screen aspect
 		// ratio
-		Vector2f testViewport = Tools.screenToViewport(Tools.getScreenWidth(),
-				Tools.getScreenHeight());
+		final Vector2f testViewport = Tools.screenToViewport(
+				Tools.getScreenWidth(), Tools.getScreenHeight());
 
 		assertTrue(Math.abs(testViewport.x / testViewport.y
 				- (float) Constants.DEFAULT_SCREEN_WIDTH
@@ -264,7 +285,8 @@ public class ToolsTest {
 	public void testViewportToScreen() {
 		// Test if the viewport aspect ratio is the same as the aspect ratio of
 		// the input
-		Point testScreen = Tools.viewportToScreen(new Vector2f(8.0f, 4.0f));
+		final Point testScreen = Tools
+				.viewportToScreen(new Vector2f(8.0f, 4.0f));
 
 		assertTrue((float) testScreen.getX() / (float) testScreen.getY() - 8.0f
 				/ 4.0f <= Constants.EPSILON);
@@ -273,8 +295,8 @@ public class ToolsTest {
 	@Test
 	public void testIsVectorsEqual() {
 		// Test different vectors;
-		assertTrue(Tools.vectorsEqual(new Vector2f(10.0f, 10.0f),
-				new Vector2f(10.0f, 10.0f)));
+		assertTrue(Tools.vectorsEqual(new Vector2f(10.0f, 10.0f), new Vector2f(
+				10.0f, 10.0f)));
 
 		assertTrue(!Tools.vectorsEqual(new Vector2f(10.1f, 10.0f),
 				new Vector2f(10.0f, 10.0f)));
