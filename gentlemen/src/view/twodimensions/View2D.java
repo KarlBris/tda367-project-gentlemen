@@ -8,19 +8,31 @@ import model.common.IModel;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.util.vector.Vector2f;
 
-import common.geometry.IGeometry;
-
 import utilities.Color;
 import utilities.Constants;
 import utilities.Tools;
 import view.IView;
 
+import common.geometry.IGeometry;
+
+import factories.MainModelFactory;
+
 public class View2D implements IView {
+
+	private static View2D instance;
 
 	public IMainModel mainModel;
 
-	public View2D(final IMainModel mainModel) {
-		this.mainModel = mainModel;
+	private View2D() {
+		this.mainModel = MainModelFactory.get();
+	}
+
+	public static View2D get() {
+		if (instance == null) {
+			instance = new View2D();
+		}
+
+		return instance;
 	}
 
 	@Override

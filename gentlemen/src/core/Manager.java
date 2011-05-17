@@ -25,10 +25,9 @@ public class Manager {
 
 	private static IMainModel mainModel = MainModelFactory.get();
 
-	private static IMainController mainController = MainControllerFactory
-			.get(mainModel);
+	private static IMainController mainController = MainControllerFactory.get();
 
-	private static IView view = ViewFactory.get(mainModel);
+	private static IView view = ViewFactory.get();
 
 	private static LevelManager levelManager = new LevelManager();
 

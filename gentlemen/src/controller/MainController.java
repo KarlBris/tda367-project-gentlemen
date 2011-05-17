@@ -14,9 +14,12 @@ import controller.components.IComponent;
 import controller.components.KeyboardComponent;
 import controller.components.MouseComponent;
 import controller.components.PhysicsComponent;
+import factories.MainModelFactory;
 import factories.entities.IEntityFactory;
 
 public class MainController implements IMainController {
+
+	private static MainController instance;
 
 	// References
 	private final IMainModel mainModel;
@@ -32,8 +35,16 @@ public class MainController implements IMainController {
 	private final IComponent[] components = { physicsComponent,
 			keyboardComponent, mouseComponent };
 
-	public MainController(final IMainModel mainModel) {
-		this.mainModel = mainModel;
+	private MainController() {
+		this.mainModel = MainModelFactory.get();
+	}
+
+	public static MainController get() {
+		if (instance == null) {
+			instance = new MainController();
+		}
+
+		return instance;
 	}
 
 	@Override
