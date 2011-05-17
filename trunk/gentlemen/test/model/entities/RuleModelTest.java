@@ -7,7 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import utilities.Constants;
-import core.Manager;
+import factories.MainControllerFactory;
 import factories.entities.RuleFactory;
 import factories.entities.TeamFactory;
 
@@ -17,17 +17,19 @@ public class RuleModelTest {
 
 	@Before
 	public void setUp() throws Exception {
-		model = Manager.instantiate(new RuleFactory()).getModel();
+		model = MainControllerFactory.get().instantiate(new RuleFactory())
+				.getModel();
 	}
 
 	@After
 	public void tearDown() throws Exception {
-		Manager.removeAll();
+		MainControllerFactory.get().removeAll();
 	}
 
 	@Test
 	public void testCheckVictory() {
-		TeamModel teamModel = Manager.instantiate(new TeamFactory()).getModel();
+		TeamModel teamModel = MainControllerFactory.get()
+				.instantiate(new TeamFactory()).getModel();
 
 		// Test if the team has won before receiving any points
 		assertTrue(!model.checkVictory(teamModel.getScore(),

@@ -12,7 +12,7 @@ import utilities.Tools;
 
 import common.body.Body;
 
-import core.Manager;
+import factories.MainControllerFactory;
 import factories.entities.BallFactory;
 
 public class BallModelTest {
@@ -20,12 +20,13 @@ public class BallModelTest {
 
 	@Before
 	public void setUp() throws Exception {
-		bm = Manager.instantiate(new BallFactory()).getModel();
+		bm = MainControllerFactory.get().instantiate(new BallFactory())
+				.getModel();
 	}
 
 	@After
 	public void tearDown() throws Exception {
-		Manager.removeAll();
+		MainControllerFactory.get().removeAll();
 	}
 
 	@Test

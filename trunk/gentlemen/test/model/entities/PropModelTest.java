@@ -11,7 +11,7 @@ import utilities.Color;
 import utilities.Constants;
 import utilities.Tools;
 import controller.entities.PropController;
-import core.Manager;
+import factories.MainControllerFactory;
 import factories.entities.PropFactory;
 
 public class PropModelTest {
@@ -24,7 +24,7 @@ public class PropModelTest {
 	 */
 	@Before
 	public void setUp() throws Exception {
-		controller = Manager.instantiate(new PropFactory());
+		controller = MainControllerFactory.get().instantiate(new PropFactory());
 		model = controller.getModel();
 
 	}
@@ -34,7 +34,7 @@ public class PropModelTest {
 	 */
 	@After
 	public void tearDown() throws Exception {
-		Manager.removeAll();
+		MainControllerFactory.get().removeAll();
 	}
 
 	@Test

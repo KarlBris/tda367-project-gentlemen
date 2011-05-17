@@ -9,7 +9,7 @@ import org.junit.Test;
 import org.lwjgl.util.vector.Vector2f;
 
 import utilities.Tools;
-import core.Manager;
+import factories.MainControllerFactory;
 import factories.entities.TeamFactory;
 
 public class TeamModelTest {
@@ -19,7 +19,8 @@ public class TeamModelTest {
 
 	@Before
 	public void setUp() throws Exception {
-		model = Manager.instantiate(new TeamFactory()).getModel();
+		model = MainControllerFactory.get().instantiate(new TeamFactory())
+				.getModel();
 		// ruleController = (RuleController) Manager
 		// .instantiate(new RuleFactory());
 		// model.setRules(ruleController);
@@ -27,7 +28,7 @@ public class TeamModelTest {
 
 	@After
 	public void tearDown() throws Exception {
-		Manager.removeAll();
+		MainControllerFactory.get().removeAll();
 	}
 
 	@Test

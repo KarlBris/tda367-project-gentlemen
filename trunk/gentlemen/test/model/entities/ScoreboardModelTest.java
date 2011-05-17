@@ -6,7 +6,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import core.Manager;
+import factories.MainControllerFactory;
 import factories.entities.ScoreboardFactory;
 
 public class ScoreboardModelTest {
@@ -15,12 +15,13 @@ public class ScoreboardModelTest {
 
 	@Before
 	public void setUp() throws Exception {
-		model = Manager.instantiate(new ScoreboardFactory()).getModel();
+		model = MainControllerFactory.get()
+				.instantiate(new ScoreboardFactory()).getModel();
 	}
 
 	@After
 	public void tearDown() throws Exception {
-		Manager.removeAll();
+		MainControllerFactory.get().removeAll();
 	}
 
 	@Test
