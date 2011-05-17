@@ -6,7 +6,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import factories.MainControllerFactory;
+import controller.MainControllerFactory;
 import factories.entities.ScoreboardFactory;
 
 public class ScoreboardModelTest {
