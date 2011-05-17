@@ -12,7 +12,6 @@ import utilities.Constants;
 import utilities.Tools;
 
 import common.body.Body;
-import common.geometry.IGeometry;
 
 import core.Manager;
 import factories.entities.PlayerOneFactory;
@@ -68,7 +67,7 @@ public class PlayerModelTest {
 	@Test
 	public void testGetGeometry() {
 		// Test if the method returns a Geometry objects
-		assertTrue(model.getGeometry() instanceof IGeometry);
+		assertTrue(model.getGeometry() != null);
 
 	}
 
@@ -203,7 +202,7 @@ public class PlayerModelTest {
 		model.setAngle(newAngle);
 
 		// Same test with new values
-		assertTrue(model.getAngle() == newAngle);
+		assertTrue(Math.abs(model.getAngle() - newAngle) <= Constants.EPSILON);
 	}
 
 	@Test

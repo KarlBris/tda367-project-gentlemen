@@ -9,10 +9,6 @@ import org.junit.Test;
 import org.lwjgl.util.vector.Vector2f;
 
 import utilities.Tools;
-
-import common.body.IBody;
-import common.geometry.IGeometry;
-
 import core.Manager;
 import factories.entities.TeamFactory;
 
@@ -36,12 +32,12 @@ public class TeamModelTest {
 
 	@Test
 	public void testGetGeometry() {
-		assertTrue(model.getGeometry() instanceof IGeometry);
+		assertTrue(model.getGeometry() != null);
 	}
 
 	@Test
 	public void testGetBody() {
-		assertTrue(model.getBody() instanceof IBody);
+		assertTrue(model.getBody() != null);
 	}
 
 	@Test

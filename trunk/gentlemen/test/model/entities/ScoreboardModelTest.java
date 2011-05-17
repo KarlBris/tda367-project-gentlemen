@@ -6,9 +6,6 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import common.body.IBody;
-import common.geometry.IGeometry;
-
 import core.Manager;
 import factories.entities.ScoreboardFactory;
 
@@ -29,7 +26,7 @@ public class ScoreboardModelTest {
 	@Test
 	public void testGetGeometry() {
 		// Test if the method returns a Geometry objects
-		assertTrue(model.getGeometry() instanceof IGeometry);
+		assertTrue(model.getGeometry() != null);
 
 	}
 
@@ -37,7 +34,7 @@ public class ScoreboardModelTest {
 	public void testGetBody() {
 		// Test if the method returns a Body object. Since RuleModel does not
 		// have a body, this should not be the case
-		assertTrue(model.getBody() instanceof IBody);
+		assertTrue(model.getBody() != null);
 	}
 
 	@Test

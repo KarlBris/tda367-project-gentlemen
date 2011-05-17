@@ -10,10 +10,6 @@ import org.lwjgl.util.vector.Vector2f;
 import utilities.Color;
 import utilities.Constants;
 import utilities.Tools;
-
-import common.body.IBody;
-import common.geometry.IGeometry;
-
 import controller.entities.PropController;
 import core.Manager;
 import factories.entities.PropFactory;
@@ -74,13 +70,13 @@ public class PropModelTest {
 	@Test
 	public void testGetGeometry() {
 		// Test if the method returns a Geometry object
-		assertTrue(model.getGeometry() instanceof IGeometry);
+		assertTrue(model.getGeometry() != null);
 	}
 
 	@Test
 	public void testGetBody() {
 		// Test if the method returns a Body object
-		assertTrue(model.getBody() instanceof IBody);
+		assertTrue(model.getBody() != null);
 	}
 
 	@Test
@@ -140,7 +136,7 @@ public class PropModelTest {
 		model.setAngle(newAngle);
 
 		// Same test with new values
-		assertTrue(model.getAngle() == newAngle);
+		assertTrue(Math.abs(model.getAngle() - newAngle) <= Constants.EPSILON);
 	}
 
 	@Test

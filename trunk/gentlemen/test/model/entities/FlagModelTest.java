@@ -10,10 +10,6 @@ import org.lwjgl.util.vector.Vector2f;
 import utilities.Color;
 import utilities.Constants;
 import utilities.Tools;
-
-import common.body.IBody;
-import common.geometry.IGeometry;
-
 import controller.entities.TeamController;
 import core.Manager;
 import factories.entities.TeamFactory;
@@ -38,8 +34,7 @@ public class FlagModelTest {
 	@Test
 	public void testFlagModel() {
 		// No error should occur
-		@SuppressWarnings("unused")
-		FlagModel flagModel = new FlagModel(Color.BLACK);
+		new FlagModel(Color.BLACK);
 	}
 
 	@Test
@@ -83,12 +78,12 @@ public class FlagModelTest {
 
 	@Test
 	public void testGetGeometry() {
-		assertTrue(fm.getGeometry() instanceof IGeometry);
+		assertTrue(fm.getGeometry() != null);
 	}
 
 	@Test
 	public void testGetBody() {
-		assertTrue(fm.getBody() instanceof IBody);
+		assertTrue(fm.getBody() != null);
 	}
 
 	@Test

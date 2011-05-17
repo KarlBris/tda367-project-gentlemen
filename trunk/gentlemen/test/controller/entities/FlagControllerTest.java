@@ -9,10 +9,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.lwjgl.util.vector.Vector2f;
 
-import controller.entities.FlagController;
-import controller.entities.TeamController;
-
 import utilities.Color;
+import utilities.Constants;
 import utilities.Tools;
 import core.Manager;
 import factories.entities.FlagFactory;
@@ -21,12 +19,11 @@ import factories.entities.TeamFactory;
 public class FlagControllerTest {
 	private FlagController fc;
 	private TeamController tc;
-	private final float precision = 0.001f;
 
 	@Before
 	public void setUp() throws Exception {
-		fc = (FlagController) Manager.instantiate(new FlagFactory());
-		tc = (TeamController) Manager.instantiate(new TeamFactory());
+		fc = Manager.instantiate(new FlagFactory());
+		tc = Manager.instantiate(new TeamFactory());
 	}
 
 	@After
@@ -45,11 +42,11 @@ public class FlagControllerTest {
 	public void testSetPositionAndGetPosition() {
 		Vector2f vector = new Vector2f(20.0f, 20.0f);
 		fc.setPosition(vector);
-		assertTrue(Tools.distanceBetween(fc.getPosition(), vector) <= precision);
+		assertTrue(Tools.distanceBetween(fc.getPosition(), vector) <= Constants.EPSILON);
 
 		vector = new Vector2f(2.0f, 1.0f);
 		fc.setPosition(vector);
-		assertTrue(Tools.distanceBetween(fc.getPosition(), vector) <= precision);
+		assertTrue(Tools.distanceBetween(fc.getPosition(), vector) <= Constants.EPSILON);
 	}
 
 	@Test
@@ -127,6 +124,6 @@ public class FlagControllerTest {
 		tc.setHomePosition(new Vector2f(101.0f, 0.0f));
 		fc.setTeam(tc);
 		assertTrue(Tools.distanceBetween(new Vector2f(101.0f, 0.0f),
-				fc.getHomePosition()) <= precision);
+				fc.getHomePosition()) <= Constants.EPSILON);
 	}
 }

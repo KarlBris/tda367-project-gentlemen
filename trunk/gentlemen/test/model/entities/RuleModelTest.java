@@ -7,10 +7,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import utilities.Constants;
-
-import common.body.IBody;
-import common.geometry.IGeometry;
-
 import core.Manager;
 import factories.entities.RuleFactory;
 import factories.entities.TeamFactory;
@@ -47,7 +43,7 @@ public class RuleModelTest {
 	@Test
 	public void testGetGeometry() {
 		// Test if the method returns a Geometry object
-		assertTrue(model.getGeometry() instanceof IGeometry);
+		assertTrue(model.getGeometry() != null);
 	}
 
 	@Test
@@ -60,7 +56,7 @@ public class RuleModelTest {
 	public void testGetBody() {
 		// Test if the method returns a Body object. Since RuleModel does not
 		// have a body, this should not be the case
-		assertTrue(model.getBody() instanceof IBody);
+		assertTrue(model.getBody() != null);
 	}
 
 }

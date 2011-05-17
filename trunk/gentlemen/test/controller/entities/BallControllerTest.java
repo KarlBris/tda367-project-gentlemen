@@ -18,7 +18,6 @@ import factories.entities.BallFactory;
 
 public class BallControllerTest {
 	private BallController bc;
-	private final float epsilon = 0.001f;
 
 	@Before
 	public void setUp() throws Exception {
@@ -84,12 +83,12 @@ public class BallControllerTest {
 		// Test if setting the ball's position from a vector and subsequently
 		// reading it returns the same value as the vector itself
 		bc.setPosition(refPosition);
-		assertTrue(Tools.distanceBetween(bc.getPosition(), refPosition) <= epsilon);
+		assertTrue(Tools.distanceBetween(bc.getPosition(), refPosition) <= Constants.EPSILON);
 
 		// Test the same case after moving the ball
 		refPosition.set(1.0f, 1.0f);
 		bc.setPosition(refPosition);
-		assertTrue(Tools.distanceBetween(bc.getPosition(), refPosition) <= epsilon);
+		assertTrue(Tools.distanceBetween(bc.getPosition(), refPosition) <= Constants.EPSILON);
 	}
 
 }

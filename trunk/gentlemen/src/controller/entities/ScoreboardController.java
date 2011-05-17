@@ -55,14 +55,13 @@ public class ScoreboardController implements IController<ScoreboardModel> {
 	@Override
 	public void update() {
 
-		String scoreString = "";
+		StringBuilder stringBuilder = new StringBuilder();
 
 		for (final TeamController t : teamList) {
-			scoreString = scoreString + t.getTeamName() + ": " + t.getScore()
-					+ " ";
+			stringBuilder.append(t.getTeamName() + ": " + t.getScore() + " ");
 		}
 
-		model.setText(scoreString);
+		model.setText(stringBuilder.toString());
 	}
 
 }
