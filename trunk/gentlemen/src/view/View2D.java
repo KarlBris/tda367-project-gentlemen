@@ -1,4 +1,4 @@
-package view.twodimensions;
+package view;
 
 import java.util.List;
 
@@ -12,7 +12,6 @@ import org.lwjgl.util.vector.Vector2f;
 import utilities.Color;
 import utilities.Constants;
 import utilities.Tools;
-import view.IView;
 
 import common.geometry.IGeometry;
 
