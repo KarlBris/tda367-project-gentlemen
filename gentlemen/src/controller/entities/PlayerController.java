@@ -14,9 +14,9 @@ import common.body.Body;
 import common.body.IBodyCollisionCallback;
 
 import controller.IMainController;
+import controller.MainControllerFactory;
 import controller.common.IController;
 import controller.components.KeyboardComponent;
-import factories.MainControllerFactory;
 import factories.entities.BallFactory;
 import factories.entities.KeyboardReticleFactory;
 

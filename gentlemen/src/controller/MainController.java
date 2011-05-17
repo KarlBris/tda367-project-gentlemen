@@ -3,6 +3,7 @@ package controller;
 import java.util.List;
 
 import model.IMainModel;
+import model.MainModelFactory;
 import model.common.IModel;
 
 import org.lwjgl.util.vector.Vector2f;
@@ -14,7 +15,6 @@ import controller.components.IComponent;
 import controller.components.KeyboardComponent;
 import controller.components.MouseComponent;
 import controller.components.PhysicsComponent;
-import factories.MainModelFactory;
 import factories.entities.IEntityFactory;
 
 public class MainController implements IMainController {

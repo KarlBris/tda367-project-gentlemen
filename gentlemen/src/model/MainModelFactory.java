@@ -1,7 +1,5 @@
-package factories;
+package model;
 
-import model.IMainModel;
-import model.MainModel;
 
 public class MainModelFactory {
 

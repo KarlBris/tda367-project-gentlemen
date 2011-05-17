@@ -1,6 +1,7 @@
 package core;
 
 import model.IMainModel;
+import model.MainModelFactory;
 
 import org.lwjgl.LWJGLException;
 import org.lwjgl.opengl.Display;
@@ -8,10 +9,9 @@ import org.lwjgl.opengl.DisplayMode;
 
 import utilities.Constants;
 import view.IView;
+import view.ViewFactory;
 import controller.IMainController;
-import factories.MainControllerFactory;
-import factories.MainModelFactory;
-import factories.ViewFactory;
+import controller.MainControllerFactory;
 
 public class Manager {
 
