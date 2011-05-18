@@ -258,7 +258,7 @@ public class Body implements IBody {
 	}
 
 	/**
-	 * @return the current acceleration of the body
+	 * @return the current linear acceleration of the body
 	 */
 	public Vector2f getAcceleration() {
 		if (rigidbody == null) {
@@ -267,9 +267,33 @@ public class Body implements IBody {
 
 		final Vector2f acceleration = Tools.toNormalVector(rigidbody.m_force);
 
-		acceleration.scale(1.0f / getMass());
+		acceleration.scale(rigidbody.getMass() != 0.0f ? 1.0f / rigidbody
+				.getMass() : 0.0f);
 
 		return acceleration;
+	}
+
+	/**
+	 * @return the current torque of the body
+	 */
+	public float getTorque() {
+		if (rigidbody == null) {
+			throw new BodyNotInitializedException();
+		}
+
+		return -rigidbody.m_torque;
+	}
+
+	/**
+	 * @return the current angular acceleration of the body
+	 */
+	public float getAngularAcceleration() {
+		if (rigidbody == null) {
+			throw new BodyNotInitializedException();
+		}
+
+		return rigidbody.getInertia() != 0.0f ? -rigidbody.m_torque
+				/ rigidbody.getInertia() : 0.0f;
 	}
 
 	/**
@@ -281,6 +305,17 @@ public class Body implements IBody {
 		}
 
 		return Tools.toNormalVector(rigidbody.getLinearVelocity());
+	}
+
+	/**
+	 * @return the current angular velocity of the body
+	 */
+	public float getAngularVelocity() {
+		if (rigidbody == null) {
+			throw new BodyNotInitializedException();
+		}
+
+		return -rigidbody.getAngularVelocity();
 	}
 
 	/**
@@ -341,7 +376,7 @@ public class Body implements IBody {
 	}
 
 	/**
-	 * Applies a torque to the body
+	 * Applies torque to the body
 	 * 
 	 * @param torque
 	 *            the torque
@@ -360,15 +395,31 @@ public class Body implements IBody {
 	 * @param velocity
 	 *            the velocity to add
 	 */
-	public void applyVelocityChange(final Vector2f velocity) {
+	public void applyVelocityChange(final Vector2f velocityChange) {
 		if (rigidbody == null) {
 			throw new BodyNotInitializedException();
 		}
 
-		final Vec2 impulse = Tools.toPhysicsVector(velocity);
+		final Vec2 impulse = Tools.toPhysicsVector(velocityChange);
 
-		impulse.mul(mass);
+		impulse.mul(rigidbody.getMass());
 
 		rigidbody.applyLinearImpulse(impulse, rigidbody.getWorldCenter());
+	}
+
+	/**
+	 * Applies an angular velocity change to the body
+	 * 
+	 * @param velocityChange
+	 *            the angular velocity to add
+	 */
+	public void applyAngularVelocityChange(final float velocityChange) {
+		if (rigidbody == null) {
+			throw new BodyNotInitializedException();
+		}
+
+		float impulse = -velocityChange * rigidbody.getInertia();
+
+		rigidbody.applyAngularImpulse(impulse);
 	}
 }
