@@ -99,7 +99,7 @@ public class BodyTest {
 
 	};
 
-	private static Body body;
+	private Body body;
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
