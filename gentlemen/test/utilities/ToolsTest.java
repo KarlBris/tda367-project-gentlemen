@@ -14,6 +14,9 @@ public class ToolsTest {
 
 	@Before
 	public void setUp() throws Exception {
+		
+		Tools.identifyOS();
+		
 	}
 
 	@After
