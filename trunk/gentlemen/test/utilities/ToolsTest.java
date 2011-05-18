@@ -14,9 +14,9 @@ public class ToolsTest {
 
 	@Before
 	public void setUp() throws Exception {
-		
+
 		Tools.identifyOS();
-		
+
 	}
 
 	@After
@@ -46,16 +46,19 @@ public class ToolsTest {
 	@Test
 	public void testClampValue() {
 		// Test a value inside the clamp range
-		assertTrue(Tools.clampValue(7.0f, 0.0f, 10.0f) - 7.0f <= Constants.EPSILON);
+		assertTrue(Tools.floatsEqual(Tools.clampValue(7.0f, 0.0f, 10.0f), 7.0f));
 
 		// Test a value greater than the clamp range
-		assertTrue(Tools.clampValue(15.0f, 0.0f, 10.0f) - 10.0f <= Constants.EPSILON);
+		assertTrue(Tools.floatsEqual(Tools.clampValue(15.0f, 0.0f, 10.0f),
+				10.0f));
 
 		// Test a value less than the clamp range
-		assertTrue(Tools.clampValue(-23.0f, 0.0f, 10.0f) - 0.0f <= Constants.EPSILON);
+		assertTrue(Tools.floatsEqual(Tools.clampValue(-23.0f, 0.0f, 10.0f),
+				0.0f));
 
 		// Test a value less than the negative clamp value
-		assertTrue(Tools.clampValue(-23.0f, -10.0f, 10.0f) + 10.0f <= Constants.EPSILON);
+		assertTrue(Tools.floatsEqual(Tools.clampValue(-23.0f, -10.0f, 10.0f),
+				-10.0f));
 	}
 
 	@Test
@@ -63,16 +66,16 @@ public class ToolsTest {
 
 		// Test a value of 3*PI
 		float testAngle = Constants.PI + Constants.TWO_PI;
-		assertTrue(Math.abs(Tools.wrapAngle(testAngle) - Constants.PI) <= Constants.EPSILON);
+		assertTrue(Tools.floatsEqual(Tools.wrapAngle(testAngle), Constants.PI));
 
 		// Test negative angles
 		testAngle = -Constants.PI;
-		assertTrue(Math.abs(Tools.wrapAngle(testAngle) - Constants.PI) <= Constants.EPSILON);
+		assertTrue(Tools.floatsEqual(Tools.wrapAngle(testAngle), Constants.PI));
 
 		// Test that there is no change when the value is already in the correct
 		// range
 		testAngle = Constants.PI;
-		assertTrue(Math.abs(Tools.wrapAngle(testAngle) - Constants.PI) <= Constants.EPSILON);
+		assertTrue(Tools.floatsEqual(Tools.wrapAngle(testAngle), Constants.PI));
 
 	}
 
@@ -84,14 +87,16 @@ public class ToolsTest {
 		float testAngleTwo = Constants.PI;
 		float closestAngle = Tools
 				.closestAngleDelta(testAngleOne, testAngleTwo);
-		assertTrue(Math.abs(Math.abs(closestAngle) - Constants.PI / 2) <= Constants.EPSILON);
+
+		assertTrue(Tools.floatsEqual(Math.abs(closestAngle), Constants.PI / 2));
 		assertTrue(closestAngle > 0.0f);
 
 		// Test the angle delta magnitude and sign; negative movement
 		testAngleOne = Constants.PI;
 		testAngleTwo = Constants.PI / 2;
 		closestAngle = Tools.closestAngleDelta(testAngleOne, testAngleTwo);
-		assertTrue(Math.abs(Math.abs(closestAngle) - Constants.PI / 2) <= Constants.EPSILON);
+
+		assertTrue(Tools.floatsEqual(Math.abs(closestAngle), Constants.PI / 2));
 		assertTrue(closestAngle < 0.0f);
 
 		// Test the angle delta magnitude and sign where it should wrap across
@@ -99,14 +104,15 @@ public class ToolsTest {
 		testAngleOne = Constants.TWO_PI * 0.2f;
 		testAngleTwo = Constants.TWO_PI * 0.8f;
 		closestAngle = Tools.closestAngleDelta(testAngleOne, testAngleTwo);
-		assertTrue(Math.abs(Math.abs(closestAngle) - Constants.TWO_PI * 0.4f) <= Constants.EPSILON);
+		assertTrue(Tools.floatsEqual(Math.abs(closestAngle),
+				Constants.TWO_PI * 0.4f));
 		assertTrue(closestAngle < 0.0f);
 
 		// Test angles that are not in the standard range 0 to TWO_PI
 		testAngleOne = 0.0f;
 		testAngleTwo = Constants.TWO_PI + Constants.PI;
 		closestAngle = Tools.closestAngleDelta(testAngleOne, testAngleTwo);
-		assertTrue(Math.abs(Math.abs(closestAngle) - Constants.PI) <= Constants.EPSILON);
+		assertTrue(Tools.floatsEqual(Math.abs(closestAngle), Constants.PI));
 		assertTrue(closestAngle > 0.0f);
 	}
 
@@ -116,45 +122,45 @@ public class ToolsTest {
 		// Test an angle of 0.0f should produce a vector {1.0, 0.0}
 		float testAngle = 0.0f;
 		Vector2f testVector = Tools.angleToVector(testAngle);
-		assertTrue(Math.abs(testVector.x - 1.0f) <= Constants.EPSILON);
-		assertTrue(Math.abs(testVector.y - 0.0f) <= Constants.EPSILON);
+		assertTrue(Tools.floatsEqual(testVector.x, 1.0f));
+		assertTrue(Tools.floatsEqual(testVector.y, 0.0f));
 
 		// Test an angle of Pi should produce a vector {-1.0, 0.0}
 		testAngle = Constants.PI;
 		testVector = Tools.angleToVector(testAngle);
-		assertTrue(Math.abs(testVector.x + 1.0f) <= Constants.EPSILON);
-		assertTrue(Math.abs(testVector.y - 0.0f) <= Constants.EPSILON);
+		assertTrue(Tools.floatsEqual(testVector.x, -1.0f));
+		assertTrue(Tools.floatsEqual(testVector.y, 0.0f));
 
 		// Test an angle of 1.5 Pi should produce a vector {0.0, 1.0}
 		testAngle = Constants.TWO_PI * 3 / 4;
 		testVector = Tools.angleToVector(testAngle);
-		assertTrue(Math.abs(testVector.x - 0.0f) <= Constants.EPSILON);
-		assertTrue(Math.abs(testVector.y - 1.0f) <= Constants.EPSILON);
+		assertTrue(Tools.floatsEqual(testVector.x, 0.0f));
+		assertTrue(Tools.floatsEqual(testVector.y, 1.0f));
 
 		// Test an angle of Pi/2 should produce a vector {0.0, -1.0}
 		testAngle = Constants.PI / 2;
 		testVector = Tools.angleToVector(testAngle);
-		assertTrue(Math.abs(testVector.x - 0.0f) <= Constants.EPSILON);
-		assertTrue(Math.abs(testVector.y + 1.0f) <= Constants.EPSILON);
+		assertTrue(Tools.floatsEqual(testVector.x, 0.0f));
+		assertTrue(Tools.floatsEqual(testVector.y, -1.0f));
 
 		// Test an angle of three Pi should produce a vector {-1.0, 0.0}
 		testAngle = Constants.PI + Constants.TWO_PI;
 		testVector = Tools.angleToVector(testAngle);
-		assertTrue(Math.abs(testVector.x + 1.0f) <= Constants.EPSILON);
-		assertTrue(Math.abs(testVector.y - 0.0f) <= Constants.EPSILON);
+		assertTrue(Tools.floatsEqual(testVector.x, -1.0f));
+		assertTrue(Tools.floatsEqual(testVector.y, 0.0f));
 
 		// Test an angle of -pi should produce a vector {-1.0, 0.0}
 		testAngle = -Constants.PI;
 		testVector = Tools.angleToVector(testAngle);
-		assertTrue(Math.abs(testVector.x + 1.0f) <= Constants.EPSILON);
-		assertTrue(Math.abs(testVector.y - 0.0f) <= Constants.EPSILON);
+		assertTrue(Tools.floatsEqual(testVector.x, -1.0f));
+		assertTrue(Tools.floatsEqual(testVector.y, 0.0f));
 
 		// Test an angle of Pi / 4 should produce a vector {1/sqrt(2),
 		// -1/sqrt(2)}
 		testAngle = Constants.PI / 4;
 		testVector = Tools.angleToVector(testAngle);
-		assertTrue(Math.abs(testVector.x - 1 / Math.sqrt(2)) <= Constants.EPSILON);
-		assertTrue(Math.abs(testVector.y + 1 / Math.sqrt(2)) <= Constants.EPSILON);
+		assertTrue(Tools.floatsEqual(testVector.x, (float) (1 / Math.sqrt(2))));
+		assertTrue(Tools.floatsEqual(testVector.y, (float) (-1 / Math.sqrt(2))));
 	}
 
 	@Test
@@ -165,19 +171,19 @@ public class ToolsTest {
 		Vector2f testVector = new Vector2f(1.0f / (float) Math.sqrt(2), -1.0f
 				/ (float) Math.sqrt(2));
 		float testAngle = Tools.vectorToAngle(testVector);
-		assertTrue(Math.abs(Math.abs(testAngle) - Constants.PI / 4.0f) <= Constants.EPSILON);
+		assertTrue(Tools.floatsEqual(Math.abs(testAngle), Constants.PI / 4.0f));
 		assertTrue(testAngle > 0.0f);
 
 		// Test a vector of {2.0f, 0.0f} should produce a angle of 0.0
 		testVector = new Vector2f(2.0f, 0.0f);
 		testAngle = Tools.vectorToAngle(testVector);
-		assertTrue(Math.abs(Math.abs(testAngle) - 0.0f) <= Constants.EPSILON);
+		assertTrue(Tools.floatsEqual(Math.abs(testAngle), 0.0f));
 
 		// Test a vector of {0.0f, 1.0f} should produce a angle of 1.5 * PI
 		testVector = new Vector2f(0.0f, 1.0f);
 		testAngle = Tools.vectorToAngle(testVector);
-		assertTrue(Math.abs(Math.abs(testAngle) - Constants.TWO_PI * 3.0f
-				/ 4.0f) <= Constants.EPSILON);
+		assertTrue(Tools.floatsEqual(Math.abs(testAngle),
+				Constants.TWO_PI * 3.0f / 4.0f));
 		assertTrue(testAngle > 0.0f);
 	}
 
@@ -189,8 +195,8 @@ public class ToolsTest {
 		Vector2f testVectorTwo = new Vector2f(5.0f, 3.0f);
 		Vector2f vectorBetween = Tools.vectorBetween(testVectorOne,
 				testVectorTwo);
-		assertTrue(Math.abs(vectorBetween.x - 5.0f) <= Constants.EPSILON);
-		assertTrue(Math.abs(vectorBetween.y - 3.0f) <= Constants.EPSILON);
+		assertTrue(Tools.floatsEqual(vectorBetween.x, 5.0f));
+		assertTrue(Tools.floatsEqual(vectorBetween.y, 3.0f));
 		assertTrue(vectorBetween.x > 0.0f);
 		assertTrue(vectorBetween.y > 0.0f);
 
@@ -198,8 +204,8 @@ public class ToolsTest {
 		testVectorOne = new Vector2f(0.0f, -1.0f);
 		testVectorTwo = new Vector2f(-5.0f, 3.0f);
 		vectorBetween = Tools.vectorBetween(testVectorOne, testVectorTwo);
-		assertTrue(Math.abs(vectorBetween.x + 5.0f) <= Constants.EPSILON);
-		assertTrue(Math.abs(vectorBetween.y - 4.0f) <= Constants.EPSILON);
+		assertTrue(Tools.floatsEqual(vectorBetween.x, -5.0f));
+		assertTrue(Tools.floatsEqual(vectorBetween.y, 4.0f));
 		assertTrue(vectorBetween.x < 0.0f);
 		assertTrue(vectorBetween.y > 0.0f);
 
@@ -207,8 +213,8 @@ public class ToolsTest {
 		testVectorOne = new Vector2f(0.0f, -1.0f);
 		testVectorTwo = new Vector2f(-5.0f, 3.0f);
 		vectorBetween = Tools.vectorBetween(testVectorOne, testVectorTwo);
-		assertTrue(Math.abs(vectorBetween.x + 5.0f) <= Constants.EPSILON);
-		assertTrue(Math.abs(vectorBetween.y - 4.0f) <= Constants.EPSILON);
+		assertTrue(Tools.floatsEqual(vectorBetween.x, -5.0f));
+		assertTrue(Tools.floatsEqual(vectorBetween.y, 4.0f));
 		assertTrue(vectorBetween.x < 0.0f);
 		assertTrue(vectorBetween.y > 0.0f);
 	}
@@ -220,25 +226,25 @@ public class ToolsTest {
 		Vector2f testVectorTwo = new Vector2f(0.0f, 4.0f);
 		float distanceBetween = Tools.distanceBetween(testVectorOne,
 				testVectorTwo);
-		assertTrue(distanceBetween - 5.0f <= Constants.EPSILON);
+		assertTrue(Tools.floatsEqual(distanceBetween, 5.0f));
 
 		// Test two
 		testVectorOne = new Vector2f(0.0f, -1.0f);
 		testVectorTwo = new Vector2f(0.0f, 3.0f);
 		distanceBetween = Tools.distanceBetween(testVectorOne, testVectorTwo);
-		assertTrue(distanceBetween - 4.0f <= Constants.EPSILON);
+		assertTrue(Tools.floatsEqual(distanceBetween, 4.0f));
 
 		// Test three
 		testVectorOne = new Vector2f(-1.0f, -1.0f);
 		testVectorTwo = new Vector2f(1.0f, 1.0f);
 		distanceBetween = Tools.distanceBetween(testVectorOne, testVectorTwo);
-		assertTrue(distanceBetween - (float) Math.sqrt(8) <= Constants.EPSILON);
+		assertTrue(Tools.floatsEqual(distanceBetween, (float) Math.sqrt(8)));
 
 		// Test four
 		testVectorOne = new Vector2f(10.1f, 10.0f);
 		testVectorTwo = new Vector2f(10.0f, 10.0f);
 		distanceBetween = Tools.distanceBetween(testVectorOne, testVectorTwo);
-		assertTrue(distanceBetween - (float) 0.1 <= Constants.EPSILON);
+		assertTrue(Tools.floatsEqual(distanceBetween, (float) 0.1));
 	}
 
 	@Test
@@ -279,9 +285,9 @@ public class ToolsTest {
 		final Vector2f testViewport = Tools.screenToViewport(
 				Tools.getScreenWidth(), Tools.getScreenHeight());
 
-		assertTrue(Math.abs(testViewport.x / testViewport.y
-				- (float) Constants.DEFAULT_SCREEN_WIDTH
-				/ Constants.DEFAULT_SCREEN_HEIGHT) <= Constants.EPSILON);
+		assertTrue(Tools.floatsEqual(testViewport.x / testViewport.y,
+				(float) Constants.DEFAULT_SCREEN_WIDTH
+						/ Constants.DEFAULT_SCREEN_HEIGHT));
 	}
 
 	@Test
@@ -291,8 +297,8 @@ public class ToolsTest {
 		final Point testScreen = Tools
 				.viewportToScreen(new Vector2f(8.0f, 4.0f));
 
-		assertTrue((float) testScreen.getX() / (float) testScreen.getY() - 8.0f
-				/ 4.0f <= Constants.EPSILON);
+		assertTrue(Tools.floatsEqual((float) testScreen.getX()
+				/ (float) testScreen.getY(), 8.0f / 4.0f));
 	}
 
 	@Test
