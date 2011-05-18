@@ -32,7 +32,7 @@ public class TeamController implements IController<TeamModel> {
 		model.addScore(amount);
 
 		// Check with rules. If won, celebrate!
-		ruleController.checkVictory(this);
+		ruleController.checkVictory(getScore(), getTeamName());
 
 	}
 
