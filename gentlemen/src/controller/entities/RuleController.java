@@ -23,8 +23,8 @@ public class RuleController implements IController<RuleModel> {
 	 * @param team
 	 *            the team to check for victory
 	 */
-	public void checkVictory(final TeamController team) {
-		model.checkVictory(team.getScore(), team.getTeamName());
+	public void checkVictory(final int score, final String teamName) {
+		model.checkVictory(score, teamName);
 	}
 
 	@Override
