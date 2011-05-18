@@ -6,6 +6,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import utilities.Tools;
+
 import controller.MainControllerFactory;
 import factories.entities.ScoreboardFactory;
 
@@ -17,6 +19,8 @@ public class ScoreboardModelTest {
 	public void setUp() throws Exception {
 		model = MainControllerFactory.get()
 				.instantiate(new ScoreboardFactory()).getModel();
+		
+		Tools.identifyOS();
 	}
 
 	@After

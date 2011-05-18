@@ -1,5 +1,7 @@
 package utilities;
 
+import java.io.File;
+
 import org.jbox2d.common.Vec2;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.util.Point;
@@ -314,5 +316,29 @@ public class Tools {
 	public static boolean vectorsEqual(final Vector2f vector1,
 			final Vector2f vector2) {
 		return Tools.distanceBetween(vector1, vector2) <= Constants.EPSILON;
+	}
+
+	/**
+	 * Sets the lwjgl native library path according to what operating system is running
+	 */
+	public static void identifyOS() {
+		
+		if (org.lwjgl.LWJGLUtil.getPlatform() == org.lwjgl.LWJGLUtil.PLATFORM_LINUX) {
+			System.setProperty("org.lwjgl.librarypath",
+					System.getProperty("user.dir") + File.separator
+							+ "lwjgl-2.7.1" + File.separator + "native"
+							+ File.separator + "linux");
+		} else if (org.lwjgl.LWJGLUtil.getPlatform() == org.lwjgl.LWJGLUtil.PLATFORM_MACOSX) {
+			System.setProperty("org.lwjgl.librarypath",
+					System.getProperty("user.dir") + File.separator
+							+ "lwjgl-2.7.1" + File.separator + "native"
+							+ File.separator + "macosx");
+		} else if (org.lwjgl.LWJGLUtil.getPlatform() == org.lwjgl.LWJGLUtil.PLATFORM_WINDOWS) {
+			System.setProperty("org.lwjgl.librarypath",
+					System.getProperty("user.dir") + File.separator
+							+ "lwjgl-2.7.1" + File.separator + "native"
+							+ File.separator + "windows");
+		}
+		
 	}
 }
