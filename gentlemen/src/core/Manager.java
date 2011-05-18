@@ -1,8 +1,5 @@
 package core;
 
-import model.IMainModel;
-import model.MainModelFactory;
-
 import org.lwjgl.LWJGLException;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
@@ -14,8 +11,6 @@ import controller.IMainController;
 import controller.MainControllerFactory;
 
 public class Manager {
-
-	private static IMainModel mainModel = MainModelFactory.get();
 
 	private static IMainController mainController = MainControllerFactory.get();
 
