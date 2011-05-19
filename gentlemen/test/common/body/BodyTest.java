@@ -26,8 +26,9 @@ import factories.entities.IEntityFactory;
 public class BodyTest {
 
 	private static class TestModel implements IModel {
-		private IBody body = new Body(new CircleBodyShape(1.0f), 1.0f, 1.0f);
-		private IGeometry geometry = new NullGeometry();
+		private final IBody body = new Body(new CircleBodyShape(1.0f), 1.0f,
+				1.0f);
+		private final IGeometry geometry = new NullGeometry();
 
 		@Override
 		public IBody getBody() {
@@ -42,7 +43,7 @@ public class BodyTest {
 
 	private static class TestController implements IController<TestModel> {
 
-		private TestModel model = new TestModel();
+		private final TestModel model = new TestModel();
 
 		@Override
 		public TestModel getModel() {
@@ -73,8 +74,8 @@ public class BodyTest {
 	private static class TestFactory implements
 			IEntityFactory<TestModel, TestController> {
 
-		private TestModel model = new TestModel();
-		private TestController controller = new TestController();
+		private final TestModel model = new TestModel();
+		private final TestController controller = new TestController();
 
 		@Override
 		public TestModel getModel() {
@@ -92,7 +93,7 @@ public class BodyTest {
 			IBodyCollisionCallback {
 
 		@Override
-		public void collisionOccured(final Body otherBody,
+		public void collisionOccured(final IBody otherBody,
 				final Vector2f collisionPoint) {
 			// Do nothing
 		}
@@ -122,48 +123,48 @@ public class BodyTest {
 
 	@Test
 	public void testBodyIBodyShapeFloat() {
-		IBodyShape shape = new CircleBodyShape(1.0f);
+		final IBodyShape shape = new CircleBodyShape(1.0f);
 
 		// Test body constructor
 		try {
 			new Body(shape, 1.0f);
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			fail();
 		}
 
 		try {
 			new Body(shape, 10.0f);
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			fail();
 		}
 
 		try {
 			new Body(shape, 0.0f);
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			fail();
 		}
 	}
 
 	@Test
 	public void testBodyIBodyShapeFloatFloat() {
-		IBodyShape shape = new CircleBodyShape(1.0f);
+		final IBodyShape shape = new CircleBodyShape(1.0f);
 
 		// Test body constructor
 		try {
 			new Body(shape, 1.0f, 1.0f);
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			fail();
 		}
 
 		try {
 			new Body(shape, 10.0f, 10.0f);
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			fail();
 		}
 
 		try {
 			new Body(shape, 0.0f, 0.0f);
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			fail();
 		}
 	}
@@ -230,7 +231,7 @@ public class BodyTest {
 
 	@Test
 	public void testSetPosition() {
-		Vector2f newPosition = new Vector2f(10.0f, 5.0f);
+		final Vector2f newPosition = new Vector2f(10.0f, 5.0f);
 
 		body.setPosition(newPosition);
 
@@ -244,7 +245,7 @@ public class BodyTest {
 
 	@Test
 	public void testSetAngle() {
-		float newAngle = Constants.PI;
+		final float newAngle = Constants.PI;
 
 		body.setAngle(newAngle);
 
@@ -257,7 +258,7 @@ public class BodyTest {
 
 		try {
 			body.addToWorld(new World(new Vec2(0.0f, 0.0f), true));
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			fail();
 		}
 	}
@@ -268,7 +269,7 @@ public class BodyTest {
 			body.removeFromWorld(new World(new Vec2(0.0f, 0.0f), true));
 
 			fail();
-		} catch (Exception e) {
+		} catch (final Exception e) {
 		}
 	}
 
@@ -301,7 +302,7 @@ public class BodyTest {
 
 	@Test
 	public void testGetVelocityAtPoint() {
-		Vector2f point = new Vector2f(1.0f, 0.0f);
+		final Vector2f point = new Vector2f(1.0f, 0.0f);
 
 		assertTrue(Tools.vectorsEqual(body.getVelocityAtPoint(point),
 				new Vector2f(0.0f, 0.0f)));
@@ -309,8 +310,8 @@ public class BodyTest {
 
 	@Test
 	public void testApplyForce() {
-		Vector2f force = new Vector2f(1000.0f, 500.0f);
-		Vector2f acceleration = new Vector2f(force);
+		final Vector2f force = new Vector2f(1000.0f, 500.0f);
+		final Vector2f acceleration = new Vector2f(force);
 		acceleration.scale(1.0f / body.getMass());
 
 		assertTrue(Tools.vectorsEqual(body.getAcceleration(), new Vector2f(
@@ -323,7 +324,7 @@ public class BodyTest {
 
 	@Test
 	public void testApplyTorque() {
-		float torque = 1000.0f;
+		final float torque = 1000.0f;
 
 		assertTrue(Tools.floatsEqual(body.getTorque(), 0.0f));
 
@@ -334,7 +335,7 @@ public class BodyTest {
 
 	@Test
 	public void testApplyVelocityChange() {
-		Vector2f velocityChange = new Vector2f(1000.0f, 0.0f);
+		final Vector2f velocityChange = new Vector2f(1000.0f, 0.0f);
 
 		assertTrue(Tools.vectorsEqual(body.getVelocity(), new Vector2f(0.0f,
 				0.0f)));
@@ -346,7 +347,7 @@ public class BodyTest {
 
 	@Test
 	public void testApplyAngularVelocityChange() {
-		float velocityChange = 5.0f;
+		final float velocityChange = 5.0f;
 
 		assertTrue(Tools.floatsEqual(body.getAngularVelocity(), 0.0f));
 
@@ -357,7 +358,7 @@ public class BodyTest {
 
 	@Test
 	public void testClearVelocity() {
-		Vector2f velocityChange = new Vector2f(5.0f, 5.0f);
+		final Vector2f velocityChange = new Vector2f(5.0f, 5.0f);
 
 		body.applyVelocityChange(velocityChange);
 
@@ -371,7 +372,7 @@ public class BodyTest {
 
 	@Test
 	public void testClearAngularVelocity() {
-		float velocityChange = 5.0f;
+		final float velocityChange = 5.0f;
 
 		body.applyAngularVelocityChange(velocityChange);
 

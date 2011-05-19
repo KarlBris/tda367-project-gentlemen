@@ -1,6 +1,7 @@
 package common.body;
 
 import org.jbox2d.dynamics.World;
+import org.lwjgl.util.vector.Vector;
 
 public interface IBody {
 
@@ -19,5 +20,7 @@ public interface IBody {
 	 *            the world
 	 */
 	public void removeFromWorld(World world);
+
+	public Vector getVelocity();
 
 }
