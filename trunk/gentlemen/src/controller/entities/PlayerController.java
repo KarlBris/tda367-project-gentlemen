@@ -11,6 +11,7 @@ import utilities.Constants;
 import utilities.Tools;
 
 import common.body.Body;
+import common.body.IBody;
 import common.body.IBodyCollisionCallback;
 
 import controller.IMainController;
@@ -26,7 +27,7 @@ import factories.entities.KeyboardReticleFactory;
 public class PlayerController implements IController<PlayerModel>,
 		IBodyCollisionCallback {
 
-	private IMainController main = MainControllerFactory.get();
+	private final IMainController main = MainControllerFactory.get();
 
 	private final PlayerModel model;
 
@@ -124,7 +125,7 @@ public class PlayerController implements IController<PlayerModel>,
 	 */
 	private void handleBall() {
 
-		KeyboardComponent keyboard = main.getKeyboardComponent();
+		final KeyboardComponent keyboard = main.getKeyboardComponent();
 
 		if (model.isCarryingBall()) {
 
@@ -252,7 +253,6 @@ public class PlayerController implements IController<PlayerModel>,
 
 	}
 
-	@Override
 	public void collisionOccured(final Body otherBody,
 			final Vector2f collisionPoint) {
 
@@ -451,6 +451,14 @@ public class PlayerController implements IController<PlayerModel>,
 		if (model.isCarryingFlag()) {
 			flagController.setPosition(new Vector2f(model.getPosition().x,
 					model.getPosition().y - 0.7f));
+		}
+	}
+
+	@Override
+	public void collisionOccured(final IBody otherBody,
+			final Vector2f collisionPoint) {
+		if (otherBody.getVelocity().length() >= Constants.BALL_LETHAL_SPEED) {
+			playerKnockOut();
 		}
 	}
 

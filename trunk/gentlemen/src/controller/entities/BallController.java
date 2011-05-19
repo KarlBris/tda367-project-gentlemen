@@ -6,7 +6,7 @@ import org.lwjgl.util.vector.Vector2f;
 
 import utilities.Constants;
 
-import common.body.Body;
+import common.body.IBody;
 import common.body.IBodyCollisionCallback;
 
 import controller.MainControllerFactory;
@@ -96,7 +96,7 @@ public class BallController implements IController<BallModel>,
 	}
 
 	@Override
-	public void collisionOccured(final Body otherBody,
+	public void collisionOccured(final IBody otherBody,
 			final Vector2f collisionPoint) {
 		// Instantiate a shockwave if the ball travels fast enough
 		if (model.getVelocity().length() >= Constants.BALL_SHOCKWAVE_SPEED) {
