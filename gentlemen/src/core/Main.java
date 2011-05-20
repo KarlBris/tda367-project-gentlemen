@@ -2,7 +2,7 @@ package core;
 
 import utilities.Tools;
 
-public class Main {
+public final class Main {
 
 	/**
 	 * @param args

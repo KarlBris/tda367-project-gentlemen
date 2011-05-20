@@ -10,7 +10,7 @@ import view.ViewFactory;
 import controller.IMainController;
 import controller.MainControllerFactory;
 
-public class Manager {
+public final class Manager {
 
 	private static IMainController mainController = MainControllerFactory.get();
 

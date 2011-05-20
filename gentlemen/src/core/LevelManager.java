@@ -25,7 +25,7 @@ import factories.entities.TeamFactory;
 /**
  * This class is responsible for managing and setting up levels
  */
-public class LevelManager {
+public final class LevelManager {
 
 	private IMainController main = MainControllerFactory.get();
 
