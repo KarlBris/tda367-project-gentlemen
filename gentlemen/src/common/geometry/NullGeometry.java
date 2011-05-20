@@ -14,7 +14,7 @@ public final class NullGeometry implements IGeometry {
 
 	private Vector2f position = new Vector2f(0.0f, 0.0f);
 	private float angle = 0.0f;
-	private Vector2f scale = new Vector2f(1.0f, 1.0f);
+	private Vector2f scale = new Vector2f(0.0f, 0.0f);
 
 	@Override
 	public boolean isVisible() {
@@ -38,7 +38,7 @@ public final class NullGeometry implements IGeometry {
 
 	@Override
 	public Color getColor() {
-		return Color.MAGENTA;
+		return Color.BLACK;
 	}
 
 	@Override
