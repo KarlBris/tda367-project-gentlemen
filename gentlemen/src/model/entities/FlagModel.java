@@ -17,7 +17,7 @@ import common.geometry.twodimensions.CircleGeometry;
  */
 public class FlagModel implements IModel {
 	private final AbstractGeometry geometry;
-	private IBody body = new NullBody();
+	private final IBody body = new NullBody();
 
 	private Color flagColor;
 
@@ -80,13 +80,6 @@ public class FlagModel implements IModel {
 	 */
 	public Vector2f getPosition() {
 		return geometry.getPosition();
-	}
-
-	/**
-	 * Return the flag back to it's home position, and make it pick up able by
-	 * other players
-	 */
-	public void returnFlagHome() {
 	}
 
 	/**
