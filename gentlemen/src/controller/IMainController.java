@@ -1,6 +1,6 @@
 package controller;
 
-import java.util.List;
+import java.util.Collection;
 
 import model.common.IModel;
 
@@ -62,13 +62,13 @@ public interface IMainController {
 	 *            the sought after type class
 	 * @return a list of controllers of type T
 	 */
-	public <M extends IModel, C extends IController<M>> List<C> find(
+	public <M extends IModel, C extends IController<M>> Collection<C> find(
 			Class<C> type);
 
 	/**
 	 * @return a list of all IController instances
 	 */
-	public List<IController<? extends IModel>> getControllers();
+	public Collection<IController<? extends IModel>> getControllers();
 
 	/**
 	 * @return gets the keyboard component

@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -13,7 +12,7 @@ import java.util.Map;
  */
 public class TypeMap<T> {
 
-	private final Map<Class<?>, List<T>> map = new HashMap<Class<?>, List<T>>();
+	private final Map<Class<?>, Collection<T>> map = new HashMap<Class<?>, Collection<T>>();
 
 	/**
 	 * Adds an item to this TypeMap
@@ -24,7 +23,7 @@ public class TypeMap<T> {
 	public void add(final T item) {
 		final Class<?> key = item.getClass();
 
-		List<T> items;
+		Collection<T> items;
 
 		if (map.containsKey(key)) {
 			// The item type exists within the map, get the corresponding list
@@ -53,7 +52,7 @@ public class TypeMap<T> {
 		final Class<?> key = item.getClass();
 
 		if (map.containsKey(key)) {
-			final List<T> items = map.get(key);
+			final Collection<T> items = map.get(key);
 
 			// Remove the item
 			items.remove(item);
@@ -78,7 +77,7 @@ public class TypeMap<T> {
 	public int getItemCount() {
 		int count = 0;
 
-		for (List<T> lists : map.values()) {
+		for (Collection<T> lists : map.values()) {
 			count += lists.size();
 		}
 
@@ -95,39 +94,27 @@ public class TypeMap<T> {
 	 * @return a list of items of type S
 	 */
 	@SuppressWarnings("unchecked")
-	public <S extends T> List<S> find(final Class<S> type) {
+	public <S extends T> Collection<S> find(final Class<S> type) {
 		// Find items of type S
 		if (map.containsKey(type)) {
-			final List<T> items = map.get(type);
+			final Collection<T> items = map.get(type);
 
-			// Cast List<IController> to ArrayList<S> for the caller's
-			// convenience
-			final List<S> output = new ArrayList<S>(items.size());
-
-			for (final T c : items) {
-				output.add((S) c);
-			}
-
-			return output;
+			return (Collection<S>) items;
 		}
 
-		return new ArrayList<S>();
+		return new LinkedList<S>();
 	}
 
 	/**
 	 * @return all items, regardless of type
 	 */
-	public List<T> getItems() {
-		// TODO Optimize this method if needed
-		final Collection<List<T>> listCollection = map.values();
+	public Collection<T> getItems() {
+		Collection<T> allItems = new LinkedList<T>();
 
-		// Add all item lists to the output list
-		final List<T> output = new LinkedList<T>();
-
-		for (final List<T> list : listCollection) {
-			output.addAll(list);
+		for (Collection<T> items : map.values()) {
+			allItems.addAll(items);
 		}
 
-		return output;
+		return allItems;
 	}
 }
