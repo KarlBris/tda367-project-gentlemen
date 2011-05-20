@@ -82,7 +82,6 @@ public class PropModel implements IModel {
 	 */
 	public void setPosition(final Vector2f position) {
 		body.setPosition(position);
-		geometry.setPosition(position);
 	}
 
 	/**
@@ -93,7 +92,6 @@ public class PropModel implements IModel {
 	 */
 	public void setAngle(final float angle) {
 		body.setAngle(angle);
-		geometry.setAngle(angle);
 	}
 
 	/**

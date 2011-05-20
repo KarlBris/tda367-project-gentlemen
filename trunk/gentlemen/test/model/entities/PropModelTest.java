@@ -1,6 +1,7 @@
 package model.entities;
 
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import org.junit.After;
 import org.junit.Before;
@@ -155,31 +156,21 @@ public class PropModelTest {
 
 	@Test
 	public void testGetColor() {
-		Color color = new Color(1.0f, 1.0f, 1.0f);
+		final Color color = new Color(1.0f, 1.0f, 1.0f);
 		model.setColor(color);
 
-		// Test if getting the prop's color returns the correct RGB values
-		assertTrue(model.getColor().getBlue() == color.getBlue());
-		assertTrue(model.getColor().getRed() == color.getRed());
-		assertTrue(model.getColor().getGreen() == color.getGreen());
-		assertTrue(model.getColor().getAlpha() == color.getAlpha());
+		// Test if getting the prop's color refers to the correct Color object
+		assertTrue(model.getColor() == color);
+	}
 
-		color = new Color(2.0f, 2.0f, 2.0f);
-		model.setColor(color);
+	@Test
+	public void testUpdate() {
 
-		// Same test with new values
-		assertTrue(model.getColor().getBlue() == color.getBlue());
-		assertTrue(model.getColor().getRed() == color.getRed());
-		assertTrue(model.getColor().getGreen() == color.getGreen());
-		assertTrue(model.getColor().getAlpha() == color.getAlpha());
+		try {
+			model.update();
+		} catch (final Exception e) {
+			fail("Exception not expected!");
+		}
 
-		color = new Color(-1.0f, -1.0f, -1.0f);
-		model.setColor(color);
-
-		// Same test with new values
-		assertTrue(model.getColor().getBlue() == color.getBlue());
-		assertTrue(model.getColor().getRed() == color.getRed());
-		assertTrue(model.getColor().getGreen() == color.getGreen());
-		assertTrue(model.getColor().getAlpha() == color.getAlpha());
 	}
 }
