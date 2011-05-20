@@ -32,6 +32,8 @@ public class PlayerModelTest {
 
 	@Test
 	public void testPlayerModel() {
+		// no error should occur
+
 		Color c = new Color(1.0f, 1.0f, 1.0f);
 		model = new PlayerModel(c);
 
@@ -207,8 +209,58 @@ public class PlayerModelTest {
 	}
 
 	@Test
-	public void testGetKnockedOutTimer() {
+	public void testUpdate() {
+		// should not generate any error
+		model.update();
+		model.playerKnockOut();
+		// Should still not generate any error
+		model.update();
+		for (float i = 0.0f; Float
+				.compare(i, Constants.PLAYER_KNOCKED_OUT_TIME) < 0; i += Constants.DELTA_TIME) {
+			model.update();
+		}
 
 	}
 
+	@Test
+	public void testGetKnockedOutTimer() {
+		// Update is to fat to be tested for specific alterations. The test,
+		// tests that all code is covered and not generate errors
+		assertTrue(Tools.floatsEqual(model.getKnockedOutTimer(), 0.0f));
+		model.update();
+		assertTrue(Tools.floatsEqual(model.getKnockedOutTimer(), 0.0f));
+		model.playerKnockOut();
+		assertTrue(Tools.floatsEqual(model.getKnockedOutTimer(), 0.0f));
+		model.update();
+		assertTrue(!Tools.floatsEqual(model.getKnockedOutTimer(), 0.0f));
+	}
+
+	@Test
+	public void testGetVelocity() {
+
+		assertTrue(model.getBody() instanceof Body);
+
+		// The velocity should be zero at start
+		assertTrue(Tools.vectorsEqual(model.getVelocity(), new Vector2f(0.0f,
+				0.0f)));
+
+		((Body) model.getBody()).applyVelocityChange(new Vector2f(20.0f, 0.0f));
+
+		// The velocity should have changed
+		assertTrue(Tools.vectorsEqual(model.getVelocity(), new Vector2f(20.0f,
+				0.0f)));
+		((Body) model.getBody()).applyVelocityChange(new Vector2f(0.0f, 20.0f));
+		// The velocity should have changed
+		assertTrue(Tools.vectorsEqual(model.getVelocity(), new Vector2f(20.0f,
+				20.0f)));
+
+	}
+
+	@Test
+	public void testGetVelocityAtPoint() {
+		final Vector2f point = new Vector2f(1.0f, 0.0f);
+
+		assertTrue(Tools.vectorsEqual(model.getVelocityAtPoint(point),
+				new Vector2f(0.0f, 0.0f)));
+	}
 }
