@@ -15,7 +15,7 @@ import controller.MainControllerFactory;
 import controller.entities.PropController;
 import factories.entities.PropFactory;
 
-public class PropModelTest {
+public final class PropModelTest {
 
 	private PropModel model;
 	private PropController controller;

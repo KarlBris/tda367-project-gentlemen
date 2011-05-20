@@ -5,7 +5,7 @@ import static org.junit.Assert.fail;
 
 import org.junit.Test;
 
-public class ColorTest {
+public final class ColorTest {
 
 	@Test
 	public void testColorFloatFloatFloatFloat() {

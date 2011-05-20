@@ -12,7 +12,7 @@ import utilities.Tools;
 import controller.MainControllerFactory;
 import factories.entities.ShockwaveFactory;
 
-public class ShockwaveModelTest {
+public final class ShockwaveModelTest {
 
 	private ShockwaveModel model;
 

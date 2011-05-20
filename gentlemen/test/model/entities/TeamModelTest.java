@@ -12,7 +12,7 @@ import utilities.Tools;
 import controller.MainControllerFactory;
 import factories.entities.TeamFactory;
 
-public class TeamModelTest {
+public final class TeamModelTest {
 	private TeamModel model;
 
 	// private RuleController ruleController;

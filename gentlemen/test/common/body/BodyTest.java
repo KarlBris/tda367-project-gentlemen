@@ -23,7 +23,7 @@ import controller.MainControllerFactory;
 import controller.common.IController;
 import factories.entities.IEntityFactory;
 
-public class BodyTest {
+public final class BodyTest {
 
 	private static CircleBodyShape shape = new CircleBodyShape(1.0f);
 	private static float mass = 5.0f;

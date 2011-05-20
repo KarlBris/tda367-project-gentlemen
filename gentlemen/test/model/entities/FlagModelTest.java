@@ -14,7 +14,7 @@ import controller.MainControllerFactory;
 import controller.entities.TeamController;
 import factories.entities.TeamFactory;
 
-public class FlagModelTest {
+public final class FlagModelTest {
 	private FlagModel fm;
 	private TeamController teamController;
 
