@@ -3,7 +3,7 @@ package factories.entities;
 import model.entities.ShockwaveModel;
 import controller.entities.ShockwaveController;
 
-public class ShockwaveFactory implements
+public final class ShockwaveFactory implements
 		IEntityFactory<ShockwaveModel, ShockwaveController> {
 
 	private ShockwaveModel model = new ShockwaveModel();

@@ -3,7 +3,7 @@ package factories.entities;
 import model.entities.ScoreboardModel;
 import controller.entities.ScoreboardController;
 
-public class ScoreboardFactory implements
+public final class ScoreboardFactory implements
 		IEntityFactory<ScoreboardModel, ScoreboardController> {
 
 	private final ScoreboardModel model = new ScoreboardModel();

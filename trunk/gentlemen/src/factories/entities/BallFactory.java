@@ -3,7 +3,7 @@ package factories.entities;
 import model.entities.BallModel;
 import controller.entities.BallController;
 
-public class BallFactory implements IEntityFactory<BallModel, BallController> {
+public final class BallFactory implements IEntityFactory<BallModel, BallController> {
 
 	private final BallModel model = new BallModel();
 	private final BallController controller = new BallController(model);
