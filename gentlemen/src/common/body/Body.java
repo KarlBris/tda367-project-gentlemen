@@ -79,9 +79,7 @@ public final class Body implements IBody {
 		return isStatic;
 	}
 
-	/**
-	 * @return the mass of the body
-	 */
+	@Override
 	public float getMass() {
 		if (rigidbody == null) {
 			throw new BodyNotInitializedException();
@@ -90,12 +88,7 @@ public final class Body implements IBody {
 		return mass;
 	}
 
-	/**
-	 * Sets the mass of the body
-	 * 
-	 * @param mass
-	 *            the new mass
-	 */
+	@Override
 	public void setMass(final float mass) {
 		if (rigidbody == null) {
 			throw new BodyNotInitializedException();
@@ -169,9 +162,7 @@ public final class Body implements IBody {
 		rigidbody.setAngularDamping(this.angularDamping);
 	}
 
-	/**
-	 * @return the collision callback object this body reports to
-	 */
+	@Override
 	public IBodyCollisionCallback getCollisionCallback() {
 		if (rigidbody == null) {
 			throw new BodyNotInitializedException();
@@ -180,12 +171,7 @@ public final class Body implements IBody {
 		return collisionCallback;
 	}
 
-	/**
-	 * Sets the collision callback object this body will report to
-	 * 
-	 * @param collisionCallback
-	 *            the collision callback object
-	 */
+	@Override
 	public void setCollisionCallback(
 			final IBodyCollisionCallback collisionCallback) {
 		if (rigidbody == null) {
@@ -195,9 +181,7 @@ public final class Body implements IBody {
 		this.collisionCallback = collisionCallback;
 	}
 
-	/**
-	 * @return the body's current position
-	 */
+	@Override
 	public Vector2f getPosition() {
 		if (rigidbody == null) {
 			throw new BodyNotInitializedException();
@@ -206,12 +190,7 @@ public final class Body implements IBody {
 		return Tools.toNormalVector(rigidbody.getWorldCenter());
 	}
 
-	/**
-	 * Sets the body's position
-	 * 
-	 * @param position
-	 *            the new position
-	 */
+	@Override
 	public void setPosition(final Vector2f position) {
 		if (rigidbody == null) {
 			throw new BodyNotInitializedException();
@@ -221,9 +200,7 @@ public final class Body implements IBody {
 				rigidbody.getAngle());
 	}
 
-	/**
-	 * @return the current angle of the body
-	 */
+	@Override
 	public float getAngle() {
 		if (rigidbody == null) {
 			throw new BodyNotInitializedException();
@@ -232,12 +209,7 @@ public final class Body implements IBody {
 		return Tools.wrapAngle(-rigidbody.getAngle());
 	}
 
-	/**
-	 * Sets the angle of the body
-	 * 
-	 * @param angle
-	 *            the new angle
-	 */
+	@Override
 	public void setAngle(final float angle) {
 		if (rigidbody == null) {
 			throw new BodyNotInitializedException();
@@ -281,9 +253,7 @@ public final class Body implements IBody {
 		world.destroyBody(rigidbody);
 	}
 
-	/**
-	 * @return the current linear acceleration of the body
-	 */
+	@Override
 	public Vector2f getAcceleration() {
 		if (rigidbody == null) {
 			throw new BodyNotInitializedException();
@@ -297,20 +267,7 @@ public final class Body implements IBody {
 		return acceleration;
 	}
 
-	/**
-	 * @return the current torque of the body
-	 */
-	public float getTorque() {
-		if (rigidbody == null) {
-			throw new BodyNotInitializedException();
-		}
-
-		return -rigidbody.m_torque;
-	}
-
-	/**
-	 * @return the current angular acceleration of the body
-	 */
+	@Override
 	public float getAngularAcceleration() {
 		if (rigidbody == null) {
 			throw new BodyNotInitializedException();
@@ -320,9 +277,15 @@ public final class Body implements IBody {
 				/ rigidbody.getInertia() : 0.0f;
 	}
 
-	/**
-	 * @return the current linear velocity of the body
-	 */
+	@Override
+	public float getTorque() {
+		if (rigidbody == null) {
+			throw new BodyNotInitializedException();
+		}
+
+		return -rigidbody.m_torque;
+	}
+
 	@Override
 	public Vector2f getVelocity() {
 		if (rigidbody == null) {
@@ -332,9 +295,7 @@ public final class Body implements IBody {
 		return Tools.toNormalVector(rigidbody.getLinearVelocity());
 	}
 
-	/**
-	 * @return the current angular velocity of the body
-	 */
+	@Override
 	public float getAngularVelocity() {
 		if (rigidbody == null) {
 			throw new BodyNotInitializedException();
@@ -343,13 +304,7 @@ public final class Body implements IBody {
 		return -rigidbody.getAngularVelocity();
 	}
 
-	/**
-	 * Returns the velocity at a world-space point
-	 * 
-	 * @param point
-	 *            the world-space point
-	 * @return the velocity
-	 */
+	@Override
 	public Vector2f getVelocityAtPoint(final Vector2f point) {
 		if (rigidbody == null) {
 			throw new BodyNotInitializedException();
@@ -363,9 +318,7 @@ public final class Body implements IBody {
 		return Tools.toNormalVector(velocityAtPoint);
 	}
 
-	/**
-	 * Clears the linear velocity of the body
-	 */
+	@Override
 	public void clearVelocity() {
 		if (rigidbody == null) {
 			throw new BodyNotInitializedException();
@@ -374,9 +327,7 @@ public final class Body implements IBody {
 		rigidbody.setLinearVelocity(new Vec2(0.0f, 0.0f));
 	}
 
-	/**
-	 * Clears the angular velocity of the body
-	 */
+	@Override
 	public void clearAngularVelocity() {
 		if (rigidbody == null) {
 			throw new BodyNotInitializedException();
@@ -385,12 +336,7 @@ public final class Body implements IBody {
 		rigidbody.setAngularVelocity(0.0f);
 	}
 
-	/**
-	 * Applies a force to the center of mass of the body
-	 * 
-	 * @param force
-	 *            the force
-	 */
+	@Override
 	public void applyForce(final Vector2f force) {
 		if (rigidbody == null) {
 			throw new BodyNotInitializedException();
@@ -400,12 +346,7 @@ public final class Body implements IBody {
 				rigidbody.getWorldCenter());
 	}
 
-	/**
-	 * Applies torque to the body
-	 * 
-	 * @param torque
-	 *            the torque
-	 */
+	@Override
 	public void applyTorque(final float torque) {
 		if (rigidbody == null) {
 			throw new BodyNotInitializedException();
@@ -414,12 +355,7 @@ public final class Body implements IBody {
 		rigidbody.applyTorque(-torque);
 	}
 
-	/**
-	 * Applies a velocity change to the body
-	 * 
-	 * @param velocity
-	 *            the velocity to add
-	 */
+	@Override
 	public void applyVelocityChange(final Vector2f velocityChange) {
 		if (rigidbody == null) {
 			throw new BodyNotInitializedException();
@@ -432,12 +368,7 @@ public final class Body implements IBody {
 		rigidbody.applyLinearImpulse(impulse, rigidbody.getWorldCenter());
 	}
 
-	/**
-	 * Applies an angular velocity change to the body
-	 * 
-	 * @param velocityChange
-	 *            the angular velocity to add
-	 */
+	@Override
 	public void applyAngularVelocityChange(final float velocityChange) {
 		if (rigidbody == null) {
 			throw new BodyNotInitializedException();

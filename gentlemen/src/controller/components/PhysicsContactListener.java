@@ -1,6 +1,5 @@
 package controller.components;
 
-
 import org.jbox2d.callbacks.ContactImpulse;
 import org.jbox2d.callbacks.ContactListener;
 import org.jbox2d.collision.Manifold;
@@ -9,11 +8,10 @@ import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.contacts.Contact;
 import org.lwjgl.util.vector.Vector2f;
 
-import common.body.Body;
-import common.body.IBodyCollisionCallback;
-
-
 import utilities.Tools;
+
+import common.body.IBody;
+import common.body.IBodyCollisionCallback;
 
 public final class PhysicsContactListener implements ContactListener {
 
@@ -29,8 +27,8 @@ public final class PhysicsContactListener implements ContactListener {
 		Vec2 point = worldManifold.points[0];
 
 		// Send collision callbacks
-		Body bodyA = (Body) arg0.getFixtureA().getBody().getUserData();
-		Body bodyB = (Body) arg0.getFixtureB().getBody().getUserData();
+		IBody bodyA = (IBody) arg0.getFixtureA().getBody().getUserData();
+		IBody bodyB = (IBody) arg0.getFixtureB().getBody().getUserData();
 
 		IBodyCollisionCallback callbackA = bodyA.getCollisionCallback();
 		IBodyCollisionCallback callbackB = bodyB.getCollisionCallback();
