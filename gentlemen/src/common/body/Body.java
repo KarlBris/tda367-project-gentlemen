@@ -13,7 +13,7 @@ import utilities.Tools;
 /**
  * The physical representation of a model in the game world
  */
-public class Body implements IBody {
+public final class Body implements IBody {
 
 	// Body properties
 	private final IBodyShape shape;

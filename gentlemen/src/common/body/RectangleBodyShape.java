@@ -4,7 +4,7 @@ import org.jbox2d.collision.shapes.PolygonShape;
 import org.jbox2d.collision.shapes.Shape;
 
 
-public class RectangleBodyShape implements IBodyShape {
+public final class RectangleBodyShape implements IBodyShape {
 
 	private PolygonShape shape = new PolygonShape();
 
