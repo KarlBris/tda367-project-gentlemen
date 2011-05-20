@@ -72,6 +72,10 @@ public class Body implements IBody {
 	 * @return false if the body is movable, true otherwise
 	 */
 	public boolean isStatic() {
+		if (rigidbody == null) {
+			throw new BodyNotInitializedException();
+		}
+
 		return isStatic;
 	}
 
@@ -79,6 +83,10 @@ public class Body implements IBody {
 	 * @return the mass of the body
 	 */
 	public float getMass() {
+		if (rigidbody == null) {
+			throw new BodyNotInitializedException();
+		}
+
 		return mass;
 	}
 
@@ -109,6 +117,10 @@ public class Body implements IBody {
 	 * @return the linear damping of the body
 	 */
 	public float getDamping() {
+		if (rigidbody == null) {
+			throw new BodyNotInitializedException();
+		}
+
 		return damping;
 	}
 
@@ -133,6 +145,10 @@ public class Body implements IBody {
 	 * @return the angular damping of the body
 	 */
 	public float getAngularDamping() {
+		if (rigidbody == null) {
+			throw new BodyNotInitializedException();
+		}
+
 		return angularDamping;
 	}
 
@@ -157,6 +173,10 @@ public class Body implements IBody {
 	 * @return the collision callback object this body reports to
 	 */
 	public IBodyCollisionCallback getCollisionCallback() {
+		if (rigidbody == null) {
+			throw new BodyNotInitializedException();
+		}
+
 		return collisionCallback;
 	}
 
@@ -168,6 +188,10 @@ public class Body implements IBody {
 	 */
 	public void setCollisionCallback(
 			final IBodyCollisionCallback collisionCallback) {
+		if (rigidbody == null) {
+			throw new BodyNotInitializedException();
+		}
+
 		this.collisionCallback = collisionCallback;
 	}
 

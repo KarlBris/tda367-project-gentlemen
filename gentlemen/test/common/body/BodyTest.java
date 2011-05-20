@@ -25,9 +25,12 @@ import factories.entities.IEntityFactory;
 
 public class BodyTest {
 
+	private static CircleBodyShape shape = new CircleBodyShape(1.0f);
+	private static float mass = 5.0f;
+	private static float damping = 1.0f;
+
 	private static class TestModel implements IModel {
-		private final IBody body = new Body(new CircleBodyShape(1.0f), 5.0f,
-				1.0f);
+		private final IBody body = new Body(shape, mass, damping);
 		private final IGeometry geometry = new NullGeometry();
 
 		@Override
@@ -172,11 +175,33 @@ public class BodyTest {
 	@Test
 	public void testIsStatic() {
 		assertTrue(!body.isStatic());
+
+		// Make sure that it throws an exception if the body is not set up
+		// correctly
+		body = new Body(shape, mass, damping);
+
+		try {
+			body.isStatic();
+			fail();
+		} catch (BodyNotInitializedException e) {
+			// Success
+		}
 	}
 
 	@Test
 	public void testGetMass() {
 		assertTrue(Tools.floatsEqual(body.getMass(), 5.0f));
+
+		// Make sure that it throws an exception if the body is not set up
+		// correctly
+		body = new Body(shape, mass, damping);
+
+		try {
+			body.getMass();
+			fail();
+		} catch (BodyNotInitializedException e) {
+			// Success
+		}
 	}
 
 	@Test
@@ -184,11 +209,33 @@ public class BodyTest {
 		body.setMass(5.0f);
 
 		assertTrue(Tools.floatsEqual(body.getMass(), 5.0f));
+
+		// Make sure that it throws an exception if the body is not set up
+		// correctly
+		body = new Body(shape, mass, damping);
+
+		try {
+			body.setMass(5.0f);
+			fail();
+		} catch (BodyNotInitializedException e) {
+			// Success
+		}
 	}
 
 	@Test
 	public void testGetDamping() {
 		assertTrue(Tools.floatsEqual(body.getDamping(), 1.0f));
+
+		// Make sure that it throws an exception if the body is not set up
+		// correctly
+		body = new Body(shape, mass, damping);
+
+		try {
+			body.getDamping();
+			fail();
+		} catch (BodyNotInitializedException e) {
+			// Success
+		}
 	}
 
 	@Test
@@ -196,12 +243,34 @@ public class BodyTest {
 		body.setDamping(5.0f);
 
 		assertTrue(Tools.floatsEqual(body.getDamping(), 5.0f));
+
+		// Make sure that it throws an exception if the body is not set up
+		// correctly
+		body = new Body(shape, mass, damping);
+
+		try {
+			body.setDamping(5.0f);
+			fail();
+		} catch (BodyNotInitializedException e) {
+			// Success
+		}
 	}
 
 	@Test
 	public void testGetAngularDamping() {
 		assertTrue(Tools.floatsEqual(body.getAngularDamping(),
 				Constants.BODY_DEFAULT_ANGULAR_DAMPING));
+
+		// Make sure that it throws an exception if the body is not set up
+		// correctly
+		body = new Body(shape, mass, damping);
+
+		try {
+			body.getAngularDamping();
+			fail();
+		} catch (BodyNotInitializedException e) {
+			// Success
+		}
 	}
 
 	@Test
@@ -209,11 +278,33 @@ public class BodyTest {
 		body.setAngularDamping(5.0f);
 
 		assertTrue(Tools.floatsEqual(body.getAngularDamping(), 5.0f));
+
+		// Make sure that it throws an exception if the body is not set up
+		// correctly
+		body = new Body(shape, mass, damping);
+
+		try {
+			body.setAngularDamping(5.0f);
+			fail();
+		} catch (BodyNotInitializedException e) {
+			// Success
+		}
 	}
 
 	@Test
 	public void testGetCollisionCallback() {
 		assertTrue(body.getCollisionCallback() == null);
+
+		// Make sure that it throws an exception if the body is not set up
+		// correctly
+		body = new Body(shape, mass, damping);
+
+		try {
+			body.getCollisionCallback();
+			fail();
+		} catch (BodyNotInitializedException e) {
+			// Success
+		}
 	}
 
 	@Test
@@ -221,12 +312,34 @@ public class BodyTest {
 		body.setCollisionCallback(new TestCollisionCallback());
 
 		assertTrue(body.getCollisionCallback() instanceof TestCollisionCallback);
+
+		// Make sure that it throws an exception if the body is not set up
+		// correctly
+		body = new Body(shape, mass, damping);
+
+		try {
+			body.setCollisionCallback(new TestCollisionCallback());
+			fail();
+		} catch (BodyNotInitializedException e) {
+			// Success
+		}
 	}
 
 	@Test
 	public void testGetPosition() {
 		assertTrue(Tools.vectorsEqual(body.getPosition(), new Vector2f(0.0f,
 				0.0f)));
+
+		// Make sure that it throws an exception if the body is not set up
+		// correctly
+		body = new Body(shape, mass, damping);
+
+		try {
+			body.getPosition();
+			fail();
+		} catch (BodyNotInitializedException e) {
+			// Success
+		}
 	}
 
 	@Test
@@ -236,11 +349,33 @@ public class BodyTest {
 		body.setPosition(newPosition);
 
 		assertTrue(Tools.vectorsEqual(body.getPosition(), newPosition));
+
+		// Make sure that it throws an exception if the body is not set up
+		// correctly
+		body = new Body(shape, mass, damping);
+
+		try {
+			body.setPosition(newPosition);
+			fail();
+		} catch (BodyNotInitializedException e) {
+			// Success
+		}
 	}
 
 	@Test
 	public void testGetAngle() {
 		assertTrue(Tools.floatsEqual(body.getAngle(), 0.0f));
+
+		// Make sure that it throws an exception if the body is not set up
+		// correctly
+		body = new Body(shape, mass, damping);
+
+		try {
+			body.getAngle();
+			fail();
+		} catch (BodyNotInitializedException e) {
+			// Success
+		}
 	}
 
 	@Test
@@ -250,6 +385,17 @@ public class BodyTest {
 		body.setAngle(newAngle);
 
 		assertTrue(Tools.floatsEqual(body.getAngle(), newAngle));
+
+		// Make sure that it throws an exception if the body is not set up
+		// correctly
+		body = new Body(shape, mass, damping);
+
+		try {
+			body.setAngle(newAngle);
+			fail();
+		} catch (BodyNotInitializedException e) {
+			// Success
+		}
 	}
 
 	@Test
@@ -277,27 +423,82 @@ public class BodyTest {
 	public void testGetAcceleration() {
 		assertTrue(Tools.vectorsEqual(body.getAcceleration(), new Vector2f(
 				0.0f, 0.0f)));
+
+		// Make sure that it throws an exception if the body is not set up
+		// correctly
+		body = new Body(shape, mass, damping);
+
+		try {
+			body.getAcceleration();
+			fail();
+		} catch (BodyNotInitializedException e) {
+			// Success
+		}
 	}
 
 	@Test
 	public void testGetTorque() {
 		assertTrue(Tools.floatsEqual(body.getTorque(), 0.0f));
+
+		// Make sure that it throws an exception if the body is not set up
+		// correctly
+		body = new Body(shape, mass, damping);
+
+		try {
+			body.getTorque();
+			fail();
+		} catch (BodyNotInitializedException e) {
+			// Success
+		}
 	}
 
 	@Test
 	public void testGetAngularAcceleration() {
 		assertTrue(Tools.floatsEqual(body.getAngularAcceleration(), 0.0f));
+
+		// Make sure that it throws an exception if the body is not set up
+		// correctly
+		body = new Body(shape, mass, damping);
+
+		try {
+			body.getAngularAcceleration();
+			fail();
+		} catch (BodyNotInitializedException e) {
+			// Success
+		}
 	}
 
 	@Test
 	public void testGetVelocity() {
 		assertTrue(Tools.vectorsEqual(body.getVelocity(), new Vector2f(0.0f,
 				0.0f)));
+
+		// Make sure that it throws an exception if the body is not set up
+		// correctly
+		body = new Body(shape, mass, damping);
+
+		try {
+			body.getVelocity();
+			fail();
+		} catch (BodyNotInitializedException e) {
+			// Success
+		}
 	}
 
 	@Test
 	public void testGetAngularVelocity() {
 		assertTrue(Tools.floatsEqual(body.getAngularVelocity(), 0.0f));
+
+		// Make sure that it throws an exception if the body is not set up
+		// correctly
+		body = new Body(shape, mass, damping);
+
+		try {
+			body.getAngularVelocity();
+			fail();
+		} catch (BodyNotInitializedException e) {
+			// Success
+		}
 	}
 
 	@Test
@@ -306,6 +507,17 @@ public class BodyTest {
 
 		assertTrue(Tools.vectorsEqual(body.getVelocityAtPoint(point),
 				new Vector2f(0.0f, 0.0f)));
+
+		// Make sure that it throws an exception if the body is not set up
+		// correctly
+		body = new Body(shape, mass, damping);
+
+		try {
+			body.getVelocityAtPoint(point);
+			fail();
+		} catch (BodyNotInitializedException e) {
+			// Success
+		}
 	}
 
 	@Test
@@ -320,6 +532,17 @@ public class BodyTest {
 		body.applyForce(force);
 
 		assertTrue(Tools.vectorsEqual(body.getAcceleration(), acceleration));
+
+		// Make sure that it throws an exception if the body is not set up
+		// correctly
+		body = new Body(shape, mass, damping);
+
+		try {
+			body.applyForce(force);
+			fail();
+		} catch (BodyNotInitializedException e) {
+			// Success
+		}
 	}
 
 	@Test
@@ -331,6 +554,17 @@ public class BodyTest {
 		body.applyTorque(torque);
 
 		assertTrue(Tools.floatsEqual(body.getTorque(), torque));
+
+		// Make sure that it throws an exception if the body is not set up
+		// correctly
+		body = new Body(shape, mass, damping);
+
+		try {
+			body.applyTorque(torque);
+			fail();
+		} catch (BodyNotInitializedException e) {
+			// Success
+		}
 	}
 
 	@Test
@@ -340,11 +574,20 @@ public class BodyTest {
 		assertTrue(Tools.vectorsEqual(body.getVelocity(), new Vector2f(0.0f,
 				0.0f)));
 
-		System.out.println(velocityChange);
 		body.applyVelocityChange(velocityChange);
-		System.out.println(body.getVelocity());
 
 		assertTrue(Tools.vectorsEqual(body.getVelocity(), velocityChange));
+
+		// Make sure that it throws an exception if the body is not set up
+		// correctly
+		body = new Body(shape, mass, damping);
+
+		try {
+			body.applyVelocityChange(velocityChange);
+			fail();
+		} catch (BodyNotInitializedException e) {
+			// Success
+		}
 	}
 
 	@Test
@@ -356,6 +599,17 @@ public class BodyTest {
 		body.applyAngularVelocityChange(velocityChange);
 
 		assertTrue(Tools.floatsEqual(body.getAngularVelocity(), velocityChange));
+
+		// Make sure that it throws an exception if the body is not set up
+		// correctly
+		body = new Body(shape, mass, damping);
+
+		try {
+			body.applyAngularVelocityChange(velocityChange);
+			fail();
+		} catch (BodyNotInitializedException e) {
+			// Success
+		}
 	}
 
 	@Test
@@ -370,6 +624,17 @@ public class BodyTest {
 
 		assertTrue(Tools.vectorsEqual(body.getVelocity(), new Vector2f(0.0f,
 				0.0f)));
+
+		// Make sure that it throws an exception if the body is not set up
+		// correctly
+		body = new Body(shape, mass, damping);
+
+		try {
+			body.clearVelocity();
+			fail();
+		} catch (BodyNotInitializedException e) {
+			// Success
+		}
 	}
 
 	@Test
@@ -383,6 +648,17 @@ public class BodyTest {
 		body.clearAngularVelocity();
 
 		assertTrue(Tools.floatsEqual(body.getAngularVelocity(), 0.0f));
+
+		// Make sure that it throws an exception if the body is not set up
+		// correctly
+		body = new Body(shape, mass, damping);
+
+		try {
+			body.clearAngularVelocity();
+			fail();
+		} catch (BodyNotInitializedException e) {
+			// Success
+		}
 	}
 
 }
