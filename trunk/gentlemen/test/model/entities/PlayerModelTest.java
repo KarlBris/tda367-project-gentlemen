@@ -16,7 +16,7 @@ import common.body.Body;
 import controller.MainControllerFactory;
 import factories.entities.PlayerOneFactory;
 
-public class PlayerModelTest {
+public final class PlayerModelTest {
 	private PlayerModel model;
 
 	@Before

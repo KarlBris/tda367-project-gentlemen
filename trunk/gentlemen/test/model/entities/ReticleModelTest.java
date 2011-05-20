@@ -11,7 +11,7 @@ import utilities.Tools;
 import controller.MainControllerFactory;
 import factories.entities.KeyboardReticleFactory;
 
-public class ReticleModelTest {
+public final class ReticleModelTest {
 
 	private ReticleModel model;
 

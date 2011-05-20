@@ -11,7 +11,7 @@ import controller.MainControllerFactory;
 import factories.entities.RuleFactory;
 import factories.entities.TeamFactory;
 
-public class RuleModelTest {
+public final class RuleModelTest {
 
 	private RuleModel model;
 

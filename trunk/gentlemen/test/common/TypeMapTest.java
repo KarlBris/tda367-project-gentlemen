@@ -12,7 +12,7 @@ import org.junit.Test;
 
 import common.TypeMap;
 
-public class TypeMapTest {
+public final class TypeMapTest {
 
 	private static TypeMap<Object> map;
 

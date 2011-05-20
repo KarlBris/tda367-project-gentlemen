@@ -11,7 +11,7 @@ import utilities.Tools;
 import controller.MainControllerFactory;
 import factories.entities.ScoreboardFactory;
 
-public class ScoreboardModelTest {
+public final class ScoreboardModelTest {
 
 	private ScoreboardModel model;
 

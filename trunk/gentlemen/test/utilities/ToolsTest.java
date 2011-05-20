@@ -13,7 +13,7 @@ import org.lwjgl.util.vector.Vector2f;
 
 import controller.MainControllerFactory;
 
-public class ToolsTest {
+public final class ToolsTest {
 
 	@Before
 	public void setUp() throws Exception {

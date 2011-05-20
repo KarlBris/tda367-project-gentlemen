@@ -15,7 +15,7 @@ import common.body.Body;
 import controller.MainControllerFactory;
 import factories.entities.BallFactory;
 
-public class BallModelTest {
+public final class BallModelTest {
 	private BallModel model;
 
 	@Before
