@@ -7,7 +7,7 @@ import controller.IMainController;
 import controller.MainControllerFactory;
 import factories.entities.PropFactory;
 
-public class TestLevel extends AbstractLevel {
+public final class TestLevel extends AbstractLevel {
 
 	private IMainController main = MainControllerFactory.get();
 
