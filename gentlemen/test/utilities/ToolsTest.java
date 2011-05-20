@@ -1,5 +1,6 @@
 package utilities;
 
+import static org.junit.Assert.*;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
@@ -7,8 +8,12 @@ import org.jbox2d.common.Vec2;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.lwjgl.LWJGLException;
+import org.lwjgl.opengl.Display;
 import org.lwjgl.util.Point;
 import org.lwjgl.util.vector.Vector2f;
+
+import controller.MainControllerFactory;
 
 public class ToolsTest {
 
@@ -16,11 +21,13 @@ public class ToolsTest {
 	public void setUp() throws Exception {
 
 		Tools.identifyOS();
-
+	
 	}
 
 	@After
 	public void tearDown() throws Exception {
+		Display.destroy();
+		MainControllerFactory.get().removeAll();
 	}
 
 	@Test
@@ -161,6 +168,18 @@ public class ToolsTest {
 		testVector = Tools.angleToVector(testAngle);
 		assertTrue(Tools.floatsEqual(testVector.x, (float) (1 / Math.sqrt(2))));
 		assertTrue(Tools.floatsEqual(testVector.y, (float) (-1 / Math.sqrt(2))));
+		
+		// Test that a non-numeric float is correctly handled
+		testAngle = Float.NaN;
+		testVector = Tools.angleToVector(testAngle);
+		assertTrue(Tools.floatsEqual(testVector.x, (float) (1.0)));
+		assertTrue(Tools.floatsEqual(testVector.y, (float) (0.0)));
+		
+		// Test that an infinite float is correctly handled
+		testAngle = Float.POSITIVE_INFINITY;
+		testVector = Tools.angleToVector(testAngle);
+		assertTrue(Tools.floatsEqual(testVector.x, (float) (1.0)));
+		assertTrue(Tools.floatsEqual(testVector.y, (float) (0.0)));
 	}
 
 	@Test
@@ -185,6 +204,17 @@ public class ToolsTest {
 		assertTrue(Tools.floatsEqual(Math.abs(testAngle),
 				Constants.TWO_PI * 3.0f / 4.0f));
 		assertTrue(testAngle > 0.0f);
+		
+		// Test that a vector of {Float.NaN, 0.0f} should produce an angle of 0.0
+		testVector = new Vector2f(Float.NaN, 0.0f);
+		testAngle = Tools.vectorToAngle(testVector);
+		assertTrue(Tools.floatsEqual(Math.abs(testAngle), 0.0f));
+		
+		// Test that a vector of {Float.POSITIVE_INFINITY, 0.0f} should produce an angle of 0.0
+		testVector = new Vector2f(Float.POSITIVE_INFINITY, 0.0f);
+		testAngle = Tools.vectorToAngle(testVector);
+		assertTrue(Tools.floatsEqual(Math.abs(testAngle), 0.0f));
+		
 	}
 
 	@Test
@@ -276,7 +306,7 @@ public class ToolsTest {
 		assertTrue(testVector.x == clonedVector.x);
 		assertTrue(testVector.y == clonedVector.y);
 	}
-
+	
 	@Test
 	public void testScreenToViewport() {
 
@@ -299,8 +329,8 @@ public class ToolsTest {
 
 		assertTrue(Tools.floatsEqual((float) testScreen.getX()
 				/ (float) testScreen.getY(), 8.0f / 4.0f));
-	}
-
+	}	
+	
 	@Test
 	public void testIsVectorsEqual() {
 		// Test different vectors;
@@ -313,5 +343,45 @@ public class ToolsTest {
 		assertTrue(!Tools.vectorsEqual(new Vector2f(-10.0f, -10.0f),
 				new Vector2f(10.0f, 10.0f)));
 	}
+	
+	@Test
+	public void testRandomVectorInAreaVector2fVector2f(){
+		// Test that the random vector that is created is not larger than allowed
+		Vector2f start = new Vector2f(1.0f, 1.0f);
+		Vector2f size = new Vector2f(2.0f, 2.0f);
+		Vector2f testVector = Tools.randomVectorInArea(start, size);
+		assertTrue(testVector.x <= start.x + size.x);
+		assertTrue(testVector.y <= start.y + size.y);
+		
+		// Test that the random vector that is created is (0.0f, 0.0f), since this is the only allowed vector
+		start = new Vector2f(0.0f, 0.0f);
+		size = new Vector2f(0.0f, 0.0f);
+		testVector = Tools.randomVectorInArea(start, size);
+		assertTrue(Tools.vectorsEqual(testVector, size));
+		
+	}
 
+	@Test
+	public void testRandomVectorInAreaVector2fVector2fVector2f(){
+		// Test that the random vector that is created is not larger than allowed
+		Vector2f start = new Vector2f(1.0f, 1.0f);
+		Vector2f size = new Vector2f(2.0f, 2.0f);
+		Vector2f firstRestriction = new Vector2f(1.5f, 1.5f);
+		Vector2f secondRestriction = new Vector2f(2.0f, 2.0f);
+		
+		Vector2f[] restrictions = {firstRestriction, secondRestriction};
+		Vector2f testVector = Tools.randomVectorInArea(start, size, restrictions);
+		
+		assertTrue(testVector.x <= start.x + size.x);
+		assertTrue(testVector.y <= start.y + size.y);
+		assertTrue(!Tools.vectorsEqual(testVector, firstRestriction));
+		assertTrue(!Tools.vectorsEqual(testVector, secondRestriction));
+		
+		// Test that the random vector that is created is (0.0f, 0.0f), since this is
+		// the vector that is returned when the randomization has failed 100 times
+		start = new Vector2f(0.0f, 0.0f);
+		size = new Vector2f(0.0f, 0.0f);
+		testVector = Tools.randomVectorInArea(start, size, restrictions);
+		assertTrue(Tools.vectorsEqual(testVector, size));
+	}	
 }

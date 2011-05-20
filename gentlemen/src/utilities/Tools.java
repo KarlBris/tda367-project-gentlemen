@@ -271,6 +271,7 @@ public class Tools {
 		float posX, posY;
 		Vector2f newVector = new Vector2f(0.0f, 0.0f);
 		boolean tooClose = true;
+		int randomizations = 0;
 
 		while (tooClose == true) {
 			posX = (float) Math.random() * size.x + start.x;
@@ -278,8 +279,9 @@ public class Tools {
 			newVector.set(posX, posY);
 
 			for (Vector2f restriction : restrictions) {
-				if (distanceBetween(newVector, restriction) < 4) {
+				if (distanceBetween(newVector, restriction) < 4 && randomizations < 100) {
 					tooClose = true;
+					randomizations++;
 					break;
 				} else {
 					tooClose = false;
