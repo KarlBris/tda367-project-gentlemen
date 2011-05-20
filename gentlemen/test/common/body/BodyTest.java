@@ -26,7 +26,7 @@ import factories.entities.IEntityFactory;
 public class BodyTest {
 
 	private static class TestModel implements IModel {
-		private final IBody body = new Body(new CircleBodyShape(1.0f), 1.0f,
+		private final IBody body = new Body(new CircleBodyShape(1.0f), 5.0f,
 				1.0f);
 		private final IGeometry geometry = new NullGeometry();
 
@@ -176,7 +176,7 @@ public class BodyTest {
 
 	@Test
 	public void testGetMass() {
-		assertTrue(Tools.floatsEqual(body.getMass(), 1.0f));
+		assertTrue(Tools.floatsEqual(body.getMass(), 5.0f));
 	}
 
 	@Test
@@ -340,7 +340,9 @@ public class BodyTest {
 		assertTrue(Tools.vectorsEqual(body.getVelocity(), new Vector2f(0.0f,
 				0.0f)));
 
+		System.out.println(velocityChange);
 		body.applyVelocityChange(velocityChange);
+		System.out.println(body.getVelocity());
 
 		assertTrue(Tools.vectorsEqual(body.getVelocity(), velocityChange));
 	}
