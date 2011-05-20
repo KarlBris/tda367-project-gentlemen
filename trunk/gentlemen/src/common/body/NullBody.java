@@ -3,7 +3,7 @@ package common.body;
 import org.jbox2d.dynamics.World;
 import org.lwjgl.util.vector.Vector;
 
-public class NullBody implements IBody {
+public final class NullBody implements IBody {
 
 	@Override
 	public void addToWorld(final World world) {

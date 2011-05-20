@@ -7,7 +7,7 @@ import utilities.Color;
 /**
  * This class represents a nonexistent geometry
  */
-public class NullGeometry implements IGeometry {
+public final class NullGeometry implements IGeometry {
 
 	private Vector2f[] vertices = {};
 	private Vector2f[] uvs = {};

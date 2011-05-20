@@ -7,7 +7,7 @@ import common.geometry.AbstractGeometry;
 
 import utilities.Color;
 
-public class RectangleGeometry extends AbstractGeometry {
+public final class RectangleGeometry extends AbstractGeometry {
 
 	private final Vector2f[] vertices = {
 			new Vector2f(-0.5f, -0.5f), // Top-right triangle

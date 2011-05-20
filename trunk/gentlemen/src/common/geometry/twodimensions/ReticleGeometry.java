@@ -10,7 +10,7 @@ import utilities.Color;
  * ReticleGeometry represents the reticle geometry.
  * 
  */
-public class ReticleGeometry extends AbstractGeometry {
+public final class ReticleGeometry extends AbstractGeometry {
 	private static float length = 0.4f;
 	private static float width = 0.05f;
 	private static float distance = 0.1f;
