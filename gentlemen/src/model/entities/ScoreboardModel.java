@@ -12,7 +12,7 @@ import common.geometry.NullGeometry;
  * their score is read every update() and printed on the window
  * 
  */
-public class ScoreboardModel implements IModel {
+public final class ScoreboardModel implements IModel {
 
 	private final IGeometry geometry = new NullGeometry();
 	private final IBody body = new NullBody();

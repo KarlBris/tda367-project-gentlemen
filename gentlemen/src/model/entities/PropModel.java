@@ -16,7 +16,7 @@ import common.geometry.twodimensions.RectangleGeometry;
 /**
  * Represent inanimate within the game world.
  */
-public class PropModel implements IModel {
+public final class PropModel implements IModel {
 
 	private final AbstractGeometry geometry;
 

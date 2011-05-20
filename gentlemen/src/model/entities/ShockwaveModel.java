@@ -17,7 +17,7 @@ import common.geometry.twodimensions.CircleGeometry;
 /**
  * Represents a shockwave in the game
  */
-public class ShockwaveModel implements IModel {
+public final class ShockwaveModel implements IModel {
 
 	private final AbstractGeometry geometry = new CircleGeometry(Color.RED,
 			0.05f, 0.5f, 5);

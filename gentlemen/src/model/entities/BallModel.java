@@ -17,7 +17,7 @@ import common.geometry.twodimensions.CircleGeometry;
 /**
  * Represents a ball which can be interacted with by other objects
  */
-public class BallModel implements IModel {
+public final class BallModel implements IModel {
 
 	private final AbstractGeometry geometry = new CircleGeometry(
 			utilities.Color.randomColor(), 0.1f, 0.2f, 8);

@@ -18,7 +18,7 @@ import common.geometry.twodimensions.CircleGeometry;
 /**
  * PlayerModel represents a player in the game world
  */
-public class PlayerModel implements IModel {
+public final class PlayerModel implements IModel {
 
 	private final AbstractGeometry geometry;
 
