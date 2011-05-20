@@ -11,7 +11,7 @@ import controller.common.IController;
 /**
  * This class controls a flag model
  */
-public class FlagController implements IController<FlagModel> {
+public final class FlagController implements IController<FlagModel> {
 
 	private final FlagModel model;
 

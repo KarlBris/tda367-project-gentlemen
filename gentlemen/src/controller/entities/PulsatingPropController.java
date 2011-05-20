@@ -11,7 +11,7 @@ import controller.common.IController;
 /**
  * This class controls a prop model
  */
-public class PulsatingPropController implements IController<PropModel> {
+public final class PulsatingPropController implements IController<PropModel> {
 
 	private final PropModel model;
 

@@ -9,7 +9,7 @@ import controller.common.IController;
 /**
  * This class controls a keyboardReticle model
  */
-public class KeyboardReticleController implements IController<ReticleModel> {
+public final class KeyboardReticleController implements IController<ReticleModel> {
 
 	private final ReticleModel model;
 

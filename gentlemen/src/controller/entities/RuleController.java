@@ -9,7 +9,7 @@ import controller.common.IController;
 /**
  * This class controls a rule model
  */
-public class RuleController implements IController<RuleModel> {
+public final class RuleController implements IController<RuleModel> {
 
 	private final RuleModel model;
 

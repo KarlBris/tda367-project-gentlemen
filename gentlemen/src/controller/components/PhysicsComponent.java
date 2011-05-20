@@ -8,7 +8,7 @@ import org.jbox2d.dynamics.World;
 import utilities.Constants;
 import controller.common.IController;
 
-public class PhysicsComponent implements IComponent {
+public final class PhysicsComponent implements IComponent {
 
 	private final World world = new World(new Vec2(0.0f, 0.0f), true);
 

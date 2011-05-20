@@ -15,7 +15,7 @@ import common.body.IBodyCollisionCallback;
 
 import utilities.Tools;
 
-public class PhysicsContactListener implements ContactListener {
+public final class PhysicsContactListener implements ContactListener {
 
 	@Override
 	public void beginContact(final Contact arg0) {

@@ -17,7 +17,7 @@ import controller.components.MouseComponent;
 import controller.components.PhysicsComponent;
 import factories.entities.IEntityFactory;
 
-public class MainController implements IMainController {
+public final class MainController implements IMainController {
 
 	private static MainController instance;
 

@@ -10,7 +10,7 @@ import controller.common.IController;
  * Provides functionality related to keyboard input by reading the state of the
  * keyboard each frame
  */
-public class KeyboardComponent implements IComponent {
+public final class KeyboardComponent implements IComponent {
 
 	// An array of booleans representing the current state of the keyboard
 	private final boolean[] keyDownArray = new boolean[Keyboard.KEYBOARD_SIZE];
