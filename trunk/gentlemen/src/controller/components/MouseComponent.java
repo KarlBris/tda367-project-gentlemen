@@ -12,7 +12,7 @@ import controller.common.IController;
  * Provides mouse input functionality by reading the mouse state with each frame
  * 
  */
-public class MouseComponent implements IComponent {
+public final class MouseComponent implements IComponent {
 
 	// An array of booleans representing current state of the three normally
 	// occuring mouse buttons

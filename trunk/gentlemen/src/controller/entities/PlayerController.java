@@ -24,7 +24,7 @@ import factories.entities.KeyboardReticleFactory;
 /**
  * This class controls a player model
  */
-public class PlayerController implements IController<PlayerModel>,
+public final class PlayerController implements IController<PlayerModel>,
 		IBodyCollisionCallback {
 
 	private final IMainController main = MainControllerFactory.get();

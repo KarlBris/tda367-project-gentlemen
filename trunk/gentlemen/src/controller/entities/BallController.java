@@ -16,7 +16,7 @@ import factories.entities.ShockwaveFactory;
 /**
  * This class controls a ball model
  */
-public class BallController implements IController<BallModel>,
+public final class BallController implements IController<BallModel>,
 		IBodyCollisionCallback {
 
 	private final BallModel model;

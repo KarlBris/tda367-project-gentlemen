@@ -10,7 +10,7 @@ import controller.common.IController;
 /**
  * This class controls a shockwave model
  */
-public class ShockwaveController implements IController<ShockwaveModel> {
+public final class ShockwaveController implements IController<ShockwaveModel> {
 
 	private final ShockwaveModel model;
 

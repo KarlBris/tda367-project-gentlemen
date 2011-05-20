@@ -7,7 +7,7 @@ import org.lwjgl.util.vector.Vector2f;
 import utilities.Color;
 import controller.common.IController;
 
-public class PropController implements IController<PropModel> {
+public final class PropController implements IController<PropModel> {
 
 	private final PropModel model;
 

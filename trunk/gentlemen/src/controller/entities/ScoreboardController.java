@@ -12,7 +12,7 @@ import controller.common.IController;
 /**
  * This class controls a scoreboard model
  */
-public class ScoreboardController implements IController<ScoreboardModel> {
+public final class ScoreboardController implements IController<ScoreboardModel> {
 
 	private final ScoreboardModel model;
 

@@ -9,7 +9,7 @@ import controller.common.IController;
 /**
  * This class controls a team model
  */
-public class TeamController implements IController<TeamModel> {
+public final class TeamController implements IController<TeamModel> {
 
 	private final TeamModel model;
 
