@@ -52,7 +52,7 @@ public class BallModelTest {
 				Constants.BALL_LETHAL_SPEED + 1));
 		assertTrue(bm.isLethal(relativeVelocity));
 
-		((Body) bm.getBody()).clearVelocity();
+		// ((Body) bm.getBody()).clearVelocity();
 	}
 
 	@Test
@@ -142,7 +142,25 @@ public class BallModelTest {
 
 	@Test
 	public void testUpdate() {
-		// Update is to fat for testing at the moment
+		// Test update not generating errors
+		bm.update();
 	}
 
+	@Test
+	public void testGetVelocity() {
+
+		// The velocity should be zero at start
+		assertTrue(Tools.vectorsEqual(bm.getVelocity(),
+				new Vector2f(0.0f, 0.0f)));
+
+		((Body) bm.getBody()).applyVelocityChange(new Vector2f(20.0f, 0.0f));
+		// The velocity should have changed
+		assertTrue(Tools.vectorsEqual(bm.getVelocity(), new Vector2f(20.0f,
+				0.0f)));
+		((Body) bm.getBody()).applyVelocityChange(new Vector2f(0.0f, 20.0f));
+		// The velocity should have changed
+		assertTrue(Tools.vectorsEqual(bm.getVelocity(), new Vector2f(20.0f,
+				20.0f)));
+
+	}
 }
