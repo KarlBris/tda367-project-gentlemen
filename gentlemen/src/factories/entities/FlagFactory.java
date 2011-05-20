@@ -4,7 +4,7 @@ import model.entities.FlagModel;
 import utilities.Color;
 import controller.entities.FlagController;
 
-public class FlagFactory implements IEntityFactory<FlagModel, FlagController> {
+public final class FlagFactory implements IEntityFactory<FlagModel, FlagController> {
 
 	private final FlagModel model = new FlagModel(Color.BLACK);
 	private final FlagController controller = new FlagController(model);

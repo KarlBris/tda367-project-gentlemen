@@ -4,7 +4,7 @@ import model.entities.PropModel;
 import utilities.Color;
 import controller.entities.PulsatingPropController;
 
-public class BuildingPropFactory implements
+public final class BuildingPropFactory implements
 		IEntityFactory<PropModel, PulsatingPropController> {
 
 	private float sizeX = (float) Math.random() * 3 + 3;

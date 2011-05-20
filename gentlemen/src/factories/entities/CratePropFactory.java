@@ -4,7 +4,7 @@ import model.entities.PropModel;
 import utilities.Color;
 import controller.entities.PropController;
 
-public class CratePropFactory implements
+public final class CratePropFactory implements
 		IEntityFactory<PropModel, PropController> {
 
 	private final PropModel model = new PropModel(1.0f, 0.5f, 0.5f, 5.0f,

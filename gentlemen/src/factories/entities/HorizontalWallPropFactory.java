@@ -5,7 +5,7 @@ import utilities.Color;
 import utilities.Constants;
 import controller.entities.PulsatingPropController;
 
-public class HorizontalWallPropFactory implements
+public final class HorizontalWallPropFactory implements
 		IEntityFactory<PropModel, PulsatingPropController> {
 
 	private final PropModel model = new PropModel(0.2f,

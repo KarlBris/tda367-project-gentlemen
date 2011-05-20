@@ -7,7 +7,7 @@ import org.lwjgl.input.Keyboard;
 import utilities.Constants;
 import controller.entities.PlayerController;
 
-public class PlayerTwoFactory implements
+public final class PlayerTwoFactory implements
 		IEntityFactory<PlayerModel, PlayerController> {
 
 	private final PlayerModel model = new PlayerModel(Constants.TEAM_TWO_COLOR);
