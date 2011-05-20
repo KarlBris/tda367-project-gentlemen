@@ -299,6 +299,7 @@ public class Body implements IBody {
 	/**
 	 * @return the current linear velocity of the body
 	 */
+	@Override
 	public Vector2f getVelocity() {
 		if (rigidbody == null) {
 			throw new BodyNotInitializedException();
@@ -400,9 +401,9 @@ public class Body implements IBody {
 			throw new BodyNotInitializedException();
 		}
 
-		final Vec2 impulse = Tools.toPhysicsVector(velocityChange);
+		Vec2 impulse = Tools.toPhysicsVector(velocityChange);
 
-		impulse.mul(rigidbody.getMass());
+		impulse.mulLocal(rigidbody.getMass());
 
 		rigidbody.applyLinearImpulse(impulse, rigidbody.getWorldCenter());
 	}
