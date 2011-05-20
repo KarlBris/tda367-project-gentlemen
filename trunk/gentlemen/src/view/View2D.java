@@ -1,6 +1,6 @@
 package view;
 
-import java.util.List;
+import java.util.Collection;
 
 import model.IMainModel;
 import model.MainModelFactory;
@@ -14,7 +14,6 @@ import utilities.Constants;
 import utilities.Tools;
 
 import common.geometry.IGeometry;
-
 
 public final class View2D implements IView {
 
@@ -86,7 +85,7 @@ public final class View2D implements IView {
 		GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
 
 		// Render all models
-		final List<IModel> models = mainModel.getModels();
+		final Collection<IModel> models = mainModel.getModels();
 
 		for (final IModel m : models) {
 

@@ -1,6 +1,6 @@
 package model;
 
-import java.util.List;
+import java.util.Collection;
 
 import model.common.IModel;
 
@@ -10,6 +10,6 @@ public interface IMainModel {
 
 	public void remove(IModel model);
 
-	public List<IModel> getModels();
+	public Collection<IModel> getModels();
 
 }

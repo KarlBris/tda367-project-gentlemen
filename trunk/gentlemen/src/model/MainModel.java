@@ -1,6 +1,6 @@
 package model;
 
-import java.util.List;
+import java.util.Collection;
 
 import model.common.IModel;
 
@@ -35,7 +35,7 @@ public class MainModel implements IMainModel {
 	}
 
 	@Override
-	public List<IModel> getModels() {
+	public Collection<IModel> getModels() {
 		return models.getItems();
 	}
 

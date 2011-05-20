@@ -1,6 +1,6 @@
 package controller;
 
-import java.util.List;
+import java.util.Collection;
 
 import model.IMainModel;
 import model.MainModelFactory;
@@ -99,7 +99,7 @@ public final class MainController implements IMainController {
 
 	@Override
 	public void removeAll() {
-		List<IController<? extends IModel>> controllers = getControllers();
+		Collection<IController<? extends IModel>> controllers = getControllers();
 
 		for (IController<? extends IModel> controller : controllers) {
 			remove(controller);
@@ -107,13 +107,13 @@ public final class MainController implements IMainController {
 	}
 
 	@Override
-	public <M extends IModel, C extends IController<M>> List<C> find(
+	public <M extends IModel, C extends IController<M>> Collection<C> find(
 			final Class<C> type) {
 		return controllerMap.find(type);
 	}
 
 	@Override
-	public List<IController<? extends IModel>> getControllers() {
+	public Collection<IController<? extends IModel>> getControllers() {
 		return controllerMap.getItems();
 	}
 
@@ -146,7 +146,7 @@ public final class MainController implements IMainController {
 		}
 
 		// Update all controllers
-		final List<IController<? extends IModel>> allControllers = controllerMap
+		final Collection<IController<? extends IModel>> allControllers = controllerMap
 				.getItems();
 
 		for (final IController<? extends IModel> controller : allControllers) {

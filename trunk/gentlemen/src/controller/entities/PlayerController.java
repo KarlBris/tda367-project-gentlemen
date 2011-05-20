@@ -1,6 +1,6 @@
 package controller.entities;
 
-import java.util.List;
+import java.util.Collection;
 
 import model.entities.PlayerModel;
 
@@ -312,7 +312,7 @@ public final class PlayerController implements IController<PlayerModel>,
 	 */
 	private boolean captureEnemyFlag() {
 		if (model.isCarryingFlag()) {
-			final List<FlagController> flagControllers = main
+			final Collection<FlagController> flagControllers = main
 					.find(FlagController.class);
 			for (final FlagController fc : flagControllers) {
 				if (fc.getTeam() == this.teamController) {
@@ -340,7 +340,7 @@ public final class PlayerController implements IController<PlayerModel>,
 	 */
 	private boolean returnTeamFlag() {
 
-		final List<FlagController> flagControllers = main
+		final Collection<FlagController> flagControllers = main
 				.find(FlagController.class);
 		for (final FlagController fc : flagControllers) {
 			if (fc.getTeam() == this.teamController) {
@@ -365,7 +365,7 @@ public final class PlayerController implements IController<PlayerModel>,
 	 */
 	private boolean pickUpFlag() {
 		if (!model.isCarryingFlag() && !model.isKnockedOut()) {
-			final List<FlagController> flagControllers = main
+			final Collection<FlagController> flagControllers = main
 					.find(FlagController.class);
 			for (final FlagController fc : flagControllers) {
 				if (fc.getTeam() != this.teamController) {
@@ -425,7 +425,7 @@ public final class PlayerController implements IController<PlayerModel>,
 	private boolean pickUpBall() {
 
 		if (!model.isCarryingBall()) {
-			final List<BallController> listOfBalls = main
+			final Collection<BallController> listOfBalls = main
 					.find(BallController.class);
 
 			for (final BallController bc : listOfBalls) {

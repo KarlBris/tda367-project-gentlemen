@@ -2,15 +2,13 @@ package common;
 
 import static org.junit.Assert.assertTrue;
 
-import java.util.List;
+import java.util.Collection;
 
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-
-import common.TypeMap;
 
 public final class TypeMapTest {
 
@@ -89,17 +87,17 @@ public final class TypeMapTest {
 	@Test
 	public void testFind() {
 
-		List<A> listA = map.find(A.class);
-		assertTrue(listA.size() == 1);
-		assertTrue(listA.get(0) == a);
+		Collection<A> collectionA = map.find(A.class);
+		assertTrue(collectionA.size() == 1);
+		assertTrue(collectionA.contains(a));
 
-		List<B> listB = map.find(B.class);
-		assertTrue(listB.size() == 2);
-		assertTrue((listB.get(0) == b1 && listB.get(1) == b2)
-				|| (listB.get(0) == b2 && listB.get(1) == b1));
+		Collection<B> collectionB = map.find(B.class);
+		assertTrue(collectionB.size() == 2);
+		assertTrue(collectionB.contains(b1));
+		assertTrue(collectionB.contains(b2));
 
-		List<C> listC = map.find(C.class);
-		assertTrue(listC.size() == 0);
+		Collection<C> collectionC = map.find(C.class);
+		assertTrue(collectionC.size() == 0);
 	}
 
 	@Test
