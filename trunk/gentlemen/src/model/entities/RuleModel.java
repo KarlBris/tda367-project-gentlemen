@@ -14,7 +14,7 @@ import common.geometry.NullGeometry;
  * whether a scoring team has won or not
  * 
  */
-public class RuleModel implements IModel {
+public final class RuleModel implements IModel {
 
 	private final IGeometry geometry = new NullGeometry();
 	private final IBody body = new NullBody();

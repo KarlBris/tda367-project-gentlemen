@@ -14,7 +14,7 @@ import common.geometry.NullGeometry;
 /**
  * Represents a team in the game
  */
-public class TeamModel implements IModel {
+public final class TeamModel implements IModel {
 
 	private Vector2f homePosition;
 

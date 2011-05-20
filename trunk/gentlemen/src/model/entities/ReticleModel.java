@@ -13,7 +13,7 @@ import common.geometry.twodimensions.ReticleGeometry;
 /**
  * Represents a reticle in the game
  */
-public class ReticleModel implements IModel {
+public final class ReticleModel implements IModel {
 
 	private final AbstractGeometry geometry = new ReticleGeometry();
 	private final IBody body = new NullBody();

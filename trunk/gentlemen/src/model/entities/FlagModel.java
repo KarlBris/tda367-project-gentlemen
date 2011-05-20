@@ -15,7 +15,7 @@ import common.geometry.twodimensions.CircleGeometry;
 /**
  * Represents a flag which players can interact with
  */
-public class FlagModel implements IModel {
+public final class FlagModel implements IModel {
 	private final AbstractGeometry geometry;
 	private final IBody body = new NullBody();
 
