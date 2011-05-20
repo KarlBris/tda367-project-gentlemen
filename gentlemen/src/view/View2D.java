@@ -16,7 +16,7 @@ import utilities.Tools;
 import common.geometry.IGeometry;
 
 
-public class View2D implements IView {
+public final class View2D implements IView {
 
 	private static View2D instance;
 

@@ -10,7 +10,7 @@ import org.lwjgl.util.vector.Vector2f;
 /**
  * This class contains static methods used by many parts of the game
  */
-public class Tools {
+public final class Tools {
 
 	/**
 	 * Clamps a value to the range [min, max]
