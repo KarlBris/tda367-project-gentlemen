@@ -4,13 +4,12 @@ import model.entities.PlayerModel;
 
 import org.lwjgl.input.Keyboard;
 
-import utilities.Constants;
 import controller.entities.PlayerController;
 
 public final class PlayerOneFactory implements
 		IEntityFactory<PlayerModel, PlayerController> {
 
-	private final PlayerModel model = new PlayerModel(Constants.TEAM_ONE_COLOR);
+	private final PlayerModel model = new PlayerModel();
 	private final PlayerController controller = new PlayerController(model,
 			Keyboard.KEY_D, Keyboard.KEY_A, Keyboard.KEY_W, Keyboard.KEY_S,
 			Keyboard.KEY_V, Keyboard.KEY_V);

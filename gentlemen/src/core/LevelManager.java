@@ -3,6 +3,7 @@ package core;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.util.vector.Vector2f;
 
+import utilities.Color;
 import utilities.Constants;
 import controller.IMainController;
 import controller.MainControllerFactory;
@@ -16,6 +17,7 @@ import core.levels.AbstractLevel;
 import core.levels.LevelOne;
 import core.levels.LevelTwo;
 import core.levels.RandomLevel;
+import core.levels.WinLevel;
 import factories.entities.BallFactory;
 import factories.entities.FlagFactory;
 import factories.entities.PlayerOneFactory;
@@ -54,6 +56,16 @@ public final class LevelManager {
 			main.removeAll();
 			initializeEntities(new LevelTwo());
 		}
+
+		for (final TeamController tc : main.find(TeamController.class)) {
+			if (tc.hasWon) {
+				final Color winColor = tc.getColor();
+				main.removeAll();
+				new WinLevel(winColor);
+
+				break;
+			}
+		}
 	}
 
 	/**
@@ -62,7 +74,6 @@ public final class LevelManager {
 	public void initializeEntities(final AbstractLevel level) {
 
 		buildTeams(level);
-
 	}
 
 	private void buildTeams(final AbstractLevel level) {
@@ -82,6 +93,9 @@ public final class LevelManager {
 
 		teamOne.setRules(rules);
 		teamTwo.setRules(rules);
+
+		teamOne.setColor(Constants.TEAM_ONE_COLOR);
+		teamTwo.setColor(Constants.TEAM_TWO_COLOR);
 
 		teamOne.setTeamName("Red Team");
 		teamOne.setHomePosition(level.getTeamOneHomePosition());
@@ -110,8 +124,8 @@ public final class LevelManager {
 		teamOneFlag.setTeam(teamOne);
 		teamTwoFlag.setTeam(teamTwo);
 
-		teamOneFlag.setColor(Constants.TEAM_ONE_COLOR);
-		teamTwoFlag.setColor(Constants.TEAM_TWO_COLOR);
+		// teamOneFlag.setColor(Constants.TEAM_ONE_COLOR);
+		// teamTwoFlag.setColor(Constants.TEAM_TWO_COLOR);
 
 		// Instantiate scoreboard
 

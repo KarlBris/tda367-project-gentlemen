@@ -7,6 +7,7 @@ import model.entities.PlayerModel;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.util.vector.Vector2f;
 
+import utilities.Color;
 import utilities.Constants;
 import utilities.Tools;
 
@@ -270,7 +271,13 @@ public final class PlayerController implements IController<PlayerModel>,
 	 */
 	public void setTeam(final TeamController team) {
 		this.teamController = team;
+		setColor(team.getColor());
 		setPosition(team.getHomePosition());
+
+	}
+
+	private void setColor(final Color color) {
+		model.setColor(color);
 
 	}
 

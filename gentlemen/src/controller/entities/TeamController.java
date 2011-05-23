@@ -4,6 +4,7 @@ import model.entities.TeamModel;
 
 import org.lwjgl.util.vector.Vector2f;
 
+import utilities.Color;
 import controller.common.IController;
 
 /**
@@ -14,6 +15,8 @@ public final class TeamController implements IController<TeamModel> {
 	private final TeamModel model;
 
 	private RuleController ruleController;
+
+	public boolean hasWon = false;
 
 	public TeamController(final TeamModel model) {
 		this.model = model;
@@ -32,7 +35,7 @@ public final class TeamController implements IController<TeamModel> {
 		model.addScore(amount);
 
 		// Check with rules. If won, celebrate!
-		ruleController.checkVictory(getScore(), getTeamName());
+		hasWon = ruleController.checkVictory(getScore(), getTeamName());
 
 	}
 
@@ -142,4 +145,13 @@ public final class TeamController implements IController<TeamModel> {
 	public RuleController getRules() {
 		return ruleController;
 	}
+
+	public Color getColor() {
+		return model.getColor();
+	}
+
+	public void setColor(final Color color) {
+		model.setColor(color);
+	}
+
 }

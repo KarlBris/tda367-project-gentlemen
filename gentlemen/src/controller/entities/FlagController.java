@@ -107,6 +107,7 @@ public final class FlagController implements IController<FlagModel> {
 	public void setTeam(final TeamController team) {
 		this.teamController = team;
 		setPosition(team.getHomePosition());
+		setColor(team.getColor());
 	}
 
 	/**

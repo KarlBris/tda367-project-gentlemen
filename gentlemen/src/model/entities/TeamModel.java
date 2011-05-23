@@ -4,6 +4,7 @@ import model.common.IModel;
 
 import org.lwjgl.util.vector.Vector2f;
 
+import utilities.Color;
 import utilities.Tools;
 
 import common.body.IBody;
@@ -24,6 +25,8 @@ public final class TeamModel implements IModel {
 	private final IBody body = new NullBody();
 
 	private int totalScore = 0;
+
+	private Color color = Color.BLACK;
 
 	/**
 	 * Add an amount to the team score
@@ -134,6 +137,14 @@ public final class TeamModel implements IModel {
 			totalScore += amount;
 
 		}
+	}
+
+	public Color getColor() {
+		return color;
+	}
+
+	public void setColor(final Color color) {
+		this.color = color;
 	}
 
 }
