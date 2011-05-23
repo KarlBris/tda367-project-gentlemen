@@ -9,21 +9,33 @@ import controller.MainControllerFactory;
 import factories.entities.BuildingPropFactory;
 import factories.entities.CratePropFactory;
 
-public final class RandomLevel extends AbstractLevel {
+public final class RandomLevel extends SuperLevel {
 
 	private IMainController main = MainControllerFactory.get();
 
 	public RandomLevel() {
-		super(Constants.TEAM_ONE_HOME_POSITION,
-				Constants.TEAM_TWO_HOME_POSITION, new Vector2f(
-						Constants.VIEWPORT_WIDTH / 2,
-						Constants.VIEWPORT_HEIGHT / 2));
-
-		instantiateProps();
+		
+		super(	"                             " +
+				"                             " +
+				"                             " +
+				"                             " +
+				"                             " +
+				"                             " +
+				"                             " +
+				"              B              " +
+				" 1                         2 " +
+				"                             " +
+				"                             " +
+				"                             " +
+				"                             " +
+				"                             " +
+				"                             " +
+				"                             ");
 
 	}
 
-	private void instantiateProps() {
+	@Override
+	public void instantiateProps() {
 		super.instatiateWalls();
 
 		// Crates
