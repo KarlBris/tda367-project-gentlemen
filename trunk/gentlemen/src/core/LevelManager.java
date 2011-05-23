@@ -13,6 +13,8 @@ import controller.entities.RuleController;
 import controller.entities.ScoreboardController;
 import controller.entities.TeamController;
 import core.levels.AbstractLevel;
+import core.levels.LevelOne;
+import core.levels.LevelTwo;
 import core.levels.RandomLevel;
 import factories.entities.BallFactory;
 import factories.entities.FlagFactory;
@@ -27,25 +29,37 @@ import factories.entities.TeamFactory;
  */
 public final class LevelManager {
 
-	private IMainController main = MainControllerFactory.get();
+	private final IMainController main = MainControllerFactory.get();
 
 	public void update() {
-		KeyboardComponent keyboard = main.getKeyboardComponent();
+		final KeyboardComponent keyboard = main.getKeyboardComponent();
 
+		// Ctrl+R, Create new RandomLevel
 		if (keyboard.getKey(Keyboard.KEY_LCONTROL)
 				&& keyboard.getKeyDown(Keyboard.KEY_R)) {
 			main.removeAll();
-			initializeEntities();
+			initializeEntities(new RandomLevel());
 		}
 
+		// Ctrl+1, Create new LevelOne
+		if (keyboard.getKey(Keyboard.KEY_LCONTROL)
+				&& keyboard.getKeyDown(Keyboard.KEY_1)) {
+			main.removeAll();
+			initializeEntities(new LevelOne());
+		}
+
+		// Ctrl+2, Create new LevelTwo
+		if (keyboard.getKey(Keyboard.KEY_LCONTROL)
+				&& keyboard.getKeyDown(Keyboard.KEY_2)) {
+			main.removeAll();
+			initializeEntities(new LevelTwo());
+		}
 	}
 
 	/**
 	 * Initializes the entities necessary to play the game
 	 */
-	public void initializeEntities() {
-
-		final AbstractLevel level = new RandomLevel();
+	public void initializeEntities(final AbstractLevel level) {
 
 		buildTeams(level);
 
@@ -90,10 +104,8 @@ public final class LevelManager {
 		playerTwo.setTeam(teamTwo);
 
 		// Instantiate flags
-		final FlagController teamOneFlag = main
-				.instantiate(new FlagFactory());
-		final FlagController teamTwoFlag = main
-				.instantiate(new FlagFactory());
+		final FlagController teamOneFlag = main.instantiate(new FlagFactory());
+		final FlagController teamTwoFlag = main.instantiate(new FlagFactory());
 
 		teamOneFlag.setTeam(teamOne);
 		teamTwoFlag.setTeam(teamTwo);

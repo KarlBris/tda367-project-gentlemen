@@ -9,6 +9,7 @@ import view.IView;
 import view.ViewFactory;
 import controller.IMainController;
 import controller.MainControllerFactory;
+import core.levels.RandomLevel;
 
 public final class Manager {
 
@@ -74,7 +75,7 @@ public final class Manager {
 		view.initialize();
 
 		// Load level
-		levelManager.initializeEntities();
+		levelManager.initializeEntities(new RandomLevel());
 
 		while (!Display.isCloseRequested()) {
 
