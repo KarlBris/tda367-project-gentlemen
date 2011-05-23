@@ -10,7 +10,7 @@ import factories.entities.VerticalWallPropFactory;
 
 public abstract class AbstractLevel {
 
-	private IMainController main = MainControllerFactory.get();
+	private final IMainController main = MainControllerFactory.get();
 
 	private final Vector2f teamOneHomePosition;
 	private final Vector2f teamTwoHomePosition;
