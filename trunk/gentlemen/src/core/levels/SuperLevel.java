@@ -11,27 +11,34 @@ import factories.entities.VerticalWallPropFactory;
 /**
  * This abstract class represents a level in the game
  */
-public abstract class AbstractLevel {
+public abstract class SuperLevel implements ILevel {
 
 	private final IMainController main = MainControllerFactory.get();
 
-	private final Vector2f teamOneHomePosition;
-	private final Vector2f teamTwoHomePosition;
+	private Vector2f teamOneHomePosition;
+	private Vector2f teamTwoHomePosition;
 
-	private final Vector2f ballSpawnPosition;
+	private Vector2f ballSpawnPosition;
+	
+	private String levelString;
 
 	// Eventually different score limits, point gains and (again eventually)
 	// abilities
 
-	public AbstractLevel(final Vector2f teamOneHomePosition,
-			final Vector2f teamTwoHomePosition, final Vector2f ballSpawnPosition) {
+//	public AbstractLevel(final Vector2f teamOneHomePosition,
+//			final Vector2f teamTwoHomePosition, final Vector2f ballSpawnPosition) {
+//
+//		this.teamOneHomePosition = teamOneHomePosition;
+//		this.teamTwoHomePosition = teamTwoHomePosition;
+//
+//		this.ballSpawnPosition = ballSpawnPosition;
+//	}
 
-		this.teamOneHomePosition = teamOneHomePosition;
-		this.teamTwoHomePosition = teamTwoHomePosition;
-
-		this.ballSpawnPosition = ballSpawnPosition;
+	
+	public SuperLevel(String levelString) {
+		this.levelString = levelString;
 	}
-
+	
 	/**
 	 * Initializes the four walls that surround the game arena
 	 */
@@ -52,7 +59,11 @@ public abstract class AbstractLevel {
 		main.instantiate(new VerticalWallPropFactory(), new Vector2f(
 				Constants.VIEWPORT_WIDTH, Constants.VIEWPORT_HEIGHT / 2));
 	}
-
+	
+	public String getLevelString() {
+		return levelString;
+	}
+	
 	/**
 	 * Returns the spawn position of the balls
 	 */
@@ -72,5 +83,17 @@ public abstract class AbstractLevel {
 	 */
 	public Vector2f getTeamTwoHomePosition() {
 		return teamTwoHomePosition;
+	}
+	
+	public void setBallSpawnPosition(Vector2f position) {
+		ballSpawnPosition = position;
+	}
+	
+	public void setTeamOneHomePosition(Vector2f position) {
+		teamOneHomePosition = position;
+	}
+	
+	public void setTeamTwoHomePosition(Vector2f position) {
+		teamTwoHomePosition = position;
 	}
 }
