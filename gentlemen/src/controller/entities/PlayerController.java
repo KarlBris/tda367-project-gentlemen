@@ -321,8 +321,12 @@ public final class PlayerController implements IController<PlayerModel>,
 		if (model.isCarryingFlag()) {
 			final Collection<FlagController> flagControllers = main
 					.find(FlagController.class);
+
 			for (final FlagController fc : flagControllers) {
+				// Looks for the players team flag
 				if (fc.getTeam() == this.teamController) {
+					// If team flag is at it's home position and players is at
+					// pickup distance
 					if (Tools.distanceBetween(model.getPosition(),
 							fc.getPosition()) <= Constants.FLAG_PICK_UP_DISTANCE
 							&& fc.isAtHome()) {
@@ -350,9 +354,13 @@ public final class PlayerController implements IController<PlayerModel>,
 		final Collection<FlagController> flagControllers = main
 				.find(FlagController.class);
 		for (final FlagController fc : flagControllers) {
+			// Looks for players team flag
 			if (fc.getTeam() == this.teamController) {
+				// If team flag is within the pickup distance
 				if (Tools
 						.distanceBetween(model.getPosition(), fc.getPosition()) <= Constants.FLAG_PICK_UP_DISTANCE) {
+					// If the flag ain't home, and the flag is not carried by
+					// anything
 					if (fc.isPickUpAble() && !fc.isAtHome()) {
 						fc.returnFlagHome();
 						teamController.addScore(Constants.FLAG_RETURN_SCORE);
@@ -371,11 +379,16 @@ public final class PlayerController implements IController<PlayerModel>,
 	 * @return true if a flag was picked up, otherwise false
 	 */
 	private boolean pickUpFlag() {
+		// Player should not be able to pick up a flag if he is already carrying
+		// a flag or is knocked out
 		if (!model.isCarryingFlag() && !model.isKnockedOut()) {
 			final Collection<FlagController> flagControllers = main
 					.find(FlagController.class);
 			for (final FlagController fc : flagControllers) {
+				// Look for the opposite teams flag
 				if (fc.getTeam() != this.teamController) {
+
+					// is within pickup distance
 					if (Tools.distanceBetween(model.getPosition(),
 							fc.getPosition()) <= Constants.FLAG_PICK_UP_DISTANCE) {
 						if (fc.isPickUpAble()) {
@@ -436,8 +449,10 @@ public final class PlayerController implements IController<PlayerModel>,
 					.find(BallController.class);
 
 			for (final BallController bc : listOfBalls) {
+				// Test if the ball is within pickup distance
 				if (Tools
 						.distanceBetween(model.getPosition(), bc.getPosition()) <= Constants.BALL_PICK_UP_DISTANCE) {
+					// Test if the ball is pickup able
 					if (bc.isPickUpAble(model.getVelocity())) {
 						bc.pickUpBall();
 						model.pickUpBall();
