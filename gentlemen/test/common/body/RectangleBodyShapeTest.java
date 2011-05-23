@@ -12,11 +12,10 @@ import org.junit.Test;
 
 public class RectangleBodyShapeTest {
 
-	private static RectangleBodyShape shape;
+	private RectangleBodyShape shape;
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		shape = new RectangleBodyShape(10.0f, 5.0f);
 	}
 
 	@AfterClass
@@ -25,6 +24,7 @@ public class RectangleBodyShapeTest {
 
 	@Before
 	public void setUp() throws Exception {
+		shape = new RectangleBodyShape(10.0f, 5.0f);
 	}
 
 	@After

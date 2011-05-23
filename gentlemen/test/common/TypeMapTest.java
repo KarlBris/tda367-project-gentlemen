@@ -12,8 +12,6 @@ import org.junit.Test;
 
 public final class TypeMapTest {
 
-	private static TypeMap<Object> map;
-
 	private static class A {
 	}
 
@@ -28,9 +26,10 @@ public final class TypeMapTest {
 	private static B b2 = new B();
 	private static C c = new C();
 
+	private TypeMap<Object> map;
+
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		map = new TypeMap<Object>();
 	}
 
 	@AfterClass
@@ -39,10 +38,16 @@ public final class TypeMapTest {
 
 	@Before
 	public void setUp() throws Exception {
+		map = new TypeMap<Object>();
 	}
 
 	@After
 	public void tearDown() throws Exception {
+	}
+
+	@Test
+	public void testTypeMap() {
+		assertTrue(map != null);
 	}
 
 	@Test
@@ -77,15 +82,26 @@ public final class TypeMapTest {
 
 	@Test
 	public void testRemove() {
-		assertTrue(map.getItemCount() == 4);
+		assertTrue(map.getItemCount() == 0);
+
+		map.add(a);
+		map.add(c);
+
+		assertTrue(map.getItemCount() == 2);
 
 		map.remove(c);
 
-		assertTrue(map.getItemCount() == 3);
+		assertTrue(map.getItemCount() == 1);
 	}
 
 	@Test
 	public void testFind() {
+
+		assertTrue(map.getItemCount() == 0);
+
+		map.add(a);
+		map.add(b1);
+		map.add(b2);
 
 		Collection<A> collectionA = map.find(A.class);
 		assertTrue(collectionA.size() == 1);
@@ -102,6 +118,12 @@ public final class TypeMapTest {
 
 	@Test
 	public void testGetItems() {
+		assertTrue(map.getItems().size() == 0);
+
+		map.add(a);
+		map.add(b1);
+		map.add(b2);
+
 		assertTrue(map.getItems().size() == 3);
 
 		Object[] objects = { a, b1, b2 };
@@ -113,6 +135,12 @@ public final class TypeMapTest {
 
 	@Test
 	public void testClear() {
+		assertTrue(map.getItemCount() == 0);
+
+		map.add(a);
+		map.add(b1);
+		map.add(b2);
+
 		assertTrue(map.getItemCount() == 3);
 
 		map.clear();

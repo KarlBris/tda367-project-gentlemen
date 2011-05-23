@@ -58,7 +58,6 @@ public class AbstractGeometryTest {
 
 	@After
 	public void tearDown() throws Exception {
-		geometry = null;
 	}
 
 	@Test

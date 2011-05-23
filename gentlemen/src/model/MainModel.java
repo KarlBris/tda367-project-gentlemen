@@ -10,10 +10,10 @@ public class MainModel implements IMainModel {
 
 	private static MainModel instance;
 
-	private TypeMap<IModel> models = new TypeMap<IModel>();
+	private TypeMap<IModel> modelMap = new TypeMap<IModel>();
 
 	private MainModel() {
-		// Do nothing
+		// Do nothing; exists for setting the constructor to private
 	}
 
 	public static MainModel get() {
@@ -26,17 +26,26 @@ public class MainModel implements IMainModel {
 
 	@Override
 	public void add(final IModel model) {
-		models.add(model);
+		modelMap.add(model);
 	}
 
 	@Override
 	public void remove(final IModel model) {
-		models.remove(model);
+		modelMap.remove(model);
+	}
+
+	@Override
+	public void removeAll() {
+		Collection<IModel> models = modelMap.getItems();
+
+		for (IModel model : models) {
+			remove(model);
+		}
 	}
 
 	@Override
 	public Collection<IModel> getModels() {
-		return models.getItems();
+		return modelMap.getItems();
 	}
 
 }
