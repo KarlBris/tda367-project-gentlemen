@@ -60,7 +60,9 @@ public final class BallModelTest {
 
 		((Body) model.getBody()).applyVelocityChange(new Vector2f(
 				Constants.BALL_LETHAL_SPEED + 1, 0));
-
+		// Test if the something moves along side of the ball that is in lethal
+		// speed is still not deadly if that something has a speed that makes
+		// the diffed speed less then lethal speed
 		relativeVelocity = new Vector2f(1.0f + Constants.EPSILON, 0);
 		assertTrue(!model.isLethal(relativeVelocity));
 	}
