@@ -8,6 +8,9 @@ import controller.MainControllerFactory;
 import factories.entities.HorizontalWallPropFactory;
 import factories.entities.VerticalWallPropFactory;
 
+/**
+ * This abstract class represents a level in the game
+ */
 public abstract class AbstractLevel {
 
 	private final IMainController main = MainControllerFactory.get();
@@ -29,6 +32,9 @@ public abstract class AbstractLevel {
 		this.ballSpawnPosition = ballSpawnPosition;
 	}
 
+	/**
+	 * Initializes the four walls that surround the game arena
+	 */
 	public void instatiateWalls() {
 		// Top wall
 		main.instantiate(new HorizontalWallPropFactory(), new Vector2f(
@@ -47,14 +53,23 @@ public abstract class AbstractLevel {
 				Constants.VIEWPORT_WIDTH, Constants.VIEWPORT_HEIGHT / 2));
 	}
 
+	/**
+	 * Returns the spawn position of the balls
+	 */
 	public Vector2f getBallSpawnPosition() {
 		return ballSpawnPosition;
 	}
 
+	/**
+	 * Returns the home position of team One
+	 */
 	public Vector2f getTeamOneHomePosition() {
 		return teamOneHomePosition;
 	}
 
+	/**
+	 * Returns the home position of team Two
+	 */
 	public Vector2f getTeamTwoHomePosition() {
 		return teamTwoHomePosition;
 	}

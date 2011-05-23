@@ -17,7 +17,6 @@ public final class PulsatingPropController implements IController<PropModel> {
 
 	private float colorWheel = 0.0f;
 	private float colorStep;
-	private int animationSteps;
 
 	private float redDelta;
 	private float greenDelta;
@@ -45,8 +44,6 @@ public final class PulsatingPropController implements IController<PropModel> {
 
 		model.setColor(colorOne);
 		this.originColor = colorTwo;
-
-		this.animationSteps = animationSteps;
 
 		colorStep = Constants.TWO_PI / animationSteps;
 
@@ -130,8 +127,6 @@ public final class PulsatingPropController implements IController<PropModel> {
 			final int animationSteps) {
 		model.setColor(colorOne);
 		this.originColor = colorTwo;
-
-		this.animationSteps = animationSteps;
 
 		colorStep = Constants.TWO_PI / animationSteps;
 

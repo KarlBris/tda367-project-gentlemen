@@ -16,6 +16,8 @@ public final class ScoreboardController implements IController<ScoreboardModel> 
 
 	private final ScoreboardModel model;
 
+	private RuleController rules;
+
 	private final List<TeamController> teamList = new LinkedList<TeamController>();
 
 	public ScoreboardController(final ScoreboardModel model) {
@@ -30,6 +32,10 @@ public final class ScoreboardController implements IController<ScoreboardModel> 
 	 */
 	public void addTeam(final TeamController team) {
 		teamList.add(team);
+	}
+
+	public void setRules(final RuleController rules) {
+		this.rules = rules;
 	}
 
 	@Override
@@ -55,10 +61,13 @@ public final class ScoreboardController implements IController<ScoreboardModel> 
 	@Override
 	public void update() {
 
-		StringBuilder stringBuilder = new StringBuilder();
+		final StringBuilder stringBuilder = new StringBuilder();
+
+		stringBuilder.append("Gentlemen's Dodgeball! Scores: ");
 
 		for (final TeamController t : teamList) {
-			stringBuilder.append(t.getTeamName() + ": " + t.getScore() + " ");
+			stringBuilder.append(t.getTeamName() + ": " + t.getScore() + "/"
+					+ rules.getScoreLimit() + " ");
 		}
 
 		model.setText(stringBuilder.toString());

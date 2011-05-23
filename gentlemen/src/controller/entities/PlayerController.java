@@ -4,7 +4,6 @@ import java.util.Collection;
 
 import model.entities.PlayerModel;
 
-import org.lwjgl.input.Keyboard;
 import org.lwjgl.util.vector.Vector2f;
 
 import utilities.Color;
@@ -19,7 +18,6 @@ import controller.IMainController;
 import controller.MainControllerFactory;
 import controller.common.IController;
 import controller.components.KeyboardComponent;
-import factories.entities.BallFactory;
 import factories.entities.KeyboardReticleFactory;
 
 /**
@@ -81,13 +79,6 @@ public final class PlayerController implements IController<PlayerModel>,
 	 */
 	@Override
 	public void update() {
-
-		// spawn ball
-		if (main.getKeyboardComponent().getKey(Keyboard.KEY_SPACE)) {
-			main.instantiate(new BallFactory(),
-					new Vector2f(Constants.VIEWPORT_WIDTH / 2,
-							Constants.VIEWPORT_HEIGHT / 2));
-		}
 
 		handleMovement();
 
