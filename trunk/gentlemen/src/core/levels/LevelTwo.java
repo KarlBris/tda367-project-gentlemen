@@ -3,12 +3,14 @@ package core.levels;
 import org.lwjgl.util.vector.Vector2f;
 
 import utilities.Constants;
+import utilities.Tools;
 import controller.IMainController;
 import controller.MainControllerFactory;
 import factories.entities.BlockPropFactory;
+import factories.entities.CratePropFactory;
 import factories.entities.HorizontalWallPropFactory;
 
-public class LevelTwo extends AbstractLevel {
+public final class LevelTwo extends AbstractLevel {
 
 	private final IMainController main = MainControllerFactory.get();
 
@@ -90,6 +92,18 @@ public class LevelTwo extends AbstractLevel {
 		main.instantiate(new BlockPropFactory(), new Vector2f(23.0f, 8.0f));
 		main.instantiate(new BlockPropFactory(), new Vector2f(23.0f, 9.0f));
 		main.instantiate(new BlockPropFactory(), new Vector2f(23.0f, 10.0f));
+
+		// Top field of crates
+		for (int i = 0; i < 30; i++) {
+			main.instantiate(new CratePropFactory(), Tools.randomVectorInArea(
+					new Vector2f(1.0f, 1.0f), new Vector2f(29.0f, 4.0f)));
+		}
+
+		// Bottom field of crates
+		for (int i = 0; i < 30; i++) {
+			main.instantiate(new CratePropFactory(), Tools.randomVectorInArea(
+					new Vector2f(1.0f, 12.0f), new Vector2f(29.0f, 4.0f)));
+		}
 	}
 
 }

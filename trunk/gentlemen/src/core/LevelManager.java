@@ -40,28 +40,28 @@ public final class LevelManager {
 		if (keyboard.getKey(Keyboard.KEY_LCONTROL)
 				&& keyboard.getKeyDown(Keyboard.KEY_R)) {
 			main.removeAll();
-			initializeEntities(new RandomLevel());
+			initializeEntities(new RandomLevel(), true);
 		}
 
 		// Ctrl+1, Create new LevelOne
 		if (keyboard.getKey(Keyboard.KEY_LCONTROL)
 				&& keyboard.getKeyDown(Keyboard.KEY_1)) {
 			main.removeAll();
-			initializeEntities(new LevelOne());
+			initializeEntities(new LevelOne(), true);
 		}
 
 		// Ctrl+2, Create new LevelTwo
 		if (keyboard.getKey(Keyboard.KEY_LCONTROL)
 				&& keyboard.getKeyDown(Keyboard.KEY_2)) {
 			main.removeAll();
-			initializeEntities(new LevelTwo());
+			initializeEntities(new LevelTwo(), true);
 		}
 
 		for (final TeamController tc : main.find(TeamController.class)) {
 			if (tc.hasWon) {
 				final Color winColor = tc.getColor();
 				main.removeAll();
-				new WinLevel(winColor);
+				initializeEntities(new WinLevel(winColor), false);
 
 				break;
 			}
@@ -71,15 +71,10 @@ public final class LevelManager {
 	/**
 	 * Initializes the entities necessary to play the game
 	 */
-	public void initializeEntities(final AbstractLevel level) {
-
-		buildTeams(level);
-	}
-
-	private void buildTeams(final AbstractLevel level) {
+	public void initializeEntities(final AbstractLevel level,
+			final boolean spawnBallsAndFlags) {
 
 		// Instantiate the rules
-
 		final RuleController rules = main.instantiate(new RuleFactory());
 
 		// Instantiate the teams
@@ -102,30 +97,33 @@ public final class LevelManager {
 		teamTwo.setTeamName("Blue Team");
 		teamTwo.setHomePosition(level.getTeamTwoHomePosition());
 
-		for (int i = 0; i < 140; i++) {
-			// Added a random number so the physics engine move the ball apart
-			main.instantiate(
-					new BallFactory(),
-					new Vector2f(level.getBallSpawnPosition().x
-							+ (float) Math.random() / 1000, level
-							.getBallSpawnPosition().y
-							+ (float) Math.random()
-							/ 100));
+		if (spawnBallsAndFlags) {
+			for (int i = 0; i < 140; i++) {
+				// Added a random number so the physics engine move the ball
+				// apart
+				main.instantiate(
+						new BallFactory(),
+						new Vector2f(level.getBallSpawnPosition().x
+								+ (float) Math.random() / 1000, level
+								.getBallSpawnPosition().y
+								+ (float) Math.random() / 100));
 
+			}
 		}
 
 		playerOne.setTeam(teamOne);
 		playerTwo.setTeam(teamTwo);
 
 		// Instantiate flags
-		final FlagController teamOneFlag = main.instantiate(new FlagFactory());
-		final FlagController teamTwoFlag = main.instantiate(new FlagFactory());
+		if (spawnBallsAndFlags) {
+			final FlagController teamOneFlag = main
+					.instantiate(new FlagFactory());
+			final FlagController teamTwoFlag = main
+					.instantiate(new FlagFactory());
 
-		teamOneFlag.setTeam(teamOne);
-		teamTwoFlag.setTeam(teamTwo);
-
-		// teamOneFlag.setColor(Constants.TEAM_ONE_COLOR);
-		// teamTwoFlag.setColor(Constants.TEAM_TWO_COLOR);
+			teamOneFlag.setTeam(teamOne);
+			teamTwoFlag.setTeam(teamTwo);
+		}
 
 		// Instantiate scoreboard
 
@@ -134,6 +132,7 @@ public final class LevelManager {
 
 		scoreboard.addTeam(teamOne);
 		scoreboard.addTeam(teamTwo);
+		scoreboard.setRules(rules);
 
 	}
 

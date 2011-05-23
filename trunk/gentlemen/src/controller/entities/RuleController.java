@@ -57,4 +57,8 @@ public final class RuleController implements IController<RuleModel> {
 
 	}
 
+	public int getScoreLimit() {
+		return model.getScoreLimit();
+	}
+
 }
