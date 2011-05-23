@@ -22,9 +22,10 @@ public final class RuleController implements IController<RuleModel> {
 	 * 
 	 * @param team
 	 *            the team to check for victory
+	 * @return
 	 */
-	public void checkVictory(final int score, final String teamName) {
-		model.checkVictory(score, teamName);
+	public boolean checkVictory(final int score, final String teamName) {
+		return model.checkVictory(score, teamName);
 	}
 
 	@Override

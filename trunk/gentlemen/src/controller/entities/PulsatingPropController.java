@@ -16,14 +16,15 @@ public final class PulsatingPropController implements IController<PropModel> {
 	private final PropModel model;
 
 	private float colorWheel = 0.0f;
-	private final float colorStep;
+	private float colorStep;
+	private int animationSteps;
 
-	private final float redDelta;
-	private final float greenDelta;
-	private final float blueDelta;
-	private final float alphaDelta;
+	private float redDelta;
+	private float greenDelta;
+	private float blueDelta;
+	private float alphaDelta;
 
-	private final Color originColor;
+	private Color originColor;
 
 	/**
 	 * Creates a PulsatingPropController that pulses between two colors at a set
@@ -44,6 +45,8 @@ public final class PulsatingPropController implements IController<PropModel> {
 
 		model.setColor(colorOne);
 		this.originColor = colorTwo;
+
+		this.animationSteps = animationSteps;
 
 		colorStep = Constants.TWO_PI / animationSteps;
 
@@ -121,6 +124,22 @@ public final class PulsatingPropController implements IController<PropModel> {
 	 */
 	public float getAngle() {
 		return model.getAngle();
+	}
+
+	public void setColors(final Color colorOne, final Color colorTwo,
+			final int animationSteps) {
+		model.setColor(colorOne);
+		this.originColor = colorTwo;
+
+		this.animationSteps = animationSteps;
+
+		colorStep = Constants.TWO_PI / animationSteps;
+
+		redDelta = colorOne.getRed() - colorTwo.getRed();
+		greenDelta = colorOne.getGreen() - colorTwo.getGreen();
+		blueDelta = colorOne.getBlue() - colorTwo.getBlue();
+		alphaDelta = colorOne.getAlpha() - colorTwo.getAlpha();
+
 	}
 
 }

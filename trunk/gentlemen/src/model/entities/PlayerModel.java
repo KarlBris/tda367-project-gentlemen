@@ -24,7 +24,7 @@ public final class PlayerModel implements IModel {
 
 	private final Body body = new Body(new CircleBodyShape(0.5f), 2.0f, 3.0f);
 
-	private final Color playerColor;
+	private Color playerColor = Color.BLACK;
 
 	private boolean isCarryingFlag = false;
 
@@ -46,13 +46,9 @@ public final class PlayerModel implements IModel {
 	}
 
 	/**
-	 * @param teamColor
-	 *            , is the color the team the players in, and also the color the
-	 *            player will have
 	 */
-	public PlayerModel(final Color teamColor) {
-		playerColor = teamColor;
-		geometry = new CircleGeometry(teamColor, 1.0f, 0.5f, 5);
+	public PlayerModel() {
+		geometry = new CircleGeometry(playerColor, 1.0f, 0.5f, 5);
 	}
 
 	public Vector2f getVelocity() {
@@ -243,6 +239,12 @@ public final class PlayerModel implements IModel {
 	 */
 	public float getKnockedOutTimer() {
 		return timeSinceKnockedOut;
+	}
+
+	public void setColor(final Color color) {
+		playerColor = color;
+		geometry.setColor(color);
+
 	}
 
 }

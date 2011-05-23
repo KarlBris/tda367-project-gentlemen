@@ -7,7 +7,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.lwjgl.util.vector.Vector2f;
 
-import utilities.Color;
 import utilities.Constants;
 import utilities.Tools;
 
@@ -32,16 +31,7 @@ public final class PlayerModelTest {
 
 	@Test
 	public void testPlayerModel() {
-		// no error should occur
-
-		Color c = new Color(1.0f, 1.0f, 1.0f);
-		model = new PlayerModel(c);
-
-		c = new Color(2.0f, 2.0f, 2.0f);
-		model = new PlayerModel(c);
-
-		c = new Color(-1.0f, -1.0f, -1.0f);
-		model = new PlayerModel(c);
+		model = new PlayerModel();
 	}
 
 	@Test
