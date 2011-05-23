@@ -13,13 +13,11 @@ import org.junit.Test;
 
 public class NullBodyTest {
 
-	private static NullBody body;
-	private static World testWorld;
+	private static World testWorld = new World(new Vec2(0.0f, 0.0f), true);
+	private NullBody body;
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		body = new NullBody();
-		testWorld = new World(new Vec2(0.0f, 0.0f), true);
 	}
 
 	@AfterClass
@@ -28,6 +26,7 @@ public class NullBodyTest {
 
 	@Before
 	public void setUp() throws Exception {
+		body = new NullBody();
 	}
 
 	@After

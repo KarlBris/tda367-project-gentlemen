@@ -15,11 +15,10 @@ import utilities.Tools;
 
 public class NullGeometryTest {
 
-	private static NullGeometry geometry;
+	private NullGeometry geometry;
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		geometry = new NullGeometry();
 	}
 
 	@AfterClass
@@ -28,6 +27,7 @@ public class NullGeometryTest {
 
 	@Before
 	public void setUp() throws Exception {
+		geometry = new NullGeometry();
 	}
 
 	@After

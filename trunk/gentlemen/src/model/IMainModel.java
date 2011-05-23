@@ -10,6 +10,8 @@ public interface IMainModel {
 
 	public void remove(IModel model);
 
+	public void removeAll();
+
 	public Collection<IModel> getModels();
 
 }
