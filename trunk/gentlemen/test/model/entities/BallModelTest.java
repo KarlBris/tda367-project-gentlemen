@@ -43,7 +43,7 @@ public final class BallModelTest {
 	public void testIsLethal() {
 
 		// Test if standing still is above lethal speed
-		final Vector2f relativeVelocity = new Vector2f(0.0f, 0.0f);
+		Vector2f relativeVelocity = new Vector2f(0.0f, 0.0f);
 		assertTrue(!model.isLethal(relativeVelocity));
 
 		// Test if moving faster than lethal speed is above lethal speed
@@ -52,7 +52,17 @@ public final class BallModelTest {
 				Constants.BALL_LETHAL_SPEED + 1));
 		assertTrue(model.isLethal(relativeVelocity));
 
-		// ((Body) bm.getBody()).clearVelocity();
+		((Body) model.getBody()).clearVelocity();
+
+		assertTrue(!model.isLethal(relativeVelocity));
+		assertTrue(!model.isLethal(new Vector2f(Constants.BALL_LETHAL_SPEED
+				- Constants.EPSILON, 0)));
+
+		((Body) model.getBody()).applyVelocityChange(new Vector2f(
+				Constants.BALL_LETHAL_SPEED + 1, 0));
+
+		relativeVelocity = new Vector2f(1.0f + Constants.EPSILON, 0);
+		assertTrue(!model.isLethal(relativeVelocity));
 	}
 
 	@Test
