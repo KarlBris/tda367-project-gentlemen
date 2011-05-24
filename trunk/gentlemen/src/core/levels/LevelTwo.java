@@ -7,7 +7,7 @@ import controller.IMainController;
 import controller.MainControllerFactory;
 import factories.entities.CratePropFactory;
 
-public final class LevelTwo extends SuperLevel {
+public final class LevelTwo extends AbstractLevel {
 
 	private final IMainController main = MainControllerFactory.get();
 
@@ -31,6 +31,7 @@ public final class LevelTwo extends SuperLevel {
 				"XXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
 	}
 
+	@Override
 	public void instantiateProps() {
 		super.instatiateWalls();
 

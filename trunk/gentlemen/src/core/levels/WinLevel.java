@@ -5,15 +5,12 @@ import controller.IMainController;
 import controller.MainControllerFactory;
 import controller.entities.PulsatingPropController;
 
-public class WinLevel extends SuperLevel {
+public class WinLevel extends AbstractLevel {
 
 	private final IMainController main = MainControllerFactory.get();
 	private final Color color;
 
 	public WinLevel(final Color winningTeamColor) {
-//		super(new Vector2f(2.0f, 2.0f), new Vector2f(
-//				Constants.VIEWPORT_WIDTH - 2.0f, 2.0f),
-//				new Vector2f(0.0f, 0.0f));
 		
 		super(	"                             " +
 				" 1            B            2 " +
@@ -35,6 +32,7 @@ public class WinLevel extends SuperLevel {
 		color = winningTeamColor;
 	}
 
+	@Override
 	public void instantiateProps() {
 		super.instatiateWalls();
 

@@ -11,7 +11,7 @@ import factories.entities.VerticalWallPropFactory;
 /**
  * This abstract class represents a level in the game
  */
-public abstract class SuperLevel implements ILevel {
+public abstract class AbstractLevel implements ILevel {
 
 	private final IMainController main = MainControllerFactory.get();
 
@@ -19,26 +19,13 @@ public abstract class SuperLevel implements ILevel {
 	private Vector2f teamTwoHomePosition;
 
 	private Vector2f ballSpawnPosition;
-	
-	private String levelString;
 
-	// Eventually different score limits, point gains and (again eventually)
-	// abilities
+	private final String levelString;
 
-//	public AbstractLevel(final Vector2f teamOneHomePosition,
-//			final Vector2f teamTwoHomePosition, final Vector2f ballSpawnPosition) {
-//
-//		this.teamOneHomePosition = teamOneHomePosition;
-//		this.teamTwoHomePosition = teamTwoHomePosition;
-//
-//		this.ballSpawnPosition = ballSpawnPosition;
-//	}
-
-	
-	public SuperLevel(String levelString) {
+	public AbstractLevel(final String levelString) {
 		this.levelString = levelString;
 	}
-	
+
 	/**
 	 * Initializes the four walls that surround the game arena
 	 */
@@ -59,41 +46,39 @@ public abstract class SuperLevel implements ILevel {
 		main.instantiate(new VerticalWallPropFactory(), new Vector2f(
 				Constants.VIEWPORT_WIDTH, Constants.VIEWPORT_HEIGHT / 2));
 	}
-	
+
+	@Override
 	public String getLevelString() {
 		return levelString;
 	}
-	
-	/**
-	 * Returns the spawn position of the balls
-	 */
+
+	@Override
 	public Vector2f getBallSpawnPosition() {
 		return ballSpawnPosition;
 	}
 
-	/**
-	 * Returns the home position of team One
-	 */
+	@Override
 	public Vector2f getTeamOneHomePosition() {
 		return teamOneHomePosition;
 	}
 
-	/**
-	 * Returns the home position of team Two
-	 */
+	@Override
 	public Vector2f getTeamTwoHomePosition() {
 		return teamTwoHomePosition;
 	}
-	
-	public void setBallSpawnPosition(Vector2f position) {
+
+	@Override
+	public void setBallSpawnPosition(final Vector2f position) {
 		ballSpawnPosition = position;
 	}
-	
-	public void setTeamOneHomePosition(Vector2f position) {
+
+	@Override
+	public void setTeamOneHomePosition(final Vector2f position) {
 		teamOneHomePosition = position;
 	}
-	
-	public void setTeamTwoHomePosition(Vector2f position) {
+
+	@Override
+	public void setTeamTwoHomePosition(final Vector2f position) {
 		teamTwoHomePosition = position;
 	}
 }

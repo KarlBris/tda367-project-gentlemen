@@ -15,9 +15,9 @@ import controller.entities.ScoreboardController;
 import controller.entities.TeamController;
 import core.levels.ILevel;
 import core.levels.LevelOne;
+import core.levels.LevelThree;
 import core.levels.LevelTwo;
 import core.levels.RandomLevel;
-import core.levels.LevelThree;
 import core.levels.WinLevel;
 import factories.entities.BallFactory;
 import factories.entities.BlockPropFactory;
@@ -59,17 +59,15 @@ public final class LevelManager {
 			generateLevel(new LevelTwo(), true);
 		}
 
-		// Ctrl+3, Create new Test Three
+		// Ctrl+3, Create new LevelThree
 		if (keyboard.getKey(Keyboard.KEY_LCONTROL)
 				&& keyboard.getKeyDown(Keyboard.KEY_3)) {
 			main.removeAll();
-			
-			
-		
+
 			generateLevel(new LevelThree(), true);
-			//initializeEntities(new LevelTwo(), true);
+			// initializeEntities(new LevelTwo(), true);
 		}
-		
+
 		for (final TeamController tc : main.find(TeamController.class)) {
 			if (tc.hasWon) {
 				final Color winColor = tc.getColor();
@@ -128,6 +126,7 @@ public final class LevelManager {
 		playerTwo.setTeam(teamTwo);
 
 		// Instantiate flags
+
 		if (spawnBallsAndFlags) {
 			final FlagController teamOneFlag = main
 					.instantiate(new FlagFactory());
@@ -149,39 +148,43 @@ public final class LevelManager {
 
 	}
 
-	
-	public void generateLevel(ILevel level, boolean spawnBallsAndFlags) {
-		// Level size: 29*16
-		
-		String levelString = level.getLevelString();
-		
-		for (int i = 0; i < 16; i++)
-        {
-            for (int j = 0; j < 29; j++)
-            {
-                if (levelString.substring(j + 29 * i, (j + 29 * i) + 1).equals("X"))
-                {
-                	main.instantiate(new BlockPropFactory(), new Vector2f(j+1, i+1));
-                }
-                
-                if (levelString.substring(j + 29 * i, (j + 29 * i) + 1).equals("1"))
-                {
-                	level.setTeamOneHomePosition(new Vector2f(j+1, i+1));
-                }
-                
-                if (levelString.substring(j + 29 * i, (j + 29 * i) + 1).equals("2"))
-                {
-                	level.setTeamTwoHomePosition(new Vector2f(j+1, i+1));
-                }
-                
-                if (levelString.substring(j + 29 * i, (j + 29 * i) + 1).equals("B"))
-                {
-                	level.setBallSpawnPosition(new Vector2f(j+1, i+1));
-                }
-                
-            }
-        }
-		
+	public void generateLevel(final ILevel level,
+			final boolean spawnBallsAndFlags) {
+
+		final String levelString = level.getLevelString();
+
+		// Set the positions so that if there are no spawn or home positions
+		// specified in the levelString, one does not get a NullPointerException
+		level.setBallSpawnPosition(new Vector2f(1.0f, 1.0f));
+		level.setTeamOneHomePosition(new Vector2f(1.0f, 1.0f));
+		level.setTeamTwoHomePosition(new Vector2f(1.0f, 1.0f));
+
+		for (int i = 0; i < 16; i++) {
+			for (int j = 0; j < 29; j++) {
+				if (levelString.substring(j + 29 * i, (j + 29 * i) + 1).equals(
+						"X")) {
+					main.instantiate(new BlockPropFactory(), new Vector2f(
+							j + 1, i + 1));
+				}
+
+				if (levelString.substring(j + 29 * i, (j + 29 * i) + 1).equals(
+						"1")) {
+					level.setTeamOneHomePosition(new Vector2f(j + 1, i + 1));
+				}
+
+				if (levelString.substring(j + 29 * i, (j + 29 * i) + 1).equals(
+						"2")) {
+					level.setTeamTwoHomePosition(new Vector2f(j + 1, i + 1));
+				}
+
+				if (levelString.substring(j + 29 * i, (j + 29 * i) + 1).equals(
+						"B")) {
+					level.setBallSpawnPosition(new Vector2f(j + 1, i + 1));
+				}
+
+			}
+		}
+
 		level.instantiateProps();
 		initializeEntities(level, spawnBallsAndFlags);
 	}
