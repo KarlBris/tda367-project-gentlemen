@@ -9,7 +9,7 @@ import controller.MainControllerFactory;
 import factories.entities.BuildingPropFactory;
 import factories.entities.CratePropFactory;
 
-public final class RandomLevel extends SuperLevel {
+public final class RandomLevel extends AbstractLevel {
 
 	private IMainController main = MainControllerFactory.get();
 

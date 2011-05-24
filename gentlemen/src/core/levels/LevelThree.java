@@ -8,7 +8,7 @@ import controller.IMainController;
 import controller.MainControllerFactory;
 import factories.entities.CratePropFactory;
 
-public final class LevelThree extends SuperLevel {
+public final class LevelThree extends AbstractLevel {
 
 	private final IMainController main = MainControllerFactory.get();
 
@@ -36,7 +36,7 @@ public final class LevelThree extends SuperLevel {
 	public void instantiateProps() {
 		super.instatiateWalls();
 		
-		// 'field of crates
+		// field of crates
 		for (int i = 0; i < 30; i++) {
 			main.instantiate(new CratePropFactory(), Tools.randomVectorInArea(
 					new Vector2f(1.0f, 1.0f), new Vector2f(29.0f, 16.0f)));
