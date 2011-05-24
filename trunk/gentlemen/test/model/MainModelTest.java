@@ -31,8 +31,9 @@ public class MainModelTest {
 		}
 	}
 
-	private static IMainModel mainModel;
 	private static IModel testModel = new TestModel();
+
+	private IMainModel mainModel;
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
