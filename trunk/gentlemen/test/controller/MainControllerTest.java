@@ -23,7 +23,7 @@ import common.geometry.IGeometry;
 import common.geometry.NullGeometry;
 
 import controller.common.IController;
-import factories.entities.IEntityFactory;
+import controller.common.IEntityFactory;
 
 public class MainControllerTest {
 

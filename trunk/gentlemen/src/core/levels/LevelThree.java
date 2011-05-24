@@ -6,7 +6,7 @@ import utilities.Tools;
 
 import controller.IMainController;
 import controller.MainControllerFactory;
-import factories.entities.CratePropFactory;
+import controller.entities.props.CratePropFactory;
 
 public final class LevelThree extends AbstractLevel {
 

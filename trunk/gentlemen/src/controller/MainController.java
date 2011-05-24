@@ -10,12 +10,12 @@ import org.lwjgl.util.vector.Vector2f;
 
 import common.TypeMap;
 
+import controller.common.IComponent;
 import controller.common.IController;
-import controller.components.IComponent;
+import controller.common.IEntityFactory;
 import controller.components.KeyboardComponent;
 import controller.components.MouseComponent;
 import controller.components.PhysicsComponent;
-import factories.entities.IEntityFactory;
 
 public final class MainController implements IMainController {
 

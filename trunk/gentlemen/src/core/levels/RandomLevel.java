@@ -6,8 +6,8 @@ import utilities.Constants;
 import utilities.Tools;
 import controller.IMainController;
 import controller.MainControllerFactory;
-import factories.entities.BuildingPropFactory;
-import factories.entities.CratePropFactory;
+import controller.entities.props.BuildingPropFactory;
+import controller.entities.props.CratePropFactory;
 
 public final class RandomLevel extends AbstractLevel {
 

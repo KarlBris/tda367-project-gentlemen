@@ -75,7 +75,6 @@ public final class Manager {
 		view.initialize();
 
 		// Load level
-		//levelManager.initializeEntities(new RandomLevel(), true);
 		levelManager.generateLevel(new RandomLevel(), true);
 
 		while (!Display.isCloseRequested()) {

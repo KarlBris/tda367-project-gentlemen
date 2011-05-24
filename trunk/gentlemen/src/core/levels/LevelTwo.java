@@ -5,7 +5,7 @@ import org.lwjgl.util.vector.Vector2f;
 import utilities.Tools;
 import controller.IMainController;
 import controller.MainControllerFactory;
-import factories.entities.CratePropFactory;
+import controller.entities.props.CratePropFactory;
 
 public final class LevelTwo extends AbstractLevel {
 
