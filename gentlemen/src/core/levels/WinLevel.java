@@ -3,7 +3,7 @@ package core.levels;
 import utilities.Color;
 import controller.IMainController;
 import controller.MainControllerFactory;
-import controller.entities.PulsatingPropController;
+import controller.entities.props.PulsatingPropController;
 
 public class WinLevel extends AbstractLevel {
 

@@ -5,8 +5,8 @@ import org.lwjgl.util.vector.Vector2f;
 import utilities.Constants;
 import controller.IMainController;
 import controller.MainControllerFactory;
-import factories.entities.HorizontalWallPropFactory;
-import factories.entities.VerticalWallPropFactory;
+import controller.entities.props.HorizontalWallPropFactory;
+import controller.entities.props.VerticalWallPropFactory;
 
 /**
  * This abstract class represents a level in the game

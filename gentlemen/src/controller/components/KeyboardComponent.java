@@ -4,6 +4,7 @@ import model.common.IModel;
 
 import org.lwjgl.input.Keyboard;
 
+import controller.common.IComponent;
 import controller.common.IController;
 
 /**

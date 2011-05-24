@@ -6,6 +6,7 @@ import org.lwjgl.input.Mouse;
 import org.lwjgl.util.vector.Vector2f;
 
 import utilities.Tools;
+import controller.common.IComponent;
 import controller.common.IController;
 
 /**

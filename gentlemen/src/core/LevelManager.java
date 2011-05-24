@@ -8,25 +8,25 @@ import utilities.Constants;
 import controller.IMainController;
 import controller.MainControllerFactory;
 import controller.components.KeyboardComponent;
-import controller.entities.FlagController;
-import controller.entities.PlayerController;
-import controller.entities.RuleController;
-import controller.entities.ScoreboardController;
-import controller.entities.TeamController;
+import controller.entities.gamemode.RuleController;
+import controller.entities.gamemode.RuleFactory;
+import controller.entities.gamemode.ScoreboardController;
+import controller.entities.gamemode.ScoreboardFactory;
+import controller.entities.gamemode.TeamController;
+import controller.entities.gamemode.TeamFactory;
+import controller.entities.gameplay.BallFactory;
+import controller.entities.gameplay.FlagController;
+import controller.entities.gameplay.FlagFactory;
+import controller.entities.gameplay.PlayerController;
+import controller.entities.gameplay.PlayerOneFactory;
+import controller.entities.gameplay.PlayerTwoFactory;
+import controller.entities.props.BlockPropFactory;
 import core.levels.ILevel;
 import core.levels.LevelOne;
 import core.levels.LevelThree;
 import core.levels.LevelTwo;
 import core.levels.RandomLevel;
 import core.levels.WinLevel;
-import factories.entities.BallFactory;
-import factories.entities.BlockPropFactory;
-import factories.entities.FlagFactory;
-import factories.entities.PlayerOneFactory;
-import factories.entities.PlayerTwoFactory;
-import factories.entities.RuleFactory;
-import factories.entities.ScoreboardFactory;
-import factories.entities.TeamFactory;
 
 /**
  * This class is responsible for managing and setting up levels
