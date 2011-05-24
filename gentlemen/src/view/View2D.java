@@ -19,7 +19,7 @@ public final class View2D implements IView {
 
 	private static View2D instance;
 
-	public IMainModel mainModel;
+	private IMainModel mainModel;
 
 	private View2D() {
 		this.mainModel = MainModelFactory.get();
@@ -59,10 +59,12 @@ public final class View2D implements IView {
 			height = (Constants.VIEWPORT_WIDTH / displayWidth) * displayHeight;
 		}
 
-		// Initialize the projection and matrix modes
+		// Set up projection matrix
 		GL11.glMatrixMode(GL11.GL_PROJECTION);
 		GL11.glLoadIdentity();
 		GL11.glOrtho(0, width, height, 0, 1, -1);
+		
+		// Prepare matrix for rendering
 		GL11.glMatrixMode(GL11.GL_MODELVIEW);
 
 		// Enable depth buffer
