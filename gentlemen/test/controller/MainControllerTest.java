@@ -23,8 +23,6 @@ import common.geometry.IGeometry;
 import common.geometry.NullGeometry;
 
 import controller.common.IController;
-import controller.components.KeyboardComponent;
-import controller.components.MouseComponent;
 import factories.entities.IEntityFactory;
 
 public class MainControllerTest {
@@ -228,13 +226,11 @@ public class MainControllerTest {
 	@Test
 	public void testGetKeyboardComponent() {
 		assertTrue(mainController.getKeyboardComponent() != null);
-		assertTrue(mainController.getKeyboardComponent() instanceof KeyboardComponent);
 	}
 
 	@Test
 	public void testGetMouseComponent() {
 		assertTrue(mainController.getMouseComponent() != null);
-		assertTrue(mainController.getMouseComponent() instanceof MouseComponent);
 	}
 
 	@Test
