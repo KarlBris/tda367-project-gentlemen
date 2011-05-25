@@ -17,15 +17,10 @@ import controller.entities.gamemode.TeamFactory;
 public final class TeamModelTest {
 	private TeamModel model;
 
-	// private RuleController ruleController;
-
 	@Before
 	public void setUp() throws Exception {
 		model = MainControllerFactory.get().instantiate(new TeamFactory())
 				.getModel();
-		// ruleController = (RuleController) Manager
-		// .instantiate(new RuleFactory());
-		// model.setRules(ruleController);
 	}
 
 	@After
