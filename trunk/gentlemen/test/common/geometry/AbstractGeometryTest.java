@@ -43,14 +43,6 @@ public class AbstractGeometryTest {
 
 	private AbstractGeometry geometry;
 
-	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
-	}
-
-	@AfterClass
-	public static void tearDownAfterClass() throws Exception {
-	}
-
 	@Before
 	public void setUp() throws Exception {
 		geometry = new TestAbstractGeometry();

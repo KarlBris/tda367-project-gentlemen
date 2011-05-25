@@ -35,14 +35,6 @@ public class MainModelTest {
 
 	private IMainModel mainModel;
 
-	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
-	}
-
-	@AfterClass
-	public static void tearDownAfterClass() throws Exception {
-	}
-
 	@Before
 	public void setUp() throws Exception {
 		mainModel = MainModel.get();

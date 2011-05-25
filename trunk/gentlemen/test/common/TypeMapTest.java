@@ -28,14 +28,6 @@ public final class TypeMapTest {
 
 	private TypeMap<Object> map;
 
-	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
-	}
-
-	@AfterClass
-	public static void tearDownAfterClass() throws Exception {
-	}
-
 	@Before
 	public void setUp() throws Exception {
 		map = new TypeMap<Object>();

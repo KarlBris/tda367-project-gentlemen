@@ -105,14 +105,6 @@ public final class BodyTest {
 
 	private Body body;
 
-	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
-	}
-
-	@AfterClass
-	public static void tearDownAfterClass() throws Exception {
-	}
-
 	@Before
 	public void setUp() throws Exception {
 		body = (Body) MainControllerFactory.get()
