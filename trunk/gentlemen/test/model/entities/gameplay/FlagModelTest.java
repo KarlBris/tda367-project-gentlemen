@@ -26,7 +26,6 @@ public final class FlagModelTest {
 				new TeamFactory());
 		teamController.setHomePosition(Constants.TEAM_ONE_HOME_POSITION);
 		fm = new FlagModel(Color.BLUE);
-		// fm.setTeam(teamController);
 	}
 
 	@After
@@ -110,58 +109,6 @@ public final class FlagModelTest {
 		assertTrue(Tools.vectorsEqual(initPosition, fm.getPosition()));
 
 	}
-
-	// @Test
-	// public void testSetTeam() {
-	// TeamController tc = MainControllerFactory.get().instantiate(new
-	// TeamFactory());
-	// tc.setHomePosition(new Vector2f(10.0f, 9.0f));
-	// fm.setTeam(tc);
-	//
-	// }
-
-	// @Test
-	// public void testGetTeam() {
-	//
-	// assertTrue(fm.getTeam() == teamController);
-	//
-	// TeamController tc = MainControllerFactory.get().instantiate(new
-	// TeamFactory());
-	// tc.setHomePosition(new Vector2f(10.0f, 9.0f));
-	//
-	// fm.setTeam(tc);
-	// assertTrue(fm.getTeam() == tc);
-	// }
-
-	// @Test
-	// public void testGetHomePosition() {
-	// // Test if the flag's home position is the same position as that of the
-	// // team.
-	// assertTrue(Tools.isVectorsEqual(fm.getHomePosition(),
-	// teamController.getHomePosition()));
-	// }
-
-	// @Test
-	// public void testIsAtHome() {
-	// fm.setPosition(new Vector2f(20.0f, 34.0f));
-	// // Test that it's not returning true if the flag ain't home
-	// assertTrue(!fm.isAtHome());
-	//
-	// fm.setPosition(fm.getHomePosition());
-	// // Test that it's returning true if the flag is home
-	// assertTrue(fm.isAtHome());
-	// }
-
-	// @Test
-	// public void testReturnFlagHome() {
-	// fm.setPosition(new Vector2f(23.0f, 76.0f));
-	// fm.pickUpFlag();
-	// fm.returnFlagHome();
-	// // Test that the flag was returned home
-	// assertTrue(fm.isAtHome());
-	// // Test that the flag is now pick up able
-	// assertTrue(fm.isPickUpAble());
-	// }
 
 	@Test
 	public void testSetColor() {
