@@ -14,14 +14,6 @@ public class CircleBodyShapeTest {
 
 	private CircleBodyShape shape;
 
-	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
-	}
-
-	@AfterClass
-	public static void tearDownAfterClass() throws Exception {
-	}
-
 	@Before
 	public void setUp() throws Exception {
 		shape = new CircleBodyShape(5.0f);

@@ -14,14 +14,6 @@ public class RectangleBodyShapeTest {
 
 	private RectangleBodyShape shape;
 
-	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
-	}
-
-	@AfterClass
-	public static void tearDownAfterClass() throws Exception {
-	}
-
 	@Before
 	public void setUp() throws Exception {
 		shape = new RectangleBodyShape(10.0f, 5.0f);
