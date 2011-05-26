@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="11.1">
+  <zoom_level>7</zoom_level>
+  <element>
+    <type>com.umlet.element.SequenceDiagram</type>
+    <coordinates>
+      <x>0</x>
+      <y>168</y>
+      <w>840</w>
+      <h>245</h>
+    </coordinates>
+    <panel_attributes>title: Throw Ball
+_PlayerController~id1_|_IMainController~id2_|_KeyboardComponent~id3_|_BallController~id4_|_BallModel~id5_|_Body~id6_
+
+id1-&gt;&gt;id2:id1,id2:getKeyboardComponent()
+id2.&gt;id1:id2,id1
+id1-&gt;&gt;id3:id1,id3:getKey()
+id3.&gt;id1:id3,id1
+
+id1-&gt;&gt;id4:id1,id4:throwBall()
+id4-&gt;&gt;id5:id4,id5:throwBall()
+id5-&gt;&gt;id6:id5,id6:applyVelocityChange()
+id6-&gt;&gt;id6:id6:releaseBall()</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
