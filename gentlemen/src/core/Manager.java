@@ -9,7 +9,7 @@ import view.IView;
 import view.ViewFactory;
 import controller.IMainController;
 import controller.MainControllerFactory;
-import core.levels.RandomLevel;
+import core.levels.LevelTwo;
 
 public final class Manager {
 
@@ -75,7 +75,7 @@ public final class Manager {
 		view.initialize();
 
 		// Load level
-		levelManager.generateLevel(new RandomLevel(), true);
+		levelManager.generateLevel(new LevelTwo(), true);
 
 		while (!Display.isCloseRequested()) {
 
