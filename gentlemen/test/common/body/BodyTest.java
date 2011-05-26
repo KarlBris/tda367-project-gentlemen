@@ -7,9 +7,7 @@ import model.common.IModel;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.World;
 import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import org.lwjgl.util.vector.Vector2f;
 

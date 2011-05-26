@@ -4,9 +4,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import org.lwjgl.util.vector.Vector2f;
 
@@ -16,7 +14,7 @@ import utilities.Tools;
 public class NullGeometryTest {
 
 	private NullGeometry geometry;
-	
+
 	@Before
 	public void setUp() throws Exception {
 		geometry = new NullGeometry();
