@@ -6,7 +6,7 @@ A 2D multiplayer game made in java using LWGJL and JBOX2D
 -HOW TO RUN-
 
 If you are running this in eclipse using the latest repository from google code, just run Main in core
-to play, but note the platfor specific info at the end of this readme file.
+to play, but note the platform specific info at the end of this readme file.
 
 The game uses a library that needs native files depending on the OS, so the 
 folder containing the file "Dodgeball.jar" must also contain the LWGJL version 2.7.1 folder,
