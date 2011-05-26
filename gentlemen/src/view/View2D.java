@@ -19,7 +19,7 @@ public final class View2D implements IView {
 
 	private static View2D instance;
 
-	private IMainModel mainModel;
+	private final IMainModel mainModel;
 
 	private View2D() {
 		this.mainModel = MainModelFactory.get();
@@ -63,7 +63,7 @@ public final class View2D implements IView {
 		GL11.glMatrixMode(GL11.GL_PROJECTION);
 		GL11.glLoadIdentity();
 		GL11.glOrtho(0, width, height, 0, 1, -1);
-		
+
 		// Prepare matrix for rendering
 		GL11.glMatrixMode(GL11.GL_MODELVIEW);
 
@@ -94,6 +94,7 @@ public final class View2D implements IView {
 			IGeometry geometry = m.getGeometry();
 
 			if (geometry.isVisible()) {
+
 				// Set color
 				Color color = geometry.getColor();
 
@@ -104,29 +105,27 @@ public final class View2D implements IView {
 				Vector2f position = geometry.getPosition();
 				float angle = geometry.getAngle();
 				Vector2f scale = geometry.getScale();
+				float depth = geometry.getDepth();
 
 				GL11.glLoadIdentity();
-				GL11.glTranslatef(position.x, position.y, 0.0f);
+				GL11.glTranslatef(position.x, position.y, depth);
 				GL11.glRotatef(angle * Constants.TO_DEGREES, 0.0f, 0.0f, -1.0f);
 				GL11.glScalef(scale.x, scale.y, 1.0f);
 
-				// Begin rendering triangles
+				// Render the geometry as triangles
 				GL11.glBegin(GL11.GL_TRIANGLES);
 
-				// Render the geometry as triangles
 				Vector2f[] vertices = geometry.getVertices();
 				Vector2f[] uvs = geometry.getUvs();
-				float depth = geometry.getDepth();
 
 				for (final Vector2f vertex : vertices) {
-					GL11.glVertex3f(vertex.x, vertex.y, depth);
+					GL11.glVertex3f(vertex.x, vertex.y, 0.0f);
 				}
 
 				for (final Vector2f uv : uvs) {
 					GL11.glTexCoord2f(uv.x, uv.y);
 				}
 
-				// End rendering triangles
 				GL11.glEnd();
 			}
 		}
