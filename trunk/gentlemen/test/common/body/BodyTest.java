@@ -94,8 +94,8 @@ public final class BodyTest {
 			IBodyCollisionCallback {
 
 		@Override
-		public void collisionOccured(final IBody otherBody,
-				final Vector2f collisionPoint) {
+		public void collisionOccured(final Vector2f otherPosition,
+				final Vector2f otherVelocity, final Vector2f collisionPoint) {
 			// Do nothing
 		}
 

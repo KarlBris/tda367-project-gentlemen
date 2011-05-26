@@ -11,7 +11,6 @@ import utilities.Constants;
 import utilities.Tools;
 
 import common.body.Body;
-import common.body.IBody;
 import common.body.IBodyCollisionCallback;
 
 import controller.IMainController;
@@ -468,9 +467,9 @@ public final class PlayerController implements IController<PlayerModel>,
 	}
 
 	@Override
-	public void collisionOccured(final IBody otherBody,
-			final Vector2f collisionPoint) {
-		if (otherBody.getVelocity().length() >= Constants.BALL_LETHAL_SPEED) {
+	public void collisionOccured(final Vector2f otherPosition,
+			final Vector2f otherVelocity, final Vector2f collisionPoint) {
+		if (otherVelocity.length() >= Constants.BALL_LETHAL_SPEED) {
 			playerKnockOut();
 		}
 	}
