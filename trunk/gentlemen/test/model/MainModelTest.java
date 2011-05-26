@@ -4,9 +4,7 @@ import static org.junit.Assert.assertTrue;
 import model.common.IModel;
 
 import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import common.body.IBody;
@@ -17,8 +15,8 @@ import common.geometry.NullGeometry;
 public class MainModelTest {
 
 	private static class TestModel implements IModel {
-		private IGeometry geometry = new NullGeometry();
-		private IBody body = new NullBody();
+		private final IGeometry geometry = new NullGeometry();
+		private final IBody body = new NullBody();
 
 		@Override
 		public IGeometry getGeometry() {

@@ -4,9 +4,7 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import org.lwjgl.util.vector.Vector2f;
 
@@ -22,8 +20,9 @@ public class AbstractGeometryTest {
 			super(Color.RED, 0.5f);
 		}
 
-		private Vector2f[] vertices = new Vector2f[] { new Vector2f(1.0f, 1.0f) };
-		private Vector2f[] uvs = new Vector2f[] { new Vector2f(1.0f, 1.0f) };
+		private final Vector2f[] vertices = new Vector2f[] { new Vector2f(1.0f,
+				1.0f) };
+		private final Vector2f[] uvs = new Vector2f[] { new Vector2f(1.0f, 1.0f) };
 
 		@Override
 		public boolean isVisible() {

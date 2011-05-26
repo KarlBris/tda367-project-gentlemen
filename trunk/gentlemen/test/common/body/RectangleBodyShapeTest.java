@@ -5,9 +5,7 @@ import static org.junit.Assert.fail;
 
 import org.jbox2d.collision.shapes.PolygonShape;
 import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class RectangleBodyShapeTest {
