@@ -36,11 +36,13 @@ public final class PhysicsContactListener implements ContactListener {
 		Vector2f collisionPoint = Tools.toNormalVector(point);
 
 		if (callbackA != null) {
-			callbackA.collisionOccured(bodyB, collisionPoint);
+			callbackA.collisionOccured(bodyB.getPosition(),
+					bodyB.getVelocity(), collisionPoint);
 		}
 
 		if (callbackB != null) {
-			callbackB.collisionOccured(bodyA, collisionPoint);
+			callbackB.collisionOccured(bodyA.getPosition(),
+					bodyB.getVelocity(), collisionPoint);
 		}
 	}
 
