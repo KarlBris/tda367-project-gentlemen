@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="11.1">
+  <zoom_level>8</zoom_level>
+  <element>
+    <type>com.umlet.element.SequenceDiagram</type>
+    <coordinates>
+      <x>32</x>
+      <y>120</y>
+      <w>808</w>
+      <h>304</h>
+    </coordinates>
+    <panel_attributes>title: Move
+|_PlayerController~id1_|_IMainController~id2_|_KeyboardComponent~id3_|_PlayerModel~id4_|_Body~id5_
+
+id1-&gt;&gt;id2:id1,id2:getKeyboardComponent()
+id2.&gt;id1:id2,id1
+id1-&gt;&gt;id3:id1,id3:getKey()
+id3.&gt;id1:id3,id1
+id1-&gt;&gt;id4:id1,id4:move()
+id4-&gt;&gt;id5:id4,id5,id1:clearAngularVelocity()
+id4-&gt;&gt;id5:id4,id5,id1:applyForce()
+id1-&gt;&gt;id4:id1,id4:faceTowards();
+id4-&gt;&gt;id5:id4,id5:setAngle()</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
