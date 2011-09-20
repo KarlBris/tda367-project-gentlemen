@@ -42,7 +42,7 @@ public final class PhysicsContactListener implements ContactListener {
 
 		if (callbackB != null) {
 			callbackB.collisionOccured(bodyA.getPosition(),
-					bodyB.getVelocity(), collisionPoint);
+					bodyA.getVelocity(), collisionPoint);
 		}
 	}
 
