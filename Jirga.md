@@ -1,0 +1,8 @@
+# Introduction #
+
+The jirga was held on the sixth floor of the EDIT-building. Two design proposals was discussed and argued about. An agreement was had about not leaving the room before a conclusion had been reached.
+
+
+# Details #
+
+Pictures will be uploaded when i find out how it is done
